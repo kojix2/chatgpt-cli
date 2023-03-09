@@ -11,5 +11,7 @@ dependencies:
   spinner:
     github: kojix2/spinner
     branch: master
+  readline:
+    github: crystal-lang/crystal-readline
 
 license: MIT

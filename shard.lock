@@ -1,5 +1,9 @@
 version: 2.0
 shards:
+  readline:
+    git: https://github.com/crystal-lang/crystal-readline.git
+    version: 0.1.1
+
   spinner:
     git: https://github.com/kojix2/spinner.git
     version: 0.2.0+git.commit.ac349a25dc7662c45c630bcf5c00067753660273

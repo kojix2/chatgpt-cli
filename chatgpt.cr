@@ -3,8 +3,9 @@
 require "option_parser"
 require "http/client"
 require "json"
-require "spinner"
 require "colorize"
+require "readline"
+require "spinner"
 
 require "./file_extensions"
 
@@ -59,11 +60,6 @@ headers = HTTP::Headers{
   "Content-Type"  => "application/json",
 }
 
-def get_input(prompt)
-  print prompt
-  STDIN.gets.to_s.chomp
-end
-
 def send_chat_request(url, data, headers, debug_flag)
   STDERR.puts data.pretty_inspect.colorize(:dark_gray) if debug_flag
   spinner_text = "ChatGPT".colorize(:green)
@@ -75,8 +71,8 @@ def send_chat_request(url, data, headers, debug_flag)
 end
 
 loop do
-  msg = get_input("> ")
-  break if msg.empty?
+  msg = Readline.readline("> ")
+  break if msg.nil?
   msg = msg.gsub(/\#{.+?}/) do |match|
     path = match[2..-2].strip
     extname = File.extname(path)
