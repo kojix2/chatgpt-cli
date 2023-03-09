@@ -62,6 +62,9 @@ OptionParser.parse do |parser|
   parser.on "-p Float", "--top_p Float", "Nucleus sampling considers top_p probability mass for token selection." do |v|
     data.top_p = v.to_f? || (STDERR.puts "Error: Invalid top_p"; exit 1)
   end
+  parser.on "-d", "--debug", "Debug mode" do
+    DEBUG_FLAG[0] = true
+  end
   parser.on "-v", "--version", "Show version" do
     puts PROGRAM_VERSION
     exit
