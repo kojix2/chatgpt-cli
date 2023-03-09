@@ -48,6 +48,7 @@ end
 data = PostData.new
 
 # Parse command line options
+
 OptionParser.parse do |parser|
   parser.banner = "Usage: #{PROGRAM_NAME} [options]"
   parser.on "-s STR", "--system STR", "System message" do |v|
@@ -72,7 +73,7 @@ OptionParser.parse do |parser|
   parser.on("-h", "--help", "Show help") { puts parser; exit }
 end
 
-url = "https://api.openai.com/v1/chat/completions"
+API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
 
 if ENV.has_key?("OPENAI_API_KEY")
   api_key = ENV["OPENAI_API_KEY"]
