@@ -75,11 +75,12 @@ end
 
 API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
 
+class ApiKeyError < Exception; end
+
 if ENV.has_key?("OPENAI_API_KEY")
   api_key = ENV["OPENAI_API_KEY"]
 else
-  STDERR.puts "Error: OPENAI_API_KEY is not set".colorize(:yellow).mode(:bold)
-  exit 1
+  ApiKeyError.new("OPENAI_API_KEY is not set")
 end
 
 headers = HTTP::Headers{
@@ -87,13 +88,26 @@ headers = HTTP::Headers{
   "Content-Type"  => "application/json",
 }
 
-def send_chat_request(url, data, headers)
-  STDERR.puts data.pretty_inspect.colorize(:dark_gray) if DEBUG_FLAG[0]
+def send_chat_request(data, headers)
+  if DEBUG_FLAG[0]
+    STDERR.puts
+    STDERR.puts "Sending request to #{API_ENDPOINT}".colorize(:cyan).mode(:bold)
+    STDERR.puts data.pretty_inspect.colorize(:cyan)
+    STDERR.puts
+  end
+
   spinner_text = "ChatGPT".colorize(:green)
   sp = Spin.new(0.2, Spinner::Charset[:pulsate2], spinner_text, output: STDERR)
   sp.start
-  response = HTTP::Client.post(url, body: data.to_json, headers: headers)
+  response = HTTP::Client.post(API_ENDPOINT, body: data.to_json, headers: headers)
   sp.stop
+
+  if DEBUG_FLAG[0]
+    STDERR.puts "Received response from #{API_ENDPOINT}".colorize(:cyan).mode(:bold)
+    STDERR.puts "Response status: #{response.status}".colorize(:cyan)
+    STDERR.puts "Response body: #{response.body}".colorize(:cyan)
+    STDERR.puts
+  end
   response
 end
 
@@ -122,7 +136,7 @@ def run_magic_command(command, data)
     if data.messages.empty?
       data.messages << {"role" => "system", "content" => $1}
     elsif data.messages[0]["role"] == "system"
-      data.messages[0]["content"] = $1
+      data.messages[0]["content"] = $1./
     else
       data.messages.unshift({"role" => "system", "content" => $1})
     end
@@ -204,7 +218,7 @@ loop do
 
   data.messages << {"role" => "user", "content" => msg}
 
-  response = send_chat_request(url, data, headers)
+  response = send_chat_request(data, headers)
   response_data = JSON.parse(response.body)
 
   if response.status.success?
