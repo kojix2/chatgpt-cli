@@ -1,5 +1,9 @@
 version: 2.0
 shards:
+  lexbor:
+    git: https://github.com/kostya/lexbor.git
+    version: 3.0.4
+
   readline:
     git: https://github.com/crystal-lang/crystal-readline.git
     version: 0.1.1
