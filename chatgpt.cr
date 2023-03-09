@@ -73,6 +73,9 @@ end
 loop do
   msg = Readline.readline("> ", true)
   break if msg.nil?
+  break if msg == "exit"
+  break if msg == "quit"
+  next if msg.empty?
   msg = msg.gsub(/\#{.+?}/) do |match|
     path = match[2..-2].strip
     extname = File.extname(path)
