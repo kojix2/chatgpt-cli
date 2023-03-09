@@ -71,7 +71,7 @@ def send_chat_request(url, data, headers, debug_flag)
 end
 
 loop do
-  msg = Readline.readline("> ")
+  msg = Readline.readline("> ", true)
   break if msg.nil?
   msg = msg.gsub(/\#{.+?}/) do |match|
     path = match[2..-2].strip
