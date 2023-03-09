@@ -1,0 +1,15 @@
+name: openai_scripts
+version: 0.1.0
+
+authors:
+  - kojix2 <2xijok@gmail.com>
+
+description: |
+  Scripts for OpenAI
+
+dependencies:
+  spinner:
+    github: kojix2/spinner
+    branch: master
+
+license: MIT
