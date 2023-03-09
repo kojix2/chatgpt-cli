@@ -81,12 +81,22 @@ loop do
     extname = File.extname(path)
     basename = File.basename(path)
     if File.exists?(path)
-      "\n\n```#{FILE_EXTENSIONS[extname]}:#{basename}\n" + File.read(match[2..-2]) + "\n```"
+      str = <<-CODE_BLOCK
+      ### #{basename}
+
+      ```#{FILE_EXTENSIONS[extname]}
+      #{File.read(path)}
+      ```
+
+      That's all for the #{basename}
+      CODE_BLOCK
+      "\n\n#{str}\n\n"
     else
       STDERR.puts "Error: File not found: #{path}".colorize(:yellow).mode(:bold)
       next match
     end
   end
+  
   data.messages << {"role" => "user", "content" => msg}
 
   response = send_chat_request(url, data, headers, debug_flag)
