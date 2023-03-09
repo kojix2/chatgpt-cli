@@ -6,11 +6,27 @@ require "json"
 require "colorize"
 require "readline"
 require "spinner"
+require "lexbor"
 
 require "./file_extensions"
 
 PROGRAM_VERSION = "0.1.0"
 DEBUG_FLAG      = [false]
+
+struct Lexbor::Node
+  def displayble?
+    visible? && !object? && !is_tag_noindex?
+  end
+end
+
+def words(parser)
+  parser
+    .nodes(:_text)                         # iterate through all TEXT nodes
+    .select(&.parents.all?(&.displayble?)) # select only which parents are visible good tag
+    .map(&.tag_text)                       # mapping node text
+    .reject(&.blank?)                      # reject blanked texts
+    .map(&.strip.gsub(/\s{2,}/, " "))      # remove extra spaces
+end
 
 struct PostData
   include JSON::Serializable
@@ -92,6 +108,24 @@ def run_magic_command(command, data)
   when "debug"
     DEBUG_FLAG[0] = !DEBUG_FLAG[0]
     puts "Debug mode: #{DEBUG_FLAG[0]}".colorize(:yellow)
+  when "system"
+    data.messages.each do |msg|
+      if msg["role"] == "system"
+        puts msg["content"].colorize(:yellow)
+      end
+    end
+  when /system\s+(.+)/
+    if data.messages.empty?
+      data.messages << {"role" => "system", "content" => $1}
+    elsif data.messages[0]["role"] == "system"
+      data.messages[0]["content"] = $1
+    else
+      data.messages.unshift({"role" => "system", "content" => $1})
+    end
+    puts "Set system message to #{$1}".colorize(:yellow)
+  when "clear"
+    data.messages.clear
+    puts "Cleared".colorize(:yellow)
   when "saveall"
     File.write("chatgpt.json", data.to_json)
     puts "Saved to chatgpt.json".colorize(:yellow)
@@ -132,22 +166,35 @@ loop do
   # Replace #{...} with the contents of the file
   msg = msg.gsub(/\#{.+?}/) do |match|
     path = match[2..-2].strip
-    extname = File.extname(path)
-    basename = File.basename(path)
-    if File.exists?(path)
+    if path.starts_with? "http"
       str = <<-CODE_BLOCK
-      ### #{basename}
+      ### #{path}
 
-      ```#{FILE_EXTENSIONS[extname]}
-      #{File.read(path)}
+      ```html
+      #{words(Lexbor::Parser.new(HTTP::Client.get(path).body.to_s)).join("|")}
       ```
 
-      That's all for the #{basename}
+      That's all for the #{path}
       CODE_BLOCK
       "\n\n#{str}\n\n"
     else
-      STDERR.puts "Error: File not found: #{path}".colorize(:yellow).mode(:bold)
-      next match
+      extname = File.extname(path)
+      basename = File.basename(path)
+      if File.exists?(path)
+        str = <<-CODE_BLOCK
+        ### #{basename}
+  
+        ```#{FILE_EXTENSIONS[extname]}
+        #{File.read(path)}
+        ```
+  
+        That's all for the #{basename}
+        CODE_BLOCK
+        "\n\n#{str}\n\n"
+      else
+        STDERR.puts "Error: File not found: #{path}".colorize(:yellow).mode(:bold)
+        next match
+      end
     end
   end
 
