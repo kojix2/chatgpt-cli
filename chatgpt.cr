@@ -10,7 +10,7 @@ require "spinner"
 require "./file_extensions"
 
 PROGRAM_VERSION = "0.1.0"
-DEBUG_FLAG = [false]
+DEBUG_FLAG      = [false]
 
 struct PostData
   include JSON::Serializable
@@ -34,8 +34,11 @@ data = PostData.new
 # Parse command line options
 OptionParser.parse do |parser|
   parser.banner = "Usage: #{PROGRAM_NAME} [options]"
+  parser.on "-s STR", "--system STR", "System message" do |v|
+    data.messages << {"role" => "system", "content" => v.to_s}
+  end
   parser.on "-n INT", "How many edits to generate for the input and instruction." do |v|
-    data.n = v.to_i? || (STDERR.puts "Error: Invalid number of edits"; exit 1)
+    data.n = v.to_i? || (STDERR.puts "Error: Invalimad number of edits"; exit 1)
   end
   parser.on "-t Float", "--temperature Float", "Sampling temperature between 0 and 2 affects randomness of output." do |v|
     data.temperature = v.to_f? || (STDERR.puts "Error: Invalid temperature"; exit 1)
@@ -51,7 +54,14 @@ OptionParser.parse do |parser|
 end
 
 url = "https://api.openai.com/v1/chat/completions"
-api_key = ENV["OPENAI_API_KEY"]
+
+if ENV.has_key?("OPENAI_API_KEY")
+  api_key = ENV["OPENAI_API_KEY"]
+else
+  STDERR.puts "Error: OPENAI_API_KEY is not set".colorize(:yellow).mode(:bold)
+  exit 1
+end
+
 headers = HTTP::Headers{
   "Authorization" => "Bearer #{api_key}",
   "Content-Type"  => "application/json",
@@ -97,7 +107,7 @@ loop do
   # Get input from the user
   msg = Readline.readline("> ", true)
   break if msg.nil?
-  
+
   # Enter
   next if msg.empty?
 
