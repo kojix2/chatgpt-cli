@@ -77,14 +77,17 @@ def run_system_command(command)
   end
 end
 
-def run_magic_command(command)
+def run_magic_command(command, data)
   case command
   when "debug"
     DEBUG_FLAG[0] = !DEBUG_FLAG[0]
-    puts "Debug mode: #{DEBUG_FLAG[0]}"
-  when "save"
+    puts "Debug mode: #{DEBUG_FLAG[0]}".colorize(:yellow)
+  when "saveall"
     File.write("chatgpt.json", data.to_json)
-    puts "Saved to chatgpt.json"
+    puts "Saved to chatgpt.json".colorize(:yellow)
+  when /save\s+(.+)/
+    File.write($1, data.messages[-1]["content"])
+    puts "Saved to #{$1}".colorize(:yellow)
   else
     STDERR.puts "Error: Unknown magic command: #{command}".colorize(:yellow).mode(:bold)
   end
@@ -112,7 +115,7 @@ loop do
   # Run magic command if the message starts with `%`
   if msg.starts_with? "%"
     command = msg[1..-1].strip
-    msg = run_magic_command(command)
+    msg = run_magic_command(command, data)
     next
   end
 
