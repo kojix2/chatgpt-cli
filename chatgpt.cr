@@ -10,7 +10,7 @@ require "spinner"
 require "./file_extensions"
 
 PROGRAM_VERSION = "0.1.0"
-debug_flag = false
+DEBUG_FLAG = [false]
 
 struct PostData
   include JSON::Serializable
@@ -43,9 +43,6 @@ OptionParser.parse do |parser|
   parser.on "-p Float", "--top_p Float", "Nucleus sampling considers top_p probability mass for token selection." do |v|
     data.top_p = v.to_f? || (STDERR.puts "Error: Invalid top_p"; exit 1)
   end
-  parser.on "-d", "--debug", "Print request data" do
-    debug_flag = true
-  end
   parser.on "-v", "--version", "Show version" do
     puts PROGRAM_VERSION
     exit
@@ -60,8 +57,8 @@ headers = HTTP::Headers{
   "Content-Type"  => "application/json",
 }
 
-def send_chat_request(url, data, headers, debug_flag)
-  STDERR.puts data.pretty_inspect.colorize(:dark_gray) if debug_flag
+def send_chat_request(url, data, headers)
+  STDERR.puts data.pretty_inspect.colorize(:dark_gray) if DEBUG_FLAG[0]
   spinner_text = "ChatGPT".colorize(:green)
   sp = Spin.new(0.2, Spinner::Charset[:pulsate2], spinner_text, output: STDERR)
   sp.start
@@ -70,12 +67,56 @@ def send_chat_request(url, data, headers, debug_flag)
   response
 end
 
+def run_system_command(command)
+  output = `#{command}`
+  if $?.success?
+    puts output.colorize(:yellow)
+  else
+    STDERR.puts "Error: Command failed: #{command}".colorize(:yellow).mode(:bold)
+    STDERR.puts output.colorize(:yellow)
+  end
+end
+
+def run_magic_command(command)
+  case command
+  when "debug"
+    DEBUG_FLAG[0] = !DEBUG_FLAG[0]
+    puts "Debug mode: #{DEBUG_FLAG[0]}"
+  when "save"
+    File.write("chatgpt.json", data.to_json)
+    puts "Saved to chatgpt.json"
+  else
+    STDERR.puts "Error: Unknown magic command: #{command}".colorize(:yellow).mode(:bold)
+  end
+end
+
 loop do
+  # Get input from the user
   msg = Readline.readline("> ", true)
   break if msg.nil?
+  
+  # Enter
+  next if msg.empty?
+
+  # Exit
   break if msg == "exit"
   break if msg == "quit"
-  next if msg.empty?
+
+  # Run command if the message starts with `!`
+  if msg.starts_with? "!"
+    command = msg[1..-1].strip
+    msg = run_system_command(command)
+    next
+  end
+
+  # Run magic command if the message starts with `%`
+  if msg.starts_with? "%"
+    command = msg[1..-1].strip
+    msg = run_magic_command(command)
+    next
+  end
+
+  # Replace #{...} with the contents of the file
   msg = msg.gsub(/\#{.+?}/) do |match|
     path = match[2..-2].strip
     extname = File.extname(path)
@@ -96,10 +137,10 @@ loop do
       next match
     end
   end
-  
+
   data.messages << {"role" => "user", "content" => msg}
 
-  response = send_chat_request(url, data, headers, debug_flag)
+  response = send_chat_request(url, data, headers)
   response_data = JSON.parse(response.body)
 
   if response.status.success?
