@@ -144,6 +144,8 @@ def run_magic_command(command, data)
   when "clear"
     data.messages.clear
     puts "Cleared".colorize(:yellow)
+  when "data"
+    puts data.to_json.colorize(:yellow)
   when "saveall"
     File.write("chatgpt.json", data.to_json)
     puts "Saved to chatgpt.json".colorize(:yellow)
@@ -181,25 +183,32 @@ loop do
     next
   end
 
-  # Replace #{...} with the contents of the file
-  msg = msg.gsub(/\#{.+?}/) do |match|
-    path = match[2..-2].strip
-    if path.starts_with? "http"
-      str = <<-CODE_BLOCK
-      ### #{path}
+  # Replace %%{...} with the contents of the url
+  msg = msg.gsub(/%%{.+?}/) do |match|
+    url = match[3..-2].strip
+    unless url.starts_with? "http"
+      url = "https://" + url
+    end
+    compressed_text = words(Lexbor::Parser.new(HTTP::Client.get(url).body.to_s)).join("|")
+    str = <<-CODE_BLOCK
+      ### #{url}
 
-      ```html
-      #{words(Lexbor::Parser.new(HTTP::Client.get(path).body.to_s)).join("|")}
+      ```
+      #{compressed_text}
       ```
 
-      That's all for the #{path}
-      CODE_BLOCK
-      "\n\n#{str}\n\n"
-    else
-      extname = File.extname(path)
-      basename = File.basename(path)
-      if File.exists?(path)
-        str = <<-CODE_BLOCK
+      That's all for the #{url}
+    CODE_BLOCK
+    "\n\n#{str}\n\n"
+  end
+
+  # Replace %{...} with the contents of the file
+  msg = msg.gsub(/%{.+?}/) do |match|
+    path = match[2..-2].strip
+    extname = File.extname(path)
+    basename = File.basename(path)
+    if File.exists?(path)
+      str = <<-CODE_BLOCK
         ### #{basename}
   
         ```#{FILE_EXTENSIONS[extname]}
@@ -208,11 +217,10 @@ loop do
   
         That's all for the #{basename}
         CODE_BLOCK
-        "\n\n#{str}\n\n"
-      else
-        STDERR.puts "Error: File not found: #{path}".colorize(:yellow).mode(:bold)
-        next match
-      end
+      "\n\n#{str}\n\n"
+    else
+      STDERR.puts "Error: File not found: #{path}".colorize(:yellow).mode(:bold)
+      next match
     end
   end
 
