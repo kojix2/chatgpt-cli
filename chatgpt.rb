@@ -26,20 +26,17 @@ OptionParser.new do |parser|
     parameters[:messages] << { 'role' => 'system', 'content' => v.to_s }
   end
   parser.on '-n INT', 'How many edits to generate for the input and instruction.' do |v|
-    parameters[:n] = v.to_i? ||
-                     (warn 'Error: Invalimad number of edits'
-                      exit 1)
+    parameters[:n] = v.to_i?
   end
   parser.on '-t Float', '--temperature Float',
             'Sampling temperature between 0 and 2 affects randomness of output.' do |v|
-    parameters[:temperature] = v.to_f? ||
-                               (warn 'Error: Invalid temperature'
-                                exit 1)
+    parameters[:temperature] = v.to_f?
   end
   parser.on '-p Float', '--top_p Float', 'Nucleus sampling considers top_p probability mass for token selection.' do |v|
-    parameters[:top_p] = v.to_f? ||
-                         (warn 'Error: Invalid top_p'
-                          exit 1)
+    parameters[:top_p] = v.to_f?
+  end
+  parser.on '-d', '--debug', 'Debug mode' do
+    DEBUG_FLAG[0] = true
   end
   parser.on '-v', '--version', 'Show version' do
     puts PROGRAM_VERSION
@@ -54,7 +51,7 @@ end.parse!
 if api_key = ENV['OPENAI_API_KEY']
   client = OpenAI::Client.new(access_token: api_key)
 else
-  warn 'Error: OPENAI_API_KEY is not set'.colorize(color: :yellow, mode: :bold)
+  output_error 'Error: OPENAI_API_KEY is not set'
   exit 1
 end
 
@@ -68,6 +65,9 @@ def send_chat_request(client, parameters)
   ensure
     spinner.stop
   end
+
+  warn response.pretty_inspect.colorize(:dark_gray) if DEBUG_FLAG[0]
+
   response
 end
 
@@ -76,8 +76,8 @@ def run_system_command(command)
   if $?.success?
     puts output.colorize(:yellow)
   else
-    warn "Error: Command failed: #{command}".colorize(color: :yellow, mode: :bold)
-    warn output.colorize(:yellow)
+    output_error "Error: Command failed: #{command}"
+    output_error output.colorize(:yellow)
   end
 end
 
@@ -91,7 +91,7 @@ def run_magic_command(command, data)
     File.write(Regexp.last_match(1), data.messages[-1]['content'])
     puts "Saved to #{Regexp.last_match(1)}".colorize(:yellow)
   else
-    warn "Error: Unknown magic command: #{command}".colorize(color: :yellow, mode: :bold)
+    output_error "Error: Unknown magic command: #{command}"
   end
 end
 
@@ -140,7 +140,7 @@ loop do
       CODE_BLOCK
       "\n\n#{str}\n\n"
     else
-      warn "Error: File not found: #{path}".colorize(color: :yellow, mode: :bold)
+      output_error "Error: File not found: #{path}"
       next match
     end
   end
@@ -153,8 +153,14 @@ loop do
     parameters[:messages] << { 'role' => 'assistant', 'content' => result.to_s }
     puts result.colorize(:green)
   rescue StandardError => e
-    warn e.message
-    warn 'Error: Failed to send chat request'.colorize(color: :yellow, mode: :bold)
+    output_error e.message
+    output_error 'Error: Failed to send chat request'
     exit 1
   end
+end
+
+private
+
+def output_error(message)
+  warn message.colorize(color: :yellow, mode: :bold)
 end
