@@ -19,11 +19,18 @@ sudo make install
 chatgpt
 ```
 
-### Replace #{filename}
+### Replace %{filename}
+
 This tool allows you to load files using placeholders.
 
 ```
-> Please read the code #{chatgpt.cr}
+> Please read the code %{chatgpt.cr}
+```
+
+### Replace %%{www.example.com}
+
+```
+> Please summarize the news %{www.yahoo.com}
 ```
 
 ### Run system command
@@ -32,7 +39,7 @@ This tool allows you to load files using placeholders.
 !pwd
 ```
 
-### Magic command
+### Magic commands
 
 ```
 %save foo.txt
