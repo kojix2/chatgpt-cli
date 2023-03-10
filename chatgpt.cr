@@ -221,7 +221,7 @@ loop do
   response = send_chat_request(data, headers)
   response_data = JSON.parse(response.body)
 
-  if response.status.success?
+  if response.success?
     result = response_data["choices"][0]["message"]["content"]
     data.messages << {"role" => "assistant", "content" => result.to_s}
     puts result.colorize(:green)
