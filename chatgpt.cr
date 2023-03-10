@@ -177,7 +177,7 @@ loop do
   end
 
   # Run magic command if the message starts with `%`
-  if msg.starts_with? "%"
+  if /^%(?!\{|%)/.match msg
     command = msg[1..-1].strip
     msg = run_magic_command(command, data)
     next
