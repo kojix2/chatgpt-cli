@@ -136,7 +136,7 @@ def run_magic_command(command, data)
     if data.messages.empty?
       data.messages << {"role" => "system", "content" => $1}
     elsif data.messages[0]["role"] == "system"
-      data.messages[0]["content"] = $1./
+      data.messages[0]["content"] = $1
     else
       data.messages.unshift({"role" => "system", "content" => $1})
     end
