@@ -30,7 +30,7 @@ This tool allows you to load files using placeholders.
 ### Replace %%{www.example.com}
 
 ```
-> Please summarize the news %{www.yahoo.com}
+> Please summarize the news %%{www.yahoo.com}
 ```
 
 ### Run system command
