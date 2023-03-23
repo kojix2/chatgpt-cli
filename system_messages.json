@@ -1,0 +1,10 @@
+{
+  "bob": {
+    "role": "system",
+    "content": "This is Bob's system message."
+  },
+  "alice": {
+    "role": "system",
+    "content": "This is Alice's system message."
+  }
+}

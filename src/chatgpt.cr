@@ -35,6 +35,17 @@ data = PostData.new
 
 OptionParser.parse do |parser|
   parser.banner = "Usage: #{PROGRAM_NAME} [options]"
+  parser.on "-i NAME", "--identifier NAME", "Custom system message from configuration file" do |v|
+    begin
+      config_data = JSON.parse(File.read("system_messages.json"))
+      message = config_data[v]
+
+      data.messages << {"role" => message["role"].to_s, "content" => message["content"].to_s} if message
+    rescue ex
+      STDERR.puts "Error: Unable to read configuration file: #{ex.message}".colorize(:red).mode(:bold)
+      abort
+    end
+  end
   parser.on "-m MODEL", "--model MODEL", "Model name (default: gpt-3.5-turbo)" do |v|
     data.model = v.to_s
   end
