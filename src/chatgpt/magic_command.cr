@@ -39,6 +39,16 @@ module ChatGPT
          "pattern"     => "saveall",
          "n_args"      => 0,
          "method"      => "save_all_to_json"},
+        {"command"     => "config",
+         "description" => "Edit config file",
+         "pattern"     => "config",
+         "n_args"      => 0,
+         "method"      => "show_config"},
+        {"command"     => "help",
+         "description" => "Show this help",
+         "pattern"     => "help",
+         "n_args"      => 0,
+         "method"      => "show_help"},
       ]
 
     getter key : String
@@ -69,6 +79,8 @@ module ChatGPT
           {{value["method"].id}}($1)
         {% end %}
       {% end %}
+      else
+        unknown_command_error(command)
       end
       {% end %}
     end
@@ -116,7 +128,20 @@ module ChatGPT
       puts "Saved to #{file_name}".colorize(:yellow)
     end
 
-    def unknown_command_error
+    def show_config
+      editor = ENV.has_key?("EDITOR") ? ENV["EDITOR"] : "vim"
+      system("#{editor} #{ChatGPT::CLI::Config::CONFIG_FILE}")
+    end
+
+    def show_help
+      puts "Magic commands:".colorize(:yellow).mode(:bold)
+      Table.each do |value|
+        puts "  #{value["command"]}".colorize(:yellow).mode(:bold)
+        puts "    #{value["description"]}".colorize(:yellow)
+      end
+    end
+
+    def unknown_command_error(command)
       STDERR.puts "Error: Unknown magic command: #{command}".colorize(:yellow).mode(:bold)
     end
   end

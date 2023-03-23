@@ -1,4 +1,5 @@
 require "../post_data"
+require "./config"
 require "./version"
 
 module ChatGPT
@@ -6,13 +7,12 @@ module ChatGPT
     class Parser < OptionParser
       def initialize(data : PostData)
         super()
+        config = Config.new
         self.banner = "Usage: #{PROGRAM_NAME} [options]"
         on "-i NAME", "--identifier NAME", "Custom system message from configuration file" do |v|
           begin
-            config_data = JSON.parse(File.read("system_messages.json"))
-            message = config_data[v]
-
-            data.messages << {"role" => message["role"].to_s, "content" => message["content"].to_s} if message
+            system_message = config.select_id(v.to_s)
+            data.messages << system_message if system_message
           rescue ex
             STDERR.puts "Error: Unable to read configuration file: #{ex.message}".colorize(:red).mode(:bold)
             abort
