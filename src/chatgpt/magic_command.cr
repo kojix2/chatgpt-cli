@@ -53,7 +53,7 @@ module ChatGPT
       {% for value in Table %}
         when {{value["pattern"]}}
         {% if value["n_args"] == 0 %}
-          {{value["method"]}}
+          {{value["method"].id}}
         {% else %}
           {{value["method"].id}}($1)
         {% end %}
