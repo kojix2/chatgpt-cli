@@ -58,12 +58,12 @@ ChatGPT Shell is a command-line interface (CLI) tool for interacting with OpenAI
 To start using ChatGPT Shell, run the `chatgpt` command in your terminal:
 
 ```bash
-chatgpt_shell
+chatgpt
 ```
 
 Type a message and press Enter to get a response from GPT-3.5 Turbo.
 
-To exit, type `exit` or `quit`.
+To exit, type `exit`, `quit` or `Ctrl + D`
 
 ### Options
 
