@@ -1,4 +1,4 @@
-require "../postdata"
+require "../post_data"
 require "./version"
 
 module ChatGPT

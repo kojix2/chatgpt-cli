@@ -9,7 +9,7 @@ require "spinner"
 require "lexbor"
 
 require "./chatgpt/file_extensions"
-require "./chatgpt/postdata"
+require "./chatgpt/post_data"
 require "./chatgpt/client"
 require "./chatgpt/system_command"
 require "./chatgpt/magic_command"
