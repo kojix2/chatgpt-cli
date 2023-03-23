@@ -8,10 +8,10 @@ require "readline"
 require "spinner"
 require "lexbor"
 
-require "./file_extensions"
-require "./postdata"
+require "./chatgpt_cli/file_extensions"
+require "./chatgpt_cli/postdata"
+require "./chatgpt_cli/version"
 
-PROGRAM_VERSION = "0.1.0"
 DEBUG_FLAG      = [false]
 
 struct Lexbor::Node
@@ -29,7 +29,7 @@ def words(parser)
     .map(&.strip.gsub(/\s{2,}/, " "))      # remove extra spaces
 end
 
-data = PostData.new
+data = ChatGPTCLI::PostData.new
 
 # Parse command line options
 
@@ -65,7 +65,7 @@ OptionParser.parse do |parser|
     DEBUG_FLAG[0] = true
   end
   parser.on "-v", "--version", "Show version" do
-    puts PROGRAM_VERSION
+    puts ChatGPTCLI::VERSION
     exit
   end
   parser.on("-h", "--help", "Show help") { puts parser; exit }
@@ -209,7 +209,7 @@ loop do
       str = <<-CODE_BLOCK
         ### #{basename}
   
-        ```#{FILE_EXTENSIONS[extname]}
+        ```#{ChatGPTCLI::FILE_EXTENSIONS[extname]}
         #{File.read(path)}
         ```
   

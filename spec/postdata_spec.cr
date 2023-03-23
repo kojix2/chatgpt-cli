@@ -3,7 +3,7 @@ require "../src/postdata"
 
 
 
-module ChatGPT
+module ChatGPTCLI
   data = PostData.new(messages: [{"role" => "system", "content" => "Set some context"}])
 
   describe PostData do
