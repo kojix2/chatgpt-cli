@@ -1,6 +1,6 @@
-# ChatGPT Shell
+# ChatGPT CLI
 
-ChatGPT Shell is a command-line interface (CLI) tool for interacting with OpenAI's ChatGPT API. It allows users to communicate with the GPT-3.5 Turbo model, an advanced language generation model, and receive context-based responses. Users can also adjust API parameters, use magic commands to perform various actions within the CLI, fetch content from URLs, and replace specified file contents.
+ChatGPT CLI is a command-line interface (CLI) tool for interacting with OpenAI's ChatGPT API. It allows users to communicate with the GPT-3.5 Turbo model, an advanced language generation model, and receive context-based responses. Users can also adjust API parameters, use magic commands to perform various actions within the CLI, fetch content from URLs, and replace specified file contents.
 
 ## Features
 
@@ -20,13 +20,13 @@ ChatGPT Shell is a command-line interface (CLI) tool for interacting with OpenAI
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/kojix2/chatgpt-shell.git
+   git clone https://github.com/kojix2/chatgpt-cli.git
    ```
    
 2. Change to the directory:
 
    ```bash
-   cd chatgpt-shell
+   cd chatgpt-cli
    ```
 
 3. Install dependencies:
@@ -55,7 +55,7 @@ ChatGPT Shell is a command-line interface (CLI) tool for interacting with OpenAI
 
 ## Usage
 
-To start using ChatGPT Shell, run the `chatgpt` command in your terminal:
+To start using ChatGPT CLI, run the `chatgpt` command in your terminal:
 
 ```bash
 chatgpt
@@ -95,7 +95,7 @@ Within the CLI, you can use magic commands to perform various actions:
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at [https://github.com/kojix2/chatgpt-shell](https://github.com/kojix2/chatgpt-shell).
+Bug reports and pull requests are welcome on GitHub at [https://github.com/kojix2/chatgpt-cli](https://github.com/kojix2/chatgpt-cli).
 
 ## License
 
