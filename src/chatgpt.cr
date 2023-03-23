@@ -55,14 +55,14 @@ loop do
   # Run command if the message starts with `!`
   if msg.starts_with? "!"
     command = msg[1..-1].strip
-    msg = ChatGPT::SystemCommand.new(command).run
+    ChatGPT::SystemCommand.new(command).run
     next
   end
 
   # Run magic command if the message starts with `%`
   if /^%(?!\{|%)/.match msg
     command = msg[1..-1].strip
-    msg = ChatGPT::MagicCommand.new(command, data).run
+    ChatGPT::MagicCommand.new(command, data).run
     next
   end
 
