@@ -10,6 +10,8 @@ require "lexbor"
 
 require "./chatgpt_cli/file_extensions"
 require "./chatgpt_cli/postdata"
+require "./chatgpt_cli/system_command"
+require "./chatgpt_cli/magic_command"
 require "./chatgpt_cli/version"
 
 DEBUG_FLAG      = [false]
@@ -109,10 +111,6 @@ def send_chat_request(data, headers)
   response
 end
 
-require "./chatgpt_cli/system_commands"
-
-require "./chatgpt_cli/magic_commands"
-
 loop do
   # Get input from the user
   msg = Readline.readline("> ", true)
@@ -128,14 +126,14 @@ loop do
   # Run command if the message starts with `!`
   if msg.starts_with? "!"
     command = msg[1..-1].strip
-    msg = run_system_command(command)
+    msg = ChatGPTCLI::SystemCommand.new(command).run
     next
   end
 
   # Run magic command if the message starts with `%`
   if /^%(?!\{|%)/.match msg
     command = msg[1..-1].strip
-    msg = run_magic_command(command, data)
+    msg = ChatGPTCLI::MagicCommand.new(command, data).run
     next
   end
 
