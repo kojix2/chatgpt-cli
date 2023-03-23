@@ -5,31 +5,62 @@ module ChatGPT
     property :command
     property :data
 
+    Table =
+      [
+        {"command"     => "debug",
+         "description" => "Toggle debug mode",
+         "pattern"     => "debug",
+         "n_args"      => 0,
+         "method"      => "debug_mode_toggle"},
+        {"command"     => "system",
+         "description" => "Show system messages",
+         "pattern"     => "system",
+         "n_args"      => 0,
+         "method"      => "show_system_messages"},
+        {"command"     => "system <message>",
+         "description" => "Set system message",
+         "pattern"     => /system\s+(.+)/,
+         "n_args"      => 1,
+         "method"      => "set_system_messages"},
+        {"command"     => "clear",
+         "description" => "Clear messages",
+         "pattern"     => "clear",
+         "n_args"      => 0,
+         "method"      => "clear_messages"},
+        {"command"     => "data",
+         "description" => "Show data in JSON",
+         "pattern"     => "data",
+         "n_args"      => 0,
+         "method"      => "show_data_json"},
+        {"command"     => "save <file_name>",
+         "description" => "Save last message to <file_name>",
+         "pattern"     => /save\s+(.+)/,
+         "n_args"      => 1,
+         "method"      => "save_to_file"},
+        {"command"     => "saveall",
+         "description" => "Save all messages to chatgpt.json",
+         "pattern"     => "saveall",
+         "n_args"      => 0,
+         "method"      => "save_all_to_json"},
+      ]
+
     def initialize(@command : String, @data : PostData)
     end
 
     def run
+      {% begin %}
       case command
-      when "debug"
-        debug_mode_toggle
-      when "system"
-        show_system_messages
-      when /system\s+(.+)/
-        set_system_messages($1)
-      when "clear"
-        clear_messages
-      when "data"
-        show_data_json
-      when "saveall"
-        save_all_to_json
-      when /save\s+(.+)/
-        save_to_file($1)
-      else
-        unknown_command_error
+      {% for value in Table %}
+        when {{value["pattern"]}}
+        {% if value["n_args"] == 0 %}
+          {{value["method"]}}
+        {% else %}
+          {{value["method"].id}}($1)
+        {% end %}
+      {% end %}
       end
+      {% end %}
     end
-
-    private
 
     def debug_mode_toggle
       DEBUG_FLAG[0] = !DEBUG_FLAG[0]
