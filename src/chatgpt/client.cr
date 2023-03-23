@@ -4,6 +4,8 @@ module ChatGPT
   class ApiKeyError < Exception; end
 
   class Client
+    API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
+
     def initialize
       @headers = HTTP::Headers{
         "Authorization" => "Bearer #{get_api_key}",

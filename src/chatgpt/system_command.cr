@@ -1,11 +1,16 @@
 module ChatGPT
   class SystemCommand
-    property :command
-
-    def initialize(@command : String)
+    def try_run(message)
+      if message.starts_with? "!"
+        cmd = message[1..-1].strip
+        run(cmd)
+        true
+      else
+        false
+      end
     end
 
-    def run
+    def run(command)
       output = `#{command}`
       if $?.success?
         puts output.colorize(:yellow)

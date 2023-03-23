@@ -13,32 +13,20 @@ require "./chatgpt/postdata"
 require "./chatgpt/client"
 require "./chatgpt/system_command"
 require "./chatgpt/magic_command"
+require "./chatgpt/webpage_compressor"
 require "./chatgpt/cli/version"
 require "./chatgpt/cli/parser"
 
-DEBUG_FLAG      = [false]
-API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
-
-struct Lexbor::Node
-  def displayble?
-    visible? && !object? && !is_tag_noindex?
-  end
-end
-
-def words(parser)
-  parser
-    .nodes(:_text)                         # iterate through all TEXT nodes
-    .select(&.parents.all?(&.displayble?)) # select only which parents are visible good tag
-    .map(&.tag_text)                       # mapping node text
-    .reject(&.blank?)                      # reject blanked texts
-    .map(&.strip.gsub(/\s{2,}/, " "))      # remove extra spaces
-end
+DEBUG_FLAG = [false]
 
 data = ChatGPT::PostData.new
 
 ChatGPT::CLI::Parser.new(data).parse
 
 client = ChatGPT::Client.new
+
+system_cmd = ChatGPT::SystemCommand.new
+magic_cmd = ChatGPT::MagicCommand.new(data, key: "%")
 
 loop do
   # Get input from the user
@@ -53,18 +41,10 @@ loop do
   break if msg == "quit"
 
   # Run command if the message starts with `!`
-  if msg.starts_with? "!"
-    command = msg[1..-1].strip
-    ChatGPT::SystemCommand.new(command).run
-    next
-  end
+  next if system_cmd.try_run(msg)
 
   # Run magic command if the message starts with `%`
-  if /^%(?!\{|%)/.match msg
-    command = msg[1..-1].strip
-    ChatGPT::MagicCommand.new(command, data).run
-    next
-  end
+  next if magic_cmd.try_run(msg, data)
 
   # Replace %%{...} with the contents of the url
   msg = msg.gsub(/%%{.+?}/) do |match|

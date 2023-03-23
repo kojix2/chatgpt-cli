@@ -2,9 +2,6 @@ require "./postdata"
 
 module ChatGPT
   class MagicCommand
-    property :command
-    property :data
-
     Table =
       [
         {"command"     => "debug",
@@ -44,10 +41,24 @@ module ChatGPT
          "method"      => "save_all_to_json"},
       ]
 
-    def initialize(@command : String, @data : PostData)
+    getter key : String
+    getter data : PostData
+
+    def initialize(@data, @key = "%")
     end
 
-    def run
+    def try_run(msg, data)
+      if /^%(?!\{|#{key})/.match msg
+        cmd = msg[1..-1].strip
+        run(cmd, data)
+        true
+      else
+        false
+      end
+    end
+
+    def run(command : String, data : PostData)
+      @data = data
       {% begin %}
       case command
       {% for value in Table %}
