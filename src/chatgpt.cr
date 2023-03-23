@@ -29,8 +29,6 @@ def words(parser)
     .map(&.strip.gsub(/\s{2,}/, " "))      # remove extra spaces
 end
 
-
-
 data = PostData.new
 
 # Parse command line options
@@ -44,7 +42,7 @@ OptionParser.parse do |parser|
     data.messages << {"role" => "system", "content" => v.to_s}
   end
   parser.on "-n INT", "How many edits to generate for the input and instruction." do |v|
-    data.n = v.to_i? || (STDERR.puts "Error: Invalimad number of edits"; exit 1)
+    data.n = v.to_i? || (STDERR.puts "Error: Invalid number of edits"; exit 1)
   end
   parser.on "-t Float", "--temperature Float", "Sampling temperature between 0 and 2 affects randomness of output." do |v|
     data.temperature = v.to_f? || (STDERR.puts "Error: Invalid temperature"; exit 1)
