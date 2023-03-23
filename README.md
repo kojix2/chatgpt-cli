@@ -20,7 +20,7 @@ ChatGPT Shell is a command-line interface (CLI) tool for interacting with OpenAI
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your_username/chatgpt-shell.git
+   git clone https://github.com/kojix2/chatgpt-shell.git
    ```
    
 2. Change to the directory:
@@ -29,19 +29,25 @@ ChatGPT Shell is a command-line interface (CLI) tool for interacting with OpenAI
    cd chatgpt-shell
    ```
 
-3. Compile the source code:
+3. Install dependencies:
 
    ```bash
-   crystal build src/chatgpt_shell.cr --release
+   shards install
    ```
-   
-4. Add the compiled binary to your system's `PATH`:
+
+4. Build the project with `shards build`:
 
    ```bash
-   sudo cp chatgpt_shell /usr/local/bin
+   shards build --release
+   ```
+
+5. Add the compiled binary to your system's `PATH`:
+
+   ```bash
+   sudo cp ./bin/chatgpt /usr/local/bin
    ```
    
-5. Set your OpenAI API key as an environment variable:
+6. Set your OpenAI API key as an environment variable:
 
    ```bash
    export OPENAI_API_KEY="your_openai_api_key"
@@ -49,7 +55,7 @@ ChatGPT Shell is a command-line interface (CLI) tool for interacting with OpenAI
 
 ## Usage
 
-To start using ChatGPT Shell, run the `chatgpt_shell` command in your terminal:
+To start using ChatGPT Shell, run the `chatgpt` command in your terminal:
 
 ```bash
 chatgpt_shell
@@ -61,10 +67,10 @@ To exit, type `exit` or `quit`.
 
 ### Options
 
-You can set various options when running the `chatgpt_shell` command:
+You can set various options when running the `chatgpt` command:
 
 ```
-Usage: chatgpt_shell [options]
+Usage: chatgpt [options]
     -m MODEL, --model MODEL              Model name (default: gpt-3.5-turbo)
     -s STR, --system STR                 System message
     -n INT                               How many edits to generate for the input and instruction
@@ -89,7 +95,7 @@ Within the CLI, you can use magic commands to perform various actions:
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at [https://github.com/your_username/chatgpt-shell](https://github.com/your_username/chatgpt-shell).
+Bug reports and pull requests are welcome on GitHub at [https://github.com/kojix2/chatgpt-shell](https://github.com/kojix2/chatgpt-shell).
 
 ## License
 
