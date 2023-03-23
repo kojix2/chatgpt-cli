@@ -17,37 +17,22 @@ ChatGPT CLI is a command-line interface (CLI) tool for interacting with OpenAI's
 
 ## Installation
 
-1. Clone the repository:
+1. Build the project
 
    ```bash
-   git clone https://github.com/kojix2/chatgpt-cli.git
-   ```
-   
-2. Change to the directory:
-
-   ```bash
+   git clone https://github.com/kojix2/chatgpt-cli
    cd chatgpt-cli
-   ```
-
-3. Install dependencies:
-
-   ```bash
    shards install
-   ```
-
-4. Build the project with `shards build`:
-
-   ```bash
    shards build --release
    ```
 
-5. Add the compiled binary to your system's `PATH`:
+2. Add the compiled binary to your system's `PATH`:
 
    ```bash
    sudo cp ./bin/chatgpt /usr/local/bin
    ```
    
-6. Set your OpenAI API key as an environment variable:
+3. Set your OpenAI API key as an environment variable:
 
    ```bash
    export OPENAI_API_KEY="your_openai_api_key"
