@@ -1,6 +1,6 @@
 require "./postdata"
 
-module ChatGPTCLI
+module ChatGPT
   class MagicCommand
     property :command
     property :data

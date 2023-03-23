@@ -1,4 +1,4 @@
-module ChatGPTCLI
+module ChatGPT
   class SystemCommand
     property :command
 

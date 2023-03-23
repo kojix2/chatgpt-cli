@@ -8,13 +8,16 @@ require "readline"
 require "spinner"
 require "lexbor"
 
-require "./chatgpt_cli/file_extensions"
-require "./chatgpt_cli/postdata"
-require "./chatgpt_cli/system_command"
-require "./chatgpt_cli/magic_command"
-require "./chatgpt_cli/version"
+require "./chatgpt/file_extensions"
+require "./chatgpt/postdata"
+require "./chatgpt/client"
+require "./chatgpt/system_command"
+require "./chatgpt/magic_command"
+require "./chatgpt/cli/version"
+require "./chatgpt/cli/parser"
 
 DEBUG_FLAG      = [false]
+API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
 
 struct Lexbor::Node
   def displayble?
@@ -31,85 +34,11 @@ def words(parser)
     .map(&.strip.gsub(/\s{2,}/, " "))      # remove extra spaces
 end
 
-data = ChatGPTCLI::PostData.new
+data = ChatGPT::PostData.new
 
-# Parse command line options
+ChatGPT::CLI::Parser.new(data).parse
 
-OptionParser.parse do |parser|
-  parser.banner = "Usage: #{PROGRAM_NAME} [options]"
-  parser.on "-i NAME", "--identifier NAME", "Custom system message from configuration file" do |v|
-    begin
-      config_data = JSON.parse(File.read("system_messages.json"))
-      message = config_data[v]
-
-      data.messages << {"role" => message["role"].to_s, "content" => message["content"].to_s} if message
-    rescue ex
-      STDERR.puts "Error: Unable to read configuration file: #{ex.message}".colorize(:red).mode(:bold)
-      abort
-    end
-  end
-  parser.on "-m MODEL", "--model MODEL", "Model name (default: gpt-3.5-turbo)" do |v|
-    data.model = v.to_s
-  end
-  parser.on "-s STR", "--system STR", "System message" do |v|
-    data.messages << {"role" => "system", "content" => v.to_s}
-  end
-  parser.on "-n INT", "How many edits to generate for the input and instruction." do |v|
-    data.n = v.to_i? || (STDERR.puts "Error: Invalid number of edits"; exit 1)
-  end
-  parser.on "-t Float", "--temperature Float", "Sampling temperature between 0 and 2 affects randomness of output." do |v|
-    data.temperature = v.to_f? || (STDERR.puts "Error: Invalid temperature"; exit 1)
-  end
-  parser.on "-p Float", "--top_p Float", "Nucleus sampling considers top_p probability mass for token selection." do |v|
-    data.top_p = v.to_f? || (STDERR.puts "Error: Invalid top_p"; exit 1)
-  end
-  parser.on "-d", "--debug", "Debug mode" do
-    DEBUG_FLAG[0] = true
-  end
-  parser.on "-v", "--version", "Show version" do
-    puts ChatGPTCLI::VERSION
-    exit
-  end
-  parser.on("-h", "--help", "Show help") { puts parser; exit }
-end
-
-API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
-
-class ApiKeyError < Exception; end
-
-if ENV.has_key?("OPENAI_API_KEY")
-  api_key = ENV["OPENAI_API_KEY"]
-else
-  ApiKeyError.new("OPENAI_API_KEY is not set")
-end
-
-headers = HTTP::Headers{
-  "Authorization" => "Bearer #{api_key}",
-  "Content-Type"  => "application/json",
-}
-
-def send_chat_request(data, headers)
-  if DEBUG_FLAG[0]
-    STDERR.puts
-    STDERR.puts "Sending request to #{API_ENDPOINT}".colorize(:cyan).mode(:bold)
-    STDERR.puts data.pretty_inspect.colorize(:cyan)
-    STDERR.puts
-  end
-
-  spinner_text = "ChatGPT".colorize(:green)
-  sp = Spin.new(0.2, Spinner::Charset[:pulsate2], spinner_text, output: STDERR)
-  sp.start
-  response = HTTP::Client.post(API_ENDPOINT, body: data.to_json, headers: headers)
-  sp.stop
-
-  if DEBUG_FLAG[0]
-    STDERR.puts "Received response from #{API_ENDPOINT}".colorize(:cyan).mode(:bold)
-    STDERR.puts "Response status: #{response.status}".colorize(:cyan)
-    STDERR.puts "Response body: #{response.body}".colorize(:cyan)
-    STDERR.puts
-  end
-  response
-end
+client = ChatGPT::Client.new
 
 loop do
   # Get input from the user
@@ -126,14 +55,14 @@ loop do
   # Run command if the message starts with `!`
   if msg.starts_with? "!"
     command = msg[1..-1].strip
-    msg = ChatGPTCLI::SystemCommand.new(command).run
+    msg = ChatGPT::SystemCommand.new(command).run
     next
   end
 
   # Run magic command if the message starts with `%`
   if /^%(?!\{|%)/.match msg
     command = msg[1..-1].strip
-    msg = ChatGPTCLI::MagicCommand.new(command, data).run
+    msg = ChatGPT::MagicCommand.new(command, data).run
     next
   end
 
@@ -165,7 +94,7 @@ loop do
       str = <<-CODE_BLOCK
         ### #{basename}
   
-        ```#{ChatGPTCLI::FILE_EXTENSIONS[extname]}
+        ```#{ChatGPT::FILE_EXTENSIONS[extname]}
         #{File.read(path)}
         ```
   
@@ -180,7 +109,7 @@ loop do
 
   data.messages << {"role" => "user", "content" => msg}
 
-  response = send_chat_request(data, headers)
+  response = client.send_chat_request(data)
   response_data = JSON.parse(response.body)
 
   if response.success?

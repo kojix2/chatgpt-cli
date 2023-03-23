@@ -1,6 +1,6 @@
 require "json"
 
-module ChatGPTCLI
+module ChatGPT
   struct PostData
     include JSON::Serializable
     property model : String

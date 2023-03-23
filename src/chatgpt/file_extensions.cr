@@ -1,4 +1,4 @@
-module ChatGPTCLI
+module ChatGPT
   FILE_EXTENSIONS = {
     ".c"        => "c",
     ".cr"       => "crystal",
