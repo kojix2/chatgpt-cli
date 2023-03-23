@@ -1,5 +1,5 @@
 require "./spec_helper"
-require "../src/postdata"
+require "../src/chatgpt/postdata"
 
 
 
