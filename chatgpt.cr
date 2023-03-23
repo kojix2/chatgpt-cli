@@ -51,6 +51,9 @@ data = PostData.new
 
 OptionParser.parse do |parser|
   parser.banner = "Usage: #{PROGRAM_NAME} [options]"
+  parser.on "-m MODEL", "--model MODEL", "Model name (default: gpt-3.5-turbo)" do |v|
+    data.model = v.to_s
+  end
   parser.on "-s STR", "--system STR", "System message" do |v|
     data.messages << {"role" => "system", "content" => v.to_s}
   end
