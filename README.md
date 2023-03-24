@@ -79,6 +79,31 @@ Within the CLI, you can use magic commands to perform various actions:
 - `%config`: Edit config file
 - `%help`: Show the help
 
+## Configuration
+
+The system messages used by ChatGPT CLI can be customized through the `config.json` file. The file is located in `~/.config/chatgpt-cli/` by default, but can be changed by setting the `CHATGPT_CLI_CONFIG` environment variable.
+
+The `config.json` file has the following structure:
+
+```json
+{
+  "system_messages": {
+    "translator": {
+      "role": "system",
+      "content": "I want you to act as an translator, spelling corrector and improver."
+    },
+    "code": {
+      "role": "system",
+      "content": "I want you to act as a programmer, writing code."
+    },
+    "poet": {
+      "role": "system",
+      "content": "I want you to act as a poet, writing poetry."
+    }
+  }
+}
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at [https://github.com/kojix2/chatgpt-cli](https://github.com/kojix2/chatgpt-cli).
