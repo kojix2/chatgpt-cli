@@ -17,16 +17,16 @@ require "./chatgpt/cli/parser"
 
 DEBUG_FLAG = [false]
 
-parser = ChatGPT::CLI::Parser.new
-parser.parse
-data = parser.data
+command_parser = ChatGPT::CLI::Parser.new
+command_parser.parse
+post_data = command_parser.data
 
-client = ChatGPT::Client.new
-system_cmd = ChatGPT::SystemCommand.new
-magic_cmd = ChatGPT::MagicCommand.new(data, key: "%")
+gpt_client = ChatGPT::Client.new
+system_command = ChatGPT::SystemCommand.new
+magic_command = ChatGPT::MagicCommand.new(post_data, key: "%")
 
-def process_url_substitution(match)
-  url = match[3..-2].strip
+def process_url_substitution(url_match)
+  url = url_match[3..-2].strip
   url = "https://" + url unless url.starts_with?("http")
   compressed_text = words(Lexbor::Parser.new(HTTP::Client.get(url).body.to_s)).join("|")
 
@@ -41,50 +41,50 @@ def process_url_substitution(match)
   CODE_BLOCK
 end
 
-def process_file_substitution(path, match)
-  extname = File.extname(path)
-  basename = File.basename(path)
+def process_file_substitution(file_path, file_match)
+  extname = File.extname(file_path)
+  basename = File.basename(file_path)
   format_name = ChatGPT::FILE_EXTENSIONS.fetch(extname, "")
 
-  if File.exists?(path)
+  if File.exists?(file_path)
     <<-CODE_BLOCK
       ### #{basename}
 
       ```#{format_name}
-      #{File.read(path)}
+      #{File.read(file_path)}
       ```
 
       That's all for the #{basename}
     CODE_BLOCK
   else
-    STDERR.puts "Error: File not found: #{path}".colorize(:yellow).mode(:bold)
-    match
+    STDERR.puts "Error: File not found: #{file_path}".colorize(:yellow).mode(:bold)
+    file_match
   end
 end
 
 loop do
-  msg = Readline.readline("> ", true)
-  break if msg.nil?
-  next if msg.empty?
-  break if ["exit", "quit"].includes?(msg)
-  next if system_cmd.try_run(msg)
+  input_msg = Readline.readline("> ", true)
+  break if input_msg.nil?
+  next if input_msg.empty?
+  break if ["exit", "quit"].includes?(input_msg)
+  next if system_command.try_run(input_msg)
 
-  if modified_data = magic_cmd.try_run(msg, data)
-    data = modified_data if modified_data.is_a?(ChatGPT::PostData)
+  if modified_post_data = magic_command.try_run(input_msg, post_data)
+    post_data = modified_post_data if modified_post_data.is_a?(ChatGPT::PostData)
     next
   end
 
-  msg = msg.gsub(/%%{.+?}/) { |match| process_url_substitution(match) }
-  msg = msg.gsub(/%{.+?}/) { |match| process_file_substitution(match[2..-2].strip, match) }
+  input_msg = input_msg.gsub(/%%{.+?}/) { |url_match| process_url_substitution(url_match) }
+  input_msg = input_msg.gsub(/%{.+?}/) { |file_match| process_file_substitution(file_match[2..-2].strip, file_match) }
 
-  data.messages << {"role" => "user", "content" => msg}
-  response = client.send_chat_request(data)
+  post_data.messages << {"role" => "user", "content" => input_msg}
+  response = gpt_client.send_chat_request(post_data)
   response_data = JSON.parse(response.body)
 
   if response.success?
-    result = response_data["choices"][0]["message"]["content"]
-    data.messages << {"role" => "assistant", "content" => result.to_s}
-    puts result.colorize(:green)
+    result_msg = response_data["choices"][0]["message"]["content"]
+    post_data.messages << {"role" => "assistant", "content" => result_msg.to_s}
+    puts result_msg.colorize(:green)
   else
     STDERR.puts "Error: #{response.status_code} #{response.status}".colorize(:yellow).mode(:bold)
     STDERR.puts response.body.colorize(:yellow)
