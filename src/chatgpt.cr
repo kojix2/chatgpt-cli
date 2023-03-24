@@ -17,6 +17,8 @@ require "./chatgpt/cli/parser"
 
 DEBUG_FLAG = [false]
 
+File.write(ChatGPT::Config::RESPONSE_FILE, "")
+
 command_parser = ChatGPT::CLI::Parser.new
 command_parser.parse
 post_data = command_parser.data
@@ -80,6 +82,7 @@ loop do
   post_data.messages << {"role" => "user", "content" => input_msg}
   response = gpt_client.send_chat_request(post_data)
   response_data = JSON.parse(response.body)
+  File.write(ChatGPT::Config::RESPONSE_FILE, response_data.to_pretty_json)
 
   if response.success?
     result_msg = response_data["choices"][0]["message"]["content"]

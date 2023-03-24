@@ -4,51 +4,83 @@ module ChatGPT
   class MagicCommand
     Table =
       [
-        {"command"     => "debug",
-         "description" => "Toggle debug mode",
-         "pattern"     => "debug",
-         "n_args"      => 0,
-         "method"      => "debug_mode_toggle"},
-        {"command"     => "system",
-         "description" => "Show system messages",
-         "pattern"     => "system",
-         "n_args"      => 0,
-         "method"      => "show_system_messages"},
-        {"command"     => "system <message>",
-         "description" => "Set system message",
-         "pattern"     => /system\s+(.+)/,
-         "n_args"      => 1,
-         "method"      => "set_system_messages"},
-        {"command"     => "clear",
-         "description" => "Clear messages",
-         "pattern"     => "clear",
-         "n_args"      => 0,
-         "method"      => "clear_messages"},
-        {"command"     => "data",
-         "description" => "Show data in JSON",
-         "pattern"     => "data",
-         "n_args"      => 0,
-         "method"      => "show_data_json"},
-        {"command"     => "save <file_name>",
-         "description" => "Save last message to <file_name>",
-         "pattern"     => /save\s+(.+)/,
-         "n_args"      => 1,
-         "method"      => "save_to_file"},
-        {"command"     => "saveall",
-         "description" => "Save all messages to chatgpt.json",
-         "pattern"     => "saveall",
-         "n_args"      => 0,
-         "method"      => "save_all_to_json"},
-        {"command"     => "config",
-         "description" => "Edit config file",
-         "pattern"     => "config",
-         "n_args"      => 0,
-         "method"      => "show_config"},
-        {"command"     => "help",
-         "description" => "Show this help",
-         "pattern"     => "help",
-         "n_args"      => 0,
-         "method"      => "show_help"},
+        {
+          "command"     => "debug",
+          "description" => "Toggle debug mode",
+          "pattern"     => "debug",
+          "n_args"      => 0,
+          "method"      => "debug_mode_toggle",
+        },
+        {
+          "command"     => "system",
+          "description" => "Show system messages",
+          "pattern"     => "system",
+          "n_args"      => 0,
+          "method"      => "show_system_messages",
+        },
+        {
+          "command"     => "system <message>",
+          "description" => "Set system message",
+          "pattern"     => /system\s+(.+)/,
+          "n_args"      => 1,
+          "method"      => "set_system_messages",
+        },
+        {
+          "command"     => "clear",
+          "description" => "Clear messages",
+          "pattern"     => "clear",
+          "n_args"      => 0,
+          "method"      => "clear_messages",
+        },
+        {
+          "command"     => "data",
+          "description" => "Show data in JSON",
+          "pattern"     => "data",
+          "n_args"      => 0,
+          "method"      => "show_data_json",
+        },
+        {
+          "command"     => "save <file_name>",
+          "description" => "Save last message to <file_name>",
+          "pattern"     => /save\s+(.+)/,
+          "n_args"      => 1,
+          "method"      => "save_to_file",
+        },
+        {
+          "command"     => "saveall",
+          "description" => "Save all messages to chatgpt.json",
+          "pattern"     => "saveall",
+          "n_args"      => 0,
+          "method"      => "save_all_to_json",
+        },
+        {
+          "command"     => "config",
+          "description" => "Edit config file",
+          "pattern"     => "config",
+          "n_args"      => 0,
+          "method"      => "show_config",
+        },
+        {
+          "command"     => "response",
+          "description" => "Show last response in JSON",
+          "pattern"     => "response",
+          "n_args"      => 0,
+          "method"      => "show_response_json",
+        },
+        {
+          "tokens"      => "tokens",
+          "description" => "Show total tokens used",
+          "pattern"     => "tokens",
+          "n_args"      => 0,
+          "method"      => "show_total_tokens",
+        },
+        {
+          "command"     => "help",
+          "description" => "Show this help",
+          "pattern"     => "help",
+          "n_args"      => 0,
+          "method"      => "show_help",
+        },
       ]
 
     getter key : String
@@ -137,6 +169,21 @@ module ChatGPT
     def save_to_file(file_name)
       File.write(file_name, data.messages[-1]["content"])
       puts "Saved to #{file_name}".colorize(:yellow)
+    end
+
+    def show_response_json
+      open_editor(ChatGPT::Config::RESPONSE_FILE)
+    end
+
+    def show_total_tokens
+      total_tokens = "0"
+      begin
+        File.open(ChatGPT::Config::RESPONSE_FILE, "r") do |file|
+          total_tokens = JSON.parse(file).dig("usage", "total_tokens").to_s
+        end
+      rescue ex
+      end
+      puts "Total tokens used: #{total_tokens}".colorize(:yellow)
     end
 
     def show_config

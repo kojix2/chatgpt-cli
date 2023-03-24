@@ -9,6 +9,7 @@ module ChatGPT
         "#{ENV["HOME"]}/.config/chatgpt-cli"
       end
     CONFIG_FILE  = "#{CONFIG_BASE}/config.json"
+    RESPONSE_FILE = "#{CONFIG_BASE}/response.json"
     HISTORY_FILE = "#{CONFIG_BASE}/history.json"
 
     alias ConfigData = Hash(String, Hash(String, Hash(String, String)))
