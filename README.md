@@ -65,6 +65,24 @@ Usage: chatgpt [options]
     -h, --help                           Show help
 ```
 
+### File Insertion with %{}
+
+You can insert the contents of a file into the chat by enclosing the file path in `%{}`. For example, if you want to insert the contents of a file called `example.py` located in the `src` directory, you can use `%{src/example.py}`.
+
+```
+> Please explain what the following code does. Are there any bugs?　%{src/example.py}
+```
+
+### Web Page Insertion with %%{} (experimental)
+
+You can insert the contents of a web page.
+
+```
+> Please raise five topics from the following pages that you find interesting %%{https://news.ycombinator.com/}
+```
+
+Here we get the html from the URL, extract the words used in the `body` and pass them to ChatGPT. It is much smaller than the raw html, but still not enough.
+
 ### Magic Commands
 
 Within the CLI, you can use magic commands to perform various actions:
