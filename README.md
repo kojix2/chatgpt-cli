@@ -1,16 +1,16 @@
 # ChatGPT CLI
 
-ChatGPT CLI is a command-line interface (CLI) tool for interacting with OpenAI's ChatGPT API. It allows users to communicate with the GPT-3.5 Turbo model, an advanced language generation model, and receive context-based responses. Users can also adjust API parameters, use magic commands to perform various actions within the CLI, fetch content from URLs, and replace specified file contents.
+ChatGPT CLI is a command-line interface tool for interacting with OpenAI's ChatGPT API. Users can communicate with the GPT model, adjust API parameters, use magic commands, insert specified file contents, fetch content from URLs, and execute system commands while chatting.
 
 ## Features
 
 1. Interact with OpenAI's ChatGPT API through a command-line interface
 2. Set API parameters like model name (`gpt-3.5-turbo` by default), temperature, and top_p
 3. Select pre-registered system messages with ID
-4. Execute magic commands for various actions (e.g., modifying system message, saving message)
+4. Execute magic commands for various actions (e.g. modifying the system message, saving message, debugging)
 5. Execute system commands while chatting
 6. Fetch file contents from paths and insert them into the chat
-7. Fetch content from URLs and insert it into the chat
+7. Fetch contents from URLs and insert them into the chat
 
 ## Installation
 
@@ -47,7 +47,7 @@ chatgpt
 
 Type a message and press Enter to get a response from GPT-3.5 Turbo.
 
-To exit, type `exit`, `quit`, or `Ctrl + D`
+To exit, type `exit`, `quit`, or press `Ctrl + D`.
 
 ### Options
 
@@ -78,6 +78,10 @@ Within the CLI, you can use magic commands to perform various actions:
 - `%saveall`: Save all data to a file called `chatgpt.json`
 - `%config`: Edit config file
 - `%help`: Show the help
+
+### Execuging System Commands
+
+You can execute system commands while chatting by prefixing the command with the `!` symbol. For example, if you want to check the current working directory, you can type `!pwd` and press Enter. Similarly, you can execute other system commands like `!ls`, `!date`, etc.
 
 ## Configuration
 
