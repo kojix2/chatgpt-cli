@@ -6,8 +6,14 @@ module ChatGPT
   class Client
     API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
 
+    @http_headers : HTTP::Headers
+
     def initialize
-      @http_headers = HTTP::Headers{
+      @http_headers = build_http_headers
+    end
+
+    def build_http_headers
+      HTTP::Headers{
         "Authorization" => "Bearer #{fetch_api_key}",
         "Content-Type"  => "application/json",
       }
@@ -23,31 +29,46 @@ module ChatGPT
     end
 
     def send_chat_request(request_data)
-      if DEBUG_FLAG[0]
-        STDERR.puts
-        STDERR.puts "Sending request to #{API_ENDPOINT}".colorize(:cyan).mode(:bold)
-        STDERR.puts request_data.pretty_inspect.colorize(:cyan)
-        STDERR.puts
-      end
+      log_request_data(request_data) if debug_mode?
 
-      spinner_text = "ChatGPT".colorize(:green)
-      spinner = Spin.new(0.2, Spinner::Charset[:pulsate2], spinner_text, output: STDERR)
+      spinner = create_spinner
       spinner.start
-      begin
-        chat_response = HTTP::Client.post(API_ENDPOINT, body: request_data.to_json, headers: @http_headers)
-      rescue error
-        STDERR.puts "Error: #{error} #{error.message}".colorize(:red)
-        exit 1
-      end
+
+      chat_response = post_request(request_data)
       spinner.stop
 
-      if DEBUG_FLAG[0]
-        STDERR.puts "Received response from #{API_ENDPOINT}".colorize(:cyan).mode(:bold)
-        STDERR.puts "Response status: #{chat_response.status}".colorize(:cyan)
-        STDERR.puts "Response body: #{chat_response.body}".colorize(:cyan)
-        STDERR.puts
-      end
+      log_response_data(chat_response) if debug_mode?
       chat_response
+    end
+
+    def post_request(request_data)
+      HTTP::Client.post(API_ENDPOINT, body: request_data.to_json, headers: @http_headers)
+    rescue error
+      STDERR.puts "Error: #{error} #{error.message}".colorize(:red)
+      exit 1
+    end
+
+    private def create_spinner
+      spinner_text = "ChatGPT".colorize(:green)
+      Spin.new(0.2, Spinner::Charset[:pulsate2], spinner_text, output: STDERR)
+    end
+
+    private def debug_mode?
+      DEBUG_FLAG[0]
+    end
+
+    private def log_request_data(request_data)
+      STDERR.puts
+      STDERR.puts "Sending request to #{API_ENDPOINT}".colorize(:cyan).mode(:bold)
+      STDERR.puts request_data.pretty_inspect.colorize(:cyan)
+      STDERR.puts
+    end
+
+    private def log_response_data(chat_response)
+      STDERR.puts "Received response from #{API_ENDPOINT}".colorize(:cyan).mode(:bold)
+      STDERR.puts "Response status: #{chat_response.status}".colorize(:cyan)
+      STDERR.puts "Response body: #{chat_response.body}".colorize(:cyan)
+      STDERR.puts
     end
   end
 end
