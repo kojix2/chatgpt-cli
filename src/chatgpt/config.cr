@@ -8,9 +8,9 @@ module ChatGPT
       else
         "#{ENV["HOME"]}/.config/chatgpt-cli"
       end
-    CONFIG_FILE  = "#{CONFIG_BASE}/config.json"
+    CONFIG_FILE   = "#{CONFIG_BASE}/config.json"
     RESPONSE_FILE = "#{CONFIG_BASE}/response.json"
-    HISTORY_FILE = "#{CONFIG_BASE}/history.json"
+    HISTORY_FILE  = "#{CONFIG_BASE}/history.json"
 
     alias ConfigData = Hash(String, Hash(String, Hash(String, String)))
 
@@ -24,8 +24,14 @@ module ChatGPT
 
     def load_config
       if File.exists?(CONFIG_FILE)
-        File.open(CONFIG_FILE) do |f|
-          @config_data = ConfigData.from_json(f)
+        begin
+          File.open(CONFIG_FILE) do |f|
+            @config_data = ConfigData.from_json(f)
+          end
+        rescue ex
+          STDERR.puts("Error: #{ex}".colorize(:red))
+          STDERR.puts("Failed to load config at #{CONFIG_FILE}")
+          STDERR.puts("Please type %config and check the config file.")
         end
       else
         create_default_config
