@@ -117,7 +117,7 @@ module ChatGPT
     def show_data_json
       new_data = data
       File.tempfile("chatgpt-cli", ".json") do |file|
-        File.write(file.path, data.to_json)
+        File.write(file.path, data.to_pretty_json)
         open_editor(file.path)
         begin
           new_data = PostData.from_json(File.read(file.path))

@@ -28,7 +28,6 @@ module ChatGPT
         end
       else
         create_default_config
-        save
       end
     end
 
@@ -56,7 +55,7 @@ module ChatGPT
 
     def save
       overwrite = File.exists?(CONFIG_FILE)
-      File.write(CONFIG_FILE, config_data.to_json)
+      File.write(CONFIG_FILE, config_data.to_pretty_json)
       STDERR.puts("#{overwrite ? "Overwrote" : "Created"} config at #{CONFIG_FILE}")
     end
   end
