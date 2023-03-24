@@ -3,65 +3,62 @@ require "json"
 module ChatGPT
   module CLI
     class Config
-      CONFIG_FILE =
-        if ENV.has_key?("CHATGPT_CLI_CONFIG_FILE")
-          ENV["CHATGPT_CLI_CONFIG_FILE"]
+      CONFIG_BASE =
+        if ENV.has_key?("CHATGPT_CLI_CONFIG")
+          ENV["CHATGPT_CLI_CONFIG"]
         else
-          "#{ENV["HOME"]}/.chatgpt-cli/config.yml"
+          "#{ENV["HOME"]}/.config/chatgpt-cli"
         end
-      
-      getter config_data : Hash(String, Hash(String, String))
+      CONFIG_FILE  = "#{CONFIG_BASE}/config.json"
+      HISTORY_FILE = "#{CONFIG_BASE}/history.json"
+
+      alias ConfigData = Hash(String, Hash(String, Hash(String, String)))
+
+      getter config_data : ConfigData
 
       def initialize
-        @config_data = Hash(String, Hash(String, String)).new
-        validate_config_data
-        save unless File.exists?(CONFIG_FILE)
-        File.open(CONFIG_FILE) do |file|
-          @config_data = @config_data.class.from_json(file)
+        @config_data = ConfigData.new
+        @config_data["system_messages"] = Hash(String, Hash(String, String)).new
+        load_config
+      end
+
+      def load_config
+        if File.exists?(CONFIG_FILE)
+          File.open(CONFIG_FILE) do |f|
+            @config_data = ConfigData.from_json(f)
+          end
+        else
+          create_default_config
+          save
         end
+      end
+
+      def create_default_config
+        add_system_message("translator", "I want you to act as an translator, spelling corrector and improver.")
+        add_system_message("code", "I want you to act as a programmer, writing code.")
+        add_system_message("poet", "I want you to act as a poet, writing poetry.")
+        save
       end
 
       def select_id(id)
-        if config_data.nil?
-          return nil
-        else
-          message = config_data.dig("system_messages", id)
-          if message
-            {
-              "role"    => message["role"].to_s,
-              "content" => message["content"].to_s,
-            }
-          end
-        end
+        @config_data.dig("system_messages", id).as(Hash(String, String))
       end
 
-      def save
-        validate_config_data
-        overwrite = File.exists?(CONFIG_FILE)
-        File.write(CONFIG_FILE, config_data.to_json)
-        if overwrite
-          STDERR.puts "Overwrote config to #{CONFIG_FILE}"
-        else
-          STDERR.puts "Created config at #{CONFIG_FILE}"
-        end
+      def add_message(id, role, content)
+        config_data["system_messages"][id] = {
+          "role"    => role.to_s,
+          "content" => content.to_s,
+        }
       end
 
       def add_system_message(id, content)
         add_message(id, "system", content)
       end
 
-      def add_message(id, role, content)
-        
-        config_data["system_messages"][id] = {
-          "role"    => role,
-          "content" => content,
-        }
-      end
-
-      def validate_config_data
-        unless config_data.has_key?("system_messages")
-          config_data["system_messages"] = Hash(String, String).new
-        end
+      def save
+        overwrite = File.exists?(CONFIG_FILE)
+        File.write(CONFIG_FILE, config_data.to_json)
+        STDERR.puts("#{overwrite ? "Overwrote" : "Created"} config at #{CONFIG_FILE}")
       end
     end
   end
