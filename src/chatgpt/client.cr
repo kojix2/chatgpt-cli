@@ -7,13 +7,13 @@ module ChatGPT
     API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
 
     def initialize
-      @headers = HTTP::Headers{
-        "Authorization" => "Bearer #{get_api_key}",
+      @http_headers = HTTP::Headers{
+        "Authorization" => "Bearer #{fetch_api_key}",
         "Content-Type"  => "application/json",
       }
     end
 
-    def get_api_key
+    def fetch_api_key
       if ENV.has_key?("OPENAI_API_KEY")
         ENV["OPENAI_API_KEY"]
       else
@@ -22,32 +22,32 @@ module ChatGPT
       end
     end
 
-    def send_chat_request(data)
+    def send_chat_request(request_data)
       if DEBUG_FLAG[0]
         STDERR.puts
         STDERR.puts "Sending request to #{API_ENDPOINT}".colorize(:cyan).mode(:bold)
-        STDERR.puts data.pretty_inspect.colorize(:cyan)
+        STDERR.puts request_data.pretty_inspect.colorize(:cyan)
         STDERR.puts
       end
 
       spinner_text = "ChatGPT".colorize(:green)
-      sp = Spin.new(0.2, Spinner::Charset[:pulsate2], spinner_text, output: STDERR)
-      sp.start
+      spinner = Spin.new(0.2, Spinner::Charset[:pulsate2], spinner_text, output: STDERR)
+      spinner.start
       begin
-        response = HTTP::Client.post(API_ENDPOINT, body: data.to_json, headers: @headers)
-      rescue ex
-        STDERR.puts "Error: #{ex} #{ex.message}".colorize(:red)
+        chat_response = HTTP::Client.post(API_ENDPOINT, body: request_data.to_json, headers: @http_headers)
+      rescue error
+        STDERR.puts "Error: #{error} #{error.message}".colorize(:red)
         exit 1
       end
-      sp.stop
+      spinner.stop
 
       if DEBUG_FLAG[0]
         STDERR.puts "Received response from #{API_ENDPOINT}".colorize(:cyan).mode(:bold)
-        STDERR.puts "Response status: #{response.status}".colorize(:cyan)
-        STDERR.puts "Response body: #{response.body}".colorize(:cyan)
+        STDERR.puts "Response status: #{chat_response.status}".colorize(:cyan)
+        STDERR.puts "Response body: #{chat_response.body}".colorize(:cyan)
         STDERR.puts
       end
-      response
+      chat_response
     end
   end
 end
