@@ -4,20 +4,19 @@ ChatGPT CLI is a command-line interface (CLI) tool for interacting with OpenAI's
 
 ## Features
 
-- Interact with OpenAI's ChatGPT API through a command line interface
-- Set API parameters like model name (`gpt-3.5-turbo` by default), temperature, and top_p
-- Execute magic commands for various actions (e.g., modifying system message, clearing messages)
-- Fetch content from URLs and insert it into the chat
-- Replace specified file contents with contents from matching file paths
-
-## Prerequisites
-
-- Crystal programming language installed on your system
-- OpenAI API Key set as an environment variable `OPENAI_API_KEY`
+1. Interact with OpenAI's ChatGPT API through a command-line interface
+2. Set API parameters like model name (`gpt-3.5-turbo` by default), temperature, and top_p
+3. Select pre-registered system messages with ID
+4. Execute magic commands for various actions (e.g., modifying system message, saving message)
+5. Execute system commands while chatting
+6. Fetch file contents from paths and insert them into the chat
+7. Fetch content from URLs and insert it into the chat
 
 ## Installation
 
-1. Build the project
+1. Install Crystal
+
+2. Build the project:
 
    ```bash
    git clone https://github.com/kojix2/chatgpt-cli
@@ -26,13 +25,13 @@ ChatGPT CLI is a command-line interface (CLI) tool for interacting with OpenAI's
    shards build --release
    ```
 
-2. Add the compiled binary to your system's `PATH`:
+3. Add the compiled binary to your system's `PATH`:
 
    ```bash
    sudo cp ./bin/chatgpt /usr/local/bin
    ```
-   
-3. Set your OpenAI API key as an environment variable:
+
+4. Set your OpenAI API key as an environment variable:
 
    ```bash
    export OPENAI_API_KEY="your_openai_api_key"
@@ -48,7 +47,7 @@ chatgpt
 
 Type a message and press Enter to get a response from GPT-3.5 Turbo.
 
-To exit, type `exit`, `quit` or `Ctrl + D`
+To exit, type `exit`, `quit`, or `Ctrl + D`
 
 ### Options
 
@@ -77,6 +76,8 @@ Within the CLI, you can use magic commands to perform various actions:
 - `%data`: Show data in JSON format
 - `%saveall`: Save all data to a file called `chatgpt.json`
 - `%save <filename>`: Save the most recent message to a specified file
+- `%config`: Edit config file
+- `%help`: Show the help
 
 ## Contributing
 
