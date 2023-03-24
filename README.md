@@ -57,6 +57,7 @@ You can set various options when running the `chatgpt` command:
 
 ```
 Usage: chatgpt [options]
+    -i NAME, --identifier NAME           Custom system message from configuration file
     -m MODEL, --model MODEL              Model name (default: gpt-3.5-turbo)
     -s STR, --system STR                 System message
     -n INT                               How many edits to generate for the input and instruction
@@ -66,6 +67,14 @@ Usage: chatgpt [options]
     -v, --version                        Show version
     -h, --help                           Show help
 ```
+
+### Select a pre-defined system command
+
+```
+chatgpt -i translator
+```
+
+To add or remove system commands, see the CONFIGURATION section.
 
 ### File Insertion with %{}
 
