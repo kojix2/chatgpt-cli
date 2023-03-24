@@ -73,9 +73,9 @@ Within the CLI, you can use magic commands to perform various actions:
 - `%system`: Show the current system message
 - `%system <your_message>`: Set a new system message
 - `%clear`: Clear all messages
-- `%data`: Show data in JSON format
-- `%saveall`: Save all data to a file called `chatgpt.json`
+- `%data`: Edit data in JSON format
 - `%save <filename>`: Save the most recent message to a specified file
+- `%saveall`: Save all data to a file called `chatgpt.json`
 - `%config`: Edit config file
 - `%help`: Show the help
 
