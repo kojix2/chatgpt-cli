@@ -106,7 +106,10 @@ Within the CLI, you can use magic commands to perform various actions:
 - `%save <filename>`: Save the most recent message to a specified file
 - `%saveall`: Save all data to a file called `chatgpt.json`
 - `%config`: Edit config file
+- `%tokens` : Total tokens used
 - `%help`: Show the help
+
+The tool is under development and the magic commands are still being improved.
 
 ### Execuging System Commands
 
