@@ -19,9 +19,9 @@ require "./chatgpt/cli/parser"
 
 DEBUG_FLAG = [false]
 
-data = ChatGPT::PostData.new
-
-ChatGPT::CLI::Parser.new(data).parse
+parser = ChatGPT::CLI::Parser.new
+parser.parse
+data = parser.data
 
 client = ChatGPT::Client.new
 
@@ -74,11 +74,12 @@ loop do
     path = match[2..-2].strip
     extname = File.extname(path)
     basename = File.basename(path)
+    format_name = ChatGPT::FILE_EXTENSIONS.fetch(extname, "")
     if File.exists?(path)
       str = <<-CODE_BLOCK
         ### #{basename}
   
-        ```#{ChatGPT::FILE_EXTENSIONS[extname]}
+        ```#{format_name}
         #{File.read(path)}
         ```
   

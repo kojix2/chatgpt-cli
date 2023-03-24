@@ -33,7 +33,12 @@ module ChatGPT
       spinner_text = "ChatGPT".colorize(:green)
       sp = Spin.new(0.2, Spinner::Charset[:pulsate2], spinner_text, output: STDERR)
       sp.start
-      response = HTTP::Client.post(API_ENDPOINT, body: data.to_json, headers: @headers)
+      begin
+        response = HTTP::Client.post(API_ENDPOINT, body: data.to_json, headers: @headers)
+      rescue ex
+        STDERR.puts "Error: #{ex} #{ex.message}".colorize(:red)
+        exit 1
+      end
       sp.stop
 
       if DEBUG_FLAG[0]

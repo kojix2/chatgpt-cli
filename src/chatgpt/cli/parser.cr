@@ -5,7 +5,9 @@ require "./version"
 module ChatGPT
   module CLI
     class Parser < OptionParser
-      def initialize(data : PostData)
+      getter data : PostData
+      def initialize
+        @data = PostData.new
         super()
         config = Config.new
         self.banner = "Usage: #{PROGRAM_NAME} [options]"
