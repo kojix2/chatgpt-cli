@@ -44,7 +44,11 @@ loop do
   next if system_cmd.try_run(msg)
 
   # Run magic command if the message starts with `%`
-  next if magic_cmd.try_run(msg, data)
+  if data2 = magic_cmd.try_run(msg, data)
+    data = data2 if data2.is_a?(ChatGPT::PostData) # FIXME
+    next
+  end
+
 
   # Replace %%{...} with the contents of the url
   msg = msg.gsub(/%%{.+?}/) do |match|

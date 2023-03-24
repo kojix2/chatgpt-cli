@@ -52,7 +52,7 @@ module ChatGPT
       ]
 
     getter key : String
-    getter data : PostData
+    property data : PostData
 
     def initialize(@data, @key = "%")
     end
@@ -61,7 +61,7 @@ module ChatGPT
       if /^%(?!\{|#{key})/.match msg
         cmd = msg[1..-1].strip
         run(cmd, data)
-        true
+        @data
       else
         false
       end
@@ -115,7 +115,18 @@ module ChatGPT
     end
 
     def show_data_json
-      puts data.to_json.colorize(:yellow)
+      new_data = data
+      File.tempfile("chatgpt-cli", ".json") do |file|
+        File.write(file.path, data.to_json)
+        open_editor(file.path)
+        begin
+          new_data = PostData.from_json(File.read(file.path))
+          puts "Saved".colorize(:yellow)
+        rescue
+          puts "Error: Invalid JSON".colorize(:yellow).mode(:bold)
+        end
+      end
+      @data = new_data
     end
 
     def save_all_to_json
@@ -129,8 +140,7 @@ module ChatGPT
     end
 
     def show_config
-      editor = ENV.has_key?("EDITOR") ? ENV["EDITOR"] : "vim"
-      system("#{editor} #{ChatGPT::CLI::Config::CONFIG_FILE}")
+      open_editor(ChatGPT::CLI::Config::CONFIG_FILE)
     end
 
     def show_help
@@ -143,6 +153,11 @@ module ChatGPT
 
     def unknown_command_error(command)
       STDERR.puts "Error: Unknown magic command: #{command}".colorize(:yellow).mode(:bold)
+    end
+
+    def open_editor(file_name)
+      editor = ENV.has_key?("EDITOR") ? ENV["EDITOR"] : "vim"
+      system("#{editor} #{file_name}")
     end
   end
 end
