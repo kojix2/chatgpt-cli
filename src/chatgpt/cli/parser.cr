@@ -1,5 +1,5 @@
 require "../post_data"
-require "./config"
+require "../config"
 require "./version"
 
 module ChatGPT

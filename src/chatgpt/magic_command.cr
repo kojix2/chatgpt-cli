@@ -140,7 +140,7 @@ module ChatGPT
     end
 
     def show_config
-      open_editor(ChatGPT::CLI::Config::CONFIG_FILE)
+      open_editor(ChatGPT::Config::CONFIG_FILE)
     end
 
     def show_help
