@@ -51,7 +51,14 @@ module ChatGPT
           "description" => "Save all messages to chatgpt.json",
           "pattern"     => "saveall",
           "n_args"      => 0,
-          "method"      => "save_all_to_json",
+          "method"      => "save_data_to_json",
+        },
+        {
+          "name"        => "loadall",
+          "description" => "Load all messages from chatgpt.json",
+          "pattern"     => "loadall",
+          "n_args"      => 0,
+          "method"      => "load_data_from_json",
         },
         {
           "name"        => "config",
@@ -161,9 +168,19 @@ module ChatGPT
       @data = new_data
     end
 
-    def save_all_to_json
+    def save_data_to_json
       File.write("chatgpt.json", data.to_json)
       puts "Saved to chatgpt.json".colorize(:yellow)
+    end
+
+    def load_data_from_json
+      begin
+        new_data = PostData.from_json(File.read("chatgpt.json"))
+        @data = new_data
+        puts "Loaded from chatgpt.json".colorize(:yellow)
+      rescue
+        puts "Error: Invalid JSON".colorize(:yellow).mode(:bold)
+      end
     end
 
     def write_to_file(file_name)
