@@ -21,7 +21,7 @@ module ChatGPT
         {
           "command"     => "system <message>",
           "description" => "Set system message",
-          "pattern"     => /system\s+(.+)/,
+          "pattern"     => /^system\s+(.+)/,
           "n_args"      => 1,
           "method"      => "set_system_messages",
         },
@@ -42,7 +42,7 @@ module ChatGPT
         {
           "command"     => "save <file_name>",
           "description" => "Save last message to <file_name>",
-          "pattern"     => /save\s+(.+)/,
+          "pattern"     => /^save\s+(.+)/,
           "n_args"      => 1,
           "method"      => "save_to_file",
         },
@@ -70,7 +70,7 @@ module ChatGPT
         {
           "tokens"      => "tokens",
           "description" => "Show total tokens used",
-          "pattern"     => "tokens",
+          "pattern"     => /^tokens?\s*$/,
           "n_args"      => 0,
           "method"      => "show_total_tokens",
         },
