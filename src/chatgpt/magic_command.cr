@@ -40,11 +40,11 @@ module ChatGPT
           "method"      => "show_data_json",
         },
         {
-          "name"        => "save <file_name>",
-          "description" => "Save last message to <file_name>",
-          "pattern"     => /^save\s+(.+)/,
+          "name"        => "write <file_name> or w <file_name>",
+          "description" => "Write last message to <file_name>",
+          "pattern"     => /^[write,w]\s+(.+)/,
           "n_args"      => 1,
-          "method"      => "save_to_file",
+          "method"      => "write_to_file",
         },
         {
           "name"        => "saveall",
@@ -166,9 +166,10 @@ module ChatGPT
       puts "Saved to chatgpt.json".colorize(:yellow)
     end
 
-    def save_to_file(file_name)
-      File.write(file_name, data.messages[-1]["content"])
-      puts "Saved to #{file_name}".colorize(:yellow)
+    def write_to_file(file_name)
+      last_response = data.messages.dig?(-1, "content").to_s
+      File.write(file_name, last_response)
+      puts "Writed to #{file_name}".colorize(:yellow)
     end
 
     def show_response_json
@@ -179,7 +180,7 @@ module ChatGPT
       total_tokens = "0"
       begin
         File.open(ChatGPT::Config::RESPONSE_FILE, "r") do |file|
-          total_tokens = JSON.parse(file).dig("usage", "total_tokens").to_s
+          total_tokens = JSON.parse(file).dig?("usage", "total_tokens") || 0
         end
       rescue ex
       end
