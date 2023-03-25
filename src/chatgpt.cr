@@ -65,7 +65,7 @@ def process_file_substitution(file_path, file_match)
 end
 
 loop do
-  input_msg = Readline.readline("> ", true)
+  input_msg = Readline.readline("#{post_data.model}> ", true)
   break if input_msg.nil?
   next if input_msg.empty?
   break if ["exit", "quit"].includes?(input_msg)
