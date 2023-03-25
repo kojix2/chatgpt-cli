@@ -67,7 +67,7 @@ module ChatGPT
     private def log_response_data(chat_response)
       STDERR.puts "Received response from #{API_ENDPOINT}".colorize(:cyan).mode(:bold)
       STDERR.puts "Response status: #{chat_response.status}".colorize(:cyan)
-      STDERR.puts "Response body: #{chat_response.body}".colorize(:cyan)
+      STDERR.puts "Response body: #{JSON.parse(chat_response.body).pretty_inspect}".colorize(:cyan)
       STDERR.puts
     end
   end
