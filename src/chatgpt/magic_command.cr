@@ -193,7 +193,7 @@ module ChatGPT
     def show_help
       puts "Magic commands:".colorize(:yellow).mode(:bold)
       Table.each do |value|
-        puts "  #{value["name"]}".colorize(:yellow).mode(:bold)
+        puts "  % #{value["name"]}".colorize(:yellow).mode(:bold)
         puts "    #{value["description"]}".colorize(:yellow)
       end
     end
