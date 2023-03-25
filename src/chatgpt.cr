@@ -64,11 +64,34 @@ def process_file_substitution(file_path, file_match)
   end
 end
 
+def process_stdout_substitution(stdout_match, system_command)
+
+    <<-CODE_BLOCK
+
+      ```
+      #{system_command.latest_stdout}
+      ```
+
+    CODE_BLOCK
+end
+
+def process_stderr_substitution(stderr_match, system_command)
+
+    <<-CODE_BLOCK
+
+      ```
+      #{system_command.latest_stderr}
+      ```
+
+    CODE_BLOCK
+end
+
 loop do
   input_msg = Readline.readline("#{post_data.model}> ", true)
   break if input_msg.nil?
   next if input_msg.empty?
   break if ["exit", "quit"].includes?(input_msg)
+
   next if system_command.try_run(input_msg)
 
   if modified_post_data = magic_command.try_run(input_msg, post_data)
@@ -78,6 +101,8 @@ loop do
 
   input_msg = input_msg.gsub(/%%{.+?}/) { |url_match| process_url_substitution(url_match) }
   input_msg = input_msg.gsub(/%{.+?}/) { |file_match| process_file_substitution(file_match[2..-2].strip, file_match) }
+  input_msg = input_msg.gsub(/%STDOUT/) { |stdout_match| process_stdout_substitution(stdout_match, system_command) }
+  input_msg = input_msg.gsub(/%STDERR/) { |stderr_match| process_stderr_substitution(stderr_match, system_command) }
 
   post_data.messages << {"role" => "user", "content" => input_msg}
   response = gpt_client.send_chat_request(post_data)
