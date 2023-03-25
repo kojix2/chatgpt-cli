@@ -1,6 +1,8 @@
 # ChatGPT CLI
 
-ChatGPT CLI is a command-line interface tool for interacting with OpenAI's ChatGPT API. Users can communicate with the GPT model, adjust API parameters, use magic commands, insert specified file contents, fetch content from URLs, and execute system commands while chatting.
+[![build](https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml/badge.svg)](https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml)
+
+ChatGPT CLI is a command-line interface tool for interacting with OpenAI's [ChatGPT API](https://platform.openai.com/docs/api-reference/chat). Users can communicate with the GPT model, adjust API parameters, use magic commands, insert specified file contents, fetch content from URLs, and execute system commands while chatting.
 
 [![asciicast](https://asciinema.org/a/569659.svg)](https://asciinema.org/a/569659)
 
@@ -16,7 +18,7 @@ ChatGPT CLI is a command-line interface tool for interacting with OpenAI's ChatG
 
 ## Installation
 
-1. Install Crystal
+1. Install [Crystal](https://github.com/crystal-lang/crystal)
 
 2. Build the project:
 
