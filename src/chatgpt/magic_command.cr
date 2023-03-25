@@ -5,77 +5,77 @@ module ChatGPT
     Table =
       [
         {
-          "command"     => "debug",
+          "name"        => "debug",
           "description" => "Toggle debug mode",
           "pattern"     => "debug",
           "n_args"      => 0,
           "method"      => "debug_mode_toggle",
         },
         {
-          "command"     => "system",
+          "name"        => "system",
           "description" => "Show system messages",
           "pattern"     => "system",
           "n_args"      => 0,
           "method"      => "show_system_messages",
         },
         {
-          "command"     => "system <message>",
+          "name"        => "system <message>",
           "description" => "Set system message",
           "pattern"     => /^system\s+(.+)/,
           "n_args"      => 1,
           "method"      => "set_system_messages",
         },
         {
-          "command"     => "clear",
+          "name"        => "clear",
           "description" => "Clear messages",
           "pattern"     => "clear",
           "n_args"      => 0,
           "method"      => "clear_messages",
         },
         {
-          "command"     => "data",
+          "name"        => "data",
           "description" => "Show data in JSON",
           "pattern"     => "data",
           "n_args"      => 0,
           "method"      => "show_data_json",
         },
         {
-          "command"     => "save <file_name>",
+          "name"        => "save <file_name>",
           "description" => "Save last message to <file_name>",
           "pattern"     => /^save\s+(.+)/,
           "n_args"      => 1,
           "method"      => "save_to_file",
         },
         {
-          "command"     => "saveall",
+          "name"        => "saveall",
           "description" => "Save all messages to chatgpt.json",
           "pattern"     => "saveall",
           "n_args"      => 0,
           "method"      => "save_all_to_json",
         },
         {
-          "command"     => "config",
+          "name"        => "config",
           "description" => "Edit config file",
           "pattern"     => "config",
           "n_args"      => 0,
           "method"      => "show_config",
         },
         {
-          "command"     => "response",
+          "name"        => "response",
           "description" => "Show last response in JSON",
           "pattern"     => "response",
           "n_args"      => 0,
           "method"      => "show_response_json",
         },
         {
-          "tokens"      => "tokens",
+          "name"        => "tokens",
           "description" => "Show total tokens used",
           "pattern"     => /^tokens?\s*$/,
           "n_args"      => 0,
           "method"      => "show_total_tokens",
         },
         {
-          "command"     => "help",
+          "name"        => "help",
           "description" => "Show this help",
           "pattern"     => "help",
           "n_args"      => 0,
@@ -193,7 +193,7 @@ module ChatGPT
     def show_help
       puts "Magic commands:".colorize(:yellow).mode(:bold)
       Table.each do |value|
-        puts "  #{value["command"]}".colorize(:yellow).mode(:bold)
+        puts "  #{value["name"]}".colorize(:yellow).mode(:bold)
         puts "    #{value["description"]}".colorize(:yellow)
       end
     end
