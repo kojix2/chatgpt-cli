@@ -17,7 +17,12 @@ require "./chatgpt/cli/parser"
 
 DEBUG_FLAG = [false]
 
-File.write(ChatGPT::Config::RESPONSE_FILE, "")
+
+unless Dir.exists?(ChatGPT::Config::BASE_DIR)
+  Dir.mkdir_p(ChatGPT::Config::BASE_DIR)
+end
+# FIXME
+File.open(ChatGPT::Config::RESPONSE_FILE, "w") { |f| f.print("") }
 
 command_parser = ChatGPT::CLI::Parser.new
 command_parser.parse
