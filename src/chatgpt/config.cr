@@ -39,8 +39,9 @@ module ChatGPT
     end
 
     def create_default_config
-      add_system_message("translator", "I want you to act as an translator, spelling corrector and improver.")
+      add_system_message("edit", "I want you to act as an editor, grammar corrector, and improver.")
       add_system_message("code", "I want you to act as a programmer, writing code.")
+      add_system_message("tran", "I want you to act as an translator, spelling corrector, and improver.")
       add_system_message("poet", "I want you to act as a poet, writing poetry.")
       save
     end

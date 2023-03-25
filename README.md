@@ -9,7 +9,7 @@ ChatGPT CLI is a command-line interface tool for interacting with OpenAI's ChatG
 1. Interact with OpenAI's ChatGPT API through a command-line interface
 2. Set API parameters like model name (`gpt-3.5-turbo` by default), temperature, and top_p
 3. Select pre-registered system messages with ID
-4. Execute magic commands for various actions (e.g. modifying the system message, saving message, debugging)
+4. Execute magic commands for various actions (e.g., modifying the system message, saving messages, debugging)
 5. Execute system commands while chatting
 6. Fetch file contents from paths and insert them into the chat
 7. Fetch contents from URLs and insert them into the chat
@@ -61,7 +61,7 @@ Usage: chatgpt [options]
     -m MODEL, --model MODEL              Model name (default: gpt-3.5-turbo)
     -s STR, --system STR                 System message
     -n INT                               How many edits to generate for the input and instruction
-    -t Float, --temperature Float        Sampling temperature between 0 and 2 affects randomness of output
+    -t Float, --temperature Float        Sampling temperature between 0 and 2 affects the randomness of output
     -p Float, --top_p Float              Nucleus sampling considers top_p probability mass for token selection
     -d, --debug                          Debug mode
     -v, --version                        Show version
@@ -81,7 +81,7 @@ To add or remove system commands, see the CONFIGURATION section.
 You can insert the contents of a file into the chat by enclosing the file path in `%{}`. For example, if you want to insert the contents of a file called `example.py` located in the `src` directory, you can use `%{src/example.py}`.
 
 ```
-> Please explain what the following code does. Are there any bugs?　%{src/example.py}
+> Please explain what the following code does. Are there any bugs? %{src/example.py}
 ```
 
 ### Web Page Insertion with %%{} (experimental)
@@ -92,43 +92,45 @@ You can insert the contents of a web page.
 > Please raise five topics from the following pages that you find interesting %%{https://news.ycombinator.com/}
 ```
 
-Here we get the html from the URL, extract the words used in the `body` and pass them to ChatGPT. It is much smaller than the raw html, but still not enough.
+Here the HTML from the URL is fetched, the words used in the `body` are extracted and passed to ChatGPT. It is much smaller than the raw HTML, but still not enough.
 
 ### Magic Commands
 
 Within the CLI, you can use magic commands to perform various actions:
 
 - `%debug`: Toggle debug mode
+- `%config`: Edit config file
 - `%system`: Show the current system message
 - `%system <your_message>`: Set a new system message
-- `%clear`: Clear all messages
 - `%data`: Edit data in JSON format
-- `%write <filename>` or `%w <filename>`: Write the most recent message to a specified file
-- `%save`: Save all data to a file called `chatgpt.json`
-- `%config`: Edit config file
-- `%token(s)` : Total tokens used
+- `%clear`: Clear all messages
+- `%save <filename>`: Save data to a file `chatgpt.json`
+- `%load <filename>`: Load data from a file `chatgpt.json`
+- `%write <filename>`: Write the most recent message to a specified file
+- `%w <filename>`: Alias for `write`
+- `%token(s)`: Total tokens used
 - `%help`: Show the help
 
 Note that for `%config`, `%data`, and other commands that launch an editor, the editor used can be set by the `EDITOR` environment variable. The default editor is `vim`.
 
-The tool is under development and the magic commands are still being improved.
+The tool is under development, and the magic commands are still being improved.
 
-### Execuging System Commands
+### Executing System Commands
 
 You can execute system commands while chatting by prefixing the command with the `!` symbol. For example, if you want to check the current working directory, you can type `!pwd` and press Enter. Similarly, you can execute other system commands like `!ls`, `!date`, etc.
 
 ## Configuration
 
-The system messages used by ChatGPT CLI can be customized through the `config.json` file. The file is located in `~/.config/chatgpt-cli/` by default, but can be changed by setting the `CHATGPT_CLI_CONFIG` environment variable.
+The system messages used by ChatGPT CLI can be customized through the `config.json` file. The file is located in `~/.config/chatgpt-cli/` by default, but it can be changed by setting the `CHATGPT_CLI_CONFIG` environment variable.
 
 The `config.json` file has the following structure:
 
 ```json
 {
   "system_messages": {
-    "translator": {
+    "tran": {
       "role": "system",
-      "content": "I want you to act as an translator, spelling corrector and improver."
+      "content": "I want you to act as a translator, spelling corrector, and improver."
     },
     "code": {
       "role": "system",
