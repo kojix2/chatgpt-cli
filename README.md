@@ -119,7 +119,23 @@ The tool is under development, and the magic commands are still being improved.
 
 ### Executing System Commands
 
-You can execute system commands while chatting by prefixing the command with the `!` symbol. For example, if you want to check the current working directory, you can type `!pwd` and press Enter. Similarly, you can execute other system commands like `!ls`, `!date`, etc.
+You can execute system commands while chatting by prefixing the command with the `!` symbol. For example, if you want to check the current working directory, you can type `!pwd` and press Enter. Similarly, you can execute other system commands like `!ls`, `!date`, etc. If you want to execute a command and record its output for later use, you can prefix the command with `!!` instead, then use `%STDOUT` or `%STDERR` to insert the captured output into the chat.
+
+#### Examples:
+
+1. Execute a command, and display the output immediately:
+
+```bash
+> !vim
+> !htop
+```
+
+2. Capture the output of a command for later use:
+
+```bash
+> !!wrong_command
+> Explain the meaning of this error message: %STDERR
+```
 
 ## Configuration
 

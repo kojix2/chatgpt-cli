@@ -1,11 +1,13 @@
 module ChatGPT
   class SystemCommand
-    getter latest_stdout
-    getter latest_stderr
+    getter last_stdout
+    getter last_stderr
+    getter last_command
 
     def initialize
-      @latest_stdout = ""
-      @latest_stderr = ""
+      @last_stdout = ""
+      @last_stderr = ""
+      @last_command = ""
     end
 
     def try_run(input_message)
@@ -37,11 +39,12 @@ module ChatGPT
         STDERR.puts "Error: Command failed: #{command}".colorize(:yellow).mode(:bold)
       end
 
-      @latest_stdout = stdout.to_s
-      @latest_stderr = stderr.to_s
+      @last_command = command
+      @last_stdout  = stdout.to_s
+      @last_stderr  = stderr.to_s
 
-      puts latest_stdout.colorize(:yellow)
-      STDERR.puts latest_stderr.colorize(:yellow)
+      puts last_stdout.colorize(:yellow)
+      STDERR.puts last_stderr.colorize(:yellow)
     end
 
     private def run_no_record(command)

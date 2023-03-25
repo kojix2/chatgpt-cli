@@ -69,7 +69,7 @@ def process_stdout_substitution(stdout_match, system_command)
     <<-CODE_BLOCK
 
       ```
-      #{system_command.latest_stdout}
+      #{system_command.last_stdout}
       ```
 
     CODE_BLOCK
@@ -79,8 +79,10 @@ def process_stderr_substitution(stderr_match, system_command)
 
     <<-CODE_BLOCK
 
-      ```
-      #{system_command.latest_stderr}
+      command: `#{system_command.last_command}`
+
+      ```error
+      #{system_command.last_stderr}
       ```
 
     CODE_BLOCK
