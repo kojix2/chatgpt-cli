@@ -67,5 +67,13 @@ module ChatGPT
       File.write(CONFIG_FILE, config_data.to_pretty_json)
       STDERR.puts("#{overwrite ? "Overwrote" : "Created"} config at #{CONFIG_FILE}")
     end
+
+    def color_chatgpt_fore
+      @config_data.dig("terminal_color", "chatgpt", "fore").to_u8 rescue 31u8
+    end
+
+    def color_chatgpt_back
+      @config_data.dig("terminal_color", "chatgpt", "back").to_u8 rescue 39u8
+    end
   end
 end

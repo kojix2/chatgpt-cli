@@ -16,5 +16,11 @@
       "role": "system",
       "content": "I want you to act as a poet, writing poetry."
     }
-  }
+  },
+  "terminal_color": {
+    "chatgpt": {
+      "fore": "32",
+      "back": "39"
+    },
+  },
 }

@@ -31,7 +31,8 @@ module ChatGPT
       # FIXME
       File.open(Config::RESPONSE_FILE, "w") { |f| f.print("") }
 
-      command_parser = CLI::Parser.new
+      @config = Config.new
+      command_parser = CLI::Parser.new(@config)
       begin
         command_parser.parse
       rescue ex
@@ -39,7 +40,7 @@ module ChatGPT
       end
       @post_data = command_parser.data
 
-      @chat_gpt_client = Client.new
+      @chat_gpt_client = Client.new(@config)
       @system_command_runner = SystemCommandRunner.new
       @magic_command_runner = MagicCommandRunner.new(post_data, key: "%")
       @substitutor = InputSubstitutor.new(@system_command_runner)
@@ -79,7 +80,7 @@ module ChatGPT
           post_data.messages << {"role" => "assistant", "content" => result_msg.to_s}
           File.write(Config::POST_DATA_FILE, post_data.to_pretty_json)
           total_tokens = response_data.dig("usage", "total_tokens").to_s.to_i
-          puts result_msg.colorize(:green)
+          puts result_msg.colorize.fore(@config.color_chatgpt_fore).back(@config.color_chatgpt_back)
         else
           STDERR.puts "Error: #{response.status_code} #{response.status}".colorize(:yellow).mode(:bold)
           STDERR.puts response.body.colorize(:yellow)

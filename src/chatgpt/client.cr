@@ -1,4 +1,5 @@
 require "http/client"
+require "./config"
 
 module ChatGPT
   class ApiKeyError < Exception; end
@@ -7,8 +8,9 @@ module ChatGPT
     API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
 
     @http_headers : HTTP::Headers
+    getter config : Config
 
-    def initialize
+    def initialize(@config : Config)
       @http_headers = build_http_headers
     end
 
@@ -50,7 +52,7 @@ module ChatGPT
     end
 
     private def create_spinner
-      spinner_text = "ChatGPT".colorize(:green)
+      spinner_text = "ChatGPT".colorize.fore(@config.color_chatgpt_fore).back(@config.color_chatgpt_back)
       Spin.new(0.2, Spinner::Charset[:pulsate2], spinner_text, output: STDERR)
     end
 

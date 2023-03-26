@@ -6,11 +6,11 @@ module ChatGPT
   class CLI
     class Parser < OptionParser
       getter data : PostData
+      getter config : Config
 
-      def initialize
+      def initialize(@config : Config) 
         @data = PostData.new
         super()
-        config = Config.new
         self.banner = 
         <<-BANNER
         Program: #{PROGRAM_NAME}
