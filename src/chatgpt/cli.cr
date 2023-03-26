@@ -40,8 +40,11 @@ module ChatGPT
     end
 
     def run
+      total_tokens = 0
+      message_count = 0 
       loop do
-        input_msg = Readline.readline("#{post_data.model}> ", true)
+        message_count = post_data.messages.count { |msg| msg["role"] == "user" } + 1
+        input_msg = Readline.readline("#{post_data.model}:#{total_tokens}:#{message_count}> ", true)
         break if input_msg.nil?
         next if input_msg.empty?
 
@@ -75,9 +78,10 @@ module ChatGPT
         File.write(Config::RESPONSE_FILE, response_data.to_pretty_json)
 
         if response.success?
-          result_msg = response_data["choices"][0]["message"]["content"]
+          result_msg = response_data.dig("choices", 0, "message", "content")
           post_data.messages << {"role" => "assistant", "content" => result_msg.to_s}
           File.write(Config::POST_DATA_FILE, post_data.to_pretty_json)
+          total_tokens = response_data.dig("usage", "total_tokens").to_s.to_i
           puts result_msg.colorize(:green)
         else
           STDERR.puts "Error: #{response.status_code} #{response.status}".colorize(:yellow).mode(:bold)
