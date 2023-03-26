@@ -59,15 +59,15 @@ You can set various options when running the `chatgpt` command:
 
 ```
 Usage: chatgpt [options]
-    -i NAME, --identifier NAME           Custom system message from configuration file
-    -m MODEL, --model MODEL              Model name (default: gpt-3.5-turbo)
-    -s STR, --system STR                 System message
-    -n INT                               How many edits to generate for the input and instruction
-    -t Float, --temperature Float        Sampling temperature between 0 and 2 affects the randomness of output
-    -p Float, --top_p Float              Nucleus sampling considers top_p probability mass for token selection
-    -d, --debug                          Debug mode
-    -v, --version                        Show version
-    -h, --help                           Show help
+    -i ID, --id ID                   Custom system message from configuration file
+    -m MODEL, --model MODEL          Model name (default: gpt-3.5-turbo)
+    -s STR, --system STR             System message
+    -n INT                           How many edits to generate for the input and instruction.
+    -t Float, --temperature Float    Sampling temperature between 0 and 2 affects randomness of output.
+    -p Float, --top_p Float          Nucleus sampling considers top_p probability mass for token selection.
+    -d, --debug                      Debug mode
+    -v, --version                    Show version
+    -h, --help                       Show help
 ```
 
 ### Select a pre-defined system command

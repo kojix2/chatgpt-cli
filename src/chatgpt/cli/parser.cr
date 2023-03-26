@@ -12,7 +12,7 @@ module ChatGPT
         super()
         config = Config.new
         self.banner = "Usage: #{PROGRAM_NAME} [options]"
-        on "-i ID", "--identifier ID", "Custom system message from configuration file" do |v|
+        on "-i ID", "--id ID", "Custom system message from configuration file" do |v|
           begin
             system_message = config.select_id(v.to_s)
             data.messages << system_message if system_message
