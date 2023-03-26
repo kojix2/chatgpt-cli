@@ -26,18 +26,18 @@ module ChatGPT
           "method"      => "set_system_messages",
         },
         {
+          "name"        => "data",
+          "description" => "Show or edit data in JSON",
+          "pattern"     => "data",
+          "n_args"      => 0,
+          "method"      => "edit_data_json",
+        },
+        {
           "name"        => "clear",
-          "description" => "Clear messages",
+          "description" => "Clear messages and initialize data",
           "pattern"     => "clear",
           "n_args"      => 0,
           "method"      => "clear_messages",
-        },
-        {
-          "name"        => "data",
-          "description" => "Show data in JSON",
-          "pattern"     => "data",
-          "n_args"      => 0,
-          "method"      => "show_data_json",
         },
         {
           "name"        => "write <file_name> or w <file_name>",
@@ -45,6 +45,20 @@ module ChatGPT
           "pattern"     => /^[write,w]\s+(.+)/,
           "n_args"      => 1,
           "method"      => "write_to_file",
+        },
+        {
+          "name"        => "undo",
+          "description" => "Undo last message and response",
+          "pattern"     => "undo",
+          "n_args"      => 0,
+          "method"      => "undo",
+        },
+        {
+          "name"        => "undo <n>",
+          "description" => "Undo last <n> messages and responses",
+          "pattern"     => /^undo\s+(\d+)/,
+          "n_args"      => 1,
+          "method"      => "undo",
         },
         {
           "name"        => "save",
@@ -58,7 +72,7 @@ module ChatGPT
           "description" => "Save all messages to <file_name>",
           "pattern"     => /^save\s+(.+)/,
           "n_args"      => 1,
-          "method"      => "save_data_to_json_with_name",
+          "method"      => "save_data_to_json",
         },
         {
           "name"        => "load",
@@ -72,7 +86,7 @@ module ChatGPT
           "description" => "Load all messages from <file_name>",
           "pattern"     => /^load\s+(.+)/,
           "n_args"      => 1,
-          "method"      => "load_data_from_json_with_name",
+          "method"      => "load_data_from_json",
         },
         {
           "name"        => "config",
@@ -162,12 +176,7 @@ module ChatGPT
       puts "Set system message to #{message}".colorize(:yellow)
     end
 
-    def clear_messages
-      data.messages.clear
-      puts "Cleared".colorize(:yellow)
-    end
-
-    def show_data_json
+    def edit_data_json
       new_data = data
       File.tempfile("chatgpt-cli", ".json") do |file|
         File.write(file.path, data.to_pretty_json)
@@ -182,20 +191,37 @@ module ChatGPT
       @data = new_data
     end
 
-    def save_data_to_json
-      save_data_to_json_with_name("chatgpt.json")
+    def clear_messages
+      data.messages.clear
+      puts "Cleared".colorize(:yellow)
     end
 
-    def save_data_to_json_with_name(file_name)
+    def undo
+      undo(1)
+    end
+
+    def undo(n)
+      n.to_i.times do
+        data.messages.pop # response
+        data.messages.pop # query
+      end
+      puts "Undo #{n == 1 ? "last" : n} messages".colorize(:yellow)
+    end
+
+    def save_data_to_json
+      save_data_to_json("chatgpt.json")
+    end
+
+    def save_data_to_json(file_name)
       File.write(file_name, data.to_json)
       puts "Saved to #{file_name}".colorize(:yellow)
     end
 
     def load_data_from_json
-      load_data_from_json_with_name("chatgpt.json")
+      load_data_from_json("chatgpt.json")
     end
 
-    def load_data_from_json_with_name(file_name)
+    def load_data_from_json(file_name)
       begin
         new_data = PostData.from_json(File.read(file_name))
         @data = new_data
@@ -242,7 +268,7 @@ module ChatGPT
       STDERR.puts "Error: Unknown magic command: #{command}".colorize(:yellow).mode(:bold)
     end
 
-    def open_editor(file_name)
+    private def open_editor(file_name)
       editor = ENV.has_key?("EDITOR") ? ENV["EDITOR"] : "vim"
       system("#{editor} #{file_name}")
     end
