@@ -17,3 +17,6 @@ jobs:
       - run: shards install
       - run: shards build --release
       - run: crystal spec
+      - run: sudo cp ./bin/chatgpt /usr/local/bin/chatgpt
+      - run: chatgpt --help
+
