@@ -86,6 +86,12 @@ You can insert the contents of a file into the chat by enclosing the file path i
 > Please explain what the following code does. Are there any bugs? %{src/example.py}
 ```
 
+```
+> Please read the code of the tool: %{src/**/*} Then update README.md %{README.md}
+...
+> %w README.md
+```
+
 ### Web Page Insertion with %%{} (experimental)
 
 You can insert the contents of a web page.
@@ -127,11 +133,18 @@ You can execute system commands while chatting by prefixing the command with the
 1. Execute a command, and display the output immediately:
 
 ```bash
+> !pwd
 > !vim
 > !htop
 ```
 
 2. Capture the output of a command for later use:
+
+```bash
+> !! git diff
+... git diff output ...
+> Please write commit message: %STDOUT
+```
 
 ```bash
 > !!wrong_command
