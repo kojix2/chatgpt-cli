@@ -17,7 +17,6 @@ require "./cli/parser"
 
 module ChatGPT
   class CLI
-
     getter post_data : PostData
     getter chat_gpt_client
     getter system_command_runner

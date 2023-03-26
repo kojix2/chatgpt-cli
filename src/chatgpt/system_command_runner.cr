@@ -40,8 +40,8 @@ module ChatGPT
       end
 
       @last_command = command
-      @last_stdout  = stdout.to_s
-      @last_stderr  = stderr.to_s
+      @last_stdout = stdout.to_s
+      @last_stderr = stderr.to_s
 
       puts last_stdout.colorize(:yellow)
       STDERR.puts last_stderr.colorize(:yellow)

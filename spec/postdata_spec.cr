@@ -1,8 +1,6 @@
 require "./spec_helper"
 require "../src/chatgpt/post_data"
 
-
-
 module ChatGPT
   data = PostData.new(messages: [{"role" => "system", "content" => "Set some context"}])
 
