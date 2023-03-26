@@ -17,7 +17,7 @@ module ChatGPT
             system_message = config.select_id(v.to_s)
             data.messages << system_message if system_message
           rescue ex
-            STDERR.puts "Error: Unable to read configuration file: #{ex.message}".colorize(:red).mode(:bold)
+            STDERR.puts "Error: Unable to read configuration file: #{ex.message}".colorize(:yellow).mode(:bold)
             abort
           end
         end

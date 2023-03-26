@@ -61,29 +61,36 @@ module ChatGPT
           "method"      => "undo",
         },
         {
+          "name"        => "resume",
+          "description" => "Resume from auto-saved data",
+          "pattern"     => "resume",
+          "n_args"      => 0,
+          "method"      => "resume",
+        },
+        {
           "name"        => "save",
-          "description" => "Save all messages to chatgpt.json",
+          "description" => "Save data to chatgpt-<timestamp>.json",
           "pattern"     => "save",
           "n_args"      => 0,
           "method"      => "save_data_to_json",
         },
         {
           "name"        => "save <file_name>",
-          "description" => "Save all messages to <file_name>",
+          "description" => "Save data to <file_name>",
           "pattern"     => /^save\s+(.+)/,
           "n_args"      => 1,
           "method"      => "save_data_to_json",
         },
         {
           "name"        => "load",
-          "description" => "Load all messages from chatgpt.json",
+          "description" => "Load latest saved data from current directory",
           "pattern"     => "load",
           "n_args"      => 0,
           "method"      => "load_data_from_json",
         },
         {
           "name"        => "load <file_name>",
-          "description" => "Load all messages from <file_name>",
+          "description" => "Load data from <file_name>",
           "pattern"     => /^load\s+(.+)/,
           "n_args"      => 1,
           "method"      => "load_data_from_json",
@@ -196,6 +203,14 @@ module ChatGPT
       puts "Cleared".colorize(:yellow)
     end
 
+    def resume
+      if File.exists?(Config::POST_DATA_FILE)
+        load_data_from_json(Config::POST_DATA_FILE)
+      else
+        puts "No saved data".colorize(:yellow)
+      end
+    end
+
     def undo
       undo(1)
     end
@@ -209,7 +224,9 @@ module ChatGPT
     end
 
     def save_data_to_json
-      save_data_to_json("chatgpt.json")
+      timestamp = Time.local.to_s("%Y%m%d-%H%M%S")
+      file_name = "chatgpt-#{timestamp}.json"
+      save_data_to_json(file_name)
     end
 
     def save_data_to_json(file_name)
@@ -218,7 +235,12 @@ module ChatGPT
     end
 
     def load_data_from_json
-      load_data_from_json("chatgpt.json")
+      file_names = Dir.glob("chatgpt-*.json")
+      if file_names.empty?
+        puts "Error: No saved data".colorize(:yellow).mode(:bold)
+        return
+      end
+      load_data_from_json(file_names.sort.last)
     end
 
     def load_data_from_json(file_name)

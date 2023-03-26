@@ -17,7 +17,7 @@ require "./chatgpt/cli/parser"
 
 DEBUG_FLAG = [false]
 
-
+# Create the base directory if it doesn't exist
 unless Dir.exists?(ChatGPT::Config::BASE_DIR)
   Dir.mkdir_p(ChatGPT::Config::BASE_DIR)
 end
@@ -134,6 +134,7 @@ loop do
   if response.success?
     result_msg = response_data["choices"][0]["message"]["content"]
     post_data.messages << {"role" => "assistant", "content" => result_msg.to_s}
+    File.write(ChatGPT::Config::POST_DATA_FILE, post_data.to_pretty_json)
     puts result_msg.colorize(:green)
   else
     STDERR.puts "Error: #{response.status_code} #{response.status}".colorize(:yellow).mode(:bold)
