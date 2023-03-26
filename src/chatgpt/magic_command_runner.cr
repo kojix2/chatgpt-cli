@@ -12,6 +12,20 @@ module ChatGPT
           "method"      => "debug_mode_toggle",
         },
         {
+          "name"        => "model",
+          "description" => "Show model name",
+          "pattern"     => "model",
+          "n_args"      => 0,
+          "method"      => "show_model_name",
+        },
+        {
+          "name"        => "model <model_name>",
+          "description" => "Set model name",
+          "pattern"     => /^model\s+(.+)/,
+          "n_args"      => 1,
+          "method"      => "set_model_name",
+        },
+        {
           "name"        => "system",
           "description" => "Show system messages",
           "pattern"     => "system",
@@ -117,6 +131,13 @@ module ChatGPT
           "method"      => "show_total_tokens",
         },
         {
+          "name"        => "history",
+          "description" => "Show history",
+          "pattern"     => "history",
+          "n_args"      => 0,
+          "method"      => "show_history",
+        },
+        {
           "name"        => "help",
           "description" => "Show this help",
           "pattern"     => "help",
@@ -162,6 +183,15 @@ module ChatGPT
     def debug_mode_toggle
       DEBUG_FLAG[0] = !DEBUG_FLAG[0]
       puts "Debug mode: #{DEBUG_FLAG[0]}".colorize(:yellow)
+    end
+
+    def show_model_name
+      puts "Model: #{data.model}".colorize(:yellow)
+    end
+
+    def set_model_name(model_name)
+      data.model = model_name
+      puts "Set model to #{model_name}".colorize(:yellow)
     end
 
     def show_system_messages
@@ -272,6 +302,10 @@ module ChatGPT
       rescue ex
       end
       puts "Total tokens used: #{total_tokens}".colorize(:yellow)
+    end
+
+    def show_history
+      open_editor(Config::HISTORY_FILE)
     end
 
     def show_config

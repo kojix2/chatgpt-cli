@@ -44,6 +44,9 @@ module ChatGPT
         input_msg = Readline.readline("#{post_data.model}> ", true)
         break if input_msg.nil?
         next if input_msg.empty?
+
+        File.open(Config::HISTORY_FILE, "a") { |f| f.puts(input_msg) }
+        
         break if ["exit", "quit"].includes?(input_msg)
 
         next if system_command_runner.try_run(input_msg)
