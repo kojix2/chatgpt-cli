@@ -260,13 +260,13 @@ module ChatGPT
     end
 
     def show_response_json
-      open_editor(ChatGPT::Config::RESPONSE_FILE)
+      open_editor(Config::RESPONSE_FILE)
     end
 
     def show_total_tokens
       total_tokens = "0"
       begin
-        File.open(ChatGPT::Config::RESPONSE_FILE, "r") do |file|
+        File.open(Config::RESPONSE_FILE, "r") do |file|
           total_tokens = JSON.parse(file).dig?("usage", "total_tokens") || 0
         end
       rescue ex
@@ -275,7 +275,7 @@ module ChatGPT
     end
 
     def show_config
-      open_editor(ChatGPT::Config::CONFIG_FILE)
+      open_editor(Config::CONFIG_FILE)
     end
 
     def show_help

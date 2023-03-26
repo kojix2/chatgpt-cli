@@ -21,7 +21,7 @@ module ChatGPT
           STDERR.puts "Error: #{ex}\nFailed to read file: #{file_path}".colorize(:yellow).mode(:bold)
           contents = "# Error: Failed to read file: #{file_path}"
         end
-        format_name = ChatGPT::FILE_EXTENSIONS.fetch(extname, "")
+        format_name = FILE_EXTENSIONS.fetch(extname, "")
 
         <<-CODE_BLOCK
         ### #{basename}

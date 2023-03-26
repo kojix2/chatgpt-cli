@@ -3,7 +3,7 @@ require "../config"
 require "./version"
 
 module ChatGPT
-  module CLI
+  class CLI
     class Parser < OptionParser
       getter data : PostData
 
@@ -40,7 +40,7 @@ module ChatGPT
           DEBUG_FLAG[0] = true
         end
         on "-v", "--version", "Show version" do
-          puts ChatGPT::CLI::VERSION
+          puts CLI::VERSION
           exit
         end
         on("-h", "--help", "Show help") { puts self; exit }
