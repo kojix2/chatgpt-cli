@@ -89,7 +89,7 @@ module ChatGPT
         else
           STDERR.puts "Error: #{response.status_code} #{response.status}".colorize(:yellow).mode(:bold)
           STDERR.puts response.body.colorize(:yellow)
-        STDERR.print "Hint: try %undo".colorize(:yellow).mode(:bold)
+          STDERR.puts "Hint: try %undo, %edit, %clear, %model or %help".colorize(:yellow).mode(:bold)
           post_data.messages.pop
         end
       end

@@ -110,7 +110,7 @@ Within the CLI, you can use magic commands to perform various actions:
 - `%config`: Edit config file
 - `%system`: Show the current system message
 - `%system <your_message>`: Set a new system message
-- `%data`: Edit data in JSON format
+- `%edit`: Edit data in JSON format
 - `%clear`: Clear all messages
 - `%undo <n>`: Undo last query and response [1]
 - `%write <filename>`: Write the most recent message to a specified file

@@ -40,9 +40,9 @@ module ChatGPT
           "method"      => "set_system_messages",
         },
         {
-          "name"        => "data",
+          "name"        => "edit",
           "description" => "Show or edit data in JSON",
-          "pattern"     => "data",
+          "pattern"     => "edit",
           "n_args"      => 0,
           "method"      => "edit_data_json",
         },
