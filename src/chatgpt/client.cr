@@ -23,8 +23,9 @@ module ChatGPT
       if ENV.has_key?("OPENAI_API_KEY")
         ENV["OPENAI_API_KEY"]
       else
-        ApiKeyError.new("OPENAI_API_KEY is not set")
-        exit 1
+        STDERR.puts "Error: OPENAI_API_KEY is not set. ".colorize(:yellow).mode(:bold)
+        STDERR.puts "Please get your API key and set it as an environment variable.".colorize(:yellow)
+        ""
       end
     end
 
