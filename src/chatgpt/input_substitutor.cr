@@ -2,78 +2,113 @@ require "./webpage_compressor"
 
 module ChatGPT
   class InputSubstitutor
-    def self.file_substitution(file_match)
-      file_pattern = file_match[2..-2].strip
-      file_paths = Dir.glob(file_pattern)
 
-      if file_paths.empty?
-        STDERR.puts "Warning: No files found matching: #{file_pattern} leave it as it is".colorize(:yellow).mode(:bold)
-        return file_match
-      end
+    def initialize(@system_command_runner : SystemCommandRunner)
+    end
 
-      content_blocks = file_paths.map do |file_path|
-        extname = File.extname(file_path)
-        basename = File.basename(file_path)
-        begin
-          contents = File.read(file_path)
-        rescue ex
-          # This should not happen because we already checked the file exists with Dir.glob
-          STDERR.puts "Error: #{ex}\nFailed to read file: #{file_path}".colorize(:yellow).mode(:bold)
-          contents = "# Error: Failed to read file: #{file_path}"
-        end
-        format_name = FILE_EXTENSIONS.fetch(extname, "")
+    private def last_command
+      @system_command_runner.last_command
+    end
 
+    private def last_stdout
+      @system_command_runner.last_stdout
+    end
+
+    private def last_stderr
+      @system_command_runner.last_stderr
+    end
+
+    def stdout(input_msg, stdout_pattern)
+      input_msg.gsub(stdout_pattern) do |stdout_match|
         <<-CODE_BLOCK
-        ### #{basename}
 
-        ```#{format_name}
-        #{contents}
         ```
-
-        That's all for the #{basename}
+        #{last_stdout}
+        ```
 
         CODE_BLOCK
       end
-
-      content_blocks.join("\n")
     end
 
-    def self.url_substitution(url_match)
-      url = url_match[3..-2].strip
-      url = "https://" + url unless url.starts_with?("http")
-      compressed_text = words(Lexbor::Parser.new(HTTP::Client.get(url).body.to_s)).join("|")
+    def stderr(input_msg, stderr_pattern)
+      input_msg.gsub(stderr_pattern) do |stderr_match|
+        <<-CODE_BLOCK
 
-      <<-CODE_BLOCK
-      ### #{url}
+        command: `#{last_command}`
 
-      ```
-      #{compressed_text}
-      ```
+        ```
+        #{last_stderr}
+        ```
 
-      That's all for the #{url}
-      CODE_BLOCK
+        CODE_BLOCK
+      end
     end
 
-    def self.stdout_substitution(stdout_match, system_command, stdout)
-      <<-CODE_BLOCK
+    def file(input_msg, file_pattern)
+      input_msg.gsub(file_pattern) do |file_match|
+        file_pattern = $1.strip
 
-      ```
-      #{stdout}
-      ```
+        file_paths = Dir.glob(file_pattern)
+        if file_paths.empty?
+          STDERR.puts "Warning: No files found matching: #{file_pattern} leave it as it is".colorize(:yellow).mode(:bold)
+          next file_match
+        end
 
-      CODE_BLOCK
+        content_blocks = file_paths.map do |file_path|
+          extname = File.extname(file_path)
+          basename = File.basename(file_path)
+          begin
+            contents = File.read(file_path)
+          rescue ex
+            # This should not happen because we already checked the file exists with Dir.glob
+            STDERR.puts "Error: #{ex}\nFailed to read file: #{file_path}".colorize(:yellow).mode(:bold)
+            contents = "# Error: Failed to read file: #{file_path}"
+          end
+          format_name = FILE_EXTENSIONS.fetch(extname, "")
+
+          <<-CODE_BLOCK
+          ### #{basename}
+
+          ```#{format_name}
+          #{contents}
+          ```
+
+          That's all for the #{basename}
+
+          CODE_BLOCK
+        end
+
+        content_blocks.join("\n")
+      end
     end
 
-    def self.stderr_substitution(stderr_match, system_command, stderr)
-      <<-CODE_BLOCK
+    def url(input_msg, url_pattern)
+      input_msg.gsub(url_pattern) do |url_match|
+        url = $1.strip
+        url = "https://" + url unless url.starts_with?("http")
+        begin
+          response = HTTP::Client.get(url)
+        rescue ex
+          STDERR.puts "Warning: Failed to fetch url: #{url} leave it as it is".colorize(:yellow).mode(:bold)
+          STDERR.puts ex.message.colorize(:yellow)
+          next url_match
+        end
+        unless response.success?
+          STDERR.puts "Warning: Failed to fetch url: #{url} leave it as it is".colorize(:yellow).mode(:bold)
+          next url_match
+        end
+        compressed_text = words(Lexbor::Parser.new(HTTP::Client.get(url).body.to_s)).join("|")
 
-      command: `#{system_command}`
-  
-      ```error
-       #{stderr}
-      ```
+        <<-CODE_BLOCK
+        ### #{url}
 
-      CODE_BLOCK
+        ```
+        #{compressed_text}
+        ```
+
+        That's all for the #{url}
+        CODE_BLOCK
+      end
     end
   end
 end

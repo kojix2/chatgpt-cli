@@ -21,6 +21,7 @@ module ChatGPT
     getter chat_gpt_client
     getter system_command_runner
     getter magic_command_runner
+    getter substitutor
 
     def initialize
       # Create the base directory if it doesn't exist
@@ -41,6 +42,7 @@ module ChatGPT
       @chat_gpt_client = Client.new
       @system_command_runner = SystemCommandRunner.new
       @magic_command_runner = MagicCommandRunner.new(post_data, key: "%")
+      @substitutor = InputSubstitutor.new(@system_command_runner)
     end
 
     def run
@@ -62,18 +64,10 @@ module ChatGPT
           @post_data = modified_post_data if modified_post_data.is_a?(PostData)
           next
         end
-        input_msg = input_msg.gsub(/%STDOUT/) do |stdout_match|
-          InputSubstitutor.stdout_substitution(stdout_match, system_command_runner.last_command, system_command_runner.last_stdout)
-        end
-        input_msg = input_msg.gsub(/%STDERR/) do |stderr_match|
-          InputSubstitutor.stderr_substitution(stderr_match, system_command_runner.last_command, system_command_runner.last_stderr)
-        end
-        input_msg = input_msg.gsub(/%%{.+?}/) do |url_match|
-          InputSubstitutor.url_substitution(url_match)
-        end
-        input_msg = input_msg.gsub(/%{.+?}/) do |file_match|
-          InputSubstitutor.file_substitution(file_match)
-        end
+        input_msg = substitutor.stdout(input_msg, /%STDOUT/)
+        input_msg = substitutor.stderr(input_msg, /%STDERR/)
+        input_msg = substitutor.url(input_msg, /%%\{(.+?)\}/)
+        input_msg = substitutor.file(input_msg, /%\{(.+?)\}/)
 
         post_data.messages << {"role" => "user", "content" => input_msg}
         response = chat_gpt_client.send_chat_request(post_data)
