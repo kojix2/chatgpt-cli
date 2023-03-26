@@ -1,7 +1,7 @@
 require "./post_data"
 
 module ChatGPT
-  class MagicCommand
+  class MagicCommandRunner
     Table =
       [
         {
