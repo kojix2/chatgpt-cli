@@ -62,18 +62,17 @@ module ChatGPT
           @post_data = modified_post_data if modified_post_data.is_a?(PostData)
           next
         end
-
-        input_msg = input_msg.gsub(/%%{.+?}/) do |url_match|
-          InputSubstitutor.url_substitution(url_match)
-        end
-        input_msg = input_msg.gsub(/%{.+?}/) do |file_match|
-          InputSubstitutor.file_substitution(file_match)
-        end
         input_msg = input_msg.gsub(/%STDOUT/) do |stdout_match|
           InputSubstitutor.stdout_substitution(stdout_match, system_command_runner.last_command, system_command_runner.last_stdout)
         end
         input_msg = input_msg.gsub(/%STDERR/) do |stderr_match|
           InputSubstitutor.stderr_substitution(stderr_match, system_command_runner.last_command, system_command_runner.last_stderr)
+        end
+        input_msg = input_msg.gsub(/%%{.+?}/) do |url_match|
+          InputSubstitutor.url_substitution(url_match)
+        end
+        input_msg = input_msg.gsub(/%{.+?}/) do |file_match|
+          InputSubstitutor.file_substitution(file_match)
         end
 
         post_data.messages << {"role" => "user", "content" => input_msg}
@@ -90,6 +89,7 @@ module ChatGPT
         else
           STDERR.puts "Error: #{response.status_code} #{response.status}".colorize(:yellow).mode(:bold)
           STDERR.puts response.body.colorize(:yellow)
+        STDERR.print "Hint: try %undo".colorize(:yellow).mode(:bold)
           post_data.messages.pop
         end
       end
