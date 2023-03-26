@@ -106,9 +106,10 @@ Within the CLI, you can use magic commands to perform various actions:
 - `%system <your_message>`: Set a new system message
 - `%data`: Edit data in JSON format
 - `%clear`: Clear all messages
-- `%save <filename>`: Save data to a file `chatgpt.json`
-- `%load <filename>`: Load data from a file `chatgpt.json`
+- `%undo <n>`: Undo last query and response [1]
 - `%write <filename>`: Write the most recent message to a specified file
+- `%save <filename>`: Save data to a file [`chatgpt.json`]
+- `%load <filename>`: Load data from a file [`chatgpt.json`]
 - `%w <filename>`: Alias for `write`
 - `%token(s)`: Total tokens used
 - `%help`: Show the help
