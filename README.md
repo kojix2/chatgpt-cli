@@ -114,6 +114,7 @@ Within the CLI, you can use magic commands to perform various actions:
 - `%clear`: Clear all messages
 - `%undo <n>`: Undo last query and response [1]
 - `%write <filename>`: Write the most recent message to a specified file
+- `%resume` : Load data from auto saved data file
 - `%save <filename>`: Save data to a file [`chatgpt.json`]
 - `%load <filename>`: Load data from a file [`chatgpt.json`]
 - `%w <filename>`: Alias for `write`
