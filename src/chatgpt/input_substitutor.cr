@@ -82,15 +82,15 @@ module ChatGPT
         format_name = FILE_EXTENSIONS.fetch(extname, "")
 
         <<-CODE_BLOCK
-          ### #{basename}
+        ### #{basename}
 
-          ```#{format_name}
-          #{contents}
-          ```
+        ```#{format_name}
+        #{contents}
+        ```
 
-          That's all for the #{basename}
+        That's all for the #{basename}
 
-          CODE_BLOCK
+        CODE_BLOCK
       end
     end
 
@@ -110,14 +110,14 @@ module ChatGPT
       compressed_text = words(Lexbor::Parser.new(HTTP::Client.get(url).body.to_s)).join("|")
 
       <<-CODE_BLOCK
-        ### #{url}
+      ### #{url}
 
-        ```
-        #{compressed_text}
-        ```
+      ```
+      #{compressed_text}
+      ```
 
-        That's all for the #{url}
-        CODE_BLOCK
+      That's all for the #{url}
+      CODE_BLOCK
     end
   end
 end
