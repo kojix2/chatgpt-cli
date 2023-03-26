@@ -48,34 +48,49 @@ def process_url_substitution(url_match)
   CODE_BLOCK
 end
 
-def process_file_substitution(file_path, file_match)
-  extname = File.extname(file_path)
-  basename = File.basename(file_path)
-  format_name = ChatGPT::FILE_EXTENSIONS.fetch(extname, "")
+def process_file_substitution(file_pattern, file_match)
+  file_paths = Dir.glob(file_pattern)
 
-  if File.exists?(file_path)
-    <<-CODE_BLOCK
-      ### #{basename}
-
-      ```#{format_name}
-      #{File.read(file_path)}
-      ```
-
-      That's all for the #{basename}
-    CODE_BLOCK
-  else
-    STDERR.puts "Error: File not found: #{file_path}".colorize(:yellow).mode(:bold)
-    file_match
+  if file_paths.empty?
+    STDERR.puts "Warning: No files found matching: #{file_pattern} leave it as it is".colorize(:yellow).mode(:bold)
+    return file_match
   end
+
+  content_blocks = file_paths.map do |file_path|
+    extname = File.extname(file_path)
+    basename = File.basename(file_path)
+    begin
+      contents = File.read(file_path)
+    rescue ex
+      # This should not happen because we already checked the file exists with Dir.glob
+      STDERR.puts "Error: #{ex}\nFailed to read file: #{file_path}".colorize(:yellow).mode(:bold)
+      contents = "# Error: Failed to read file: #{file_path}"
+    end
+    format_name = ChatGPT::FILE_EXTENSIONS.fetch(extname, "")
+
+    <<-CODE_BLOCK
+    ### #{basename}
+
+    ```#{format_name}
+    #{contents}
+    ```
+
+    That's all for the #{basename}
+
+    CODE_BLOCK
+  end
+
+  content_blocks.join("\n")
 end
+
 
 def process_stdout_substitution(stdout_match, system_command)
 
     <<-CODE_BLOCK
 
-      ```
-      #{system_command.last_stdout}
-      ```
+    ```
+    #{system_command.last_stdout}
+    ```
 
     CODE_BLOCK
 end
@@ -84,11 +99,11 @@ def process_stderr_substitution(stderr_match, system_command)
 
     <<-CODE_BLOCK
 
-      command: `#{system_command.last_command}`
+    command: `#{system_command.last_command}`
 
-      ```error
-      #{system_command.last_stderr}
-      ```
+    ```error
+    #{system_command.last_stderr}
+    ```
 
     CODE_BLOCK
 end
