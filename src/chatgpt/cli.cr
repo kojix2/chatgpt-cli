@@ -31,7 +31,11 @@ module ChatGPT
       File.open(Config::RESPONSE_FILE, "w") { |f| f.print("") }
 
       command_parser = CLI::Parser.new
-      command_parser.parse
+      begin
+        command_parser.parse
+      rescue ex
+        STDERR.puts "Error: #{ex.message}".colorize(:yellow).mode(:bold)
+      end
       @post_data = command_parser.data
 
       @chat_gpt_client = Client.new
