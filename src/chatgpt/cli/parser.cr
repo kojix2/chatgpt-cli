@@ -11,7 +11,14 @@ module ChatGPT
         @data = PostData.new
         super()
         config = Config.new
-        self.banner = "Usage: #{PROGRAM_NAME} [options]"
+        self.banner = 
+        <<-BANNER
+        Program: #{PROGRAM_NAME}
+        Version: #{VERSION}
+        Source: #{SOURCE_URL}
+
+        Usage: #{PROGRAM_NAME} [options]"
+        BANNER
         on "-i ID", "--id ID", "Custom system message from configuration file" do |v|
           system_message = config.select_id(v.to_s)
           data.messages << system_message if system_message
@@ -30,9 +37,6 @@ module ChatGPT
         end
         on "-p Float", "--top_p Float", "Nucleus sampling considers top_p probability mass for token selection." do |v|
           data.top_p = v.to_f? || (STDERR.puts "Error: Invalid top_p"; exit 1)
-        end
-        on "-d", "--debug", "Debug mode" do
-          DEBUG_FLAG[0] = true
         end
         on "-v", "--version", "Show version" do
           puts CLI::VERSION
