@@ -178,9 +178,9 @@ The `config.json` file has the following structure:
 ## Uninstallation
 
 ```sh 
-rm -r /usr/local/bin/chatgpt # Remove executable
-rm -r ~/.config/chatgpt-cli  # Remove config directory
-rm -r ~/chatgpt_history      # Remove command history
+rm /usr/local/bin/chatgpt   # Remove executable
+rm -r ~/.config/chatgpt-cli # Remove config directory
+rm ~/.chatgpt_history       # Remove command history
 ```
 
 ## Contributing
