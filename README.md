@@ -175,6 +175,14 @@ The `config.json` file has the following structure:
 }
 ```
 
+## Uninstallation
+
+```sh 
+rm -r /usr/local/bin/chatgpt # Remove executable
+rm -r ~/.config/chatgpt-cli  # Remove config directory
+rm -r ~/chatgpt_history      # Remove command history
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at [https://github.com/kojix2/chatgpt-cli](https://github.com/kojix2/chatgpt-cli).
