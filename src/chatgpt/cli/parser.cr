@@ -13,11 +13,12 @@ module ChatGPT
         config = Config.new
         self.banner = 
         <<-BANNER
+        
         Program: #{PROGRAM_NAME}
         Version: #{VERSION}
         Source: #{SOURCE_URL}
 
-        Usage: #{PROGRAM_NAME} [options]"
+        Usage: #{PROGRAM_NAME} [options]
         BANNER
         on "-i ID", "--id ID", "Custom system message from configuration file" do |v|
           system_message = config.select_id(v.to_s)
