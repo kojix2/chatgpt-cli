@@ -150,19 +150,24 @@ module ChatGPT
     property data : PostData
 
     def initialize(@data, @key = "%")
+      @next = false
     end
 
     def try_run(msg, data)
       if /^%(?!\{|#{key})/.match msg
         cmd = msg[1..-1].strip
-        run(cmd, data)
-        @data
+        @next = run(cmd, data)
+        true
       else
         false
       end
     end
 
-    def run(command : String, data : PostData)
+    def next?
+      @next
+    end
+
+    def run(command : String, data : PostData) : Bool
       @data = data
       {% begin %}
       case command
@@ -183,15 +188,18 @@ module ChatGPT
     def debug_mode_toggle
       DEBUG_FLAG[0] = !DEBUG_FLAG[0]
       puts "Debug mode: #{DEBUG_FLAG[0]}".colorize(:yellow)
+      true
     end
 
     def show_model_name
       puts "Model: #{data.model}".colorize(:yellow)
+      true
     end
 
     def set_model_name(model_name)
       data.model = model_name
       puts "Set model to #{model_name}".colorize(:yellow)
+      true
     end
 
     def show_system_messages
@@ -200,6 +208,7 @@ module ChatGPT
           puts msg["content"].colorize(:yellow)
         end
       end
+      true
     end
 
     def set_system_messages(message)
@@ -211,6 +220,7 @@ module ChatGPT
         data.messages.unshift({"role" => "system", "content" => message})
       end
       puts "Set system message to #{message}".colorize(:yellow)
+      true
     end
 
     def edit_data_json
@@ -226,11 +236,13 @@ module ChatGPT
         end
       end
       @data = new_data
+      true
     end
 
     def clear_messages
       data.messages.clear
       puts "Cleared".colorize(:yellow)
+      true
     end
 
     def resume
@@ -239,10 +251,12 @@ module ChatGPT
       else
         puts "No saved data".colorize(:yellow)
       end
+      true
     end
 
     def undo
       undo(1)
+      true
     end
 
     def undo(n)
@@ -251,26 +265,30 @@ module ChatGPT
         data.messages.pop # query
       end
       puts "Undo #{n == 1 ? "last" : n} messages".colorize(:yellow)
+      true
     end
 
     def save_data_to_json
       timestamp = Time.local.to_s("%Y%m%d-%H%M%S")
       file_name = "chatgpt-#{timestamp}.json"
       save_data_to_json(file_name)
+      true
     end
 
     def save_data_to_json(file_name)
       File.write(file_name, data.to_json)
       puts "Saved to #{file_name}".colorize(:yellow)
+      true
     end
 
     def load_data_from_json
       file_names = Dir.glob("chatgpt-*.json")
       if file_names.empty?
         puts "Error: No saved data".colorize(:yellow).mode(:bold)
-        return
+        return true
       end
       load_data_from_json(file_names.sort.last)
+      true
     end
 
     def load_data_from_json(file_name)
@@ -281,16 +299,19 @@ module ChatGPT
       rescue
         puts "Error: Invalid JSON".colorize(:yellow).mode(:bold)
       end
+      true
     end
 
     def write_to_file(file_name)
       last_response = data.messages.dig?(-1, "content").to_s
       File.write(file_name, last_response)
       puts "Writed to #{file_name}".colorize(:yellow)
+      true
     end
 
     def show_response_json
       open_editor(Config::RESPONSE_FILE)
+      true
     end
 
     def show_total_tokens
@@ -302,14 +323,17 @@ module ChatGPT
       rescue ex
       end
       puts "Total tokens used: #{total_tokens}".colorize(:yellow)
+      true
     end
 
     def show_history
       open_editor(Config::HISTORY_FILE)
+      true
     end
 
     def show_config
       open_editor(Config::CONFIG_FILE)
+      true
     end
 
     def show_help
@@ -318,10 +342,12 @@ module ChatGPT
         puts "  % #{value["name"]}".colorize(:yellow).mode(:bold)
         puts "    #{value["description"]}".colorize(:yellow)
       end
+      true
     end
 
     def unknown_command_error(command)
       STDERR.puts "Error: Unknown magic command: #{command}".colorize(:yellow).mode(:bold)
+      true
     end
 
     private def open_editor(file_name)

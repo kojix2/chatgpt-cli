@@ -60,10 +60,11 @@ module ChatGPT
 
         next if system_command_runner.try_run(input_msg)
 
-        if modified_post_data = magic_command_runner.try_run(input_msg, post_data)
-          @post_data = modified_post_data if modified_post_data.is_a?(PostData)
-          next
+        if magic_command_runner.try_run(input_msg, post_data)
+          @post_data = magic_command_runner.data
+          next if magic_command_runner.next?
         end
+
         input_msg = substitutor.stdout(input_msg, /%STDOUT/)
         input_msg = substitutor.stderr(input_msg, /%STDERR/)
         input_msg = substitutor.url(input_msg, /%%\{(.+?)\}/)
