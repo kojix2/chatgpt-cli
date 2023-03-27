@@ -11,7 +11,7 @@ module ChatGPT
     CONFIG_FILE    = "#{BASE_DIR}/config.json"
     RESPONSE_FILE  = "#{BASE_DIR}/response.json"
     POST_DATA_FILE = "#{BASE_DIR}/post_data.json"
-    HISTORY_FILE   = "#{BASE_DIR}/history.json"
+    HISTORY_FILE   = "#{ENV["HOME"]}/.chatgpt_history"
 
     alias ConfigData = Hash(String, Hash(String, Hash(String, String)))
 
