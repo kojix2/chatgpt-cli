@@ -76,9 +76,15 @@ module ChatGPT
         File.write(Config::RESPONSE_FILE, response_data.to_pretty_json)
 
         if response.success?
-          result_msg = response_data.dig("choices", 0, "message", "content")
-          post_data.messages << {"role" => "assistant", "content" => result_msg.to_s}
+          result_msg = response_data.dig("choices", 0, "message", "content").to_s
+          post_data.messages << {"role" => "assistant", "content" => result_msg}
           File.write(Config::POST_DATA_FILE, post_data.to_pretty_json)
+          # extract_code_blocks(result_msg).each_with_index do |code_block, idx|
+          #   p code_block
+          #   f = File.tempfile("chatgpt")
+          #   f.puts(code_block)
+          #   ENV["CODE_BLOCK#{idx}"] = f.path
+          # end
           total_tokens = response_data.dig("usage", "total_tokens").to_s.to_i
           puts result_msg.colorize(:green)
         else
@@ -89,5 +95,10 @@ module ChatGPT
         end
       end
     end
+
+    private def extract_code_blocks(result_msg)
+      result_msg.scan(/(?<=```).+?(?=```)/m).to_a
+    end
+
   end
 end
