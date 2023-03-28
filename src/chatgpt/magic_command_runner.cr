@@ -235,7 +235,7 @@ module ChatGPT
         rescue
           puts "Error: Invalid JSON".colorize(:yellow).mode(:bold)
         end
-      end
+      end.delete
       @data = new_data
       true
     end
@@ -314,7 +314,7 @@ module ChatGPT
       File.tempfile("chatgpt-cli", ".json") do |file|
         File.write(file.path, response_data)
         open_editor(file.path)
-      end
+      end.delete
       true
     end
 

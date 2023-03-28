@@ -22,6 +22,7 @@ module ChatGPT
     getter system_command_runner
     getter magic_command_runner
     getter substitutor
+    property code_blocks : Array(File)
 
     def initialize
       # Create the base directory if it doesn't exist
@@ -41,6 +42,8 @@ module ChatGPT
       @system_command_runner = SystemCommandRunner.new
       @magic_command_runner = MagicCommandRunner.new(post_data, key: "%")
       @substitutor = InputSubstitutor.new(@system_command_runner)
+
+      @code_blocks = [] of File
     end
 
     def run
@@ -77,12 +80,7 @@ module ChatGPT
           result_msg = response_data.dig("choices", 0, "message", "content").to_s
           post_data.messages << {"role" => "assistant", "content" => result_msg}
           File.write(Config::POST_DATA_FILE, post_data.to_pretty_json)
-          # extract_code_blocks(result_msg).each_with_index do |code_block, idx|
-          #   p code_block
-          #   f = File.tempfile("chatgpt")
-          #   f.puts(code_block)
-          #   ENV["CODE_BLOCK#{idx}"] = f.path
-          # end
+          extract_code_blocks(result_msg)
           total_tokens = response_data.dig("usage", "total_tokens").to_s.to_i
           puts result_msg.colorize(:green)
         else
@@ -95,8 +93,19 @@ module ChatGPT
     end
 
     private def extract_code_blocks(result_msg)
-      result_msg.scan(/(?<=```).+?(?=```)/m).to_a
-    end
+      matches = result_msg.scan(/```.*?\n(.*?)```/m)
+      return if matches.empty?
 
+      code_blocks.each do |f|
+        f.delete
+      end
+      matches.each_with_index do |match, idx|
+        tf = File.tempfile("chatgpt") do |f|
+          f.print(match[1])
+        end
+        code_blocks << tf
+        ENV["CODE#{idx}"] = tf.path
+      end
+    end
   end
 end
