@@ -70,7 +70,7 @@ Usage: bin/chatgpt [options]
 ### Select a pre-defined system command
 
 ```
-chatgpt -i translator
+chatgpt -i code
 ```
 
 To add or remove system commands, see the CONFIGURATION section.
@@ -103,19 +103,19 @@ Here the HTML from the URL is fetched, the words used in the `body` are extracte
 
 Within the CLI, you can use magic commands to perform various actions:
 
-- `%debug`: Toggle debug mode
+- `%clear` : Clear all messages
+- `%undo <n>` : Undo last query and response [1]
+- `%write <filename>`: Write the most recent message to a specified file
+- `%w <filename>`: Alias for `write`
 - `%config`: Edit config file
 - `%system`: Show the current system message
-- `%system <your_message>`: Set a new system message
-- `%edit`: Edit data in JSON format
-- `%clear`: Clear all messages
-- `%undo <n>`: Undo last query and response [1]
-- `%write <filename>`: Write the most recent message to a specified file
+- `%system <message>`: Set a new system message
 - `%resume` : Load data from auto saved data file
+- `%edit`: Edit data in JSON format
 - `%save <filename>`: Save data to a file [`chatgpt.json`]
 - `%load <filename>`: Load data from a file [`chatgpt.json`]
-- `%w <filename>`: Alias for `write`
 - `%token(s)`: Total tokens used
+- `%debug`: Toggle debug mode
 - `%help`: Show the help
 
 Note that for `%config`, `%data`, and other commands that launch an editor, the editor used can be set by the `EDITOR` environment variable. The default editor is `vim`.
