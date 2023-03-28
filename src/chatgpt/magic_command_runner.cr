@@ -148,15 +148,17 @@ module ChatGPT
 
     getter key : String
     property data : PostData
+    getter response_data : String
 
     def initialize(@data, @key = "%")
       @next = false
+      @response_data = ""
     end
 
-    def try_run(msg, data)
+    def try_run(msg, data, response_data)
       if /^%(?!\{|#{key})/.match msg
         cmd = msg[1..-1].strip
-        @next = run(cmd, data)
+        @next = run(cmd, data, response_data)
         true
       else
         false
@@ -167,8 +169,7 @@ module ChatGPT
       @next
     end
 
-    def run(command : String, data : PostData) : Bool
-      @data = data
+    def run(command : String, @data, @response_data) : Bool
       {% begin %}
       case command
       {% for value in Table %}
@@ -310,17 +311,18 @@ module ChatGPT
     end
 
     def show_response_json
-      open_editor(Config::RESPONSE_FILE)
+      File.tempfile("chatgpt-cli", ".json") do |file|
+        File.write(file.path, response_data)
+        open_editor(file.path)
+      end
       true
     end
 
     def show_total_tokens
-      total_tokens = "0"
       begin
-        File.open(Config::RESPONSE_FILE, "r") do |file|
-          total_tokens = JSON.parse(file).dig?("usage", "total_tokens") || 0
-        end
+        total_tokens = JSON.parse(response_data).dig?("usage", "total_tokens")
       rescue ex
+        total_tokens = "0"
       end
       puts "Total tokens used: #{total_tokens}".colorize(:yellow)
       true

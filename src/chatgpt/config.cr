@@ -9,7 +9,6 @@ module ChatGPT
         "#{ENV["HOME"]}/.config/chatgpt-cli"
       end
     CONFIG_FILE    = "#{BASE_DIR}/config.json"
-    RESPONSE_FILE  = "#{BASE_DIR}/response.json"
     POST_DATA_FILE = "#{BASE_DIR}/post_data.json"
     HISTORY_FILE   = "#{ENV["HOME"]}/.chatgpt_history"
 

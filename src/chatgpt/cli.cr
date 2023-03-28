@@ -28,8 +28,6 @@ module ChatGPT
       unless Dir.exists?(Config::BASE_DIR)
         Dir.mkdir_p(Config::BASE_DIR)
       end
-      # FIXME
-      File.open(Config::RESPONSE_FILE, "w") { |f| f.print("") }
 
       command_parser = CLI::Parser.new
       begin
@@ -47,7 +45,8 @@ module ChatGPT
 
     def run
       total_tokens = 0
-      message_count = 0 
+      message_count = 0
+      response_data = nil
       loop do
         message_count = post_data.messages.count { |msg| msg["role"] == "user" } + 1
         input_msg = Readline.readline("#{post_data.model}:#{total_tokens}:#{message_count}> ", true)
@@ -60,7 +59,7 @@ module ChatGPT
 
         next if system_command_runner.try_run(input_msg)
 
-        if magic_command_runner.try_run(input_msg, post_data)
+        if magic_command_runner.try_run(input_msg, post_data, response_data.to_pretty_json)
           @post_data = magic_command_runner.data
           next if magic_command_runner.next?
         end
@@ -73,7 +72,6 @@ module ChatGPT
         post_data.messages << {"role" => "user", "content" => input_msg}
         response = chat_gpt_client.send_chat_request(post_data)
         response_data = JSON.parse(response.body)
-        File.write(Config::RESPONSE_FILE, response_data.to_pretty_json)
 
         if response.success?
           result_msg = response_data.dig("choices", 0, "message", "content").to_s
