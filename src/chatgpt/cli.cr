@@ -80,6 +80,7 @@ module ChatGPT
           result_msg = response_data.dig("choices", 0, "message", "content").to_s
           post_data.messages << {"role" => "assistant", "content" => result_msg}
           File.write(Config::POST_DATA_FILE, post_data.to_pretty_json)
+          # ENV["RESPONSE"] = result_msg
           extract_code_blocks(result_msg)
           total_tokens = response_data.dig("usage", "total_tokens").to_s.to_i
           puts result_msg.colorize(:green)
@@ -96,14 +97,19 @@ module ChatGPT
       matches = result_msg.scan(/```.*?\n(.*?)```/m)
       return if matches.empty?
 
-      code_blocks.each do |f|
+      code_blocks.each_with_index(1) do |f, idx|
         f.delete
+        ENV.delete("CODE#{idx}")
       end
-      matches.each_with_index do |match, idx|
+      matches.each_with_index(1) do |match, idx|
         tf = File.tempfile("chatgpt") do |f|
           f.print(match[1])
         end
         code_blocks << tf
+        if ENV.has_key?("CODE#{idx}")
+          STDERR.puts "Warning: overwriting CODE#{idx} environment variable".colorize(:yellow).mode(:bold)
+          STDERR.flush
+        end
         ENV["CODE#{idx}"] = tf.path
       end
     end
