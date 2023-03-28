@@ -20,30 +20,30 @@ module ChatGPT
 
         Usage: #{PROGRAM_NAME} [options]
         BANNER
-        on "-i ID", "--id ID", "Custom system message from configuration file" do |v|
+        on "-m MODEL", "--model MODEL", "Model name [gpt-3.5-turbo]" do |v|
+          data.model = v.to_s
+        end
+        on "-i ID", "--id ID", "ID of the custom system message" do |v|
           system_message = config.select_id(v.to_s)
           data.messages << system_message if system_message
-        end
-        on "-m MODEL", "--model MODEL", "Model name (default: gpt-3.5-turbo)" do |v|
-          data.model = v.to_s
         end
         on "-s STR", "--system STR", "System message" do |v|
           data.messages << {"role" => "system", "content" => v.to_s}
         end
-        on "-n INT", "How many edits to generate for the input and instruction." do |v|
+        on "-n INT", "Number of edits to generate [1]", do |v|
           data.n = v.to_i? || (STDERR.puts "Error: Invalid number of edits"; exit 1)
         end
-        on "-t Float", "--temperature Float", "Sampling temperature between 0 and 2 affects randomness of output." do |v|
+        on "-t Float", "--temperature Float", "Sampling temperature to use [1.0]" do |v|
           data.temperature = v.to_f? || (STDERR.puts "Error: Invalid temperature"; exit 1)
         end
-        on "-p Float", "--top_p Float", "Nucleus sampling considers top_p probability mass for token selection." do |v|
+        on "-p Float", "--top_p Float", "Probability threshold of nucleus sampling [1.0]" do |v|
           data.top_p = v.to_f? || (STDERR.puts "Error: Invalid top_p"; exit 1)
         end
-        on "-v", "--version", "Show version" do
+        on "-v", "--version", "Print version info and exit" do
           puts CLI::VERSION
           exit
         end
-        on("-h", "--help", "Show help") { puts self; exit }
+        on("-h", "--help", "Print help") { puts self; exit }
       end
     end
   end
