@@ -52,6 +52,7 @@ module ChatGPT
       response_data = nil
       loop do
         message_count = post_data.messages.count { |msg| msg["role"] == "user" } + 1
+        LibReadline.read_history(Config::HISTORY_FILE)
         input_msg = Readline.readline("#{post_data.model}:#{total_tokens}:#{message_count}> ", true)
         break if input_msg.nil?
         next if input_msg.empty?

@@ -16,7 +16,8 @@ dependencies:
     github: kojix2/spinner
     branch: master
   readline:
-    github: crystal-lang/crystal-readline
+    github: kojix2/crystal-readline
+    branch: kojix2-patch-1
   lexbor:
     github: kostya/lexbor
 
