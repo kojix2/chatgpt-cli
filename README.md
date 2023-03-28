@@ -2,42 +2,41 @@
 
 [![build](https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml/badge.svg)](https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml)
 
-ChatGPT CLI is a command-line interface tool for interacting with OpenAI's [ChatGPT API](https://platform.openai.com/docs/api-reference/chat). Users can communicate with the GPT model, adjust API parameters, use magic commands, insert specified file contents, fetch content from URLs, and execute system commands while chatting.
+ChatGPT CLI is a command-line interface tool for interacting with OpenAI's [ChatGPT API](https://platform.openai.com/docs/api-reference/chat). It allows users to communicate with the GPT model, adjust API parameters, use magic commands, insert file contents, fetch content from URLs, and execute system commands while chatting.
 
 ## Features
 
-1. Interact with OpenAI's ChatGPT API through a command-line interface
-2. Set API parameters like model name (`gpt-3.5-turbo` by default), temperature, and top_p
-3. Select pre-registered system messages with ID
-4. Execute magic commands for various actions (e.g., modifying the system message, saving messages, debugging)
-5. Execute system commands while chatting
-6. Fetch file contents from paths and insert them into the chat
-7. Fetch contents from URLs and insert them into the chat
+- Interact with OpenAI's ChatGPT API through a command-line interface
+- Set API parameters like model name (`gpt-3.5-turbo` by default), temperature, and top_p
+- Select pre-registered system messages with ID
+- Execute magic commands for various actions (e.g., modifying the system message, saving messages, debugging)
+- Execute system commands while chatting
+- Fetch file contents from paths and insert them into the chat
+- Fetch contents from URLs and insert them into the chat
 
 ## Installation
 
 1. Install [Crystal](https://github.com/crystal-lang/crystal)
-
 2. Build the project:
 
-   ```bash
-   git clone https://github.com/kojix2/chatgpt-cli
-   cd chatgpt-cli
-   shards install
-   shards build --release
-   ```
+    ```bash
+    git clone https://github.com/kojix2/chatgpt-cli
+    cd chatgpt-cli
+    shards install
+    shards build --release
+    ```
 
 3. Add the compiled binary to your system's `PATH`:
 
-   ```bash
-   sudo cp ./bin/chatgpt /usr/local/bin
-   ```
+    ```bash
+    sudo cp ./bin/chatgpt /usr/local/bin
+    ```
 
 4. Set your OpenAI API key as an environment variable:
 
-   ```bash
-   export OPENAI_API_KEY="your_openai_api_key"
-   ```
+    ```bash
+    export OPENAI_API_KEY="your_openai_api_key"
+    ```
 
 ## Usage
 
@@ -47,9 +46,7 @@ To start using ChatGPT CLI, run the `chatgpt` command in your terminal:
 chatgpt
 ```
 
-Type a message and press Enter to get a response from GPT-3.5 Turbo.
-
-To exit, type `exit`, `quit`, or press `Ctrl + D`.
+Type a message and press Enter to get a response from GPT-3.5 Turbo. To exit, type `exit`, `quit`, or press `Ctrl + D`.
 
 ### Options
 
@@ -69,7 +66,7 @@ Usage: bin/chatgpt [options]
 
 ### Select a pre-defined system command
 
-```
+```bash
 chatgpt -i code
 ```
 
@@ -77,7 +74,7 @@ To add or remove system commands, see the CONFIGURATION section.
 
 ### File Insertion with %{}
 
-You can insert the contents of a file into the chat by enclosing the file path in `%{}`. For example, if you want to insert the contents of a file called `example.py` located in the `src` directory, you can use `%{src/example.py}`.
+You can insert the contents of a file into the chat by enclosing the file path in `%{}`. For example, to insert the contents of a file called `example.py` located in the `src` directory, use `%{src/example.py}`.
 
 ```
 > Please explain what the following code does. Are there any bugs? %{src/example.py}
@@ -94,7 +91,7 @@ You can insert the contents of a file into the chat by enclosing the file path i
 You can insert the contents of a web page.
 
 ```
-> Please raise five topics from the following pages that you find interesting %%{https://news.ycombinator.com/}
+> Please choose five interesting topics from %%{https://news.ycombinator.com/}
 ```
 
 Here the HTML from the URL is fetched, the words used in the `body` are extracted and passed to ChatGPT. It is much smaller than the raw HTML, but still not enough.
@@ -124,11 +121,12 @@ The tool is under development, and the magic commands are still being improved.
 
 ### Executing System Commands
 
-You can execute system commands while chatting by prefixing the command with the `!` symbol. For example, if you want to check the current working directory, you can type `!pwd` and press Enter. Similarly, you can execute other system commands like `!ls`, `!date`, etc. If you want to execute a command and record its output for later use, you can prefix the command with `!!` instead, then use `%STDOUT` or `%STDERR` to insert the captured output into the chat.
+You can execute system commands while chatting by prefixing the command with the `!` symbol. For example, to check the current working directory, type `!pwd` and press Enter. Similarly, you can execute other system commands like `!ls`, `!date`, etc. If you want to execute a command and record its output for later use, you can prefix the command with `!!` instead, then use `%STDOUT` or `%STDERR` to insert the captured output into the chat.
 
 #### Examples:
 
 1. Execute a command, and display the output immediately:
+
 
 ```bash
 > !pwd
@@ -137,6 +135,7 @@ You can execute system commands while chatting by prefixing the command with the
 ```
 
 2. Capture the output of a command for later use:
+
 
 ```bash
 > !! git diff
@@ -148,6 +147,37 @@ You can execute system commands while chatting by prefixing the command with the
 > !!wrong_command
 > Explain the meaning of this error message: %STDERR
 ```
+
+3. Execute code blocks captured from markdown in the response
+
+````md
+> Write code to display 1 to 10 in Python, Ruby, and Bash.
+Python:
+
+```
+for i in range(1, 11):
+    print(i)
+```
+
+Ruby:
+
+```
+(1..10).each { |i| puts i }
+```
+
+Bash:
+
+```
+for i in {1..10}
+do
+    echo $i
+done
+```
+
+>! python $CODE0
+>! ruby   $CODE1
+>! bash   $CODE2
+````
 
 ## Configuration
 
@@ -176,9 +206,9 @@ The `config.json` file has the following structure:
 
 ## Uninstallation
 
-```sh 
-rm /usr/local/bin/chatgpt   # Remove executable
-rm -r ~/.config/chatgpt-cli # Remove config directory
+```sh
+rm /usr/local/bin/chatgpt   # Remove the executable
+rm -r ~/.config/chatgpt-cli # Remove the config directory
 rm ~/.chatgpt_history       # Remove command history
 ```
 
@@ -188,4 +218,4 @@ Bug reports and pull requests are welcome on GitHub at [https://github.com/kojix
 
 ## License
 
-This project is available as open-source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+This project is open-source and available under the terms of the [MIT License](https://opensource.org/licenses/MIT).
