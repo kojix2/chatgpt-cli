@@ -165,18 +165,8 @@ Ruby:
 (1..10).each { |i| puts i }
 ```
 
-Bash:
-
-```
-for i in {1..10}
-do
-    echo $i
-done
-```
-
->! python $CODE0
->! ruby   $CODE1
->! bash   $CODE2
+>! python $CODE1
+>! ruby   $CODE2
 ````
 
 ## Configuration
