@@ -74,7 +74,13 @@ module ChatGPT
         input_msg = substitutor.file(input_msg, /%\{(.+?)\}/)
 
         post_data.messages << {"role" => "user", "content" => input_msg}
-        response = chat_gpt_client.send_chat_request(post_data)
+        begin
+          response = chat_gpt_client.send_chat_request(post_data)
+        rescue ex
+          STDERR.puts "Error: #{ex.message}".colorize(:yellow).mode(:bold)
+          next
+        end
+        
         response_data = JSON.parse(response.body)
 
         if response.success?

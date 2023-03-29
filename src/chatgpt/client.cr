@@ -2,9 +2,10 @@ require "http/client"
 
 module ChatGPT
   class ApiKeyError < Exception; end
+  class SigIntError < Exception; end
 
   class Client
-    API_ENDPOINT = "https://api.openai.com/v1/chat/completions"
+    API_ENDPOINT = "https://api.openai.com"
 
     @http_headers : HTTP::Headers
 
@@ -31,22 +32,28 @@ module ChatGPT
 
     def send_chat_request(request_data)
       log_request_data(request_data) if debug_mode?
-
       spinner = create_spinner
       spinner.start
-
-      chat_response = post_request(request_data)
+      begin
+        chat_response = post_request(request_data)
+      rescue ex
+        spinner.stop
+        raise ex
+      end
       spinner.stop
-
       log_response_data(chat_response) if debug_mode?
       chat_response
     end
 
     def post_request(request_data)
-      HTTP::Client.post(API_ENDPOINT, body: request_data.to_json, headers: @http_headers)
-    rescue error
-      STDERR.puts "Error: #{error} #{error.message}".colorize(:red)
-      exit 1
+      client = HTTP::Client.new(URI.parse(API_ENDPOINT))
+      Signal::INT.trap do |s|
+        client.close
+      end
+      response = client.post("/v1/chat/completions", headers: @http_headers, body: request_data.to_json)
+    rescue ex
+      Signal::INT.reset
+      raise ex 
     end
 
     private def create_spinner
