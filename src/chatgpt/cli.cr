@@ -78,6 +78,7 @@ module ChatGPT
           response = chat_gpt_client.send_chat_request(post_data)
         rescue ex
           STDERR.puts "Error: #{ex.message}".colorize(:yellow).mode(:bold)
+          post_data.messages.pop
           next
         end
         
