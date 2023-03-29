@@ -14,6 +14,8 @@ jobs:
       - uses: crystal-lang/install-crystal@v1
         with:
           crystal: latest
+      - name: Install dependency
+        run: shards install
       - name: Generate document
         run: crystal docs
       - name: Publish Documentation on GitHub Pages
