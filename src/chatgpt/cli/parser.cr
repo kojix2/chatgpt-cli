@@ -11,8 +11,8 @@ module ChatGPT
         @data = PostData.new
         super()
         config = Config.new
-        self.banner = 
-        <<-BANNER
+        self.banner =
+          <<-BANNER
         
         Program: #{PROGRAM_NAME}
         Version: #{VERSION}
@@ -30,7 +30,7 @@ module ChatGPT
         on "-s STR", "--system STR", "System message" do |v|
           data.messages << {"role" => "system", "content" => v.to_s}
         end
-        on "-n INT", "Number of edits to generate [1]", do |v|
+        on "-n INT", "Number of edits to generate [1]" do |v|
           data.n = v.to_i? || (STDERR.puts "Error: Invalid number of edits"; exit 1)
         end
         on "-t Float", "--temperature Float", "Sampling temperature to use [1.0]" do |v|

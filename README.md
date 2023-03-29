@@ -19,24 +19,24 @@ ChatGPT CLI is a command-line interface tool for interacting with OpenAI's [Chat
 1. Install [Crystal](https://github.com/crystal-lang/crystal)
 2. Build the project:
 
-    ```bash
-    git clone https://github.com/kojix2/chatgpt-cli
-    cd chatgpt-cli
-    shards install
-    shards build --release
-    ```
+   ```bash
+   git clone https://github.com/kojix2/chatgpt-cli
+   cd chatgpt-cli
+   shards install
+   shards build --release
+   ```
 
 3. Add the compiled binary to your system's `PATH`:
 
-    ```bash
-    sudo cp ./bin/chatgpt /usr/local/bin
-    ```
+   ```bash
+   sudo cp ./bin/chatgpt /usr/local/bin
+   ```
 
 4. Set your OpenAI API key as an environment variable:
 
-    ```bash
-    export OPENAI_API_KEY="your_openai_api_key"
-    ```
+   ```bash
+   export OPENAI_API_KEY="your_openai_api_key"
+   ```
 
 ## Usage
 
@@ -127,7 +127,6 @@ You can execute system commands while chatting by prefixing the command with the
 
 1. Execute a command, and display the output immediately:
 
-
 ```bash
 > !pwd
 > !vim
@@ -135,7 +134,6 @@ You can execute system commands while chatting by prefixing the command with the
 ```
 
 2. Capture the output of a command for later use:
-
 
 ```bash
 > !! git diff
@@ -154,7 +152,7 @@ When ChatGPT returns code blocks enclosed with triple backticks, ChatGPT CLI sav
 
 ````md
 > Write code to display 1 to 10 in Python and Ruby.
-Python:
+> Python:
 
 ```
 for i in range(1, 11):
@@ -167,8 +165,8 @@ Ruby:
 (1..10).each { |i| puts i }
 ```
 
->! python $CODE1
->! ruby   $CODE2
+> ! python $CODE1
+> ! ruby $CODE2
 ````
 
 ## Configuration
