@@ -1,4 +1,4 @@
-name: doc
+name: docs
 
 on:
   push:
@@ -12,13 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: crystal-lang/install-crystal@v1
-        with:
-          crystal: latest
-      - name: Install dependency
+      - name: Install dependencies
         run: shards install
       - name: Generate document
         run: crystal docs
-      - name: Publish Documentation on GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
