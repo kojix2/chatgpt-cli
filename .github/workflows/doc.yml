@@ -3,7 +3,7 @@ name: doc
 on:
   push:
     branches:
-      - develop
+      - main
 
 jobs:
   build:
