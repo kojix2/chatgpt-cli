@@ -81,7 +81,7 @@ module ChatGPT
           post_data.messages.pop
           next
         end
-        
+
         response_data = JSON.parse(response.body)
 
         if response.success?

@@ -2,6 +2,7 @@ require "http/client"
 
 module ChatGPT
   class ApiKeyError < Exception; end
+
   class SigIntError < Exception; end
 
   class Client
@@ -53,7 +54,7 @@ module ChatGPT
       response = client.post("/v1/chat/completions", headers: @http_headers, body: request_data.to_json)
     rescue ex
       Signal::INT.reset
-      raise ex 
+      raise ex
     end
 
     private def create_spinner
