@@ -148,10 +148,12 @@ You can execute system commands while chatting by prefixing the command with the
 > Explain the meaning of this error message: %STDERR
 ```
 
-3. Execute code blocks captured from markdown in the response
+#### Execute code blocks captured from markdown in the response
+
+When ChatGPT returns code blocks enclosed with triple backticks, ChatGPT CLI saves these blocks temporarily and assigns them to environment variables named `CODE1`, `CODE2`, ... and so on in sequential order. This allows you to execute the code blocks by referencing the environment variables in a system command. For example, if the response contains Python, Ruby, and Bash code blocks, you can execute them using `$CODE1`, `$CODE2`, and `$CODE3`, respectively.
 
 ````md
-> Write code to display 1 to 10 in Python, Ruby, and Bash.
+> Write code to display 1 to 10 in Python and Ruby.
 Python:
 
 ```
