@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 1.6.2">
+<meta name="crystal_docs.project_version" content="main">
+<meta name="crystal_docs.project_name" content="openai_scripts">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="openai_scripts">
+  <title>ChatGPT::PostData - openai_scripts main</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          openai_scripts
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class=" " data-id="openai_scripts/toplevel" data-name="top level namespace">
+      <a href="../toplevel.html">Top Level Namespace</a>
+      
+    </li>
+  
+  <li class="parent open current" data-id="openai_scripts/ChatGPT" data-name="chatgpt">
+      <a href="../ChatGPT.html">ChatGPT</a>
+      
+        <ul>
+  
+  <li class=" " data-id="openai_scripts/ChatGPT/ApiKeyError" data-name="chatgpt::apikeyerror">
+      <a href="../ChatGPT/ApiKeyError.html">ApiKeyError</a>
+      
+    </li>
+  
+  <li class="parent " data-id="openai_scripts/ChatGPT/CLI" data-name="chatgpt::cli">
+      <a href="../ChatGPT/CLI.html">CLI</a>
+      
+        <ul>
+  
+  <li class=" " data-id="openai_scripts/ChatGPT/CLI/Parser" data-name="chatgpt::cli::parser">
+      <a href="../ChatGPT/CLI/Parser.html">Parser</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="openai_scripts/ChatGPT/Client" data-name="chatgpt::client">
+      <a href="../ChatGPT/Client.html">Client</a>
+      
+    </li>
+  
+  <li class="parent " data-id="openai_scripts/ChatGPT/Config" data-name="chatgpt::config">
+      <a href="../ChatGPT/Config.html">Config</a>
+      
+        <ul>
+  
+  <li class=" " data-id="openai_scripts/ChatGPT/Config/ConfigData" data-name="chatgpt::config::configdata">
+      <a href="../ChatGPT/Config/ConfigData.html">ConfigData</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="openai_scripts/ChatGPT/InputSubstitutor" data-name="chatgpt::inputsubstitutor">
+      <a href="../ChatGPT/InputSubstitutor.html">InputSubstitutor</a>
+      
+    </li>
+  
+  <li class=" " data-id="openai_scripts/ChatGPT/MagicCommandRunner" data-name="chatgpt::magiccommandrunner">
+      <a href="../ChatGPT/MagicCommandRunner.html">MagicCommandRunner</a>
+      
+    </li>
+  
+  <li class=" current" data-id="openai_scripts/ChatGPT/PostData" data-name="chatgpt::postdata">
+      <a href="../ChatGPT/PostData.html">PostData</a>
+      
+    </li>
+  
+  <li class=" " data-id="openai_scripts/ChatGPT/SystemCommandRunner" data-name="chatgpt::systemcommandrunner">
+      <a href="../ChatGPT/SystemCommandRunner.html">SystemCommandRunner</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">struct</span> ChatGPT::PostData
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../ChatGPT/PostData.html">ChatGPT::PostData</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type">JSON::Serializable</li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/kojix2/chatgpt-cli/blob/cfc14f7842b0e465a2c4a6ee09944b320259359d/src/chatgpt/post_data.cr#L4" target="_blank">
+        chatgpt/post_data.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28pull%3AJSON%3A%3APullParser%29-class-method" class="signature"><strong>.new</strong>(pull : JSON::PullParser)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new%28model%3AString%3D%22gpt-3.5-turbo%22%2Cmessages%3AArray%28Hash%28String%2CString%29%29%3D%5B%5DofHash%28String%2CString%29%2Cn%3AInt32%3D1%2Ctemperature%3AFloat64%3D1.0%2Ctop_p%3AFloat64%3D1.0%29-class-method" class="signature"><strong>.new</strong>(model : String = <span class="s">&quot;gpt-3.5-turbo&quot;</span>, messages : Array(Hash(String, String)) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">String</span>), n : Int32 = <span class="n">1</span>, temperature : Float64 = <span class="n">1.0</span>, top_p : Float64 = <span class="n">1.0</span>)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#messages%3AArray%28Hash%28String%2CString%29%29-instance-method" class="signature"><strong>#messages</strong> : Array(Hash(String, String))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#messages%3D%28messages%3AArray%28Hash%28String%2CString%29%29%29-instance-method" class="signature"><strong>#messages=</strong>(messages : Array(Hash(String, String)))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#model%3AString-instance-method" class="signature"><strong>#model</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#model%3D%28model%3AString%29-instance-method" class="signature"><strong>#model=</strong>(model : String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#n%3AInt32-instance-method" class="signature"><strong>#n</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#n%3D%28n%3AInt32%29-instance-method" class="signature"><strong>#n=</strong>(n : Int32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#temperature%3AFloat64-instance-method" class="signature"><strong>#temperature</strong> : Float64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#temperature%3D%28temperature%3AFloat64%29-instance-method" class="signature"><strong>#temperature=</strong>(temperature : Float64)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#top_p%3AFloat64-instance-method" class="signature"><strong>#top_p</strong> : Float64</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#top_p%3D%28top_p%3AFloat64%29-instance-method" class="signature"><strong>#top_p=</strong>(top_p : Float64)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(pull:JSON::PullParser)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(pull : JSON::PullParser)
+
+        <a class="method-permalink" href="#new%28pull%3AJSON%3A%3APullParser%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/cfc14f7842b0e465a2c4a6ee09944b320259359d/src/chatgpt/post_data.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(model:String=&quot;gpt-3.5-turbo&quot;,messages:Array(Hash(String,String))=[]ofHash(String,String),n:Int32=1,temperature:Float64=1.0,top_p:Float64=1.0)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(model : String = <span class="s">&quot;gpt-3.5-turbo&quot;</span>, messages : Array(Hash(String, String)) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">String</span>), n : Int32 = <span class="n">1</span>, temperature : Float64 = <span class="n">1.0</span>, top_p : Float64 = <span class="n">1.0</span>)
+
+        <a class="method-permalink" href="#new%28model%3AString%3D%22gpt-3.5-turbo%22%2Cmessages%3AArray%28Hash%28String%2CString%29%29%3D%5B%5DofHash%28String%2CString%29%2Cn%3AInt32%3D1%2Ctemperature%3AFloat64%3D1.0%2Ctop_p%3AFloat64%3D1.0%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/cfc14f7842b0e465a2c4a6ee09944b320259359d/src/chatgpt/post_data.cr#L12" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="messages:Array(Hash(String,String))-instance-method">
+      <div class="signature">
+        
+        def <strong>messages</strong> : Array(Hash(String, String))
+
+        <a class="method-permalink" href="#messages%3AArray%28Hash%28String%2CString%29%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/cfc14f7842b0e465a2c4a6ee09944b320259359d/src/chatgpt/post_data.cr#L7" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="messages=(messages:Array(Hash(String,String)))-instance-method">
+      <div class="signature">
+        
+        def <strong>messages=</strong>(messages : Array(Hash(String, String)))
+
+        <a class="method-permalink" href="#messages%3D%28messages%3AArray%28Hash%28String%2CString%29%29%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/cfc14f7842b0e465a2c4a6ee09944b320259359d/src/chatgpt/post_data.cr#L7" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="model:String-instance-method">
+      <div class="signature">
+        
+        def <strong>model</strong> : String
+
+        <a class="method-permalink" href="#model%3AString-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/cfc14f7842b0e465a2c4a6ee09944b320259359d/src/chatgpt/post_data.cr#L6" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="model=(model:String)-instance-method">
+      <div class="signature">
+        
+        def <strong>model=</strong>(model : String)
+
+        <a class="method-permalink" href="#model%3D%28model%3AString%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/cfc14f7842b0e465a2c4a6ee09944b320259359d/src/chatgpt/post_data.cr#L6" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="n:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>n</strong> : Int32
+
+        <a class="method-permalink" href="#n%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/cfc14f7842b0e465a2c4a6ee09944b320259359d/src/chatgpt/post_data.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="n=(n:Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>n=</strong>(n : Int32)
+
+        <a class="method-permalink" href="#n%3D%28n%3AInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/cfc14f7842b0e465a2c4a6ee09944b320259359d/src/chatgpt/post_data.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="temperature:Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>temperature</strong> : Float64
+
+        <a class="method-permalink" href="#temperature%3AFloat64-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/cfc14f7842b0e465a2c4a6ee09944b320259359d/src/chatgpt/post_data.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="temperature=(temperature:Float64)-instance-method">
+      <div class="signature">
+        
+        def <strong>temperature=</strong>(temperature : Float64)
+
+        <a class="method-permalink" href="#temperature%3D%28temperature%3AFloat64%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/cfc14f7842b0e465a2c4a6ee09944b320259359d/src/chatgpt/post_data.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="top_p:Float64-instance-method">
+      <div class="signature">
+        
+        def <strong>top_p</strong> : Float64
+
+        <a class="method-permalink" href="#top_p%3AFloat64-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/cfc14f7842b0e465a2c4a6ee09944b320259359d/src/chatgpt/post_data.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="top_p=(top_p:Float64)-instance-method">
+      <div class="signature">
+        
+        def <strong>top_p=</strong>(top_p : Float64)
+
+        <a class="method-permalink" href="#top_p%3D%28top_p%3AFloat64%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/cfc14f7842b0e465a2c4a6ee09944b320259359d/src/chatgpt/post_data.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>

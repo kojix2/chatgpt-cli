@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 1.6.2">
+<meta name="crystal_docs.project_version" content="main">
+<meta name="crystal_docs.project_name" content="openai_scripts">
+
+
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="openai_scripts">
+  <title>openai_scripts main</title>
+  <script type="text/javascript">
+  CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="index.html">
+          openai_scripts
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class=" " data-id="openai_scripts/toplevel" data-name="top level namespace">
+      <a href="toplevel.html">Top Level Namespace</a>
+      
+    </li>
+  
+  <li class="parent " data-id="openai_scripts/ChatGPT" data-name="chatgpt">
+      <a href="ChatGPT.html">ChatGPT</a>
+      
+        <ul>
+  
+  <li class=" " data-id="openai_scripts/ChatGPT/ApiKeyError" data-name="chatgpt::apikeyerror">
+      <a href="ChatGPT/ApiKeyError.html">ApiKeyError</a>
+      
+    </li>
+  
+  <li class="parent " data-id="openai_scripts/ChatGPT/CLI" data-name="chatgpt::cli">
+      <a href="ChatGPT/CLI.html">CLI</a>
+      
+        <ul>
+  
+  <li class=" " data-id="openai_scripts/ChatGPT/CLI/Parser" data-name="chatgpt::cli::parser">
+      <a href="ChatGPT/CLI/Parser.html">Parser</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="openai_scripts/ChatGPT/Client" data-name="chatgpt::client">
+      <a href="ChatGPT/Client.html">Client</a>
+      
+    </li>
+  
+  <li class="parent " data-id="openai_scripts/ChatGPT/Config" data-name="chatgpt::config">
+      <a href="ChatGPT/Config.html">Config</a>
+      
+        <ul>
+  
+  <li class=" " data-id="openai_scripts/ChatGPT/Config/ConfigData" data-name="chatgpt::config::configdata">
+      <a href="ChatGPT/Config/ConfigData.html">ConfigData</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="openai_scripts/ChatGPT/InputSubstitutor" data-name="chatgpt::inputsubstitutor">
+      <a href="ChatGPT/InputSubstitutor.html">InputSubstitutor</a>
+      
+    </li>
+  
+  <li class=" " data-id="openai_scripts/ChatGPT/MagicCommandRunner" data-name="chatgpt::magiccommandrunner">
+      <a href="ChatGPT/MagicCommandRunner.html">MagicCommandRunner</a>
+      
+    </li>
+  
+  <li class=" " data-id="openai_scripts/ChatGPT/PostData" data-name="chatgpt::postdata">
+      <a href="ChatGPT/PostData.html">PostData</a>
+      
+    </li>
+  
+  <li class=" " data-id="openai_scripts/ChatGPT/SystemCommandRunner" data-name="chatgpt::systemcommandrunner">
+      <a href="ChatGPT/SystemCommandRunner.html">SystemCommandRunner</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1><a id="chat-gpt-cli" class="anchor" href="#chat-gpt-cli">  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>ChatGPT CLI</h1>
+<p><a href="https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml"><img src="https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml/badge.svg" alt="build" /></a></p>
+<p>ChatGPT CLI is a command-line interface tool for interacting with OpenAI's <a href="https://platform.openai.com/docs/api-reference/chat">ChatGPT API</a>. It allows users to communicate with the GPT model, adjust API parameters, use magic commands, insert file contents, fetch content from URLs, and execute system commands while chatting.</p>
+<h2><a id="features" class="anchor" href="#features">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Features</h2>
+<ul>
+<li>Interact with OpenAI's ChatGPT API through a command-line interface</li>
+<li>Set API parameters like model name (<code>gpt-3.5-turbo</code> by default), temperature, and top_p</li>
+<li>Select pre-registered system messages with ID</li>
+<li>Execute magic commands for various actions (e.g., modifying the system message, saving messages, debugging)</li>
+<li>Execute system commands while chatting</li>
+<li>Fetch file contents from paths and insert them into the chat</li>
+<li>Fetch contents from URLs and insert them into the chat</li>
+</ul>
+<h2><a id="installation" class="anchor" href="#installation">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Installation</h2>
+<ol>
+<li>
+<p>Install <a href="https://github.com/crystal-lang/crystal">Crystal</a></p>
+</li>
+<li>
+<p>Build the project:</p>
+<pre><code class="language-bash">git clone https://github.com/kojix2/chatgpt-cli
+cd chatgpt-cli
+shards install
+shards build --release</code></pre>
+</li>
+<li>
+<p>Add the compiled binary to your system's <code>PATH</code>:</p>
+<pre><code class="language-bash">sudo cp ./bin/chatgpt /usr/local/bin</code></pre>
+</li>
+<li>
+<p>Set your OpenAI API key as an environment variable:</p>
+<pre><code class="language-bash">export OPENAI_API_KEY=&quot;your_openai_api_key&quot;</code></pre>
+</li>
+</ol>
+<h2><a id="usage" class="anchor" href="#usage">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Usage</h2>
+<p>To start using ChatGPT CLI, run the <code>chatgpt</code> command in your terminal:</p>
+<pre><code class="language-bash">chatgpt</code></pre>
+<p>Type a message and press Enter to get a response from GPT-3.5 Turbo. To exit, type <code>exit</code>, <code>quit</code>, or press <code>Ctrl + D</code>.</p>
+<h3><a id="options" class="anchor" href="#options">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Options</h3>
+<p>You can set various options when running the <code>chatgpt</code> command:</p>
+<pre><code class="language-crystal">Usage: bin/chatgpt [options]
+    -m MODEL, --model MODEL          Model name [gpt-3.5-turbo]
+    -i ID, --id ID                   ID of the custom system message
+    -s STR, --system STR             System message
+    -n INT                           Number of edits to generate [1]
+    -t Float, --temperature Float    Sampling temperature to use [1.0]
+    -p Float, --top_p Float          Probability threshold of nucleus sampling [1.0]
+    -v, --version                    Print version info and exit
+    -h, --help                       Print help</code></pre>
+<h3><a id="select-a-pre-defined-system-command" class="anchor" href="#select-a-pre-defined-system-command">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Select a pre-defined system command</h3>
+<pre><code class="language-bash">chatgpt -i code</code></pre>
+<p>To add or remove system commands, see the CONFIGURATION section.</p>
+<h3><a id="file-insertion-with" class="anchor" href="#file-insertion-with">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>File Insertion with %{}</h3>
+<p>You can insert the contents of a file into the chat by enclosing the file path in <code>%{}</code>. For example, to insert the contents of a file called <code>example.py</code> located in the <code>src</code> directory, use <code>%{src/example.py}</code>.</p>
+<pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Please</span> explain what the following code does. <span class="t">Are</span> there any bugs? <span class="s">%{src/example.py}</span></code></pre>
+<pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Please</span> read the code <span class="k">of</span> the tool: <span class="s">%{src/**/*}</span> <span class="t">Then</span> update <span class="t">README</span>.md <span class="s">%{README.md}</span>
+...
+<span class="o">&gt;</span> <span class="o">%</span>w <span class="t">README</span>.md</code></pre>
+<h3><a id="web-page-insertion-with-experimental" class="anchor" href="#web-page-insertion-with-experimental">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Web Page Insertion with %%{} (experimental)</h3>
+<p>You can insert the contents of a web page.</p>
+<pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Please</span> choose five interesting topics from <span class="o">%</span><span class="s">%{https://news.ycombinator.com/}</span></code></pre>
+<p>Here the HTML from the URL is fetched, the words used in the <code>body</code> are extracted and passed to ChatGPT. It is much smaller than the raw HTML, but still not enough.</p>
+<h3><a id="magic-commands" class="anchor" href="#magic-commands">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Magic Commands</h3>
+<p>Within the CLI, you can use magic commands to perform various actions:</p>
+<ul>
+<li><code>%clear</code> : Clear all messages</li>
+<li><code>%undo &lt;n&gt;</code> : Undo last query and response [1]</li>
+<li><code>%write &lt;filename&gt;</code>: Write the most recent message to a specified file</li>
+<li><code>%w &lt;filename&gt;</code>: Alias for <code>write</code></li>
+<li><code>%config</code>: Edit config file</li>
+<li><code>%system</code>: Show the current system message</li>
+<li><code>%system &lt;message&gt;</code>: Set a new system message</li>
+<li><code>%resume</code> : Load data from auto saved data file</li>
+<li><code>%edit</code>: Edit data in JSON format</li>
+<li><code>%save &lt;filename&gt;</code>: Save data to a file [<code>chatgpt.json</code>]</li>
+<li><code>%load &lt;filename&gt;</code>: Load data from a file [<code>chatgpt.json</code>]</li>
+<li><code>%token(s)</code>: Total tokens used</li>
+<li><code>%debug</code>: Toggle debug mode</li>
+<li><code>%help</code>: Show the help</li>
+</ul>
+<p>Note that for <code>%config</code>, <code>%data</code>, and other commands that launch an editor, the editor used can be set by the <code>EDITOR</code> environment variable. The default editor is <code>vim</code>.</p>
+<p>The tool is under development, and the magic commands are still being improved.</p>
+<h3><a id="executing-system-commands" class="anchor" href="#executing-system-commands">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Executing System Commands</h3>
+<p>You can execute system commands while chatting by prefixing the command with the <code>!</code> symbol. For example, to check the current working directory, type <code>!pwd</code> and press Enter. Similarly, you can execute other system commands like <code>!ls</code>, <code>!date</code>, etc. If you want to execute a command and record its output for later use, you can prefix the command with <code>!!</code> instead, then use <code>%STDOUT</code> or <code>%STDERR</code> to insert the captured output into the chat.</p>
+<h4><a id="examples" class="anchor" href="#examples">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Examples:</h4>
+<ol>
+<li>Execute a command, and display the output immediately:</li>
+</ol>
+<pre><code class="language-bash">&gt; !pwd
+&gt; !vim
+&gt; !htop</code></pre>
+<ol start="2">
+<li>Capture the output of a command for later use:</li>
+</ol>
+<pre><code class="language-bash">&gt; !! git diff
+... git diff output ...
+&gt; Please write commit message: %STDOUT</code></pre>
+<pre><code class="language-bash">&gt; !!wrong_command
+&gt; Explain the meaning of this error message: %STDERR</code></pre>
+<h4><a id="execute-code-blocks-captured-from-markdown-in-the-response" class="anchor" href="#execute-code-blocks-captured-from-markdown-in-the-response">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Execute code blocks captured from markdown in the response</h4>
+<p>When ChatGPT returns code blocks enclosed with triple backticks, ChatGPT CLI saves these blocks temporarily and assigns them to environment variables named <code>CODE1</code>, <code>CODE2</code>, ... and so on in sequential order. This allows you to execute the code blocks by referencing the environment variables in a system command. For example, if the response contains Python, Ruby, and Bash code blocks, you can execute them using <code>$CODE1</code>, <code>$CODE2</code>, and <code>$CODE3</code>, respectively.</p>
+<pre><code class="language-md">&gt; Write code to display 1 to 10 in Python and Ruby.
+&gt; Python:
+
+```
+for i in range(1, 11):
+    print(i)
+```
+
+Ruby:
+
+```
+(1..10).each { |i| puts i }
+```
+
+&gt; ! python $CODE1
+&gt; ! ruby $CODE2</code></pre>
+<h2><a id="configuration" class="anchor" href="#configuration">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Configuration</h2>
+<p>The system messages used by ChatGPT CLI can be customized through the <code>config.json</code> file. The file is located in <code>~/.config/chatgpt-cli/</code> by default, but it can be changed by setting the <code>CHATGPT_CLI_CONFIG</code> environment variable.</p>
+<p>The <code>config.json</code> file has the following structure:</p>
+<pre><code class="language-json">{
+  &quot;system_messages&quot;: {
+    &quot;tran&quot;: {
+      &quot;role&quot;: &quot;system&quot;,
+      &quot;content&quot;: &quot;I want you to act as a translator, spelling corrector, and improver.&quot;
+    },
+    &quot;code&quot;: {
+      &quot;role&quot;: &quot;system&quot;,
+      &quot;content&quot;: &quot;I want you to act as a programmer, writing code.&quot;
+    },
+    &quot;poet&quot;: {
+      &quot;role&quot;: &quot;system&quot;,
+      &quot;content&quot;: &quot;I want you to act as a poet, writing poetry.&quot;
+    }
+  }
+}</code></pre>
+<h2><a id="uninstallation" class="anchor" href="#uninstallation">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Uninstallation</h2>
+<pre><code class="language-sh">rm /usr/local/bin/chatgpt   # Remove the executable
+rm -r ~/.config/chatgpt-cli # Remove the config directory
+rm ~/.chatgpt_history       # Remove command history</code></pre>
+<h2><a id="contributing" class="anchor" href="#contributing">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Contributing</h2>
+<p>Bug reports and pull requests are welcome on GitHub at <a href="https://github.com/kojix2/chatgpt-cli">https://github.com/kojix2/chatgpt-cli</a>.</p>
+<h2><a id="license" class="anchor" href="#license">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>License</h2>
+<p>This project is open-source and available under the terms of the <a href="https://opensource.org/licenses/MIT">MIT License</a>.</p>
+</div>
+</body>
+</html>
