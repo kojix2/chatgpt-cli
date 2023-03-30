@@ -173,21 +173,21 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/chatgpt-cli/blob/772897de5882f0aff5903c0be3edabc3882207eb/src/chatgpt/cli.cr#L19" target="_blank">
+      <a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli.cr#L19" target="_blank">
         chatgpt/cli.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/chatgpt-cli/blob/772897de5882f0aff5903c0be3edabc3882207eb/src/chatgpt/cli/parser.cr#L6" target="_blank">
+      <a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli/parser.cr#L6" target="_blank">
         chatgpt/cli/parser.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/chatgpt-cli/blob/772897de5882f0aff5903c0be3edabc3882207eb/src/chatgpt/cli/version.cr#L2" target="_blank">
+      <a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli/version.cr#L2" target="_blank">
         chatgpt/cli/version.cr
       </a>
     
@@ -269,6 +269,11 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#interactive%3ABool-instance-method" class="signature"><strong>#interactive</strong> : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#magic_command_runner%3AChatGPT%3A%3AMagicCommandRunner-instance-method" class="signature"><strong>#magic_command_runner</strong> : ChatGPT::MagicCommandRunner</a>
         
       </li>
@@ -279,7 +284,32 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#response_data%3AJSON%3A%3AAny%7CNil-instance-method" class="signature"><strong>#response_data</strong> : JSON::Any | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#response_data%3D%28response_data%3AJSON%3A%3AAny%7CNil%29-instance-method" class="signature"><strong>#response_data=</strong>(response_data : JSON::Any | Nil)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#run-instance-method" class="signature"><strong>#run</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#run2%28input_msg%29-instance-method" class="signature"><strong>#run2</strong>(input_msg)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#run_interacitively-instance-method" class="signature"><strong>#run_interacitively</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#run_oneliner-instance-method" class="signature"><strong>#run_oneliner</strong></a>
         
       </li>
     
@@ -290,6 +320,16 @@
     
       <li class="entry-summary">
         <a href="#system_command_runner%3AChatGPT%3A%3ASystemCommandRunner-instance-method" class="signature"><strong>#system_command_runner</strong> : ChatGPT::SystemCommandRunner</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#total_tokens%3AInt32-instance-method" class="signature"><strong>#total_tokens</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#total_tokens%3D%28total_tokens%3AInt32%29-instance-method" class="signature"><strong>#total_tokens=</strong>(total_tokens : Int32)</a>
         
       </li>
     
@@ -344,7 +384,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/772897de5882f0aff5903c0be3edabc3882207eb/src/chatgpt/cli.cr#L27" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -374,7 +414,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/772897de5882f0aff5903c0be3edabc3882207eb/src/chatgpt/cli.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -390,7 +430,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/772897de5882f0aff5903c0be3edabc3882207eb/src/chatgpt/cli.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -406,7 +446,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/772897de5882f0aff5903c0be3edabc3882207eb/src/chatgpt/cli.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli.cr#L29" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="interactive:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>interactive</strong> : Bool
+
+        <a class="method-permalink" href="#interactive%3ABool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -422,7 +478,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/772897de5882f0aff5903c0be3edabc3882207eb/src/chatgpt/cli.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -438,7 +494,39 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/772897de5882f0aff5903c0be3edabc3882207eb/src/chatgpt/cli.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli.cr#L20" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="response_data:JSON::Any|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>response_data</strong> : JSON::Any | Nil
+
+        <a class="method-permalink" href="#response_data%3AJSON%3A%3AAny%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli.cr#L27" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="response_data=(response_data:JSON::Any|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>response_data=</strong>(response_data : JSON::Any | Nil)
+
+        <a class="method-permalink" href="#response_data%3D%28response_data%3AJSON%3A%3AAny%7CNil%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -454,7 +542,55 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/772897de5882f0aff5903c0be3edabc3882207eb/src/chatgpt/cli.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli.cr#L55" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="run2(input_msg)-instance-method">
+      <div class="signature">
+        
+        def <strong>run2</strong>(input_msg)
+
+        <a class="method-permalink" href="#run2%28input_msg%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli.cr#L85" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="run_interacitively-instance-method">
+      <div class="signature">
+        
+        def <strong>run_interacitively</strong>
+
+        <a class="method-permalink" href="#run_interacitively-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli.cr#L70" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="run_oneliner-instance-method">
+      <div class="signature">
+        
+        def <strong>run_oneliner</strong>
+
+        <a class="method-permalink" href="#run_oneliner-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli.cr#L63" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -470,7 +606,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/772897de5882f0aff5903c0be3edabc3882207eb/src/chatgpt/cli.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -486,7 +622,39 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/772897de5882f0aff5903c0be3edabc3882207eb/src/chatgpt/cli.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="total_tokens:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>total_tokens</strong> : Int32
+
+        <a class="method-permalink" href="#total_tokens%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli.cr#L28" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="total_tokens=(total_tokens:Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>total_tokens=</strong>(total_tokens : Int32)
+
+        <a class="method-permalink" href="#total_tokens%3D%28total_tokens%3AInt32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d5e4a60d8e8fa356acb1660f3c259559a624f8a7/src/chatgpt/cli.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>
