@@ -14,8 +14,7 @@ jobs:
       - uses: crystal-lang/install-crystal@v1
         with:
           crystal: latest
-      - run: shards install
-      - run: shards build --release
-      - run: crystal spec
-      - run: sudo cp ./bin/chatgpt /usr/local/bin/chatgpt
+      - run: make
+      - run: sudo make install
+      - run: make test
       - run: chatgpt --help
