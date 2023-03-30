@@ -104,7 +104,7 @@ module ChatGPT
         return
       end
 
-      response_data = ResponseData.new(response.body)
+      @response_data = ResponseData.new(response.body)
 
       if response.success?
         result_msg = response_data.assistant_message

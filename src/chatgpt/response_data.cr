@@ -7,7 +7,7 @@ module ChatGPT
     end
 
     def tokens
-      @data["usage"].to_pretty_json
+      @data.dig("usage").to_pretty_json
     end
 
     def total_tokens
