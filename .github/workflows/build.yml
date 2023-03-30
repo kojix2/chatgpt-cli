@@ -25,5 +25,5 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            bin/chatgpt
+            bin/chatgpt-${{ matrix.os }}
             LICENSE.txt
