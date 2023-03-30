@@ -18,7 +18,9 @@ install_dependencies:
 clean:
 	rm -f $(BINARY_PATH)
 
-install: build
+install: build install-bin
+
+install-bin:
 	mkdir -p $(PREFIX)/bin
 	cp $(BINARY_PATH) $(PREFIX)/bin
 

@@ -18,3 +18,10 @@ jobs:
       - run: make install
       - run: make test
       - run: chatgpt --help
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            bin/chatgpt
+            LICENSE.txt
