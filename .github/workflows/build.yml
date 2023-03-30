@@ -15,6 +15,6 @@ jobs:
         with:
           crystal: latest
       - run: make
-      - run: sudo make install
+      - run: make install
       - run: make test
       - run: chatgpt --help
