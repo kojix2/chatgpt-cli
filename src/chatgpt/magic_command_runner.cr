@@ -1,4 +1,5 @@
 require "./post_data"
+require "./response_data"
 
 module ChatGPT
   class MagicCommandRunner
@@ -148,13 +149,13 @@ module ChatGPT
 
     getter key : String
     property data : PostData
-    getter response_data : String
+    getter response_data : ResponseData
     getter total_tokens : Int32
 
     def initialize(data = nil, @key = "%")
       @data = data || PostData.new
       @next = false
-      @response_data = ""
+      @response_data = ResponseData.new("{}")
       @total_tokens = -1
     end
 
@@ -218,7 +219,7 @@ module ChatGPT
 
     def set_system_messages(message)
       if data.messages.empty?
-        data.messages << {"role" => "system", "content" => message}
+        data.add_message("system", message)
       elsif data.messages[0]["role"] == "system"
         data.messages[0]["content"] = message
       else
@@ -325,7 +326,7 @@ module ChatGPT
 
     def show_response_json
       File.tempfile("chatgpt-cli", ".json") do |file|
-        File.write(file.path, response_data)
+        File.write(file.path, response_data.to_pretty_json)
         open_editor(file.path)
       end.delete
       true
@@ -333,7 +334,7 @@ module ChatGPT
 
     def show_total_tokens
       begin
-        tokens = JSON.parse(response_data)["usage"].to_pretty_json
+        tokens = response_data.tokens
       rescue ex
         tokens = "Unknown"
       end

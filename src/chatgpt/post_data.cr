@@ -25,5 +25,9 @@ module ChatGPT
     def user_messages
       @messages.select { |msg| msg["role"] == "user" }
     end
+
+    def add_message(role : String, content : String)
+      @messages << { "role" => role, "content" => content }
+    end
   end
 end

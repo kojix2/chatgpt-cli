@@ -10,7 +10,7 @@ module ChatGPT
     end
 
     it "adds user message correctly" do
-      data.messages << {"role" => "user", "content" => "What's the capital of France?"}
+      data.add_message("user", "What's the capital of France?")
       data.messages.should contain({"role" => "user", "content" => "What's the capital of France?"})
     end
 

@@ -9,6 +9,7 @@ require "lexbor"
 require "./file_extensions"
 require "./post_data"
 require "./client"
+require "./response_data"
 require "./system_command_runner"
 require "./magic_command_runner"
 require "./input_substitutor"
@@ -24,7 +25,7 @@ module ChatGPT
     getter magic_command_runner
     getter substitutor
 
-    property response_data : JSON::Any | Nil
+    property response_data : ResponseData
     property total_tokens : Int32
     property code_blocks : Array(File)
 
@@ -41,6 +42,7 @@ module ChatGPT
         STDERR.puts "Error: #{ex.message}".colorize(:yellow).mode(:bold)
       end
       @post_data = command_parser.data
+      @response_data = ResponseData.new("{}")
       @interactive = command_parser.interactive
 
       @chat_gpt_client = Client.new
@@ -62,7 +64,7 @@ module ChatGPT
 
     def run_oneliner
       input_msg = ARGF.gets_to_end
-      post_data.messages << {"role" => "user", "content" => input_msg}
+      post_data.add_message("user", input_msg)
       add_history(input_msg)
       run2(input_msg)
     end
@@ -85,7 +87,7 @@ module ChatGPT
     def run2(input_msg)
       return if system_command_runner.try_run(input_msg)
 
-      if magic_command_runner.try_run(input_msg, post_data, response_data.to_pretty_json, total_tokens)
+      if magic_command_runner.try_run(input_msg, post_data, response_data, total_tokens)
         @post_data = magic_command_runner.data
         total_tokens = magic_command_runner.total_tokens
         return if magic_command_runner.next?
@@ -93,7 +95,7 @@ module ChatGPT
 
       input_msg = substitutors(input_msg)
 
-      post_data.messages << {"role" => "user", "content" => input_msg}
+      post_data.add_message("user", input_msg)
       begin
         response = chat_gpt_client.send_chat_request(post_data)
       rescue ex
@@ -102,15 +104,15 @@ module ChatGPT
         return 
       end
 
-      response_data = JSON.parse(response.body)
+      response_data = ResponseData.new(response.body)
 
       if response.success?
-        result_msg = response_data.dig("choices", 0, "message", "content").to_s
-        post_data.messages << {"role" => "assistant", "content" => result_msg}
+        result_msg = response_data.assistant_message
+        post_data.add_message("assistant", result_msg)
         File.write(Config::POST_DATA_FILE, post_data.to_pretty_json)
         # ENV["RESPONSE"] = result_msg
         extract_code_blocks(result_msg)
-        total_tokens = response_data.dig("usage", "total_tokens").to_s.to_i
+        @total_tokens = response_data.total_tokens
         puts result_msg.colorize(:green)
       else
         STDERR.puts "Error: #{response.status_code} #{response.status}".colorize(:yellow).mode(:bold)
@@ -125,7 +127,7 @@ module ChatGPT
     end
 
     private def ntokens
-      ntoken = total_tokens < 0 ? "-" : total_tokens
+      total_tokens < 0 ? "-" : total_tokens
     end
 
     private def readline_prompt
