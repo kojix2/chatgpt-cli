@@ -50,9 +50,9 @@ module ChatGPT
       total_tokens = -1
       message_count = 0
       response_data = nil
+      LibReadline.read_history(Config::HISTORY_FILE)
       loop do
         message_count = post_data.count_user_messages + 1
-        LibReadline.read_history(Config::HISTORY_FILE)
         ntoken = total_tokens < 0 ? "-" : total_tokens
         input_msg = Readline.readline("#{post_data.model}:#{ntoken}:#{message_count}> ", true)
         break if input_msg.nil?
