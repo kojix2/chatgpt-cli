@@ -27,7 +27,7 @@ module ChatGPT
     end
 
     def add_message(role : String, content : String)
-      @messages << { "role" => role, "content" => content }
+      @messages << {"role" => role, "content" => content}
     end
   end
 end

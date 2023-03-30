@@ -101,7 +101,7 @@ module ChatGPT
       rescue ex
         STDERR.puts "Error: #{ex.message}".colorize(:yellow).mode(:bold)
         post_data.messages.pop
-        return 
+        return
       end
 
       response_data = ResponseData.new(response.body)
@@ -115,9 +115,7 @@ module ChatGPT
         @total_tokens = response_data.total_tokens
         puts result_msg.colorize(:green)
       else
-        STDERR.puts "Error: #{response.status_code} #{response.status}".colorize(:yellow).mode(:bold)
-        STDERR.puts response.body.colorize(:yellow)
-        STDERR.puts "Hint: try %undo, %edit, %clear, %model or %help".colorize(:yellow).mode(:bold)
+        display_errors(response)
         post_data.messages.pop
       end
     end
@@ -164,6 +162,12 @@ module ChatGPT
         end
         ENV["CODE#{idx}"] = tf.path
       end
+    end
+
+    private def display_errors(response)
+      STDERR.puts "Error: #{response.status_code} #{response.status}".colorize(:yellow).mode(:bold)
+      STDERR.puts response.body.colorize(:yellow)
+      STDERR.puts "Hint: try %undo, %edit, %clear, %model or %help".colorize(:yellow).mode(:bold)
     end
   end
 end
