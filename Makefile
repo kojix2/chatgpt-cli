@@ -2,7 +2,7 @@
 
 PREFIX ?= /usr/local
 CRYSTAL_BIN ?= crystal
-CRYSTAL_OPTS ?= --release --static
+CRYSTAL_OPTS ?= --release
 BINARY_PATH ?= ./bin/chatgpt
 SUDO_USER := $(shell ([ "`whoami`" != root ] && echo `whoami`) || ([ -n "$(SUDO_USER)" ] && echo "$(SUDO_USER)") || echo $(USER))
 USER_HOME := $(shell eval echo "~$(SUDO_USER)")
