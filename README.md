@@ -26,7 +26,7 @@ ChatGPT CLI is a command-line interface tool for interacting with OpenAI's [Chat
    sudo make install
    ```
 
-3. Set your OpenAI API key as an environment variable:
+3. Set your [OpenAI API key](https://platform.openai.com/account/api-keys) as an environment variable:
 
    ```bash
    export OPENAI_API_KEY="your_openai_api_key"
