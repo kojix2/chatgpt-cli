@@ -6,9 +6,11 @@ module ChatGPT
   class CLI
     class Parser < OptionParser
       getter data : PostData
+      getter interactive : Bool
 
       def initialize
         @data = PostData.new
+        @interactive = true
         super()
         config = Config.new
         self.banner =
@@ -44,6 +46,12 @@ module ChatGPT
         end
         on "-l FILE", "--load FILE", "Load session from file (other options are ignored)" do |v|
           load_session(v.to_s)
+        end
+        on "-o", "--stdout", "Output to stdout then exit" do
+          @interactive = false
+        end
+        on "-d", "--debug", "Debug mode" do
+          DEBUG_FLAG[0] = true
         end
         on "-v", "--version", "Print version info and exit" do
           puts CLI::VERSION

@@ -19,9 +19,13 @@ module ChatGPT
   class CLI
     getter post_data : PostData
     getter chat_gpt_client
+    getter interactive : Bool
     getter system_command_runner
     getter magic_command_runner
     getter substitutor
+
+    property response_data : JSON::Any | Nil
+    property total_tokens : Int32
     property code_blocks : Array(File)
 
     def initialize
@@ -37,70 +41,106 @@ module ChatGPT
         STDERR.puts "Error: #{ex.message}".colorize(:yellow).mode(:bold)
       end
       @post_data = command_parser.data
+      @interactive = command_parser.interactive
 
       @chat_gpt_client = Client.new
       @system_command_runner = SystemCommandRunner.new
       @magic_command_runner = MagicCommandRunner.new(post_data, key: "%")
       @substitutor = InputSubstitutor.new(@system_command_runner)
 
+      @total_tokens = -1
       @code_blocks = [] of File
     end
 
     def run
-      total_tokens = -1
-      message_count = 0
-      response_data = nil
+      if @interactive
+        run_interacitively
+      else
+        run_oneliner
+      end
+    end
+
+    def run_oneliner
+      input_msg = ARGF.gets_to_end
+      post_data.messages << {"role" => "user", "content" => input_msg}
+      add_history(input_msg)
+      run2(input_msg)
+    end
+
+    def run_interacitively
       LibReadline.read_history(Config::HISTORY_FILE)
       loop do
-        message_count = post_data.count_user_messages + 1
-        ntoken = total_tokens < 0 ? "-" : total_tokens
-        input_msg = Readline.readline("#{post_data.model}:#{ntoken}:#{message_count}> ", true)
+        input_msg = Readline.readline(readline_prompt, true)
         break if input_msg.nil?
         next if input_msg.empty?
 
-        File.open(Config::HISTORY_FILE, "a") { |f| f.puts(input_msg) }
+        add_history(input_msg)
 
         break if ["exit", "quit"].includes?(input_msg)
 
-        next if system_command_runner.try_run(input_msg)
-
-        if magic_command_runner.try_run(input_msg, post_data, response_data.to_pretty_json, total_tokens)
-          @post_data = magic_command_runner.data
-          total_tokens = magic_command_runner.total_tokens
-          next if magic_command_runner.next?
-        end
-
-        input_msg = substitutor.stdout(input_msg, /%STDOUT/)
-        input_msg = substitutor.stderr(input_msg, /%STDERR/)
-        input_msg = substitutor.url(input_msg, /%%\{(.+?)\}/)
-        input_msg = substitutor.file(input_msg, /%\{(.+?)\}/)
-
-        post_data.messages << {"role" => "user", "content" => input_msg}
-        begin
-          response = chat_gpt_client.send_chat_request(post_data)
-        rescue ex
-          STDERR.puts "Error: #{ex.message}".colorize(:yellow).mode(:bold)
-          post_data.messages.pop
-          next
-        end
-
-        response_data = JSON.parse(response.body)
-
-        if response.success?
-          result_msg = response_data.dig("choices", 0, "message", "content").to_s
-          post_data.messages << {"role" => "assistant", "content" => result_msg}
-          File.write(Config::POST_DATA_FILE, post_data.to_pretty_json)
-          # ENV["RESPONSE"] = result_msg
-          extract_code_blocks(result_msg)
-          total_tokens = response_data.dig("usage", "total_tokens").to_s.to_i
-          puts result_msg.colorize(:green)
-        else
-          STDERR.puts "Error: #{response.status_code} #{response.status}".colorize(:yellow).mode(:bold)
-          STDERR.puts response.body.colorize(:yellow)
-          STDERR.puts "Hint: try %undo, %edit, %clear, %model or %help".colorize(:yellow).mode(:bold)
-          post_data.messages.pop
-        end
+        run2(input_msg)
       end
+    end
+
+    def run2(input_msg)
+      return if system_command_runner.try_run(input_msg)
+
+      if magic_command_runner.try_run(input_msg, post_data, response_data.to_pretty_json, total_tokens)
+        @post_data = magic_command_runner.data
+        total_tokens = magic_command_runner.total_tokens
+        return if magic_command_runner.next?
+      end
+
+      input_msg = substitutors(input_msg)
+
+      post_data.messages << {"role" => "user", "content" => input_msg}
+      begin
+        response = chat_gpt_client.send_chat_request(post_data)
+      rescue ex
+        STDERR.puts "Error: #{ex.message}".colorize(:yellow).mode(:bold)
+        post_data.messages.pop
+        return 
+      end
+
+      response_data = JSON.parse(response.body)
+
+      if response.success?
+        result_msg = response_data.dig("choices", 0, "message", "content").to_s
+        post_data.messages << {"role" => "assistant", "content" => result_msg}
+        File.write(Config::POST_DATA_FILE, post_data.to_pretty_json)
+        # ENV["RESPONSE"] = result_msg
+        extract_code_blocks(result_msg)
+        total_tokens = response_data.dig("usage", "total_tokens").to_s.to_i
+        puts result_msg.colorize(:green)
+      else
+        STDERR.puts "Error: #{response.status_code} #{response.status}".colorize(:yellow).mode(:bold)
+        STDERR.puts response.body.colorize(:yellow)
+        STDERR.puts "Hint: try %undo, %edit, %clear, %model or %help".colorize(:yellow).mode(:bold)
+        post_data.messages.pop
+      end
+    end
+
+    private def message_count
+      post_data.count_user_messages + 1
+    end
+
+    private def ntokens
+      ntoken = total_tokens < 0 ? "-" : total_tokens
+    end
+
+    private def readline_prompt
+      "#{post_data.model}:#{ntokens}:#{message_count}> "
+    end
+
+    private def add_history(input_msg)
+      File.open(Config::HISTORY_FILE, "a") { |f| f.puts(input_msg) }
+    end
+
+    private def substitutors(input_msg)
+      input_msg = substitutor.stdout(input_msg, /%STDOUT/)
+      input_msg = substitutor.stderr(input_msg, /%STDERR/)
+      input_msg = substitutor.url(input_msg, /%%\{(.+?)\}/)
+      input_msg = substitutor.file(input_msg, /%\{(.+?)\}/)
     end
 
     private def extract_code_blocks(result_msg)
