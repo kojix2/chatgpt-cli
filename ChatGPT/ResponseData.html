@@ -13,7 +13,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="chatgpt-cli">
-  <title>ChatGPT::SystemCommandRunner - chatgpt-cli main</title>
+  <title>ChatGPT::ResponseData - chatgpt-cli main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -116,7 +116,7 @@
       
     </li>
   
-  <li class=" " data-id="chatgpt-cli/ChatGPT/ResponseData" data-name="chatgpt::responsedata">
+  <li class=" current" data-id="chatgpt-cli/ChatGPT/ResponseData" data-name="chatgpt::responsedata">
       <a href="../ChatGPT/ResponseData.html">ResponseData</a>
       
     </li>
@@ -126,7 +126,7 @@
       
     </li>
   
-  <li class=" current" data-id="chatgpt-cli/ChatGPT/SystemCommandRunner" data-name="chatgpt::systemcommandrunner">
+  <li class=" " data-id="chatgpt-cli/ChatGPT/SystemCommandRunner" data-name="chatgpt::systemcommandrunner">
       <a href="../ChatGPT/SystemCommandRunner.html">SystemCommandRunner</a>
       
     </li>
@@ -145,12 +145,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> ChatGPT::SystemCommandRunner
+  <span class="kind">class</span> ChatGPT::ResponseData
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../ChatGPT/SystemCommandRunner.html">ChatGPT::SystemCommandRunner</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../ChatGPT/ResponseData.html">ChatGPT::ResponseData</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -178,8 +178,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/chatgpt-cli/blob/8ab7ad5f1842bcbd8a66d12f36555ba308f3bd14/src/chatgpt/system_command_runner.cr#L2" target="_blank">
-        chatgpt/system_command_runner.cr
+      <a href="https://github.com/kojix2/chatgpt-cli/blob/8ab7ad5f1842bcbd8a66d12f36555ba308f3bd14/src/chatgpt/response_data.cr#L4" target="_blank">
+        chatgpt/response_data.cr
       </a>
     
     <br/>
@@ -200,7 +200,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
+        <a href="#new%28data%29-class-method" class="signature"><strong>.new</strong>(data)</a>
         
       </li>
     
@@ -221,22 +221,22 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#last_command%3AString-instance-method" class="signature"><strong>#last_command</strong> : String</a>
+        <a href="#assistant_message-instance-method" class="signature"><strong>#assistant_message</strong></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#last_stderr%3AString-instance-method" class="signature"><strong>#last_stderr</strong> : String</a>
+        <a href="#to_pretty_json-instance-method" class="signature"><strong>#to_pretty_json</strong></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#last_stdout%3AString-instance-method" class="signature"><strong>#last_stdout</strong> : String</a>
+        <a href="#tokens-instance-method" class="signature"><strong>#tokens</strong></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#try_run%28input_message%29-instance-method" class="signature"><strong>#try_run</strong>(input_message)</a>
+        <a href="#total_tokens-instance-method" class="signature"><strong>#total_tokens</strong></a>
         
       </li>
     
@@ -280,18 +280,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new-class-method">
+    <div class="entry-detail" id="new(data)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>
+        def self.<strong>new</strong>(data)
 
-        <a class="method-permalink" href="#new-class-method">#</a>
+        <a class="method-permalink" href="#new%28data%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/8ab7ad5f1842bcbd8a66d12f36555ba308f3bd14/src/chatgpt/system_command_runner.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/8ab7ad5f1842bcbd8a66d12f36555ba308f3bd14/src/chatgpt/response_data.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -310,66 +310,66 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="last_command:String-instance-method">
+    <div class="entry-detail" id="assistant_message-instance-method">
       <div class="signature">
         
-        def <strong>last_command</strong> : String
+        def <strong>assistant_message</strong>
 
-        <a class="method-permalink" href="#last_command%3AString-instance-method">#</a>
+        <a class="method-permalink" href="#assistant_message-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/8ab7ad5f1842bcbd8a66d12f36555ba308f3bd14/src/chatgpt/system_command_runner.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/8ab7ad5f1842bcbd8a66d12f36555ba308f3bd14/src/chatgpt/response_data.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="last_stderr:String-instance-method">
+    <div class="entry-detail" id="to_pretty_json-instance-method">
       <div class="signature">
         
-        def <strong>last_stderr</strong> : String
+        def <strong>to_pretty_json</strong>
 
-        <a class="method-permalink" href="#last_stderr%3AString-instance-method">#</a>
+        <a class="method-permalink" href="#to_pretty_json-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/8ab7ad5f1842bcbd8a66d12f36555ba308f3bd14/src/chatgpt/system_command_runner.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/8ab7ad5f1842bcbd8a66d12f36555ba308f3bd14/src/chatgpt/response_data.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="last_stdout:String-instance-method">
+    <div class="entry-detail" id="tokens-instance-method">
       <div class="signature">
         
-        def <strong>last_stdout</strong> : String
+        def <strong>tokens</strong>
 
-        <a class="method-permalink" href="#last_stdout%3AString-instance-method">#</a>
+        <a class="method-permalink" href="#tokens-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/8ab7ad5f1842bcbd8a66d12f36555ba308f3bd14/src/chatgpt/system_command_runner.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/8ab7ad5f1842bcbd8a66d12f36555ba308f3bd14/src/chatgpt/response_data.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="try_run(input_message)-instance-method">
+    <div class="entry-detail" id="total_tokens-instance-method">
       <div class="signature">
         
-        def <strong>try_run</strong>(input_message)
+        def <strong>total_tokens</strong>
 
-        <a class="method-permalink" href="#try_run%28input_message%29-instance-method">#</a>
+        <a class="method-permalink" href="#total_tokens-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/8ab7ad5f1842bcbd8a66d12f36555ba308f3bd14/src/chatgpt/system_command_runner.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/8ab7ad5f1842bcbd8a66d12f36555ba308f3bd14/src/chatgpt/response_data.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
