@@ -150,7 +150,8 @@ module ChatGPT
     property data : PostData
     getter response_data : String
 
-    def initialize(@data, @key = "%")
+    def initialize(data = nil, @key = "%")
+      @data = data || PostData.new
       @next = false
       @response_data = ""
     end
