@@ -39,10 +39,10 @@ module ChatGPT
         on "-p Float", "--top_p Float", "Probability threshold of nucleus sampling [1.0]" do |v|
           data.top_p = v.to_f? || (STDERR.puts "Error: Invalid top_p"; exit 1)
         end
-        on "-r", "--resume", "Resume the session" do
+        on "-r", "--resume", "Resume the session (other options are ignored)" do
           load_session(Config::POST_DATA_FILE)
         end
-        on "-l FNAME", "--load FNAME", "Load session from file" do |v|
+        on "-l FNAME", "--load FNAME", "Load session from file (other options are ignored)" do |v|
           load_session(v.to_s)
         end
         on "-v", "--version", "Print version info and exit" do
