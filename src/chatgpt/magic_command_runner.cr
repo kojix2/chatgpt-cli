@@ -270,7 +270,7 @@ module ChatGPT
     end
 
     def undo(n)
-      number_of_user_messages = data.messages.count { |msg| msg["role"] == "user" }
+      number_of_user_messages = data.count_user_messages
       n = [n.to_i, number_of_user_messages].min
       n.times do
         data.messages.pop # response

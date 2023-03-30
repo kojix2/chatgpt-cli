@@ -17,5 +17,13 @@ module ChatGPT
       @top_p = 1.0
     )
     end
+
+    def count_user_messages
+      user_messages.size
+    end
+
+    def user_messages
+      @messages.select { |msg| msg["role"] == "user" }
+    end
   end
 end
