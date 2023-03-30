@@ -42,7 +42,7 @@ module ChatGPT
         on "-r", "--resume", "Resume the session (other options are ignored)" do
           load_session(Config::POST_DATA_FILE)
         end
-        on "-l FNAME", "--load FNAME", "Load session from file (other options are ignored)" do |v|
+        on "-l FILE", "--load FILE", "Load session from file (other options are ignored)" do |v|
           load_session(v.to_s)
         end
         on "-v", "--version", "Print version info and exit" do
