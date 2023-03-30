@@ -1,8 +1,11 @@
 .PHONY: build clean install uninstall test run
 
 PREFIX ?= /usr/local
-CRYSTAL_OPTS ?= --release --no-debug
+CRYSTAL_BIN ?= crystal
+CRYSTAL_OPTS ?= --release
 BINARY_PATH ?= ./bin/chatgpt
+SUDO_USER := $(shell ([ "`whoami`" != root ] && echo `whoami`) || ([ -n "$(SUDO_USER)" ] && echo "$(SUDO_USER)") || echo $(USER))
+USER_HOME := $(shell eval echo "~$(SUDO_USER)")
 
 build: $(BINARY_PATH)
 
@@ -21,8 +24,8 @@ install: build
 
 uninstall:
 	rm $(PREFIX)/bin/chatgpt
-	rm -rf $(HOME)/.config/chatgpt-cli
-	rm $(HOME)/.chatgpt_history
+	rm -rf $(USER_HOME)/.config/chatgpt-cli
+	rm -f $(USER_HOME)/.chatgpt_history
 
 test:
 	$(CRYSTAL_BIN) spec
