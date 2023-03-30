@@ -149,14 +149,17 @@ module ChatGPT
     getter key : String
     property data : PostData
     getter response_data : String
+    getter total_tokens : Int32
 
     def initialize(data = nil, @key = "%")
       @data = data || PostData.new
       @next = false
       @response_data = ""
+      @total_tokens = -1
     end
 
-    def try_run(msg, data, response_data)
+    def try_run(msg, data, response_data, total_tokens)
+      @total_tokens = total_tokens
       if /^%(?!\{|#{key})/.match msg
         cmd = msg[1..-1].strip
         @next = run(cmd, data, response_data)
@@ -222,6 +225,7 @@ module ChatGPT
         data.messages.unshift({"role" => "system", "content" => message})
       end
       puts "Set system message to #{message}".colorize(:yellow)
+      @total_tokens = -1
       true
     end
 
@@ -238,12 +242,14 @@ module ChatGPT
         end
       end.delete
       @data = new_data
+      @total_tokens = -1
       true
     end
 
     def clear_messages
       data.messages.clear
       puts "Cleared".colorize(:yellow)
+      @total_tokens = -1
       true
     end
 
@@ -253,11 +259,13 @@ module ChatGPT
       else
         puts "No saved data".colorize(:yellow)
       end
+      @total_tokens = -1
       true
     end
 
     def undo
       undo(1)
+      @total_tokens = -1
       true
     end
 
@@ -269,6 +277,7 @@ module ChatGPT
         data.messages.pop # query
       end
       puts "Undo #{n == 1 ? "last" : n} messages".colorize(:yellow)
+      @total_tokens = -1
       true
     end
 
@@ -303,6 +312,7 @@ module ChatGPT
       rescue
         puts "Error: Invalid JSON".colorize(:yellow).mode(:bold)
       end
+      @total_tokens = -1
       true
     end
 
@@ -323,11 +333,11 @@ module ChatGPT
 
     def show_total_tokens
       begin
-        total_tokens = JSON.parse(response_data).dig?("usage", "total_tokens")
+        tokens = JSON.parse(response_data)["usage"].to_pretty_json
       rescue ex
-        total_tokens = "0"
+        tokens = "Unknown"
       end
-      puts "Total tokens used: #{total_tokens}".colorize(:yellow)
+      puts "#{tokens}".colorize(:yellow)
       true
     end
 
