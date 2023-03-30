@@ -171,12 +171,8 @@
 <p>Build the project:</p>
 <pre><code class="language-bash">git clone https://github.com/kojix2/chatgpt-cli
 cd chatgpt-cli
-shards install
-shards build --release</code></pre>
-</li>
-<li>
-<p>Add the compiled binary to your system's <code>PATH</code>:</p>
-<pre><code class="language-bash">sudo cp ./bin/chatgpt /usr/local/bin</code></pre>
+make
+sudo make install</code></pre>
 </li>
 <li>
 <p>Set your OpenAI API key as an environment variable:</p>
@@ -339,6 +335,16 @@ rm ~/.chatgpt_history       # Remove command history</code></pre>
   </svg>
 </a>Contributing</h2>
 <p>Bug reports and pull requests are welcome on GitHub at <a href="https://github.com/kojix2/chatgpt-cli">https://github.com/kojix2/chatgpt-cli</a>.</p>
+<h2><a id="development" class="anchor" href="#development">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Development</h2>
+<pre><code class="language-bash">git clone https://github.com/kojix2/chatgpt-cli
+cd chatgpt-cli
+shards install
+shards build --release
+bin/chatgpt</code></pre>
 <h2><a id="license" class="anchor" href="#license">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
