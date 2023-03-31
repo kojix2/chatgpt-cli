@@ -134,6 +134,7 @@ module ChatGPT
     private def substitute(input_msg)
       input_msg = substitutor.stdout(input_msg, /%STDOUT/)
       input_msg = substitutor.stderr(input_msg, /%STDERR/)
+      input_msg = substitutor.command(input_msg, /!\{(.+?)\}/)
       input_msg = substitutor.url(input_msg, /%%\{(.+?)\}/)
       input_msg = substitutor.file(input_msg, /%\{(.+?)\}/)
     end

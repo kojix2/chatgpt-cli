@@ -43,6 +43,13 @@ module ChatGPT
       end
     end
 
+    def command(input_msg, command_pattern)
+      input_msg.gsub(command_pattern) do |command_match|
+        command_pattern = $1.strip
+        command_output = `#{command_pattern}`
+      end
+    end
+
     def file(input_msg, file_pattern)
       input_msg.gsub(file_pattern) do |file_match|
         file_pattern = $1.strip
