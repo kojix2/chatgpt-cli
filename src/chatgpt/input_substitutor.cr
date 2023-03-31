@@ -107,7 +107,7 @@ module ChatGPT
         STDERR.puts "Warning: Failed to fetch url: #{url} leave it as it is".colorize_warning_bold
         return url_match
       end
-      compressed_text = words(Lexbor::Parser.new(HTTP::Client.get(url).body.to_s)).join("|")
+      compressed_text = WebPageCompressor.new(url).compressed_text
 
       <<-CODE_BLOCK
       ### #{url}
