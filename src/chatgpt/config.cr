@@ -12,13 +12,20 @@ module ChatGPT
     POST_DATA_FILE = "#{BASE_DIR}/post_data.json"
     HISTORY_FILE   = "#{ENV["HOME"]}/.chatgpt_history"
 
+    DEFAULT_CONFIG = {{ `cat #{__DIR__}/../../config.json`.chomp.stringify }}
+
     alias ConfigData = Hash(String, Hash(String, Hash(String, String)))
 
     getter config_data : ConfigData
 
+    def self.instance
+      @@instance ||= new
+    end
+
     def initialize
       @config_data = ConfigData.new
       @config_data["system_messages"] = Hash(String, Hash(String, String)).new
+      @config_data_default = ConfigData.from_json(DEFAULT_CONFIG)
       load_config
     end
 
@@ -38,10 +45,7 @@ module ChatGPT
     end
 
     def create_default_config
-      add_system_message("edit", "I want you to act as an editor, grammar corrector, and improver.")
-      add_system_message("code", "I want you to act as a programmer, writing code.")
-      add_system_message("tran", "I want you to act as an translator, spelling corrector, and improver.")
-      add_system_message("poet", "I want you to act as a poet, writing poetry.")
+      @config_data = ConfigData.from_json(DEFAULT_CONFIG)
       save
     end
 
@@ -64,6 +68,16 @@ module ChatGPT
       overwrite = File.exists?(CONFIG_FILE)
       File.write(CONFIG_FILE, config_data.to_pretty_json)
       STDERR.puts("#{overwrite ? "Overwrote" : "Created"} config at #{CONFIG_FILE}")
+    end
+
+    def terminal_colors
+      default = @config_data_default["terminal_colors"]
+      @config_data.fetch("terminal_colors", default)
+    end
+
+    def color(id : Symbol)
+      default = @config_data_default["terminal_colors"][id.to_s]
+      terminal_colors.fetch(id.to_s, default)
     end
   end
 end

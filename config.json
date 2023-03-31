@@ -16,5 +16,27 @@
       "role": "system",
       "content": "I want you to act as a poet, writing poetry."
     }
+  },
+  "terminal_colors": {
+    "chatgpt": {
+      "fore": "green",
+      "back": "default"
+    },
+    "warning": {
+      "fore": "yellow",
+      "back": "default"
+    },
+    "debug": {
+      "fore": "cyan",
+      "back": "default"
+    },
+    "stdout": {
+      "fore": "yellow",
+      "back": "default"
+    },
+    "stderr": {
+      "fore": "yellow",
+      "back": "default"
+    }
   }
 }

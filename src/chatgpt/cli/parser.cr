@@ -12,7 +12,7 @@ module ChatGPT
         @data = PostData.new
         @interactive = true
         super()
-        config = Config.new
+        config = Config.instance
         self.banner =
           <<-BANNER
         

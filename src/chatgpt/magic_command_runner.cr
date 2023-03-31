@@ -193,25 +193,25 @@ module ChatGPT
 
     def debug_mode_toggle
       DEBUG_FLAG[0] = !DEBUG_FLAG[0]
-      puts "Debug mode: #{DEBUG_FLAG[0]}".colorize_warning
+      puts "Debug mode: #{DEBUG_FLAG[0]}"._colorize(:warning)
       true
     end
 
     def show_model_name
-      puts "Model: #{data.model}".colorize_warning
+      puts "Model: #{data.model}"._colorize(:warning)
       true
     end
 
     def set_model_name(model_name)
       data.model = model_name
-      puts "Set model to #{model_name}".colorize_warning
+      puts "Set model to #{model_name}"._colorize(:warning)
       true
     end
 
     def show_system_messages
       data.messages.each do |msg|
         if msg["role"] == "system"
-          puts msg["content"].colorize_warning
+          puts msg["content"]._colorize(:warning)
         end
       end
       true
@@ -225,7 +225,7 @@ module ChatGPT
       else
         data.messages.unshift({"role" => "system", "content" => message})
       end
-      puts "Set system message to #{message}".colorize_warning
+      puts "Set system message to #{message}"._colorize(:warning)
       @total_tokens = -1
       true
     end
@@ -237,9 +237,9 @@ module ChatGPT
         open_editor(file.path)
         begin
           new_data = PostData.from_json(File.read(file.path))
-          puts "Saved".colorize_warning
+          puts "Saved"._colorize(:warning)
         rescue
-          puts "Error: Invalid JSON".colorize_warning_bold
+          puts "Error: Invalid JSON"._colorize(:warning, :bold)
         end
       end.delete
       @data = new_data
@@ -249,7 +249,7 @@ module ChatGPT
 
     def clear_messages
       data.messages.clear
-      puts "Cleared".colorize_warning
+      puts "Cleared"._colorize(:warning)
       @total_tokens = -1
       true
     end
@@ -258,7 +258,7 @@ module ChatGPT
       if File.exists?(Config::POST_DATA_FILE)
         load_data_from_json(Config::POST_DATA_FILE)
       else
-        puts "No saved data".colorize_warning
+        puts "No saved data"._colorize(:warning)
       end
       @total_tokens = -1
       true
@@ -277,7 +277,7 @@ module ChatGPT
         data.messages.pop # response
         data.messages.pop # query
       end
-      puts "Undo #{n == 1 ? "last" : n} messages".colorize_warning
+      puts "Undo #{n == 1 ? "last" : n} messages"._colorize(:warning)
       @total_tokens = -1
       true
     end
@@ -291,14 +291,14 @@ module ChatGPT
 
     def save_data_to_json(file_name)
       File.write(file_name, data.to_json)
-      puts "Saved to #{file_name}".colorize_warning
+      puts "Saved to #{file_name}"._colorize(:warning)
       true
     end
 
     def load_data_from_json
       file_names = Dir.glob("chatgpt-*.json")
       if file_names.empty?
-        puts "Error: No saved data".colorize_warning_bold
+        puts "Error: No saved data"._colorize(:warning, :bold)
         return true
       end
       load_data_from_json(file_names.sort.last)
@@ -309,9 +309,9 @@ module ChatGPT
       begin
         new_data = PostData.from_json(File.read(file_name))
         @data = new_data
-        puts "Loaded from #{file_name}".colorize_warning
+        puts "Loaded from #{file_name}"._colorize(:warning)
       rescue
-        puts "Error: Invalid JSON".colorize_warning_bold
+        puts "Error: Invalid JSON"._colorize(:warning, :bold)
       end
       @total_tokens = -1
       true
@@ -320,7 +320,7 @@ module ChatGPT
     def write_to_file(file_name)
       last_response = data.messages.dig?(-1, "content").to_s
       File.write(file_name, last_response)
-      puts "Writed to #{file_name}".colorize_warning
+      puts "Writed to #{file_name}"._colorize(:warning)
       true
     end
 
@@ -338,7 +338,7 @@ module ChatGPT
       rescue ex
         tokens = "Unknown"
       end
-      puts "#{tokens}".colorize_warning
+      puts "#{tokens}"._colorize(:warning)
       true
     end
 
@@ -353,16 +353,16 @@ module ChatGPT
     end
 
     def show_help
-      puts "Magic commands:".colorize_warning_bold
+      puts "Magic commands:"._colorize(:warning, :bold)
       Table.each do |value|
-        puts "  % #{value["name"]}".colorize_warning_bold
-        puts "    #{value["description"]}".colorize_warning
+        puts "  % #{value["name"]}"._colorize(:warning, :bold)
+        puts "    #{value["description"]}"._colorize(:warning)
       end
       true
     end
 
     def unknown_command_error(command)
-      STDERR.puts "Error: Unknown magic command: #{command}".colorize_warning_bold
+      STDERR.puts "Error: Unknown magic command: #{command}"._colorize(:warning, :bold)
       true
     end
 
