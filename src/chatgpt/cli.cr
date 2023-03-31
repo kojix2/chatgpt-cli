@@ -58,15 +58,15 @@ module ChatGPT
       if @interactive
         run_interacitively
       else
-        run_oneliner
+        run_as_oneliner
       end
     end
 
-    def run_oneliner
+    def run_as_oneliner
       input_msg = ARGF.gets_to_end
       post_data.add_message("user", input_msg)
       add_history(input_msg)
-      run2(input_msg)
+      main_run(input_msg)
     end
 
     def run_interacitively
@@ -80,20 +80,15 @@ module ChatGPT
 
         break if ["exit", "quit"].includes?(input_msg)
 
-        run2(input_msg)
+        main_run(input_msg)
       end
     end
 
-    def run2(input_msg)
-      return if system_command_runner.try_run(input_msg)
+    def main_run(input_msg)
+      return if try_system_command(input_msg)
+      return if try_magic_command(input_msg)
 
-      if magic_command_runner.try_run(input_msg, post_data, response_data, total_tokens)
-        @post_data = magic_command_runner.data
-        total_tokens = magic_command_runner.total_tokens
-        return if magic_command_runner.next?
-      end
-
-      input_msg = substitutors(input_msg)
+      input_msg = substitute(input_msg)
 
       post_data.add_message("user", input_msg)
       begin
@@ -136,31 +131,44 @@ module ChatGPT
       File.open(Config::HISTORY_FILE, "a") { |f| f.puts(input_msg) }
     end
 
-    private def substitutors(input_msg)
+    private def substitute(input_msg)
       input_msg = substitutor.stdout(input_msg, /%STDOUT/)
       input_msg = substitutor.stderr(input_msg, /%STDERR/)
       input_msg = substitutor.url(input_msg, /%%\{(.+?)\}/)
       input_msg = substitutor.file(input_msg, /%\{(.+?)\}/)
     end
 
-    private def extract_code_blocks(result_msg)
-      matches = result_msg.scan(/```.*?\n(.*?)```/m)
-      return if matches.empty?
+    private def try_system_command(input_msg)
+      system_command_runner.try_run(input_msg)
+    end
 
-      code_blocks.each_with_index(1) do |f, idx|
+    private def try_magic_command(input_msg)
+      return false unless magic_command_runner.try_run(input_msg, post_data, response_data, total_tokens)
+
+      @post_data = magic_command_runner.data
+      @total_tokens = magic_command_runner.total_tokens
+
+      magic_command_runner.next?
+    end
+
+    private def extract_code_blocks(result_msg)
+      code_block_matches = result_msg.scan(/```.*?\n(.*?)```/m)
+      return if code_block_matches.empty?
+
+      code_blocks.each_with_index(1) do |f, index|
         f.delete
-        ENV.delete("CODE#{idx}")
+        ENV.delete("CODE#{index}")
       end
-      matches.each_with_index(1) do |match, idx|
-        tf = File.tempfile("chatgpt") do |f|
+      code_block_matches.each_with_index(1) do |match, index|
+        temp_file = File.tempfile("chatgpt") do |f|
           f.print(match[1])
         end
-        code_blocks << tf
-        if ENV.has_key?("CODE#{idx}")
-          STDERR.puts "Warning: overwriting CODE#{idx} environment variable".colorize(:yellow).mode(:bold)
+        code_blocks << temp_file
+        if ENV.has_key?("CODE#{index}")
+          STDERR.puts "Warning: overwriting CODE#{index} environment variable".colorize(:yellow).mode(:bold)
           STDERR.flush
         end
-        ENV["CODE#{idx}"] = tf.path
+        ENV["CODE#{index}"] = temp_file.path
       end
     end
 
