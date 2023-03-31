@@ -25,9 +25,9 @@ module ChatGPT
     getter magic_command_runner
     getter substitutor
 
-    property response_data : ResponseData
-    property total_tokens : Int32
-    property code_blocks : Array(File)
+    getter response_data : ResponseData
+    getter total_tokens : Int32
+    getter code_blocks : Array(File)
 
     def initialize
       # Create the base directory if it doesn't exist
@@ -99,9 +99,8 @@ module ChatGPT
         return
       end
 
-      @response_data = ResponseData.new(response.body)
-
       if response.success?
+        @response_data = ResponseData.new(response.body)
         result_msg = response_data.assistant_message
         post_data.add_message("assistant", result_msg)
         File.write(Config::POST_DATA_FILE, post_data.to_pretty_json)
