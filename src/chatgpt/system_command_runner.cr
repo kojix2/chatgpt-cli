@@ -36,15 +36,15 @@ module ChatGPT
       begin
         status = Process.run(command, shell: true, output: stdout, error: stderr)
       rescue ex
-        STDERR.puts "Error: Command failed: #{command}".colorize(:yellow).mode(:bold)
+        STDERR.puts "Error: Command failed: #{command}".colorize_warning_bold
       end
 
       @last_command = command
       @last_stdout = stdout.to_s
       @last_stderr = stderr.to_s
 
-      puts last_stdout.colorize(:yellow)
-      STDERR.puts last_stderr.colorize(:yellow)
+      puts last_stdout.colorize_stdout
+      STDERR.puts last_stderr.colorize_stderr
     end
 
     private def run_no_record(command)

@@ -25,8 +25,8 @@ module ChatGPT
       if ENV.has_key?("OPENAI_API_KEY")
         ENV["OPENAI_API_KEY"]
       else
-        STDERR.puts "Error: OPENAI_API_KEY is not set. ".colorize(:yellow).mode(:bold)
-        STDERR.puts "Please get your API key and set it as an environment variable.".colorize(:yellow)
+        STDERR.puts "Error: OPENAI_API_KEY is not set. ".colorize_warning_bold
+        STDERR.puts "Please get your API key and set it as an environment variable.".colorize_warning
         ""
       end
     end
@@ -58,7 +58,7 @@ module ChatGPT
     end
 
     private def create_spinner
-      spinner_text = "ChatGPT".colorize(:green)
+      spinner_text = "ChatGPT".colorize_chatgpt.mode(:bold)
       Spin.new(0.2, Spinner::Charset[:pulsate2], spinner_text, output: STDERR)
     end
 
@@ -68,15 +68,15 @@ module ChatGPT
 
     private def log_request_data(request_data)
       STDERR.puts
-      STDERR.puts "Sending request to #{API_ENDPOINT}".colorize(:cyan).mode(:bold)
-      STDERR.puts request_data.pretty_inspect.colorize(:cyan)
+      STDERR.puts "Sending request to #{API_ENDPOINT}".colorize_debug.mode(:bold)
+      STDERR.puts request_data.pretty_inspect.colorize_debug
       STDERR.puts
     end
 
     private def log_response_data(chat_response)
-      STDERR.puts "Received response from #{API_ENDPOINT}".colorize(:cyan).mode(:bold)
-      STDERR.puts "Response status: #{chat_response.status}".colorize(:cyan)
-      STDERR.puts "Response body: #{JSON.parse(chat_response.body).pretty_inspect}".colorize(:cyan)
+      STDERR.puts "Received response from #{API_ENDPOINT}".colorize_debug.mode(:bold)
+      STDERR.puts "Response status: #{chat_response.status}".colorize_debug
+      STDERR.puts "Response body: #{JSON.parse(chat_response.body).pretty_inspect}".colorize_debug
       STDERR.puts
     end
   end

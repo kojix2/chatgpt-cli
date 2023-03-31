@@ -31,7 +31,6 @@ module ChatGPT
         rescue ex
           STDERR.puts("Error: #{ex}".colorize(:red))
           STDERR.puts("Failed to load config at #{CONFIG_FILE}")
-          STDERR.puts("Please type %config and check the config file.")
         end
       else
         create_default_config

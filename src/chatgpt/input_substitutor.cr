@@ -65,7 +65,7 @@ module ChatGPT
     private def get_formatted_file_contents(file_match, file_pattern)
       file_paths = Dir.glob(file_pattern)
       if file_paths.empty?
-        STDERR.puts "Warning: No files found matching: #{file_pattern} leave it as it is".colorize(:yellow).mode(:bold)
+        STDERR.puts "Warning: No files found matching: #{file_pattern} leave it as it is".colorize_warning_bold
         return file_match
       end
 
@@ -76,7 +76,7 @@ module ChatGPT
           contents = File.read(file_path)
         rescue ex
           # This should not happen because we already checked the file exists with Dir.glob
-          STDERR.puts "Error: #{ex}\nFailed to read file: #{file_path}".colorize(:yellow).mode(:bold)
+          STDERR.puts "Error: #{ex}\nFailed to read file: #{file_path}".colorize_warning_bold
           contents = "# Error: Failed to read file: #{file_path}"
         end
         format_name = FILE_EXTENSIONS.fetch(extname, "")
@@ -99,12 +99,12 @@ module ChatGPT
       begin
         response = HTTP::Client.get(url)
       rescue ex
-        STDERR.puts "Warning: Failed to fetch url: #{url} leave it as it is".colorize(:yellow).mode(:bold)
-        STDERR.puts ex.message.colorize(:yellow)
+        STDERR.puts "Warning: Failed to fetch url: #{url} leave it as it is".colorize_warning_bold
+        STDERR.puts ex.message.colorize_warning
         return url_match
       end
       unless response.success?
-        STDERR.puts "Warning: Failed to fetch url: #{url} leave it as it is".colorize(:yellow).mode(:bold)
+        STDERR.puts "Warning: Failed to fetch url: #{url} leave it as it is".colorize_warning_bold
         return url_match
       end
       compressed_text = words(Lexbor::Parser.new(HTTP::Client.get(url).body.to_s)).join("|")

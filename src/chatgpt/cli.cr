@@ -2,6 +2,7 @@ require "option_parser"
 require "http/client"
 require "json"
 require "colorize"
+require "./colorize_extensions"
 require "readline"
 require "spinner"
 require "lexbor"
@@ -39,7 +40,7 @@ module ChatGPT
       begin
         command_parser.parse
       rescue ex
-        STDERR.puts "Error: #{ex.message}".colorize(:yellow).mode(:bold)
+        STDERR.puts "Error: #{ex.message}".colorize_warning_bold
       end
       @post_data = command_parser.data
       @response_data = ResponseData.new("{}")
@@ -94,7 +95,7 @@ module ChatGPT
       begin
         response = chat_gpt_client.send_chat_request(post_data)
       rescue ex
-        STDERR.puts "Error: #{ex.message}".colorize(:yellow).mode(:bold)
+        STDERR.puts "Error: #{ex.message}".colorize_warning_bold
         post_data.messages.pop
         return
       end
@@ -107,7 +108,7 @@ module ChatGPT
         # ENV["RESPONSE"] = result_msg
         extract_code_blocks(result_msg)
         @total_tokens = response_data.total_tokens
-        puts result_msg.colorize(:green)
+        puts result_msg.colorize_chatgpt
       else
         display_errors(response)
         post_data.messages.pop
@@ -164,7 +165,7 @@ module ChatGPT
         end
         code_blocks << temp_file
         if ENV.has_key?("CODE#{index}")
-          STDERR.puts "Warning: overwriting CODE#{index} environment variable".colorize(:yellow).mode(:bold)
+          STDERR.puts "Warning: overwriting CODE#{index} environment variable".colorize_warning_bold
           STDERR.flush
         end
         ENV["CODE#{index}"] = temp_file.path
@@ -172,9 +173,9 @@ module ChatGPT
     end
 
     private def display_errors(response)
-      STDERR.puts "Error: #{response.status_code} #{response.status}".colorize(:yellow).mode(:bold)
-      STDERR.puts response.body.colorize(:yellow)
-      STDERR.puts "Hint: try %undo, %edit, %clear, %model or %help".colorize(:yellow).mode(:bold)
+      STDERR.puts "Error: #{response.status_code} #{response.status}".colorize_warning_bold
+      STDERR.puts response.body.colorize_warning
+      STDERR.puts "Hint: try %undo, %edit, %clear, %model or %help".colorize_warning_bold
     end
   end
 end
