@@ -1,0 +1,14 @@
+Hi
+!pwd
+What time is it now? hint: !{date}
+%clear
+!!date
+What time is it now? hint: %STDOUT
+What is the title of this README? hint: %{../README.md}
+%clear
+Please choose five interesting topics from %%{https://news.ycombinator.com/}
+%undo
+%model
+%model gpt-4
+%tokens
+exit
