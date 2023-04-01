@@ -290,7 +290,7 @@ module ChatGPT
     end
 
     def save_data_to_json(file_name)
-      File.write(file_name, data.to_json)
+      File.write(file_name, data.to_pretty_json)
       puts "Saved to #{file_name}"._colorize(:warning)
       true
     end
