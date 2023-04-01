@@ -1,5 +1,6 @@
 require "./post_data"
 require "./response_data"
+require "./html_generator"
 
 module ChatGPT
   class MagicCommandRunner
@@ -46,6 +47,20 @@ module ChatGPT
           "pattern"     => "edit",
           "n_args"      => 0,
           "method"      => "edit_data_json",
+        },
+        {
+          "name"        => "html",
+          "description" => "Show data in the browser",
+          "pattern"     => "html",
+          "n_args"      => 0,
+          "method"      => "html_data",
+        },
+        {
+          "name"        => "html <file_name>",
+          "description" => "Save data to <file_name> and open in the browser",
+          "pattern"     => /^html\s+(.+)/,
+          "n_args"      => 1,
+          "method"      => "html_data",
         },
         {
           "name"        => "clear",
@@ -247,6 +262,21 @@ module ChatGPT
       true
     end
 
+    def html_data
+      html = HtmlGenerator.new(data).to_s
+      timestamp = Time.local.to_s("%Y%m%d-%H%M%S")
+      file_name = "chatgpt-#{timestamp}.html"
+      html_data(file_name)
+    end
+
+    def html_data(file_name)
+      html = HtmlGenerator.new(data).to_s
+      File.write(file_name, html)
+      open_browser(file_name)
+      # file.delete   # FIXME: delete file
+      true
+    end
+
     def clear_messages
       data.messages.clear
       puts "Cleared"._colorize(:warning)
@@ -369,6 +399,16 @@ module ChatGPT
     private def open_editor(file_name)
       editor = ENV.has_key?("EDITOR") ? ENV["EDITOR"] : "vim"
       system("#{editor} #{file_name}")
+    end
+
+    private def open_browser(file_name)
+      {% if flag?(:linux) %}
+        system("xdg-open #{file_name}")
+      {% elsif flag?(:darwin) %}
+        system("open #{file_name}")
+      {% elsif flag?(:win32) %}
+        system("start #{file_name}")
+      {% end %}
     end
   end
 end
