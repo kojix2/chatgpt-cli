@@ -17,6 +17,23 @@
       "content": "I want you to act as a poet, writing poetry."
     }
   },
+  "substitute_patterns": {
+    "stdout": {
+      "pattern": "%STEDOUT"
+    },
+    "stderr": {
+      "pattern": "%STEDERR"
+    },
+    "command": {
+      "pattern": "!\\{(.+?)\\}"
+    },
+    "url": {
+      "pattern": "%%\\{(.+?)\\}"
+    },
+    "file": {
+      "pattern": "%\\{(.+?)\\}"
+    }
+  },
   "terminal_colors": {
     "chatgpt": {
       "fore": "green",

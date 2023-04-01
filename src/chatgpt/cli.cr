@@ -135,11 +135,12 @@ module ChatGPT
     end
 
     private def substitute(input_msg)
-      input_msg = substitutor.stdout(input_msg, /%STDOUT/)
-      input_msg = substitutor.stderr(input_msg, /%STDERR/)
-      input_msg = substitutor.command(input_msg, /!\{(.+?)\}/)
-      input_msg = substitutor.url(input_msg, /%%\{(.+?)\}/)
-      input_msg = substitutor.file(input_msg, /%\{(.+?)\}/)
+      config = Config.instance
+      input_msg = substitutor.stdout(input_msg, config.stdout_regex)
+      input_msg = substitutor.stderr(input_msg, config.stderr_regex)
+      input_msg = substitutor.command(input_msg, config.command_regex)
+      input_msg = substitutor.url(input_msg, config.url_regex)
+      input_msg = substitutor.file(input_msg, config.file_regex)
     end
 
     private def try_system_command(input_msg)

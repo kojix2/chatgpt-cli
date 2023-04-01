@@ -79,5 +79,35 @@ module ChatGPT
       default = @config_data_default["terminal_colors"][id.to_s]
       terminal_colors.fetch(id.to_s, default)
     end
+    
+    def substitute_patterns
+      default = @config_data_default["substitute_patterns"]
+      @config_data.fetch("substitute_patterns", default)
+    end
+
+    def pattern(id : Symbol)
+      default = @config_data_default["substitute_patterns"][id.to_s]
+      substitute_patterns.fetch(id.to_s, default)
+    end
+
+    def stdout_regex
+      Regex.new(pattern(:stdout)["pattern"])
+    end
+
+    def stderr_regex
+      Regex.new(pattern(:stderr)["pattern"])
+    end
+
+    def command_regex
+      Regex.new(pattern(:command)["pattern"])
+    end
+
+    def url_regex
+      Regex.new(pattern(:url)["pattern"])
+    end
+
+    def file_regex
+      Regex.new(pattern(:file)["pattern"])
+    end
   end
 end
