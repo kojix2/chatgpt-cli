@@ -103,6 +103,7 @@ Within the CLI, you can use magic commands to perform various actions:
 - `%system <message>`: Set a new system message
 - `%resume` : Load data from auto saved data file
 - `%edit`: Edit data in JSON format
+- `%html` : Export messages in HTML format
 - `%save <filename>`: Save data to a file [`chatgpt.json`]
 - `%load <filename>`: Load data from a file [`chatgpt.json`]
 - `%token(s)`: Total tokens used
