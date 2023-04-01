@@ -136,6 +136,26 @@
       
     </li>
   
+  <li class="parent " data-id="chatgpt-cli/HtmlGenerator" data-name="htmlgenerator">
+      <a href="../HtmlGenerator.html">HtmlGenerator</a>
+      
+        <ul>
+  
+  <li class=" " data-id="chatgpt-cli/HtmlGenerator/HtmlGenerationError" data-name="htmlgenerator::htmlgenerationerror">
+      <a href="../HtmlGenerator/HtmlGenerationError.html">HtmlGenerationError</a>
+      
+    </li>
+  
+  <li class=" " data-id="chatgpt-cli/HtmlGenerator/Message" data-name="htmlgenerator::message">
+      <a href="../HtmlGenerator/Message.html">Message</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
 </ul>
 
   </div>
@@ -178,7 +198,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L5" target="_blank">
+      <a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L6" target="_blank">
         chatgpt/magic_command_runner.cr
       </a>
     
@@ -200,7 +220,7 @@
   <dl>
     
       <dt class="entry-const" id="Table">
-        <strong>Table</strong> = <code>[{<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;debug&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Toggle debug mode&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;debug&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;debug_mode_toggle&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;model&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Show model name&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;model&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;show_model_name&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;model &lt;model_name&gt;&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Set model name&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">/^model\s+(.+)/</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;set_model_name&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;system&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Show system messages&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;system&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;show_system_messages&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;system &lt;message&gt;&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Set system message&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">/^system\s+(.+)/</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;set_system_messages&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;edit&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Show or edit data in JSON&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;edit&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;edit_data_json&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;clear&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Clear messages and initialize data&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;clear&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;clear_messages&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;write &lt;file_name&gt; or w &lt;file_name&gt;&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Write last message to &lt;file_name&gt;&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">/^[write,w]\s+(.+)/</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;write_to_file&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;undo&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Undo last message and response&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;undo&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;undo&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;undo &lt;n&gt;&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Undo last &lt;n&gt; messages and responses&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">/^undo\s+(\d+)/</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;undo&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;resume&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Resume from auto-saved data&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;resume&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;resume&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;save&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Save data to chatgpt-&lt;timestamp&gt;.json&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;save&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;save_data_to_json&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;save &lt;file_name&gt;&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Save data to &lt;file_name&gt;&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">/^save\s+(.+)/</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;save_data_to_json&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;load&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Load latest saved data from current directory&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;load&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;load_data_from_json&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;load &lt;file_name&gt;&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Load data from &lt;file_name&gt;&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">/^load\s+(.+)/</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;load_data_from_json&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;config&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Edit config file&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;config&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;show_config&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;response&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Show last response in JSON&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;response&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;show_response_json&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;tokens&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Show total tokens used&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">/^tokens?\s*$/</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;show_total_tokens&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;history&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Show history&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;history&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;show_history&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;help&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Show this help&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;help&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;show_help&quot;</span>}]</code>
+        <strong>Table</strong> = <code>[{<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;debug&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Toggle debug mode&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;debug&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;debug_mode_toggle&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;model&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Show model name&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;model&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;show_model_name&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;model &lt;model_name&gt;&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Set model name&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">/^model\s+(.+)/</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;set_model_name&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;system&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Show system messages&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;system&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;show_system_messages&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;system &lt;message&gt;&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Set system message&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">/^system\s+(.+)/</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;set_system_messages&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;edit&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Show or edit data in JSON&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;edit&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;edit_data_json&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;html&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Show data in the browser&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;html&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;html_data&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;html &lt;file_name&gt;&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Save data to &lt;file_name&gt; and open in the browser&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">/^html\s+(.+)/</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;html_data&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;clear&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Clear messages and initialize data&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;clear&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;clear_messages&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;write &lt;file_name&gt; or w &lt;file_name&gt;&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Write last message to &lt;file_name&gt;&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">/^[write,w]\s+(.+)/</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;write_to_file&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;undo&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Undo last message and response&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;undo&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;undo&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;undo &lt;n&gt;&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Undo last &lt;n&gt; messages and responses&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">/^undo\s+(\d+)/</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;undo&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;resume&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Resume from auto-saved data&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;resume&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;resume&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;save&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Save data to chatgpt-&lt;timestamp&gt;.json&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;save&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;save_data_to_json&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;save &lt;file_name&gt;&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Save data to &lt;file_name&gt;&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">/^save\s+(.+)/</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;save_data_to_json&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;load&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Load latest saved data from current directory&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;load&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;load_data_from_json&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;load &lt;file_name&gt;&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Load data from &lt;file_name&gt;&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">/^load\s+(.+)/</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">1</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;load_data_from_json&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;config&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Edit config file&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;config&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;show_config&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;response&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Show last response in JSON&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;response&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;show_response_json&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;tokens&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Show total tokens used&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">/^tokens?\s*$/</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;show_total_tokens&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;history&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Show history&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;history&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;show_history&quot;</span>}, {<span class="s">&quot;name&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;help&quot;</span>, <span class="s">&quot;description&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;Show this help&quot;</span>, <span class="s">&quot;pattern&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;help&quot;</span>, <span class="s">&quot;n_args&quot;</span> <span class="o">=&gt;</span> <span class="n">0</span>, <span class="s">&quot;method&quot;</span> <span class="o">=&gt;</span> <span class="s">&quot;show_help&quot;</span>}]</code>
       </dt>
       
     
@@ -261,6 +281,16 @@
     
       <li class="entry-summary">
         <a href="#edit_data_json-instance-method" class="signature"><strong>#edit_data_json</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#html_data%28file_name%29-instance-method" class="signature"><strong>#html_data</strong>(file_name)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#html_data-instance-method" class="signature"><strong>#html_data</strong></a>
         
       </li>
     
@@ -435,7 +465,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L155" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L170" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -465,7 +495,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L250" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L280" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -481,7 +511,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L151" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L166" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -497,7 +527,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L151" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L166" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -513,7 +543,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L194" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L209" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -529,7 +559,39 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L233" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L248" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="html_data(file_name)-instance-method">
+      <div class="signature">
+        
+        def <strong>html_data</strong>(file_name)
+
+        <a class="method-permalink" href="#html_data%28file_name%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L272" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="html_data-instance-method">
+      <div class="signature">
+        
+        def <strong>html_data</strong>
+
+        <a class="method-permalink" href="#html_data-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L265" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -545,7 +607,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L150" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L165" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -561,7 +623,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L308" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L338" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -577,7 +639,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L298" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L328" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -593,7 +655,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L173" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L188" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -609,7 +671,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L152" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L167" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -625,7 +687,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L257" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L287" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -641,7 +703,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L177" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L192" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -657,7 +719,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L292" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L322" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -673,7 +735,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L285" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L315" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -689,7 +751,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L205" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L220" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -705,7 +767,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L220" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L235" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -721,7 +783,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L350" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L380" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -737,7 +799,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L355" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L385" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -753,7 +815,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L345" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L375" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -769,7 +831,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L200" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L215" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -785,7 +847,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L327" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L357" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -801,7 +863,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L211" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L226" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -817,7 +879,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L335" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L365" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -833,7 +895,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L153" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -849,7 +911,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L162" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L177" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -865,7 +927,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L273" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L303" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -881,7 +943,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L267" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L297" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -897,7 +959,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L364" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L394" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -913,7 +975,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/bd87e0b8db4ae071fe6aa26bf47422ebdf3dc138/src/chatgpt/magic_command_runner.cr#L320" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/03364fd6d5f2e652594dee01ce9dd29a9fa12a39/src/chatgpt/magic_command_runner.cr#L350" target="_blank">View source</a>]
         
       </div>
     </div>
