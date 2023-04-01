@@ -31,6 +31,7 @@ module ChatGPT
       data.messages = messages
       generator = HtmlGenerator.new(data)
       expected_html = File.read("#{__DIR__}/fixtures/meow.html")
+      # File.write("#{__DIR__}/meow.html", generator.to_s)
       actual_html = generator.to_s
       actual_html.should eq(expected_html)
     end

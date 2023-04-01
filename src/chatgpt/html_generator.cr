@@ -1,4 +1,5 @@
 require "ecr"
+require "html"
 
 class HtmlGenerator
   class HtmlGenerationError < Exception; end
@@ -14,7 +15,7 @@ class HtmlGenerator
     end
 
     def content
-      @message["content"]
+      HTML.escape(@message["content"])
     end
 
     def avatar_class
@@ -23,6 +24,17 @@ class HtmlGenerator
         "avatar human"
       when "assistant"
         "avatar gpt"
+      else
+        raise HtmlGenerationError.new("Unknown role: #{role}")
+      end
+    end
+
+    def direction
+      case role
+      when "user", "system" # FIXME system
+        "from"
+      when "assistant"
+        "to"
       else
         raise HtmlGenerationError.new("Unknown role: #{role}")
       end
