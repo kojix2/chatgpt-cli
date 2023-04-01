@@ -108,7 +108,7 @@ module ChatGPT
 
         # experimental
         ENV["RESPONSE"] = result_msg
-        
+
         extract_code_blocks(result_msg)
         @total_tokens = response_data.total_tokens
         puts result_msg._colorize(:chatgpt)

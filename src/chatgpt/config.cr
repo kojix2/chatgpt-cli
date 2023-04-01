@@ -79,7 +79,7 @@ module ChatGPT
       default = @config_data_default["terminal_colors"][id.to_s]
       terminal_colors.fetch(id.to_s, default)
     end
-    
+
     def substitute_patterns
       default = @config_data_default["substitute_patterns"]
       @config_data.fetch("substitute_patterns", default)
