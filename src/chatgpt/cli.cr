@@ -105,7 +105,10 @@ module ChatGPT
         result_msg = response_data.assistant_message
         post_data.add_message("assistant", result_msg)
         File.write(Config::POST_DATA_FILE, post_data.to_pretty_json)
-        # ENV["RESPONSE"] = result_msg
+
+        # experimental
+        ENV["RESPONSE"] = result_msg
+        
         extract_code_blocks(result_msg)
         @total_tokens = response_data.total_tokens
         puts result_msg._colorize(:chatgpt)
