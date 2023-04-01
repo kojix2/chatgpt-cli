@@ -24,7 +24,6 @@ module ChatGPT
 
     def initialize
       @config_data = ConfigData.new
-      @config_data["system_messages"] = Hash(String, Hash(String, String)).new
       @config_data_default = ConfigData.from_json(DEFAULT_CONFIG)
       load_config
     end
