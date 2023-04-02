@@ -6,13 +6,14 @@ ChatGPT CLI is a command-line interface tool for interacting with OpenAI's [Chat
 
 ## Features
 
-- Interact with OpenAI's ChatGPT API through a command-line interface
-- Set API parameters like model name (`gpt-3.5-turbo` by default), temperature, and top_p
-- Select pre-registered system messages with ID
-- Execute magic commands for various actions (e.g., modifying the system message, saving messages, debugging)
-- Execute system commands while chatting
-- Fetch file contents from paths and insert them into the chat
-- Fetch contents from URLs and insert them into the chat
+- Interactive command line interface using GNU Readline.
+- Expand file contents from the file path(s) using the placeholder.
+- Expand web page contents from the URL using the placeholder.
+- Magic commands to `clear`, `undo`, `edit`, `write`, `save` and `load` data.
+- Execute system commands and pass captured stdout and stderr output to ChatGPT.
+- Code blocks in the response are saved in temporary files and can be referenced from `$CODE1`, `$CODE2`, etc.
+- Output execution results as HTML. (experimental)
+- Substitution patterns of placeholders can be configurable in the configuration file.
 
 ## Installation
 
@@ -58,7 +59,7 @@ Usage: bin/chatgpt [options]
     -h, --help                       Print help
 ```
 
-### System commands
+### Selecting ChatGPT System Commands
 
 Select pre-registered system commands:
 
@@ -66,10 +67,11 @@ Select pre-registered system commands:
 chatgpt -i code
 ```
 
-`code` `edit` `poet` `tran` is available.
-To edit system commands, edit the config file. Type %config to open a text editor.
+Depending on how you use it, system commands are not always necessary. It works well without them.
+To edit system commands, edit the config file. Type `%config` to open a text editor. 
+`code` `edit` `poet` `tran` is available by default.
 
-### Files
+### Passing files to ChatGPT
 
 You can pass the contents of files to ChatGPT by using `%{foo.txt}` pattern.
 
@@ -87,7 +89,7 @@ With this feature, you can pass the code to ChatGPT and have them write README.m
 
 Note: READMEs created this way tend to be characterless. Still, it is marvelous to have a computer write the README for you.
 
-### Web Page Insertion
+### Passing Web Pages to ChatGPT
 
 You can pass the contents of web page to ChatGPT by using %{www.example.com}
 
