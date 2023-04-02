@@ -175,13 +175,14 @@
   </svg>
 </a>Features</h2>
 <ul>
-<li>Interact with OpenAI's ChatGPT API through a command-line interface</li>
-<li>Set API parameters like model name (<code>gpt-3.5-turbo</code> by default), temperature, and top_p</li>
-<li>Select pre-registered system messages with ID</li>
-<li>Execute magic commands for various actions (e.g., modifying the system message, saving messages, debugging)</li>
-<li>Execute system commands while chatting</li>
-<li>Fetch file contents from paths and insert them into the chat</li>
-<li>Fetch contents from URLs and insert them into the chat</li>
+<li>Interactive command line interface using GNU Readline.</li>
+<li>Expand file contents from the file path(s) using the placeholder.</li>
+<li>Expand web page contents from the URL using the placeholder.</li>
+<li>Magic commands to <code>clear</code>, <code>undo</code>, <code>edit</code>, <code>write</code>, <code>save</code> and <code>load</code> data.</li>
+<li>Execute system commands and pass captured stdout and stderr output to ChatGPT.</li>
+<li>Code blocks in the response are saved in temporary files and can be referenced from <code>$CODE1</code>, <code>$CODE2</code>, etc.</li>
+<li>Output execution results as HTML. (experimental)</li>
+<li>Substitution patterns of placeholders can be configurable in the configuration file.</li>
 </ul>
 <h2><a id="installation" class="anchor" href="#installation">
   <svg class="octicon-link" aria-hidden="true">
@@ -227,20 +228,21 @@ sudo make install</code></pre>
     -p Float, --top_p Float          Probability threshold of nucleus sampling [1.0]
     -v, --version                    Print version info and exit
     -h, --help                       Print help</code></pre>
-<h3><a id="system-commands" class="anchor" href="#system-commands">
+<h3><a id="selecting-chat-gpt-system-commands" class="anchor" href="#selecting-chat-gpt-system-commands">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>System commands</h3>
+</a>Selecting ChatGPT System Commands</h3>
 <p>Select pre-registered system commands:</p>
 <pre><code class="language-bash">chatgpt -i code</code></pre>
-<p><code>code</code> <code>edit</code> <code>poet</code> <code>tran</code> is available.
-To edit system commands, edit the config file. Type %config to open a text editor.</p>
-<h3><a id="files" class="anchor" href="#files">
+<p>Depending on how you use it, system commands are not always necessary. It works well without them.
+To edit system commands, edit the config file. Type <code>%config</code> to open a text editor.
+<code>code</code> <code>edit</code> <code>poet</code> <code>tran</code> is available by default.</p>
+<h3><a id="passing-files-to-chat-gpt" class="anchor" href="#passing-files-to-chat-gpt">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Files</h3>
+</a>Passing files to ChatGPT</h3>
 <p>You can pass the contents of files to ChatGPT by using <code>%{foo.txt}</code> pattern.</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Please</span> explain the following code: <span class="s">%{src/beatles.py}</span> <span class="t">Are</span> there any bugs?</code></pre>
 <p>With this feature, you can pass the code to ChatGPT and have them write README.md.</p>
@@ -248,11 +250,11 @@ To edit system commands, edit the config file. Type %config to open a text edito
 ...
 <span class="o">&gt;</span> <span class="o">%</span>w <span class="t">README</span>.md <span class="c"># This will save README.md</span></code></pre>
 <p>Note: READMEs created this way tend to be characterless. Still, it is marvelous to have a computer write the README for you.</p>
-<h3><a id="web-page-insertion" class="anchor" href="#web-page-insertion">
+<h3><a id="passing-web-pages-to-chat-gpt" class="anchor" href="#passing-web-pages-to-chat-gpt">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Web Page Insertion</h3>
+</a>Passing Web Pages to ChatGPT</h3>
 <p>You can pass the contents of web page to ChatGPT by using %{www.example.com}</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Pick</span> five interesting news items: <span class="o">%</span><span class="s">%{https://news.ycombinator.com/}</span></code></pre>
 <p>Here the HTML from the URL is fetched, the words used in the <code>body</code> are extracted and passed to ChatGPT. It is much smaller than the raw HTML, but still not enough.</p>
