@@ -22,7 +22,7 @@ install: build install-bin
 
 install-bin:
 	mkdir -p $(PREFIX)/bin
-	cp $(BINARY_PATH) $(PREFIX)/bin
+	cp -f $(BINARY_PATH) $(PREFIX)/bin
 
 uninstall:
 	rm $(PREFIX)/bin/chatgpt
