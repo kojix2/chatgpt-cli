@@ -106,7 +106,7 @@ module ChatGPT
         post_data.add_message("assistant", result_msg)
         File.write(Config::POST_DATA_FILE, post_data.to_pretty_json)
 
-        set_response_env(result_msg "RESP") # TODO: make this configurable
+        set_response_env(result_msg, "RESP") # TODO: make this configurable
 
         extract_code_blocks(result_msg)
         @total_tokens = response_data.total_tokens
