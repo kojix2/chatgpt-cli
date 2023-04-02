@@ -102,75 +102,151 @@ Here the HTML from the URL is fetched, the words used in the `body` are extracte
 During the dialogue, you can use a variety of magic commands, such as:
 
 ```
-> %clear
+%clear
 ```
 
 Clear all messages. This is useful when you want to change the topic and set TOKEN back to zero.
 
 ```
-> %undo <n>
+%undo <n>
 ```
 
 Undo last n query and response [1].  If you make a mistake asking chatgpt or if the reply is not what you are looking for, you can undo.
 
 ```
-> %write <filename>
+%write <filename>
 ```
 
 Write the most recent message to a file. Save the text and scripts written by ChatGPT.
 
 ```
-> %w <filename>
+%w <filename>
 ```
 
 Alias for `write`. This magic command is used so often that an alias is provided.
 
 
-- `%config`: Edit config file
-- `%system`: Show the current system message
-- `%system <message>`: Set a new system message
-- `%resume` : Load data from auto saved data file
-- `%edit`: Edit data in JSON format
-- `%html` : Export messages in HTML format
-- `%save <filename>`: Save data to a file [`chatgpt.json`]
-- `%load <filename>`: Load data from a file [`chatgpt.json`]
-- `%token(s)`: Total tokens used
-- `%debug`: Toggle debug mode
-- `%help`: Show the help
+```
+%config
+```
+
+Edit config file. Open a text editor and rewrite the settings.
+
+```
+%system
+```
+
+Show the current system message. 
+
+```
+%system <message>
+```
+
+Set a new system message. (This behavior is subject to change)
+
+```
+%edit
+```
+
+Edit data in JSON format. All data passed to ChatGPT can be edited here. You are free to tamper with the past.
+
+```
+%html <filename>
+```
+
+Export the conversation to HTML and launch your browser. This feature is useful when you want to save a conversation or check path expansion, etc. (Experimental and the output HTML may not be correct)
+
+
+```
+%save <filename>
+```
+
+Save the data. This allows you to do things like "save session". The file is a JSON file to be posted to ChatGPT.
+
+
+```
+%load <filename>
+```
+
+Load the data. This allows you to do things like "load session".
+
+```
+%resume
+```
+
+Load data from auto saved data file. We humans forget to save data. Therefore, the last session is automatically saved.
+
+```
+%token(s)
+```
+
+Total tokens used. You will see a more detailed number of TOKEN than is shown in the prompt. Please note that chatgpt-cli does not have the ability to calculate the number of TOKENs. It only displays the ChatGPT response. Therefore, if any edits may have been made, it will be Unknown.
+
+```
+%debug
+```
+
+Show debug message. Display the data actually posted to ChatGPT and the response in JSON format.
+
+```
+%help
+```
+
+Show the help. Humans forget commands.
 
 Note that for `%config`, `%data`, and other commands launch an editor. The editor used can be set by the `EDITOR` environment variable.
 Note that the tool is still being improved and the behavior of the magic commands will continue to change.
 
 ### Executing System Commands
 
-You can execute system commands while chatting by prefixing the command with the `!` symbol. For example, to check the current working directory, type `!pwd` and press Enter. Similarly, you can execute other system commands like `!ls`, `!date`, etc. If you want to execute a command and record its output for later use, you can prefix the command with `!!` instead, then use `%STDOUT` or `%STDERR` to insert the captured output into the chat.
+You can execute system commands while chatting by prefixing the command with the `!` symbol. 
 
-#### Examples:
-
-1. Execute a command, and display the output immediately:
+Execute a command, and display the output immediately:
 
 ```bash
 > !pwd
-> !vim
-> !htop
 ```
 
-2. Capture the output of a command for later use:
+This way you can also run commands like `vim` and `top`.
+
+Capture the output of a command for later use:
 
 ```bash
-> !! git diff
-... git diff output ...
+> !!git diff
+```
+
+The standard output can be inserted into the chat with "%STDOUT".
+
+```
 > Please write commit message: %STDOUT
 ```
 
+The results can be referenced through the environment variable `RESP`. (experimental)
+
+```
+> !git commit -m "$RES"
+```
+
+The contents of the standard error output can also be inserted into the chat with "%STDERR".
+
 ```bash
 > !!wrong_command
+
+```
+
+```
 > Explain the meaning of this error message: %STDERR
 ```
 
-#### Execute code blocks captured from markdown in the response
+You can also use `!{ cmd }`. In this case, it will be replaced by the contents of standard input
 
-When ChatGPT returns code blocks enclosed with triple backticks, ChatGPT CLI saves these blocks temporarily and assigns them to environment variables named `CODE1`, `CODE2`, ... and so on in sequential order. This allows you to execute the code blocks by referencing the environment variables in a system command. For example, if the response contains Python, Ruby, and Bash code blocks, you can execute them using `$CODE1`, `$CODE2`, and `$CODE3`, respectively.
+```
+> What time is it now? Hint: !{date}
+```
+
+#### Code Blocks in the Response
+
+When ChatGPT returns code blocks, ChatGPT CLI saves these blocks temporarily and assigns them to environment variables named `CODE1`, `CODE2`, ... and so on. This allows you to execute the code blocks on your computer. 
 
 ````md
 > Write code to display 1 to 10 in Python and Ruby.
@@ -193,30 +269,14 @@ Ruby:
 
 ## Configuration
 
-The system messages used by ChatGPT CLI can be customized through the `config.json` file. The file is located in `~/.config/chatgpt-cli/` by default, but it can be changed by setting the `CHATGPT_CLI_CONFIG` environment variable.
+The system messages used by ChatGPT CLI can be customized through the `config.json` file. The file is located in `~/.config/chatgpt-cli/` by default.
+Type `%config`. 
 
-The `config.json` file has the following structure:
-
-```json
-{
-  "system_messages": {
-    "tran": {
-      "role": "system",
-      "content": "I want you to act as a translator, spelling corrector, and improver."
-    },
-    "code": {
-      "role": "system",
-      "content": "I want you to act as a programmer, writing code."
-    },
-    "poet": {
-      "role": "system",
-      "content": "I want you to act as a poet, writing poetry."
-    }
-  }
-}
-```
+The config file may change frequently. Please see config.json in the repository for the latest information.
 
 ## Uninstallation
+
+chatgpt-cli uses the following 3 files and directories This is all there is to it.
 
 ```sh
 rm /usr/local/bin/chatgpt   # Remove the executable
@@ -237,6 +297,8 @@ shards install
 shards build --release
 bin/chatgpt
 ```
+
+What is a good way to distribute command line tools created in Crystal? I am looking for someone to help us.
 
 ## License
 
