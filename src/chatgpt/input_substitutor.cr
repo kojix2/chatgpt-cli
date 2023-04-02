@@ -89,6 +89,7 @@ module ChatGPT
         format_name = FILE_EXTENSIONS.fetch(extname, "")
 
         <<-CODE_BLOCK
+
         ### #{basename}
 
         ```#{format_name}
@@ -117,6 +118,7 @@ module ChatGPT
       compressed_text = WebPageCompressor.new(url).compressed_text
 
       <<-CODE_BLOCK
+      
       ### #{url}
 
       ```
