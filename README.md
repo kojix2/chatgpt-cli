@@ -58,27 +58,33 @@ Usage: bin/chatgpt [options]
     -h, --help                       Print help
 ```
 
-### Select a pre-defined system command
+### System commands
+
+Select pre-registered system commands:
 
 ```bash
 chatgpt -i code
 ```
 
-To add or remove system commands, see the CONFIGURATION section.
+To edit system commands, edit the config file. Please see the CONFIGURATION section.
 
-### File Insertion with %{}
+### File Insertion
 
-You can insert the contents of a file into the chat by enclosing the file path in `%{}`. For example, to insert the contents of a file called `example.py` located in the `src` directory, use `%{src/example.py}`.
+You can insert the contents of a file into the chat by enclosing the file path in `%{}`.
 
 ```
-> Please explain what the following code does. Are there any bugs? %{src/example.py}
+> Please explain the following code. Are there any bugs? %{src/example.py}
 ```
+
+With this feature, you can pass the code to ChatGPT and have them write README.md.
 
 ```
 > Please read the code of the tool: %{src/**/*} Then update README.md %{README.md}
 ...
 > %w README.md
 ```
+
+Note: READMEs created this way tend to be characterless. Still, it is marvelous to have a computer write the README for you.
 
 ### Web Page Insertion with %%{} (experimental)
 
