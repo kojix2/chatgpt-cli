@@ -310,7 +310,7 @@ Note that the tool is still being improved and the behavior of the magic command
 <p>The standard output can be inserted into the chat with &quot;%STDOUT&quot;.</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Please</span> write commit message: <span class="o">%</span><span class="t">STDOUT</span></code></pre>
 <p>The results can be referenced through the environment variable <code>RESP</code>. (experimental)</p>
-<pre><code class="language-crystal"><span class="o">&gt;</span> <span class="o">!</span>git commit <span class="o">-</span>m <span class="s">&quot;$RES&quot;</span></code></pre>
+<pre><code class="language-crystal"><span class="o">&gt;</span> <span class="o">!</span>git commit <span class="o">-</span>m <span class="s">&quot;$RESP&quot;</span></code></pre>
 <p>The contents of the standard error output can also be inserted into the chat with &quot;%STDERR&quot;.</p>
 <pre><code class="language-bash">&gt; !!wrong_command
 </code></pre>
