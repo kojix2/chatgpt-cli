@@ -11,7 +11,7 @@ ChatGPT CLI is a command-line interface tool for interacting with OpenAI's [Chat
 - Expand web page contents from the URL using the placeholder.
 - Magic commands to `clear`, `undo`, `edit`, `write`, `save` and `load` data.
 - Execute system commands and pass captured stdout and stderr output to ChatGPT.
-- Code blocks in the response are saved in temporary files and can be referenced from `$CODE1`, `$CODE2`, etc.
+- Code blocks in the response are saved in temp files and can be referenced from `$CODE1`, `$CODE2`...
 - Output execution results as HTML. (experimental)
 - Substitution patterns of placeholders can be configurable in the configuration file.
 
