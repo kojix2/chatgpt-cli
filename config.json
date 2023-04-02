@@ -19,10 +19,10 @@
   },
   "substitute_patterns": {
     "stdout": {
-      "pattern": "%STEDOUT"
+      "pattern": "%STDOUT"
     },
     "stderr": {
-      "pattern": "%STEDERR"
+      "pattern": "%STDERR"
     },
     "command": {
       "pattern": "!\\{(.+?)\\}"
