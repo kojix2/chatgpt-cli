@@ -106,7 +106,7 @@ module ChatGPT
         post_data.add_message("assistant", result_msg)
         File.write(Config::POST_DATA_FILE, post_data.to_pretty_json)
 
-        set_response_env(result_msg)
+        set_response_env(result_msg "RESP") # TODO: make this configurable
 
         extract_code_blocks(result_msg)
         @total_tokens = response_data.total_tokens
@@ -160,7 +160,7 @@ module ChatGPT
         STDERR.puts "Warning: overwriting RESP environment variable"._colorize(:warning, :bold)
         STDERR.flush
       end
-      ENV["RESP"] = msg
+      ENV[name] = msg
     end
 
     private def extract_code_blocks(result_msg)
