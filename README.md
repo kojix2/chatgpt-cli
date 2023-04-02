@@ -226,7 +226,7 @@ The standard output can be inserted into the chat with "%STDOUT".
 The results can be referenced through the environment variable `RESP`. (experimental)
 
 ```
-> !git commit -m "$RES"
+> !git commit -m "$RESP"
 ```
 
 The contents of the standard error output can also be inserted into the chat with "%STDERR".

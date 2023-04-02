@@ -157,7 +157,7 @@ module ChatGPT
 
     private def set_response_env(msg, name)
       if ENV.has_key?(name)
-        STDERR.puts "Warning: overwriting RESP environment variable"._colorize(:warning, :bold)
+        STDERR.puts "Warning: overwriting #{name} environment variable"._colorize(:warning, :bold)
         STDERR.flush
       end
       ENV[name] = msg
