@@ -66,44 +66,66 @@ Select pre-registered system commands:
 chatgpt -i code
 ```
 
-To edit system commands, edit the config file. Please see the CONFIGURATION section.
+`code` `edit` `poet` `tran` is available.
+To edit system commands, edit the config file. Type %config to open a text editor.
 
-### File Insertion
+### Files
 
-You can insert the contents of a file into the chat by enclosing the file path in `%{}`.
+You can pass the contents of files to ChatGPT by using `%{foo.txt}` pattern.
 
 ```
-> Please explain the following code. Are there any bugs? %{src/example.py}
+> Please explain the following code: %{src/beatles.py} Are there any bugs?
 ```
 
 With this feature, you can pass the code to ChatGPT and have them write README.md.
 
 ```
-> Please read the code of the tool: %{src/**/*} Then update README.md %{README.md}
+> Please read the code of the tool: %{src/*.cr} %{src/**/*.cr} Then update README.md %{README.md}
 ...
-> %w README.md
+> %w README.md # This will save README.md
 ```
 
 Note: READMEs created this way tend to be characterless. Still, it is marvelous to have a computer write the README for you.
 
-### Web Page Insertion with %%{} (experimental)
+### Web Page Insertion
 
-You can insert the contents of a web page.
+You can pass the contents of web page to ChatGPT by using %{www.example.com}
 
 ```
-> Please choose five interesting topics from %%{https://news.ycombinator.com/}
+> Pick five interesting news items: %%{https://news.ycombinator.com/}
 ```
 
 Here the HTML from the URL is fetched, the words used in the `body` are extracted and passed to ChatGPT. It is much smaller than the raw HTML, but still not enough.
 
 ### Magic Commands
 
-Within the CLI, you can use magic commands to perform various actions:
+During the dialogue, you can use a variety of magic commands, such as:
 
-- `%clear` : Clear all messages
-- `%undo <n>` : Undo last query and response [1]
-- `%write <filename>`: Write the most recent message to a specified file
-- `%w <filename>`: Alias for `write`
+```
+> %clear
+```
+
+Clear all messages. This is useful when you want to change the topic and set TOKEN back to zero.
+
+```
+> %undo <n>
+```
+
+Undo last n query and response [1].  If you make a mistake asking chatgpt or if the reply is not what you are looking for, you can undo.
+
+```
+> %write <filename>
+```
+
+Write the most recent message to a file. Save the text and scripts written by ChatGPT.
+
+```
+> %w <filename>
+```
+
+Alias for `write`. This magic command is used so often that an alias is provided.
+
+
 - `%config`: Edit config file
 - `%system`: Show the current system message
 - `%system <message>`: Set a new system message
@@ -116,9 +138,8 @@ Within the CLI, you can use magic commands to perform various actions:
 - `%debug`: Toggle debug mode
 - `%help`: Show the help
 
-Note that for `%config`, `%data`, and other commands that launch an editor, the editor used can be set by the `EDITOR` environment variable. The default editor is `vim`.
-
-The tool is under development, and the magic commands are still being improved.
+Note that for `%config`, `%data`, and other commands launch an editor. The editor used can be set by the `EDITOR` environment variable.
+Note that the tool is still being improved and the behavior of the magic commands will continue to change.
 
 ### Executing System Commands
 
