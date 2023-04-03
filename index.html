@@ -175,13 +175,13 @@
   </svg>
 </a>Features</h2>
 <ul>
-<li>Interactive command line interface using GNU Readline.</li>
+<li>Interactive command-line interface using GNU Readline.</li>
 <li>Expand file contents from the file path(s) using the placeholder.</li>
 <li>Expand web page contents from the URL using the placeholder.</li>
-<li>Magic commands to <code>clear</code>, <code>undo</code>, <code>edit</code>, <code>write</code>, <code>save</code> and <code>load</code> data.</li>
+<li>Magic commands to <code>clear</code>, <code>undo</code>, <code>edit</code>, <code>write</code>, <code>save</code>, and <code>load</code> data.</li>
 <li>Execute system commands and pass captured stdout and stderr output to ChatGPT.</li>
 <li>Code blocks in the response are saved in temp files and can be referenced from <code>$CODE1</code>, <code>$CODE2</code>...</li>
-<li>Output execution results as HTML. (experimental)</li>
+<li>Output execution results as HTML (experimental).</li>
 <li>Substitution patterns of placeholders can be configurable in the configuration file.</li>
 </ul>
 <h2><a id="installation" class="anchor" href="#installation">
@@ -237,13 +237,13 @@ sudo make install</code></pre>
 <pre><code class="language-bash">chatgpt -i code</code></pre>
 <p>Depending on how you use it, system commands are not always necessary. It works well without them.
 To edit system commands, edit the config file. Type <code>%config</code> to open a text editor.
-<code>code</code> <code>edit</code> <code>poet</code> <code>tran</code> is available by default.</p>
+<code>code</code>, <code>edit</code>, <code>poet</code>, <code>tran</code> are available by default.</p>
 <h3><a id="passing-files-to-chat-gpt" class="anchor" href="#passing-files-to-chat-gpt">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Passing files to ChatGPT</h3>
-<p>You can pass the contents of files to ChatGPT by using <code>%{foo.txt}</code> pattern.</p>
+<p>You can pass the contents of files to ChatGPT by using the <code>%{foo.txt}</code> pattern.</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Please</span> explain the following code: <span class="s">%{src/beatles.py}</span> <span class="t">Are</span> there any bugs?</code></pre>
 <p>With this feature, you can pass the code to ChatGPT and have them write README.md.</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Please</span> read the code <span class="k">of</span> the tool: <span class="s">%{src/*.cr}</span> <span class="s">%{src/**/*.cr}</span> <span class="t">Then</span> update <span class="t">README</span>.md <span class="s">%{README.md}</span>
@@ -255,9 +255,9 @@ To edit system commands, edit the config file. Type <code>%config</code> to open
     <use href="#octicon-link"/>
   </svg>
 </a>Passing Web Pages to ChatGPT</h3>
-<p>You can pass the contents of web page to ChatGPT by using %{www.example.com}</p>
+<p>You can pass the contents of a web page to ChatGPT by using <code>%{www.example.com}</code>.</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Pick</span> five interesting news items: <span class="o">%</span><span class="s">%{https://news.ycombinator.com/}</span></code></pre>
-<p>Here the HTML from the URL is fetched, the words used in the <code>body</code> are extracted and passed to ChatGPT. It is much smaller than the raw HTML, but still not enough.</p>
+<p>Here, the HTML from the URL is fetched, the words used in the <code>body</code> are extracted and passed to ChatGPT. It is much smaller than the raw HTML, but still not enough.</p>
 <h3><a id="magic-commands" class="anchor" href="#magic-commands">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -267,17 +267,17 @@ To edit system commands, edit the config file. Type <code>%config</code> to open
 <pre><code class="language-crystal"><span class="o">%</span>clear</code></pre>
 <p>Clear all messages. This is useful when you want to change the topic and set TOKEN back to zero.</p>
 <pre><code class="language-crystal"><span class="o">%</span>undo <span class="o">&lt;</span>n<span class="o">&gt;</span></code></pre>
-<p>Undo last n query and response [1].  If you make a mistake asking chatgpt or if the reply is not what you are looking for, you can undo.</p>
+<p>Undo the last n query and response [1]. If you make a mistake asking ChatGPT or if the reply is not what you are looking for, you can undo.</p>
 <pre><code class="language-crystal"><span class="o">%</span>write <span class="o">&lt;</span>filename<span class="o">&gt;</span></code></pre>
 <p>Write the most recent message to a file. Save the text and scripts written by ChatGPT.</p>
 <pre><code class="language-crystal"><span class="o">%</span>w <span class="o">&lt;</span>filename<span class="o">&gt;</span></code></pre>
 <p>Alias for <code>write</code>. This magic command is used so often that an alias is provided.</p>
 <pre><code class="language-crystal"><span class="o">%</span>config</code></pre>
-<p>Edit config file. Open a text editor and rewrite the settings.</p>
+<p>Edit the config file. Open a text editor and rewrite the settings.</p>
 <pre><code class="language-crystal"><span class="o">%</span>system</code></pre>
 <p>Show the current system message.</p>
 <pre><code class="language-crystal"><span class="o">%</span>system <span class="o">&lt;</span>message<span class="o">&gt;</span></code></pre>
-<p>Set a new system message. (This behavior is subject to change)</p>
+<p>Set a new system message (this behavior is subject to change).</p>
 <pre><code class="language-crystal"><span class="o">%</span>edit</code></pre>
 <p>Edit data in JSON format. All data passed to ChatGPT can be edited here. You are free to tamper with the past.</p>
 <pre><code class="language-crystal"><span class="o">%</span>html <span class="o">&lt;</span>filename<span class="o">&gt;</span></code></pre>
@@ -287,9 +287,9 @@ To edit system commands, edit the config file. Type <code>%config</code> to open
 <pre><code class="language-crystal"><span class="o">%</span>load <span class="o">&lt;</span>filename<span class="o">&gt;</span></code></pre>
 <p>Load the data. This allows you to do things like &quot;load session&quot;.</p>
 <pre><code class="language-crystal">%resume</code></pre>
-<p>Load data from auto saved data file. We humans forget to save data. Therefore, the last session is automatically saved.</p>
-<pre><code class="language-crystal"><span class="o">%</span>token(s)</code></pre>
-<p>Total tokens used. You will see a more detailed number of TOKEN than is shown in the prompt. Please note that chatgpt-cli does not have the ability to calculate the number of TOKENs. It only displays the ChatGPT response. Therefore, if any edits may have been made, it will be Unknown.</p>
+<p>Load data from auto-saved data file. We humans forget to save data. Therefore, the last session is automatically saved.</p>
+<pre><code class="language-crystal"><span class="o">%</span>tokens</code></pre>
+<p>Total tokens used. You will see a more detailed number of TOKENs than is shown in the prompt. Please note that chatgpt-cli does not have the ability to calculate the number of TOKENs. It only displays the ChatGPT response. Therefore, if any edits may have been made, it will be Unknown.</p>
 <pre><code class="language-crystal"><span class="o">%</span>webapp</code></pre>
 <p>Open the ChatGPT website.</p>
 <pre><code class="language-crystal"><span class="o">%</span>debug</code></pre>
@@ -310,8 +310,8 @@ Note that the tool is still being improved and the behavior of the magic command
 <p>Capture the output of a command for later use:</p>
 <pre><code class="language-bash">&gt; !!git diff</code></pre>
 <p>The standard output can be inserted into the chat with &quot;%STDOUT&quot;.</p>
-<pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Please</span> write commit message: <span class="o">%</span><span class="t">STDOUT</span></code></pre>
-<p>The results can be referenced through the environment variable <code>RESP</code>. (experimental)</p>
+<pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Please</span> write a commit message: <span class="o">%</span><span class="t">STDOUT</span></code></pre>
+<p>The results can be referenced through the environment variable <code>RESP</code> (experimental).</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="o">!</span>git commit <span class="o">-</span>m <span class="s">&quot;$RESP&quot;</span></code></pre>
 <p>The contents of the standard error output can also be inserted into the chat with &quot;%STDERR&quot;.</p>
 <pre><code class="language-bash">&gt; !!wrong_command
@@ -354,7 +354,7 @@ Type <code>%config</code>.</p>
     <use href="#octicon-link"/>
   </svg>
 </a>Uninstallation</h2>
-<p>chatgpt-cli uses the following 3 files and directories This is all there is to it.</p>
+<p>ChatGPT CLI uses the following 3 files and directories. This is all there is to it.</p>
 <pre><code class="language-sh">rm /usr/local/bin/chatgpt   # Remove the executable
 rm -r ~/.config/chatgpt-cli # Remove the config directory
 rm ~/.chatgpt_history       # Remove command history</code></pre>
@@ -374,7 +374,7 @@ cd chatgpt-cli
 shards install
 shards build --release
 bin/chatgpt</code></pre>
-<p>What is a good way to distribute command line tools created in Crystal? I am looking for someone to help us.</p>
+<p>What is a good way to distribute command-line tools created in Crystal? I am looking for someone to help us.</p>
 <p>You can quickly try development by using <a href="https://www.gitpod.io/">Gitpod</a>.</p>
 <h2><a id="license" class="anchor" href="#license">
   <svg class="octicon-link" aria-hidden="true">
