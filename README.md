@@ -185,6 +185,12 @@ Load data from auto saved data file. We humans forget to save data. Therefore, t
 Total tokens used. You will see a more detailed number of TOKEN than is shown in the prompt. Please note that chatgpt-cli does not have the ability to calculate the number of TOKENs. It only displays the ChatGPT response. Therefore, if any edits may have been made, it will be Unknown.
 
 ```
+%webapp
+```
+
+Open the ChatGPT website.
+
+```
 %debug
 ```
 
