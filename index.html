@@ -307,11 +307,11 @@ Note that the tool is still being improved and the behavior of the magic command
 <p>Execute a command, and display the output immediately:</p>
 <pre><code class="language-bash">&gt; !pwd</code></pre>
 <p>This way you can also run commands like <code>vim</code> and <code>top</code>.</p>
-<h4><a id="capture" class="anchor" href="#capture">
+<h4><a id="capture-stdout-and-stderr" class="anchor" href="#capture-stdout-and-stderr">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Capture</h4>
+</a>Capture STDOUT and STDERR</h4>
 <p>Capture the output of a command for later use:</p>
 <pre><code class="language-bash">&gt; !!git diff</code></pre>
 <p>The standard output can be inserted into the chat with <code>%STDOUT</code>.</p>
@@ -324,11 +324,11 @@ Note that the tool is still being improved and the behavior of the magic command
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Explain</span> the meaning <span class="k">of</span> this error message: <span class="o">%</span><span class="t">STDERR</span></code></pre>
 <p>You can also use <code>!{ cmd }</code>. In this case, it will be replaced by the contents of standard input</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">What</span> time is it now? <span class="t">Hint</span>: <span class="o">!</span>{date}</code></pre>
-<h4><a id="code-blocks-in-the-response" class="anchor" href="#code-blocks-in-the-response">
+<h4><a id="run-code-blocks-in-the-response" class="anchor" href="#run-code-blocks-in-the-response">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Code Blocks in the Response</h4>
+</a>Run Code Blocks in the Response</h4>
 <p>When ChatGPT returns code blocks, ChatGPT CLI saves these blocks temporarily and assigns them to environment variables named <code>CODE1</code>, <code>CODE2</code>, ... and so on. This allows you to execute the code blocks on your computer.</p>
 <pre><code class="language-md">&gt; Write code to display 1 to 10 in Python and Ruby.
 &gt; Python:
