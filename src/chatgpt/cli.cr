@@ -157,7 +157,7 @@ module ChatGPT
 
     private def set_response_env(msg, name)
       if ENV.has_key?(name)
-        STDERR.puts "Warning: overwriting #{name} environment variable"._colorize(:warning, :bold)
+        STDERR.puts "Overwriting #{name} environment variable"._colorize(:debug) if debug_mode?
         STDERR.flush
       end
       ENV[name] = msg
@@ -177,7 +177,7 @@ module ChatGPT
         end
         code_blocks << temp_file
         if ENV.has_key?("CODE#{index}")
-          STDERR.puts "Warning: overwriting CODE#{index} environment variable"._colorize(:warning, :bold)
+          STDERR.puts "Overwriting CODE#{index} environment variable"._colorize(:debug) if debug_mode?
           STDERR.flush
         end
         ENV["CODE#{index}"] = temp_file.path
@@ -188,6 +188,10 @@ module ChatGPT
       STDERR.puts "Error: #{response.status_code} #{response.status}"._colorize(:warning, :bold)
       STDERR.puts response.body._colorize(:warning)
       STDERR.puts "Hint: try %undo, %edit, %clear, %model or %help"._colorize(:warning, :bold)
+    end
+
+    private def debug_mode?
+      DEBUG_FLAG[0]
     end
   end
 end
