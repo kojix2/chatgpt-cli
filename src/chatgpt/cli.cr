@@ -168,9 +168,10 @@ module ChatGPT
       return if code_block_matches.empty?
 
       code_blocks.each_with_index(1) do |f, index|
-        f.delete
+        f.delete if File.exists?(f.path)
         ENV.delete("CODE#{index}")
       end
+      code_blocks.clear
       code_block_matches.each_with_index(1) do |match, index|
         temp_file = File.tempfile("chatgpt") do |f|
           f.print(match[1])
