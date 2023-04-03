@@ -214,7 +214,7 @@ Execute a command, and display the output immediately:
 
 This way you can also run commands like `vim` and `top`.
 
-#### Capture
+#### Capture STDOUT and STDERR
 
 Capture the output of a command for later use:
 
@@ -251,7 +251,7 @@ You can also use `!{ cmd }`. In this case, it will be replaced by the contents o
 > What time is it now? Hint: !{date}
 ```
 
-#### Code Blocks in the Response
+#### Run Code Blocks in the Response
 
 When ChatGPT returns code blocks, ChatGPT CLI saves these blocks temporarily and assigns them to environment variables named `CODE1`, `CODE2`, ... and so on. This allows you to execute the code blocks on your computer. 
 
