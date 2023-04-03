@@ -16,12 +16,12 @@ module ChatGPT
         self.banner =
           <<-BANNER
         
-        Program: #{PROGRAM_NAME}
-        Version: #{VERSION}
-        Source: #{SOURCE_URL}
+          Program: #{PROGRAM_NAME}
+          Version: #{VERSION}
+          Source: #{SOURCE_URL}
 
-        Usage: #{PROGRAM_NAME} [options]
-        BANNER
+          Usage: #{PROGRAM_NAME} [options]
+          BANNER
         on "-m MODEL", "--model MODEL", "Model name [gpt-3.5-turbo]" do |v|
           data.model = v.to_s
         end
