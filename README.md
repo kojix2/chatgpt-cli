@@ -302,6 +302,8 @@ bin/chatgpt
 
 What is a good way to distribute command line tools created in Crystal? I am looking for someone to help us.
 
+You can quickly try development by using [Gitpod](https://www.gitpod.io/).
+
 ## License
 
 This project is open-source and available under the terms of the [MIT License](https://opensource.org/licenses/MIT).
