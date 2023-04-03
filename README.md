@@ -71,7 +71,7 @@ Depending on how you use it, system commands are not always necessary. It works 
 To edit system commands, edit the config file. Type `%config` to open a text editor. 
 `code`, `edit`, `poet`, `tran` are available by default.
 
-### Passing files to ChatGPT
+### Passing Files to ChatGPT
 
 You can pass the contents of files to ChatGPT by using the `%{foo.txt}` pattern.
 
@@ -101,7 +101,7 @@ Here, the HTML from the URL is fetched, the words used in the `body` are extract
 
 ### Magic Commands
 
-During the dialogue, you can use a variety of magic commands, such as:
+During the dialogue, you can use a variety of magic commands.
 
 ```
 %clear
