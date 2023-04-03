@@ -167,21 +167,31 @@ module ChatGPT
       code_block_matches = result_msg.scan(/```.*?\n(.*?)```/m)
       return if code_block_matches.empty?
 
+      env_prefix = "CODE" # FIXIT make this configurable
+      # Remove temporary files and environment variables for previous code blocks
       code_blocks.each_with_index(1) do |f, index|
+        env_name = "#{env_prefix}#{index}"
         f.delete if File.exists?(f.path)
-        ENV.delete("CODE#{index}")
+        ENV.delete(env_name)
       end
       code_blocks.clear
+      # Create temporary files and environment variables for new code blocks
       code_block_matches.each_with_index(1) do |match, index|
-        temp_file = File.tempfile("chatgpt") do |f|
-          f.print(match[1])
+        env_name = "#{env_prefix}#{index}"
+        temp_file = File.tempfile("chatgpt-codeblock") do |f|
+          code = match[1]
+          f.print(code)
         end
         code_blocks << temp_file
-        if ENV.has_key?("CODE#{index}")
-          STDERR.puts "Overwriting CODE#{index} environment variable"._colorize(:debug) if debug_mode?
-          STDERR.flush
-        end
-        ENV["CODE#{index}"] = temp_file.path
+        check_env(env_name)
+        ENV[env_name] = temp_file.path
+      end
+    end
+
+    private def check_env(name)
+      if ENV.has_key?(name) && debug_mode?
+        STDERR.puts "Overwriting #{name} environment variable"._colorize(:debug)
+        STDERR.flush
       end
     end
 
