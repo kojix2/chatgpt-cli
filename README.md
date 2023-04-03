@@ -6,7 +6,7 @@
 
 ## Features
 
-- Interactive command-line interface using [GNU Readline](https://en.wikipedia.org/wiki/GNU_Readline).
+- Interactive command-line interface using [GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html) with [Emacs keyboard shortcuts](https://en.wikipedia.org/wiki/GNU_Readline).
 - Expand file contents from the file path(s) using the placeholder.
 - Expand web page contents from the URL using the placeholder.
 - Magic commands to `clear`, `undo`, `edit`, `write`, `save`, and `load` data.
@@ -301,6 +301,12 @@ ChatGPT CLI uses the following 3 files and directories. This is all there is to 
 rm /usr/local/bin/chatgpt   # Remove the executable
 rm -r ~/.config/chatgpt-cli # Remove the config directory
 rm ~/.chatgpt_history       # Remove command history
+```
+
+Or
+
+```
+sudo make uninstall
 ```
 
 ## Contributing
