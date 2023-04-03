@@ -33,6 +33,8 @@ ChatGPT CLI is a command-line interface tool for interacting with OpenAI's [Chat
    export OPENAI_API_KEY="your_openai_api_key"
    ```
 
+- You can also get binaries compiled using Github Actions from the [Release](https://github.com/kojix2/chatgpt-cli/releases) page. They are not statically compiled and require shared libraries such as `libssl` and `libcrypto`.
+
 ## Usage
 
 To start using ChatGPT CLI, run the `chatgpt` command in your terminal:
