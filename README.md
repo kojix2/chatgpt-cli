@@ -2,11 +2,11 @@
 
 [![build](https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml/badge.svg)](https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml)
 
-ChatGPT CLI is a command-line interface tool for interacting with OpenAI's [ChatGPT API](https://platform.openai.com/docs/api-reference/chat). It allows users to communicate with the GPT model, adjust API parameters, use magic commands, insert file contents, fetch content from URLs, and execute system commands while chatting.
+[ChatGPT CLI](https://github.com/kojix2/chatgpt-cli/) is a command-line interface tool for interacting with OpenAI's [ChatGPT API](https://platform.openai.com/docs/api-reference/chat). It allows users to communicate with the GPT model, adjust API parameters, use magic commands, insert file contents, fetch content from URLs, and execute system commands while chatting.
 
 ## Features
 
-- Interactive command-line interface using GNU Readline.
+- Interactive command-line interface using [GNU Readline](https://en.wikipedia.org/wiki/GNU_Readline).
 - Expand file contents from the file path(s) using the placeholder.
 - Expand web page contents from the URL using the placeholder.
 - Magic commands to `clear`, `undo`, `edit`, `write`, `save`, and `load` data.
@@ -91,6 +91,8 @@ With this feature, you can pass the code to ChatGPT and have them write README.m
 
 Note: READMEs created this way tend to be characterless. Still, it is marvelous to have a computer write the README for you.
 
+`%{}` can be changed in the config file.
+
 ### Passing Web Pages to ChatGPT
 
 You can pass the contents of a web page to ChatGPT by using `%{www.example.com}`.
@@ -100,6 +102,8 @@ You can pass the contents of a web page to ChatGPT by using `%{www.example.com}`
 ```
 
 Here, the HTML from the URL is fetched, the words used in the `body` are extracted and passed to ChatGPT. It is much smaller than the raw HTML, but still not enough.
+
+`%%{}` can be changed in the config file.
 
 ### Magic Commands
 
@@ -176,6 +180,12 @@ Load the data. This allows you to do things like "load session".
 ```
 
 Load data from auto-saved data file. We humans forget to save data. Therefore, the last session is automatically saved.
+
+```
+%model <name>
+```
+
+You can change the model used in the next request. For example, if you find your question is too difficult for gpt-3.5-turbo, you can change to gpt-4 at that point.
 
 ```
 %tokens
@@ -279,7 +289,7 @@ Ruby:
 ## Configuration
 
 The system messages used by ChatGPT CLI can be customized through the `config.json` file. The file is located in `~/.config/chatgpt-cli/` by default.
-Type `%config`. 
+Type `%config` to launch editor. Placeholders such as `%{}` and `%%{}` can be set with regular expressions
 
 Configuration files are often changed to make more items configurable. Please see config.json in the repository for the latest information.
 
