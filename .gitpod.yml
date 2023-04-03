@@ -5,6 +5,9 @@
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
 
 tasks:
+  - name: Init
+  - before: sudo apt-get install -y cmake
   - init: curl -fsSL https://crystal-lang.org/install.sh | sudo bash
+  - command: make
 
 
