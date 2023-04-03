@@ -307,13 +307,18 @@ Note that the tool is still being improved and the behavior of the magic command
 <p>Execute a command, and display the output immediately:</p>
 <pre><code class="language-bash">&gt; !pwd</code></pre>
 <p>This way you can also run commands like <code>vim</code> and <code>top</code>.</p>
+<h4><a id="capture" class="anchor" href="#capture">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Capture</h4>
 <p>Capture the output of a command for later use:</p>
 <pre><code class="language-bash">&gt; !!git diff</code></pre>
-<p>The standard output can be inserted into the chat with &quot;%STDOUT&quot;.</p>
+<p>The standard output can be inserted into the chat with <code>%STDOUT</code>.</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Please</span> write a commit message: <span class="o">%</span><span class="t">STDOUT</span></code></pre>
 <p>The results can be referenced through the environment variable <code>RESP</code> (experimental).</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="o">!</span>git commit <span class="o">-</span>m <span class="s">&quot;$RESP&quot;</span></code></pre>
-<p>The contents of the standard error output can also be inserted into the chat with &quot;%STDERR&quot;.</p>
+<p>The contents of the standard error output can also be inserted into the chat with <code>%STDERR</code>.</p>
 <pre><code class="language-bash">&gt; !!wrong_command
 </code></pre>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Explain</span> the meaning <span class="k">of</span> this error message: <span class="o">%</span><span class="t">STDERR</span></code></pre>
