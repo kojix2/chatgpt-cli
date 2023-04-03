@@ -154,6 +154,13 @@ module ChatGPT
           "method"      => "show_history",
         },
         {
+          "name"        => "webapp",
+          "description" => "Open ChatGPT webapp",
+          "pattern"     => "webapp",
+          "n_args"      => 0,
+          "method"      => "open_webapp",
+        },
+        {
           "name"        => "help",
           "description" => "Show this help",
           "pattern"     => "help",
@@ -379,6 +386,11 @@ module ChatGPT
 
     def show_config
       open_editor(Config::CONFIG_FILE)
+      true
+    end
+
+    def open_webapp
+      open_browser("https://chat.openai.com/")
       true
     end
 
