@@ -6,13 +6,13 @@ ChatGPT CLI is a command-line interface tool for interacting with OpenAI's [Chat
 
 ## Features
 
-- Interactive command line interface using GNU Readline.
+- Interactive command-line interface using GNU Readline.
 - Expand file contents from the file path(s) using the placeholder.
 - Expand web page contents from the URL using the placeholder.
-- Magic commands to `clear`, `undo`, `edit`, `write`, `save` and `load` data.
+- Magic commands to `clear`, `undo`, `edit`, `write`, `save`, and `load` data.
 - Execute system commands and pass captured stdout and stderr output to ChatGPT.
 - Code blocks in the response are saved in temp files and can be referenced from `$CODE1`, `$CODE2`...
-- Output execution results as HTML. (experimental)
+- Output execution results as HTML (experimental).
 - Substitution patterns of placeholders can be configurable in the configuration file.
 
 ## Installation
@@ -69,11 +69,11 @@ chatgpt -i code
 
 Depending on how you use it, system commands are not always necessary. It works well without them.
 To edit system commands, edit the config file. Type `%config` to open a text editor. 
-`code` `edit` `poet` `tran` is available by default.
+`code`, `edit`, `poet`, `tran` are available by default.
 
 ### Passing files to ChatGPT
 
-You can pass the contents of files to ChatGPT by using `%{foo.txt}` pattern.
+You can pass the contents of files to ChatGPT by using the `%{foo.txt}` pattern.
 
 ```
 > Please explain the following code: %{src/beatles.py} Are there any bugs?
@@ -91,13 +91,13 @@ Note: READMEs created this way tend to be characterless. Still, it is marvelous 
 
 ### Passing Web Pages to ChatGPT
 
-You can pass the contents of web page to ChatGPT by using %{www.example.com}
+You can pass the contents of a web page to ChatGPT by using `%{www.example.com}`.
 
 ```
 > Pick five interesting news items: %%{https://news.ycombinator.com/}
 ```
 
-Here the HTML from the URL is fetched, the words used in the `body` are extracted and passed to ChatGPT. It is much smaller than the raw HTML, but still not enough.
+Here, the HTML from the URL is fetched, the words used in the `body` are extracted and passed to ChatGPT. It is much smaller than the raw HTML, but still not enough.
 
 ### Magic Commands
 
@@ -113,7 +113,7 @@ Clear all messages. This is useful when you want to change the topic and set TOK
 %undo <n>
 ```
 
-Undo last n query and response [1].  If you make a mistake asking chatgpt or if the reply is not what you are looking for, you can undo.
+Undo the last n query and response [1]. If you make a mistake asking ChatGPT or if the reply is not what you are looking for, you can undo.
 
 ```
 %write <filename>
@@ -127,12 +127,11 @@ Write the most recent message to a file. Save the text and scripts written by Ch
 
 Alias for `write`. This magic command is used so often that an alias is provided.
 
-
 ```
 %config
 ```
 
-Edit config file. Open a text editor and rewrite the settings.
+Edit the config file. Open a text editor and rewrite the settings.
 
 ```
 %system
@@ -144,7 +143,7 @@ Show the current system message.
 %system <message>
 ```
 
-Set a new system message. (This behavior is subject to change)
+Set a new system message (this behavior is subject to change).
 
 ```
 %edit
@@ -158,13 +157,11 @@ Edit data in JSON format. All data passed to ChatGPT can be edited here. You are
 
 Export the conversation to HTML and launch your browser. This feature is useful when you want to save a conversation or check path expansion, etc. (Experimental and the output HTML may not be correct)
 
-
 ```
 %save <filename>
 ```
 
 Save the data. This allows you to do things like "save session". The file is a JSON file to be posted to ChatGPT.
-
 
 ```
 %load <filename>
@@ -176,13 +173,13 @@ Load the data. This allows you to do things like "load session".
 %resume
 ```
 
-Load data from auto saved data file. We humans forget to save data. Therefore, the last session is automatically saved.
+Load data from auto-saved data file. We humans forget to save data. Therefore, the last session is automatically saved.
 
 ```
-%token(s)
+%tokens
 ```
 
-Total tokens used. You will see a more detailed number of TOKEN than is shown in the prompt. Please note that chatgpt-cli does not have the ability to calculate the number of TOKENs. It only displays the ChatGPT response. Therefore, if any edits may have been made, it will be Unknown.
+Total tokens used. You will see a more detailed number of TOKENs than is shown in the prompt. Please note that chatgpt-cli does not have the ability to calculate the number of TOKENs. It only displays the ChatGPT response. Therefore, if any edits may have been made, it will be Unknown.
 
 ```
 %webapp
@@ -226,10 +223,10 @@ Capture the output of a command for later use:
 The standard output can be inserted into the chat with "%STDOUT".
 
 ```
-> Please write commit message: %STDOUT
+> Please write a commit message: %STDOUT
 ```
 
-The results can be referenced through the environment variable `RESP`. (experimental)
+The results can be referenced through the environment variable `RESP` (experimental).
 
 ```
 > !git commit -m "$RESP"
@@ -284,7 +281,7 @@ The config file may change frequently. Please see config.json in the repository 
 
 ## Uninstallation
 
-chatgpt-cli uses the following 3 files and directories This is all there is to it.
+ChatGPT CLI uses the following 3 files and directories. This is all there is to it.
 
 ```sh
 rm /usr/local/bin/chatgpt   # Remove the executable
@@ -306,10 +303,11 @@ shards build --release
 bin/chatgpt
 ```
 
-What is a good way to distribute command line tools created in Crystal? I am looking for someone to help us.
+What is a good way to distribute command-line tools created in Crystal? I am looking for someone to help us.
 
 You can quickly try development by using [Gitpod](https://www.gitpod.io/).
 
 ## License
 
 This project is open-source and available under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
