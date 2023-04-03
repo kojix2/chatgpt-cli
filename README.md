@@ -279,7 +279,7 @@ Ruby:
 The system messages used by ChatGPT CLI can be customized through the `config.json` file. The file is located in `~/.config/chatgpt-cli/` by default.
 Type `%config`. 
 
-The config file may change frequently. Please see config.json in the repository for the latest information.
+Configuration files are often changed to make more items configurable. Please see config.json in the repository for the latest information.
 
 ## Uninstallation
 
