@@ -1,0 +1,58 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build_release_x64:
+    name: Build Release x64
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, ARM64]
+        include:
+          - os: macos-latest
+            release_suffix: mac-amd64
+          - os: ubuntu-latest
+            release_suffix: linux-x86_64
+          - os: ARM64
+            release_suffix: mac-arm64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Linux Build
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          docker run -d --name alpine -v $(pwd):/workspace -w /workspace crystallang/crystal:latest-alpine tail -f /dev/null
+          docker exec alpine apk add cmake build-base readline-dev readline-static ncurses-dev ncurses-static ncurses-libs 
+          docker exec alpine shards install --without-development --release --static
+          docker exec alpine shards build --release --static
+          docker exec alpine chmod +x bin/chatgpt
+
+      - name: Run Mac Build x64
+        if: matrix.os == 'macos-latest'
+        run: |
+          shards install --without-development --release
+          shards build --release
+          chmod +x bin/chatgpt
+
+      - name: Run Mac Build ARM
+        if: matrix.os == 'ARM64'
+        run: |
+          shards install --without-development --release
+          shards build --release
+          chmod +x bin/chatgpt
+
+      - name: Upload Release Asset
+          cp bin/chatgpt chatgpt-cli-${{ matrix.release_suffix }}
+          gh release create ${{ env.VERSION }} -n "${{ env.MESSAGE }}" -t "${{ env.NAME }}" || true
+          gh release upload ${{ env.VERSION }} ${{ env.FILES }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ github.ref_name }}
+          MESSAGE: "WIP"
+          NAME: ${{ github.ref_name }}
+          FILES: chatgpt-cli-${{ matrix.release_suffix }}

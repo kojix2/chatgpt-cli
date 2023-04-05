@@ -24,10 +24,3 @@ jobs:
         with:
           name: excutable-${{ matrix.os }}
           path: bin/chatgpt-${{ matrix.os }}
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          files: |
-            bin/chatgpt-${{ matrix.os }}
-            LICENSE.txt
