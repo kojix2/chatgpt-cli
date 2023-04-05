@@ -62,6 +62,19 @@ Usage: bin/chatgpt [options]
     -h, --help                       Print help
 ```
 
+Restore the previous chat and use the gpt-4 model.
+
+```
+chatgpt -r -m gpt-4
+```
+
+Note that short options cannot be concatenated.
+
+```
+chatgpt -rm gpt-4
+# Error: Invalid option: -rm
+```
+
 ### Selecting ChatGPT System Commands
 
 Select pre-registered system commands:
