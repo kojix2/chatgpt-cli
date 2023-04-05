@@ -83,13 +83,15 @@ Start ChatGPT CLI.
 chatgpt
 ```
 
-Writes to the prompt. It utilize GNU Readline, so Emacs shortcuts are available such as `↑` `↓`
+Write your message. It utilizes GNU Readline, so Emacs shortcuts are available such as `↑` `↓`
 
 ```
 > Hi
 ```
 
-You can cancel a query to ChatGPT with `Ctrl + C`. This is especially useful when you make a writing mistake and it takes a long time to reply.
+You can cancel a query to ChatGPT with `Ctrl + C`. This is especially useful when you make a writing mistake, and it takes a long time to reply.
+
+Unfortunately, line breaks are not currently supported, but still you can copy-paste line breaks.
 
 ### Selecting ChatGPT System Commands
 
