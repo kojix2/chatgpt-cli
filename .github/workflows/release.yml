@@ -23,6 +23,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install Crystal
+        uses: crystal-lang/install-crystal@v1
+        with:
+          crystal: latest
+
       - name: Run Linux Build
         if: matrix.os == 'ubuntu-latest'
         run: |
