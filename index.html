@@ -232,6 +232,11 @@ sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.</code
     -p Float, --top_p Float          Probability threshold of nucleus sampling [1.0]
     -v, --version                    Print version info and exit
     -h, --help                       Print help</code></pre>
+<p>Restore the previous chat and use the gpt-4 model.</p>
+<pre><code class="language-crystal">chatgpt <span class="o">-</span>r <span class="o">-</span>m gpt<span class="n">-4</span></code></pre>
+<p>Note that short options cannot be concatenated.</p>
+<pre><code class="language-crystal">chatgpt <span class="o">-</span>rm gpt<span class="n">-4</span>
+<span class="c"># Error: Invalid option: -rm</span></code></pre>
 <h3><a id="selecting-chat-gpt-system-commands" class="anchor" href="#selecting-chat-gpt-system-commands">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
