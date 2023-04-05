@@ -237,6 +237,16 @@ sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.</code
 <p>Note that short options cannot be concatenated.</p>
 <pre><code class="language-crystal">chatgpt <span class="o">-</span>rm gpt<span class="n">-4</span>
 <span class="c"># Error: Invalid option: -rm</span></code></pre>
+<h3><a id="using-r-interactively" class="anchor" href="#using-r-interactively">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Using R interactively</h3>
+<p>Start ChatGPT CLI.</p>
+<pre><code class="language-crystal">chatgpt</code></pre>
+<p>Writes to the prompt. It utilize GNU Readline, so Emacs shortcuts are available.</p>
+<pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Hi</span></code></pre>
+<p>You can cancel a query to ChatGPT with <code>Ctrl + C</code>. This is especially useful when you make a writing mistake and it takes a long time to reply.</p>
 <h3><a id="selecting-chat-gpt-system-commands" class="anchor" href="#selecting-chat-gpt-system-commands">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
