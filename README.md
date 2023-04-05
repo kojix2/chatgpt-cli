@@ -83,7 +83,7 @@ Start ChatGPT CLI.
 chatgpt
 ```
 
-Writes to the prompt. It utilize GNU Readline, so Emacs shortcuts are available.
+Writes to the prompt. It utilize GNU Readline, so Emacs shortcuts are available such as `↑` `↓`
 
 ```
 > Hi
