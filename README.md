@@ -51,6 +51,7 @@ You can set various options when running the `chatgpt` command:
 
 ```
 Usage: bin/chatgpt [options]
+    -r, --resume                     Resume the session (other options are ignored)
     -m MODEL, --model MODEL          Model name [gpt-3.5-turbo]
     -i ID, --id ID                   ID of the custom system message
     -s STR, --system STR             System message
