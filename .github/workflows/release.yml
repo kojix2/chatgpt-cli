@@ -10,14 +10,12 @@ jobs:
     name: Build Release x64
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, ARM64]
+        os: [ubuntu-latest, macos-latest]
         include:
           - os: macos-latest
             release_suffix: mac-amd64
           - os: ubuntu-latest
             release_suffix: linux-x86_64
-          - os: ARM64
-            release_suffix: mac-arm64
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout code
