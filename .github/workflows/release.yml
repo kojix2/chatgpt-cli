@@ -1,4 +1,4 @@
-name: Create Release
+name: release
 
 on:
   push:
@@ -52,6 +52,7 @@ jobs:
           chmod +x bin/chatgpt
 
       - name: Upload Release Asset
+        run: |
           cp bin/chatgpt chatgpt-cli-${{ matrix.release_suffix }}
           gh release create ${{ env.VERSION }} -n "${{ env.MESSAGE }}" -t "${{ env.NAME }}" || true
           gh release upload ${{ env.VERSION }} ${{ env.FILES }}
