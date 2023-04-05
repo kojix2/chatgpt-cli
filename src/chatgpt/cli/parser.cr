@@ -22,6 +22,9 @@ module ChatGPT
 
           Usage: #{PROGRAM_NAME} [options]
           BANNER
+        on "-r", "--resume", "Resume the session" do
+          load_session(Config::POST_DATA_FILE)
+        end
         on "-m MODEL", "--model MODEL", "Model name [gpt-3.5-turbo]" do |v|
           data.model = v.to_s
         end
@@ -40,9 +43,6 @@ module ChatGPT
         end
         on "-p Float", "--top_p Float", "Probability threshold of nucleus sampling [1.0]" do |v|
           data.top_p = v.to_f? || (STDERR.puts "Error: Invalid top_p"; exit 1)
-        end
-        on "-r", "--resume", "Resume the session (other options are ignored)" do
-          load_session(Config::POST_DATA_FILE)
         end
         on "-l FILE", "--load FILE", "Load session from file (other options are ignored)" do |v|
           load_session(v.to_s)
