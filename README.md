@@ -75,6 +75,22 @@ chatgpt -rm gpt-4
 # Error: Invalid option: -rm
 ```
 
+### Using R interactively
+
+Start ChatGPT CLI.
+
+```
+chatgpt
+```
+
+Writes to the prompt. It utilize GNU Readline, so Emacs shortcuts are available.
+
+```
+> Hi
+```
+
+You can cancel a query to ChatGPT with `Ctrl + C`. This is especially useful when you make a writing mistake and it takes a long time to reply.
+
 ### Selecting ChatGPT System Commands
 
 Select pre-registered system commands:
