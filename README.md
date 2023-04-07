@@ -2,7 +2,7 @@
 
 [![build](https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml/badge.svg)](https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml)
 
-[ChatGPT CLI](https://github.com/kojix2/chatgpt-cli/) is a command-line interface tool for interacting with OpenAI's [ChatGPT API](https://platform.openai.com/docs/api-reference/chat). It allows users to communicate with the GPT model, adjust API parameters, use magic commands, insert file contents, fetch content from URLs, and execute system commands while chatting.
+[ChatGPT CLI](https://github.com/kojix2/chatgpt-cli/) is a command-line interface tool that interacts with OpenAI's [ChatGPT API](https://platform.openai.com/docs/api-reference/chat). It allows users to communicate with GPT models, adjust API parameters, use magic commands, insert file contents, fetch content from URLs, and execute system commands while chatting.
 
 ## Features
 
@@ -12,7 +12,7 @@
 - Magic commands to `clear`, `undo`, `edit`, `write`, `save`, and `load` data.
 - Execute system commands and pass captured stdout and stderr output to ChatGPT.
 - Code blocks in the response are saved in temp files and can be referenced from `$CODE1`, `$CODE2`...
-- Output execution results as HTML (experimental).
+- Output execution results in HTML (experimental).
 - Substitution patterns of placeholders can be configurable in the configuration file.
 
 ## Installation
@@ -35,8 +35,7 @@ chmod +x chatgpt
 sudo mv chatgpt /usr/local/bin/
 ```
 
-They are not statically compiled and require shared libraries such as `libssl` and `libcrypto`. 
-Please check `otool -L /usr/local/bin/chatgpt` if you get errors.
+Note: These binaries are not statically compiled and require shared libraries, such as `libssl` and `libcrypto`. If you encounter any errors, please check the required libraries by running `otool -L /usr/local/bin/chatgpt`.
 
 ### From source code
 
@@ -50,7 +49,7 @@ Please check `otool -L /usr/local/bin/chatgpt` if you get errors.
    sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.
    ```
 
-### Set your [OpenAI API key](https://platform.openai.com/account/api-keys) as an environment variable:
+### Set your [OpenAI API key](https://platform.openai.com/account/api-keys) as an environment variable by running:
 
    ```bash
    export OPENAI_API_KEY="your_openai_api_key"
@@ -104,7 +103,7 @@ Start ChatGPT CLI.
 chatgpt
 ```
 
-Write your message. It utilizes GNU Readline, so Emacs shortcuts are available such as `↑` `↓`
+Write your message using GNU Readline, which supports [Emacs shortcuts](https://en.wikipedia.org/wiki/GNU_Readline), such as `↑` and `↓`.
 
 ```
 > Hi
@@ -123,7 +122,7 @@ chatgpt -i code
 ```
 
 Depending on how you use it, system commands are not always necessary. It works well without them.
-To edit system commands, edit the config file. Type `%config` to open a text editor.
+To modify system commands, you can edit the config file. Type `%config` to open the config file in a text editor.
 `code`, `edit`, `poet`, `tran` are available by default.
 
 ### Passing Files to ChatGPT
@@ -299,7 +298,7 @@ The results can be referenced through the environment variable `RESP` (experimen
 > !git commit -m "$RESP"
 ```
 
-The contents of the standard error output can also be inserted into the chat with `%STDERR`.
+You can also insert the contents of the standard error output into the chat using `%STDERR`.
 
 ```bash
 > !!wrong_command
@@ -352,7 +351,7 @@ Save code block.
 The system messages used by ChatGPT CLI can be customized through the `config.json` file. The file is located in `~/.config/chatgpt-cli/` by default.
 Type `%config` to launch editor. Placeholders such as `%{}` and `%%{}` can be set with regular expressions
 
-Configuration files are often changed to make more items configurable. Please see config.json in the repository for the latest information.
+Please refer to the latest `config.json` file in the repository for the most recent information.
 
 ## Uninstallation
 
@@ -395,4 +394,4 @@ You can quickly try development by using [Gitpod](https://www.gitpod.io/).
 
 ## License
 
-This project is open-source and available under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+This project is open source and available under the terms of the [MIT License](https://opensource.org/licenses/MIT).
