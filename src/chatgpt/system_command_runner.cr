@@ -23,13 +23,13 @@ module ChatGPT
 
     private def run(command, record = true)
       if record
-        run_record(command)
+        run_with_record(command)
       else
-        run_no_record(command)
+        run_without_record(command)
       end
     end
 
-    private def run_record(command)
+    private def run_with_record(command)
       stdout = IO::Memory.new
       stderr = IO::Memory.new
       flag = false
@@ -47,7 +47,7 @@ module ChatGPT
       STDERR.puts last_stderr._colorize(:stderr)
     end
 
-    private def run_no_record(command)
+    private def run_without_record(command)
       system(command)
     end
   end
