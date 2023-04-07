@@ -376,15 +376,20 @@ Bug reports and pull requests are welcome on GitHub at [https://github.com/kojix
 
 ## Development
 
+Building:
+
 ```bash
 git clone https://github.com/kojix2/chatgpt-cli
 cd chatgpt-cli
 shards install
-shards build --release
-bin/chatgpt
+shards build
 ```
 
-What is a good way to distribute command-line tools created in Crystal? I am looking for someone to help us.
+Testing:
+
+```
+crystal spec
+```
 
 You can quickly try development by using [Gitpod](https://www.gitpod.io/).
 
