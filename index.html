@@ -189,6 +189,29 @@
     <use href="#octicon-link"/>
   </svg>
 </a>Installation</h2>
+<h3><a id="linux" class="anchor" href="#linux">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Linux</h3>
+<pre><code class="language-crystal">curl -L -o chatgpt https://github.com/kojix2/chatgpt-cli/releases/download/v0.1.9/chatgpt-cli-linux-x86_64
+chmod +x chatgpt-linux-64
+sudo mv chatgpt /usr/local/bin/</code></pre>
+<h3><a id="mac-os" class="anchor" href="#mac-os">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>macOS</h3>
+<pre><code class="language-crystal">curl -L -o chatgpt https://github.com/kojix2/chatgpt-cli/releases/download/v0.1.9/chatgpt-cli-mac-amd64
+chmod +x chatgpt-linux-64
+sudo mv chatgpt /usr/local/bin/</code></pre>
+<p>They are not statically compiled and require shared libraries such as <code>libssl</code> and <code>libcrypto</code>.
+Please check <code>otool -L /usr/local/bin/chatgpt</code> if you get errors.</p>
+<h3><a id="from-source-code" class="anchor" href="#from-source-code">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>From source code</h3>
 <ol>
 <li>
 <p>Install <a href="https://github.com/crystal-lang/crystal">Crystal</a></p>
@@ -200,14 +223,13 @@ cd chatgpt-cli
 make
 sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.</code></pre>
 </li>
-<li>
-<p>Set your <a href="https://platform.openai.com/account/api-keys">OpenAI API key</a> as an environment variable:</p>
-<pre><code class="language-bash">export OPENAI_API_KEY=&quot;your_openai_api_key&quot;</code></pre>
-</li>
 </ol>
-<ul>
-<li>You can also get binaries compiled using Github Actions from the <a href="https://github.com/kojix2/chatgpt-cli/releases">Release</a> page. They are not statically compiled and require shared libraries such as <code>libssl</code> and <code>libcrypto</code>.</li>
-</ul>
+<h3><a id="set-your-open-ai-api-key-as-an-environment-variable" class="anchor" href="#set-your-open-ai-api-key-as-an-environment-variable">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Set your <a href="https://platform.openai.com/account/api-keys">OpenAI API key</a> as an environment variable:</h3>
+<pre><code class="language-bash">export OPENAI_API_KEY=&quot;your_openai_api_key&quot;</code></pre>
 <h2><a id="usage" class="anchor" href="#usage">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
