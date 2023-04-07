@@ -175,6 +175,17 @@
 
 
 
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Define the Client class that handles communication with the ChatGPT API</p>
+
 
 
 
@@ -198,7 +209,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/chatgpt-cli/blob/3a97be5f70b2d7756c7458753f3955ddf80703fd/src/chatgpt/client.cr#L8" target="_blank">
+      <a href="https://github.com/kojix2/chatgpt-cli/blob/71b7e0665173eb6ecb36a37356228cf9e4c4a248/src/chatgpt/client.cr#L9" target="_blank">
         chatgpt/client.cr
       </a>
     
@@ -223,6 +234,10 @@
         <strong>API_ENDPOINT</strong> = <code><span class="s">&quot;https://api.openai.com&quot;</span></code>
       </dt>
       
+      <dd class="entry-const-doc">
+        <p>Set the API endpoint URL</p>
+      </dd>
+      
     
   </dl>
 
@@ -240,6 +255,8 @@
     
       <li class="entry-summary">
         <a href="#new-class-method" class="signature"><strong>.new</strong></a>
+        
+          <div class="summary"><p>Initialize the Client object by building the required HTTP headers</p></div>
         
       </li>
     
@@ -262,20 +279,28 @@
       <li class="entry-summary">
         <a href="#build_http_headers-instance-method" class="signature"><strong>#build_http_headers</strong></a>
         
+          <div class="summary"><p>Build the required HTTP headers using the API key from environment variables</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#fetch_api_key-instance-method" class="signature"><strong>#fetch_api_key</strong></a>
+        
+          <div class="summary"><p>Fetch the API key from the environment variables or display an error if not present</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#post_request%28request_data%29-instance-method" class="signature"><strong>#post_request</strong>(request_data)</a>
         
+          <div class="summary"><p>Send a POST request with the provided request data to the ChatGPT API</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#send_chat_request%28request_data%29-instance-method" class="signature"><strong>#send_chat_request</strong>(request_data)</a>
+        
+          <div class="summary"><p>Send a chat request to the ChatGPT API and log the request and response data if in debug mode</p></div>
         
       </li>
     
@@ -327,10 +352,15 @@
         <a class="method-permalink" href="#new-class-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Initialize the Client object by building the required HTTP headers</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3a97be5f70b2d7756c7458753f3955ddf80703fd/src/chatgpt/client.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/71b7e0665173eb6ecb36a37356228cf9e4c4a248/src/chatgpt/client.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -357,10 +387,15 @@
         <a class="method-permalink" href="#build_http_headers-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Build the required HTTP headers using the API key from environment variables</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3a97be5f70b2d7756c7458753f3955ddf80703fd/src/chatgpt/client.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/71b7e0665173eb6ecb36a37356228cf9e4c4a248/src/chatgpt/client.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -373,10 +408,15 @@
         <a class="method-permalink" href="#fetch_api_key-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Fetch the API key from the environment variables or display an error if not present</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3a97be5f70b2d7756c7458753f3955ddf80703fd/src/chatgpt/client.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/71b7e0665173eb6ecb36a37356228cf9e4c4a248/src/chatgpt/client.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -389,10 +429,15 @@
         <a class="method-permalink" href="#post_request%28request_data%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Send a POST request with the provided request data to the ChatGPT API</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3a97be5f70b2d7756c7458753f3955ddf80703fd/src/chatgpt/client.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/71b7e0665173eb6ecb36a37356228cf9e4c4a248/src/chatgpt/client.cr#L57" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -405,10 +450,15 @@
         <a class="method-permalink" href="#send_chat_request%28request_data%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Send a chat request to the ChatGPT API and log the request and response data if in debug mode</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3a97be5f70b2d7756c7458753f3955ddf80703fd/src/chatgpt/client.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/71b7e0665173eb6ecb36a37356228cf9e4c4a248/src/chatgpt/client.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
