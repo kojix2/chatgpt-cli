@@ -3,11 +3,13 @@ module ChatGPT
     getter last_stdout
     getter last_stderr
     getter last_command
+    getter history
 
     def initialize
       @last_stdout = ""
       @last_stderr = ""
-      @last_command = ""
+      @last_command = "" # Do not use @history.last
+      @history = Array(String).new
     end
 
     def try_run(input_message)
@@ -22,6 +24,7 @@ module ChatGPT
     end
 
     private def run(command, record = true)
+      @history << command
       if record
         run_with_record(command)
       else
