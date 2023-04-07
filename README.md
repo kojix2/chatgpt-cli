@@ -318,6 +318,14 @@ Ruby:
 > ! ruby $CODE2
 ````
 
+Save code block
+
+```
+> Please write comments/documentation for the code: %{src/client.cr}
+> !mv $CODE1 src/client.cr
+# check diff with your code editor
+```
+
 ## Configuration
 
 The system messages used by ChatGPT CLI can be customized through the `config.json` file. The file is located in `~/.config/chatgpt-cli/` by default.
