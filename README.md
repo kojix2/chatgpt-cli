@@ -97,7 +97,7 @@ chatgpt -rm gpt-4
 # Error: Invalid option: -rm
 ```
 
-### Using R interactively
+### Using ChatGPT interactively
 
 Start ChatGPT CLI.
 
@@ -120,12 +120,10 @@ Unfortunately, line breaks are not currently supported, but still you can copy-p
 Select pre-registered system commands:
 
 ```bash
-chatgpt -i code
+chatgpt -i "Linux Terminal"
 ```
 
-Depending on how you use it, system commands are not always necessary. It works well without them.
-To modify system commands, you can edit the config file. Type `%config` to open the config file in a text editor.
-`code`, `edit`, `poet`, `tran` are available by default.
+[Awesome ChatGPT Prompts](https://github.com/f/awesome-chatgpt-prompts) are available.
 
 ### Passing Files to ChatGPT
 
@@ -352,7 +350,6 @@ Save code block only.
 
 `config.json` is located in `~/.config/chatgpt-cli/` by default.
 
-- system_messages:
 - substitute_patterns: `%{}` `%%{}` `!{}` `%STDOUT` `%STDERR`
 - terminal_colors: `chatgpt` `warning` `debug` `stdout` `stderr`
 
@@ -360,6 +357,10 @@ Type `%config` to launch editor.
 Placeholders such as `%{}` and `%%{}` can be set with regular expressions
 
 Please refer to the latest `config.json` file in the repository for the most recent information.
+
+### Prompts (system commands)
+
+`prompts.csv` is located in `~/.config/chatgpt-cli/` by default.
 
 ## Uninstallation
 
