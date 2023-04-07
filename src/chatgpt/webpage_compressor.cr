@@ -1,3 +1,6 @@
+require "lexbor"
+require "http/client"
+
 struct Lexbor::Node
   def displayble?
     visible? && !object? && !is_tag_noindex?
