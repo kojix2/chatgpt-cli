@@ -17,6 +17,27 @@
 
 ## Installation
 
+### Linux
+
+```
+curl -L -o chatgpt https://github.com/kojix2/chatgpt-cli/releases/download/v0.1.9/chatgpt-cli-linux-x86_64
+chmod +x chatgpt-linux-64
+sudo mv chatgpt /usr/local/bin/
+```
+
+### macOS
+
+```
+curl -L -o chatgpt https://github.com/kojix2/chatgpt-cli/releases/download/v0.1.9/chatgpt-cli-mac-amd64
+chmod +x chatgpt-linux-64
+sudo mv chatgpt /usr/local/bin/
+```
+
+They are not statically compiled and require shared libraries such as `libssl` and `libcrypto`. 
+Please check `otool -L /usr/local/bin/chatgpt` if you get errors.
+
+### From source code
+
 1. Install [Crystal](https://github.com/crystal-lang/crystal)
 2. Build the project:
 
@@ -27,13 +48,11 @@
    sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.
    ```
 
-3. Set your [OpenAI API key](https://platform.openai.com/account/api-keys) as an environment variable:
+### Set your [OpenAI API key](https://platform.openai.com/account/api-keys) as an environment variable:
 
    ```bash
    export OPENAI_API_KEY="your_openai_api_key"
    ```
-
-- You can also get binaries compiled using Github Actions from the [Release](https://github.com/kojix2/chatgpt-cli/releases) page. They are not statically compiled and require shared libraries such as `libssl` and `libcrypto`.
 
 ## Usage
 
