@@ -207,7 +207,8 @@ sudo mv chatgpt /usr/local/bin/</code></pre>
   https://github.com/kojix2/chatgpt-cli/releases/download/v0.1.9/chatgpt-cli-mac-amd64
 chmod +x chatgpt
 sudo mv chatgpt /usr/local/bin/</code></pre>
-<p>Note: These binaries are not statically compiled and require shared libraries, such as <code>libssl</code> and <code>libcrypto</code>. If you encounter any errors, please check the required libraries by running <code>otool -L /usr/local/bin/chatgpt</code>.</p>
+<p>Note: Binaries for macOS are <a href="https://crystal-lang.org/reference/1.7/guides/static_linking.html#macos">not statically compiled</a> and require shared libraries, such as <code>libssl</code> and <code>libcrypto</code>. If you encounter any errors, please check the required libraries by running <code>otool -L /usr/local/bin/chatgpt</code>.</p>
+<p>Windows is not supported.</p>
 <h3><a id="from-source-code" class="anchor" href="#from-source-code">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -299,7 +300,7 @@ To modify system commands, you can edit the config file. Type <code>%config</cod
     <use href="#octicon-link"/>
   </svg>
 </a>Passing Web Pages to ChatGPT</h3>
-<p>You can pass the contents of a web page to ChatGPT by using <code>%{www.example.com}</code>.</p>
+<p>You can pass the contents of a web page to ChatGPT by using <code>%%{www.example.com}</code>.</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Pick</span> five interesting news items: <span class="o">%</span><span class="s">%{https://news.ycombinator.com/}</span></code></pre>
 <p>Here, the HTML from the URL is fetched, the words used in the <code>body</code> are extracted and passed to ChatGPT. It is much smaller than the raw HTML, but still not enough.</p>
 <p><code>%%{}</code> can be changed in the config file.</p>
@@ -393,7 +394,7 @@ Ruby:
 
 &gt; ! python $CODE1
 &gt; ! ruby $CODE2</code></pre>
-<p>Save code block.</p>
+<p>Save code block only.</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Please</span> write comments<span class="o">/</span>documentation <span class="k">for</span> the code: <span class="s">%{src/client.cr}</span>
 <span class="o">&gt;</span> <span class="o">!</span>cp $CODE1 src<span class="o">/</span>client.cr
 <span class="c"># Then check diff with your code editor...</span></code></pre>
@@ -402,8 +403,14 @@ Ruby:
     <use href="#octicon-link"/>
   </svg>
 </a>Configuration</h2>
-<p>The system messages used by ChatGPT CLI can be customized through the <code>config.json</code> file. The file is located in <code>~/.config/chatgpt-cli/</code> by default.
-Type <code>%config</code> to launch editor. Placeholders such as <code>%{}</code> and <code>%%{}</code> can be set with regular expressions</p>
+<p><code>config.json</code> is located in <code>~/.config/chatgpt-cli/</code> by default.</p>
+<ul>
+<li>system_messages:</li>
+<li>substitute_patterns: <code>%{}</code> <code>%%{}</code> <code>!{}</code> <code>%STDOUT</code> <code>%STDERR</code></li>
+<li>terminal_colors: <code>chatgpt</code> <code>warning</code> <code>debug</code> <code>stdout</code> <code>stderr</code></li>
+</ul>
+<p>Type <code>%config</code> to launch editor.
+Placeholders such as <code>%{}</code> and <code>%%{}</code> can be set with regular expressions</p>
 <p>Please refer to the latest <code>config.json</code> file in the repository for the most recent information.</p>
 <h2><a id="uninstallation" class="anchor" href="#uninstallation">
   <svg class="octicon-link" aria-hidden="true">
