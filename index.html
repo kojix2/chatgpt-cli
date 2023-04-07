@@ -261,11 +261,11 @@ sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.</code
 <p>Note that short options cannot be concatenated.</p>
 <pre><code class="language-crystal">chatgpt <span class="o">-</span>rm gpt<span class="n">-4</span>
 <span class="c"># Error: Invalid option: -rm</span></code></pre>
-<h3><a id="using-r-interactively" class="anchor" href="#using-r-interactively">
+<h3><a id="using-chat-gpt-interactively" class="anchor" href="#using-chat-gpt-interactively">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Using R interactively</h3>
+</a>Using ChatGPT interactively</h3>
 <p>Start ChatGPT CLI.</p>
 <pre><code class="language-crystal">chatgpt</code></pre>
 <p>Write your message using GNU Readline, which supports <a href="https://en.wikipedia.org/wiki/GNU_Readline">Emacs shortcuts</a>, such as <code>↑</code> and <code>↓</code>.</p>
@@ -278,10 +278,8 @@ sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.</code
   </svg>
 </a>Selecting ChatGPT System Commands</h3>
 <p>Select pre-registered system commands:</p>
-<pre><code class="language-bash">chatgpt -i code</code></pre>
-<p>Depending on how you use it, system commands are not always necessary. It works well without them.
-To modify system commands, you can edit the config file. Type <code>%config</code> to open the config file in a text editor.
-<code>code</code>, <code>edit</code>, <code>poet</code>, <code>tran</code> are available by default.</p>
+<pre><code class="language-bash">chatgpt -i &quot;Linux Terminal&quot;</code></pre>
+<p><a href="https://github.com/f/awesome-chatgpt-prompts">Awesome ChatGPT Prompts</a> are available.</p>
 <h3><a id="passing-files-to-chat-gpt" class="anchor" href="#passing-files-to-chat-gpt">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -405,13 +403,18 @@ Ruby:
 </a>Configuration</h2>
 <p><code>config.json</code> is located in <code>~/.config/chatgpt-cli/</code> by default.</p>
 <ul>
-<li>system_messages:</li>
 <li>substitute_patterns: <code>%{}</code> <code>%%{}</code> <code>!{}</code> <code>%STDOUT</code> <code>%STDERR</code></li>
 <li>terminal_colors: <code>chatgpt</code> <code>warning</code> <code>debug</code> <code>stdout</code> <code>stderr</code></li>
 </ul>
 <p>Type <code>%config</code> to launch editor.
 Placeholders such as <code>%{}</code> and <code>%%{}</code> can be set with regular expressions</p>
 <p>Please refer to the latest <code>config.json</code> file in the repository for the most recent information.</p>
+<h3><a id="prompts-system-commands" class="anchor" href="#prompts-system-commands">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Prompts (system commands)</h3>
+<p><code>prompts.csv</code> is located in <code>~/.config/chatgpt-cli/</code> by default.</p>
 <h2><a id="uninstallation" class="anchor" href="#uninstallation">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
