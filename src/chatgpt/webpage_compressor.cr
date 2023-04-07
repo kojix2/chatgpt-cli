@@ -1,3 +1,6 @@
+{% unless flag?(:windows) %}
+require "lexbor"
+
 struct Lexbor::Node
   def displayble?
     visible? && !object? && !is_tag_noindex?
@@ -26,3 +29,18 @@ module ChatGPT
     end
   end
 end
+
+{% else %}
+
+module ChatGPT
+  class WebPageCompressor
+    def initialize(url : String)
+      @uri = URI.parse(url)
+    end
+
+    def compressed_text
+      "[ #{@uri} Not supported on Windows]"
+    end
+  end
+end
+{% end %}

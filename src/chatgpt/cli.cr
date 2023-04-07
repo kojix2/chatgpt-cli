@@ -5,7 +5,6 @@ require "colorize"
 require "./colorize_extensions"
 require "readline"
 require "spinner"
-require "lexbor"
 
 require "./file_extensions"
 require "./post_data"
