@@ -428,12 +428,13 @@ rm ~/.chatgpt_history       # Remove command history</code></pre>
     <use href="#octicon-link"/>
   </svg>
 </a>Development</h2>
+<p>Building:</p>
 <pre><code class="language-bash">git clone https://github.com/kojix2/chatgpt-cli
 cd chatgpt-cli
 shards install
-shards build --release
-bin/chatgpt</code></pre>
-<p>What is a good way to distribute command-line tools created in Crystal? I am looking for someone to help us.</p>
+shards build</code></pre>
+<p>Testing:</p>
+<pre><code class="language-crystal">crystal spec</code></pre>
 <p>You can quickly try development by using <a href="https://www.gitpod.io/">Gitpod</a>.</p>
 <h2><a id="license" class="anchor" href="#license">
   <svg class="octicon-link" aria-hidden="true">
