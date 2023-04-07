@@ -35,7 +35,9 @@ chmod +x chatgpt
 sudo mv chatgpt /usr/local/bin/
 ```
 
-Note: These binaries are not statically compiled and require shared libraries, such as `libssl` and `libcrypto`. If you encounter any errors, please check the required libraries by running `otool -L /usr/local/bin/chatgpt`.
+Note: Binaries for macOS are [not statically compiled](https://crystal-lang.org/reference/1.7/guides/static_linking.html#macos) and require shared libraries, such as `libssl` and `libcrypto`. If you encounter any errors, please check the required libraries by running `otool -L /usr/local/bin/chatgpt`.
+
+Windows is not supported.
 
 ### From source code
 
@@ -51,9 +53,9 @@ Note: These binaries are not statically compiled and require shared libraries, s
 
 ### Set your [OpenAI API key](https://platform.openai.com/account/api-keys) as an environment variable by running:
 
-   ```bash
-   export OPENAI_API_KEY="your_openai_api_key"
-   ```
+```bash
+export OPENAI_API_KEY="your_openai_api_key"
+```
 
 ## Usage
 
@@ -147,7 +149,7 @@ Note: READMEs created this way tend to be characterless. Still, it is marvelous 
 
 ### Passing Web Pages to ChatGPT
 
-You can pass the contents of a web page to ChatGPT by using `%{www.example.com}`.
+You can pass the contents of a web page to ChatGPT by using `%%{www.example.com}`.
 
 ```
 > Pick five interesting news items: %%{https://news.ycombinator.com/}
@@ -338,7 +340,7 @@ Ruby:
 > ! ruby $CODE2
 ````
 
-Save code block.
+Save code block only.
 
 ```
 > Please write comments/documentation for the code: %{src/client.cr}
@@ -348,8 +350,14 @@ Save code block.
 
 ## Configuration
 
-The system messages used by ChatGPT CLI can be customized through the `config.json` file. The file is located in `~/.config/chatgpt-cli/` by default.
-Type `%config` to launch editor. Placeholders such as `%{}` and `%%{}` can be set with regular expressions
+`config.json` is located in `~/.config/chatgpt-cli/` by default.
+
+- system_messages:
+- substitute_patterns: `%{}` `%%{}` `!{}` `%STDOUT` `%STDERR`
+- terminal_colors: `chatgpt` `warning` `debug` `stdout` `stderr`
+
+Type `%config` to launch editor.
+Placeholders such as `%{}` and `%%{}` can be set with regular expressions
 
 Please refer to the latest `config.json` file in the repository for the most recent information.
 
