@@ -168,7 +168,7 @@
   </svg>
 </a>ChatGPT CLI</h1>
 <p><a href="https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml"><img src="https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml/badge.svg" alt="build" /></a></p>
-<p><a href="https://github.com/kojix2/chatgpt-cli/">ChatGPT CLI</a> is a command-line interface tool for interacting with OpenAI's <a href="https://platform.openai.com/docs/api-reference/chat">ChatGPT API</a>. It allows users to communicate with the GPT model, adjust API parameters, use magic commands, insert file contents, fetch content from URLs, and execute system commands while chatting.</p>
+<p><a href="https://github.com/kojix2/chatgpt-cli/">ChatGPT CLI</a> is a command-line interface tool that interacts with OpenAI's <a href="https://platform.openai.com/docs/api-reference/chat">ChatGPT API</a>. It allows users to communicate with GPT models, adjust API parameters, use magic commands, insert file contents, fetch content from URLs, and execute system commands while chatting.</p>
 <h2><a id="features" class="anchor" href="#features">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -181,7 +181,7 @@
 <li>Magic commands to <code>clear</code>, <code>undo</code>, <code>edit</code>, <code>write</code>, <code>save</code>, and <code>load</code> data.</li>
 <li>Execute system commands and pass captured stdout and stderr output to ChatGPT.</li>
 <li>Code blocks in the response are saved in temp files and can be referenced from <code>$CODE1</code>, <code>$CODE2</code>...</li>
-<li>Output execution results as HTML (experimental).</li>
+<li>Output execution results in HTML (experimental).</li>
 <li>Substitution patterns of placeholders can be configurable in the configuration file.</li>
 </ul>
 <h2><a id="installation" class="anchor" href="#installation">
@@ -207,8 +207,7 @@ sudo mv chatgpt /usr/local/bin/</code></pre>
   https://github.com/kojix2/chatgpt-cli/releases/download/v0.1.9/chatgpt-cli-mac-amd64
 chmod +x chatgpt
 sudo mv chatgpt /usr/local/bin/</code></pre>
-<p>They are not statically compiled and require shared libraries such as <code>libssl</code> and <code>libcrypto</code>.
-Please check <code>otool -L /usr/local/bin/chatgpt</code> if you get errors.</p>
+<p>Note: These binaries are not statically compiled and require shared libraries, such as <code>libssl</code> and <code>libcrypto</code>. If you encounter any errors, please check the required libraries by running <code>otool -L /usr/local/bin/chatgpt</code>.</p>
 <h3><a id="from-source-code" class="anchor" href="#from-source-code">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -226,11 +225,11 @@ make
 sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.</code></pre>
 </li>
 </ol>
-<h3><a id="set-your-open-ai-api-key-as-an-environment-variable" class="anchor" href="#set-your-open-ai-api-key-as-an-environment-variable">
+<h3><a id="set-your-open-ai-api-key-as-an-environment-variable-by-running" class="anchor" href="#set-your-open-ai-api-key-as-an-environment-variable-by-running">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Set your <a href="https://platform.openai.com/account/api-keys">OpenAI API key</a> as an environment variable:</h3>
+</a>Set your <a href="https://platform.openai.com/account/api-keys">OpenAI API key</a> as an environment variable by running:</h3>
 <pre><code class="language-bash">export OPENAI_API_KEY=&quot;your_openai_api_key&quot;</code></pre>
 <h2><a id="usage" class="anchor" href="#usage">
   <svg class="octicon-link" aria-hidden="true">
@@ -268,7 +267,7 @@ sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.</code
 </a>Using R interactively</h3>
 <p>Start ChatGPT CLI.</p>
 <pre><code class="language-crystal">chatgpt</code></pre>
-<p>Write your message. It utilizes GNU Readline, so Emacs shortcuts are available such as <code>↑</code> <code>↓</code></p>
+<p>Write your message using GNU Readline, which supports <a href="https://en.wikipedia.org/wiki/GNU_Readline">Emacs shortcuts</a>, such as <code>↑</code> and <code>↓</code>.</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Hi</span></code></pre>
 <p>You can cancel a query to ChatGPT with <code>Ctrl + C</code>. This is especially useful when you make a writing mistake, and it takes a long time to reply.</p>
 <p>Unfortunately, line breaks are not currently supported, but still you can copy-paste line breaks.</p>
@@ -280,7 +279,7 @@ sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.</code
 <p>Select pre-registered system commands:</p>
 <pre><code class="language-bash">chatgpt -i code</code></pre>
 <p>Depending on how you use it, system commands are not always necessary. It works well without them.
-To edit system commands, edit the config file. Type <code>%config</code> to open a text editor.
+To modify system commands, you can edit the config file. Type <code>%config</code> to open the config file in a text editor.
 <code>code</code>, <code>edit</code>, <code>poet</code>, <code>tran</code> are available by default.</p>
 <h3><a id="passing-files-to-chat-gpt" class="anchor" href="#passing-files-to-chat-gpt">
   <svg class="octicon-link" aria-hidden="true">
@@ -366,7 +365,7 @@ Note that the tool is still being improved and the behavior of the magic command
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Please</span> write a commit message: <span class="o">%</span><span class="t">STDOUT</span></code></pre>
 <p>The results can be referenced through the environment variable <code>RESP</code> (experimental).</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="o">!</span>git commit <span class="o">-</span>m <span class="s">&quot;$RESP&quot;</span></code></pre>
-<p>The contents of the standard error output can also be inserted into the chat with <code>%STDERR</code>.</p>
+<p>You can also insert the contents of the standard error output into the chat using <code>%STDERR</code>.</p>
 <pre><code class="language-bash">&gt; !!wrong_command
 </code></pre>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Explain</span> the meaning <span class="k">of</span> this error message: <span class="o">%</span><span class="t">STDERR</span></code></pre>
@@ -405,7 +404,7 @@ Ruby:
 </a>Configuration</h2>
 <p>The system messages used by ChatGPT CLI can be customized through the <code>config.json</code> file. The file is located in <code>~/.config/chatgpt-cli/</code> by default.
 Type <code>%config</code> to launch editor. Placeholders such as <code>%{}</code> and <code>%%{}</code> can be set with regular expressions</p>
-<p>Configuration files are often changed to make more items configurable. Please see config.json in the repository for the latest information.</p>
+<p>Please refer to the latest <code>config.json</code> file in the repository for the most recent information.</p>
 <h2><a id="uninstallation" class="anchor" href="#uninstallation">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -441,7 +440,7 @@ shards build</code></pre>
     <use href="#octicon-link"/>
   </svg>
 </a>License</h2>
-<p>This project is open-source and available under the terms of the <a href="https://opensource.org/licenses/MIT">MIT License</a>.</p>
+<p>This project is open source and available under the terms of the <a href="https://opensource.org/licenses/MIT">MIT License</a>.</p>
 </div>
 </body>
 </html>
