@@ -15,8 +15,8 @@ jobs:
         with:
           crystal: latest
       - run: |
-        Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-        irm get.scoop.sh | iex
-        scoop bucket add crystal-preview https://github.com/neatorobito/scoop-crystal
-        scoop install crystal
-        crystal --version
+          Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+          irm get.scoop.sh | iex
+          scoop bucket add crystal-preview https://github.com/neatorobito/scoop-crystal
+          scoop install crystal
+          crystal --version
