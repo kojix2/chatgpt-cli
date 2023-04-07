@@ -1,4 +1,8 @@
 require "json"
+require "csv"
+
+# Do not use _colorize in this file.
+# Because _colorize uses Config, and calling _colorize in Config causes infinite loop.
 
 module ChatGPT
   class Config
@@ -9,10 +13,12 @@ module ChatGPT
         "#{ENV["HOME"]}/.config/chatgpt-cli"
       end
     CONFIG_FILE    = "#{BASE_DIR}/config.json"
+    PROMPTS_FILE   = "#{BASE_DIR}/prompts.csv"
     POST_DATA_FILE = "#{BASE_DIR}/post_data.json"
     HISTORY_FILE   = "#{ENV["HOME"]}/.chatgpt_history"
 
-    DEFAULT_CONFIG = {{ `cat #{__DIR__}/../../config.json`.chomp.stringify }}
+    DEFAULT_CONFIG  = {{ `cat #{__DIR__}/../../config.json`.chomp.stringify }}
+    DEFAULT_PROMPTS = {{ `cat #{__DIR__}/../../awesome-chatgpt-prompts/prompts.csv`.chomp.stringify }}
 
     alias ConfigData = Hash(String, Hash(String, Hash(String, String)))
 
@@ -25,48 +31,66 @@ module ChatGPT
     def initialize
       @config_data = ConfigData.new
       @config_data_default = ConfigData.from_json(DEFAULT_CONFIG)
+      @prompts = Hash(String, String).new
       load_config
+      load_prompts
+      log_deporecation_warnings
     end
 
     def load_config
-      if File.exists?(CONFIG_FILE)
-        begin
-          File.open(CONFIG_FILE) do |f|
-            @config_data = ConfigData.from_json(f)
-          end
-        rescue ex
-          STDERR.puts("Error: #{ex}".colorize(:red))
-          STDERR.puts("Failed to load config at #{CONFIG_FILE}")
+      create_default_config unless File.exists?(CONFIG_FILE)
+      begin
+        File.open(CONFIG_FILE) do |f|
+          @config_data = ConfigData.from_json(f)
         end
-      else
-        create_default_config
+      rescue ex
+        log_load_error(ex, CONFIG_FILE)
       end
     end
 
-    def create_default_config
+    def load_prompts
+      create_default_prompts unless File.exists?(PROMPTS_FILE)
+      begin
+        File.open(PROMPTS_FILE) do |f|
+          CSV.each_row(f) do |row|
+            next if row == ["act", "prompt"]
+            @prompts[row[0]] = row[1]
+          end
+        end
+      rescue ex
+        log_load_error(ex, PROMPTS_FILE)
+      end
+    end
+
+    private def log_load_error(ex, file)
+      STDERR.puts("Error: #{ex}".colorize(:red))
+      STDERR.puts("Failed to load #{file}")
+    end
+
+    private def log_deporecation_warnings
+      if @config_data.has_key?("system_messages")
+        STDERR.puts(
+          "Warning: system_messages in config.json is deprecated. \n" +
+          "Please remove them from config.json and use prompts.csv instead."
+        )
+      end
+    end
+
+    private def create_default_config
       @config_data = ConfigData.from_json(DEFAULT_CONFIG)
-      save
-    end
-
-    def select_id(id)
-      @config_data.dig("system_messages", id).as(Hash(String, String))
-    end
-
-    def add_message(id, role, content)
-      config_data["system_messages"][id] = {
-        "role"    => role.to_s,
-        "content" => content.to_s,
-      }
-    end
-
-    def add_system_message(id, content)
-      add_message(id, "system", content)
-    end
-
-    def save
       overwrite = File.exists?(CONFIG_FILE)
       File.write(CONFIG_FILE, config_data.to_pretty_json)
       STDERR.puts("#{overwrite ? "Overwrote" : "Created"} config at #{CONFIG_FILE}")
+    end
+
+    private def create_default_prompts
+      overwrite = File.exists?(PROMPTS_FILE)
+      File.write(PROMPTS_FILE, DEFAULT_PROMPTS)
+      STDERR.puts("#{overwrite ? "Overwrote" : "Created"} prompts at #{PROMPTS_FILE}")
+    end
+
+    def select_id(id)
+      {"role" => "system", "content" => @prompts[id]}
     end
 
     def terminal_colors

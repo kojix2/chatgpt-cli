@@ -1,22 +1,4 @@
 {
-  "system_messages": {
-    "edit": {
-      "role": "system",
-      "content": "I want you to act as an editor, grammar corrector, and improver."
-    },
-    "code": {
-      "role": "system",
-      "content": "I want you to act as a programmer, writing code."
-    },
-    "tran": {
-      "role": "system",
-      "content": "I want you to act as an translator, spelling corrector, and improver."
-    },
-    "poet": {
-      "role": "system",
-      "content": "I want you to act as a poet, writing poetry."
-    }
-  },
   "substitute_patterns": {
     "stdout": {
       "pattern": "%STDOUT"
