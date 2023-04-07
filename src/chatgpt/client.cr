@@ -48,12 +48,16 @@ module ChatGPT
 
     def post_request(request_data)
       client = HTTP::Client.new(URI.parse(API_ENDPOINT))
+      {% unless flag?(:windows) %}
       Signal::INT.trap do |s|
         client.close
       end
+      {% end %}
       response = client.post("/v1/chat/completions", headers: @http_headers, body: request_data.to_json)
     rescue ex
+      {% unless flag?(:windows) %}
       Signal::INT.reset
+      {% end %}
       raise ex
     end
 
