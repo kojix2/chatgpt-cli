@@ -3,6 +3,7 @@ require "http/client"
 module ChatGPT
   # Define custom exceptions for API key errors and SIGINT signals
   class ApiKeyError < Exception; end
+
   class SigIntError < Exception; end
 
   # Define the Client class that handles communication with the ChatGPT API
@@ -31,7 +32,7 @@ module ChatGPT
       if ENV.has_key?("OPENAI_API_KEY")
         ENV["OPENAI_API_KEY"]
       else
-        STDERR.puts "Error: OPENAI_API_KEY is not set. ". _colorize(:warning, :bold)
+        STDERR.puts "Error: OPENAI_API_KEY is not set. "._colorize(:warning, :bold)
         STDERR.puts "Please get your API key and set it as an environment variable."._colorize(:warning)
         ""
       end
@@ -93,4 +94,3 @@ module ChatGPT
     end
   end
 end
-
