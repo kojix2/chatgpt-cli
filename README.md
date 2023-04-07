@@ -102,7 +102,7 @@ chatgpt -i code
 ```
 
 Depending on how you use it, system commands are not always necessary. It works well without them.
-To edit system commands, edit the config file. Type `%config` to open a text editor. 
+To edit system commands, edit the config file. Type `%config` to open a text editor.
 `code`, `edit`, `poet`, `tran` are available by default.
 
 ### Passing Files to ChatGPT
@@ -175,7 +175,7 @@ Edit the config file. Open a text editor and rewrite the settings.
 %system
 ```
 
-Show the current system message. 
+Show the current system message.
 
 ```
 %system <message>
@@ -248,7 +248,7 @@ Note that the tool is still being improved and the behavior of the magic command
 
 ### Executing System Commands
 
-You can execute system commands while chatting by prefixing the command with the `!` symbol. 
+You can execute system commands while chatting by prefixing the command with the `!` symbol.
 
 Execute a command, and display the output immediately:
 
@@ -297,7 +297,7 @@ You can also use `!{ cmd }`. In this case, it will be replaced by the contents o
 
 #### Run Code Blocks in the Response
 
-When ChatGPT returns code blocks, ChatGPT CLI saves these blocks temporarily and assigns them to environment variables named `CODE1`, `CODE2`, ... and so on. This allows you to execute the code blocks on your computer. 
+When ChatGPT returns code blocks, ChatGPT CLI saves these blocks temporarily and assigns them to environment variables named `CODE1`, `CODE2`, ... and so on. This allows you to execute the code blocks on your computer.
 
 ````md
 > Write code to display 1 to 10 in Python and Ruby.
@@ -318,12 +318,12 @@ Ruby:
 > ! ruby $CODE2
 ````
 
-Save code block
+Save code block.
 
 ```
 > Please write comments/documentation for the code: %{src/client.cr}
-> !mv $CODE1 src/client.cr
-# check diff with your code editor
+> !cp $CODE1 src/client.cr
+# Then check diff with your code editor...
 ```
 
 ## Configuration
@@ -370,4 +370,3 @@ You can quickly try development by using [Gitpod](https://www.gitpod.io/).
 ## License
 
 This project is open-source and available under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
