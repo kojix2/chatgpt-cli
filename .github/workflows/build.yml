@@ -11,6 +11,8 @@ jobs:
         os: ["ubuntu", "macos"]
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: true
       - uses: crystal-lang/install-crystal@v1
         with:
           crystal: latest
