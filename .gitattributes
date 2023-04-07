@@ -1,0 +1,4 @@
+#
+*               text=auto
+
+*.ecr           text eol=lf
