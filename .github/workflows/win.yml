@@ -14,9 +14,10 @@ jobs:
       - uses: crystal-lang/install-crystal@v1
         with:
           crystal: latest
+      - uses: ScoopInstaller/GithubActions@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: |
-          Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-          irm get.scoop.sh | iex
           scoop bucket add crystal-preview https://github.com/neatorobito/scoop-crystal
           scoop install crystal
           crystal --version
