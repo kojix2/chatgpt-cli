@@ -194,9 +194,9 @@
     <use href="#octicon-link"/>
   </svg>
 </a>Linux</h3>
-<pre><code class="language-crystal">curl -L -o chatgpt　\
+<pre><code class="language-crystal">curl -L -o chatgpt \
   https://github.com/kojix2/chatgpt-cli/releases/download/v0.1.9/chatgpt-cli-linux-x86_64
-chmod +x chatgpt-cli-linux-x86_64
+chmod +x chatgpt
 sudo mv chatgpt /usr/local/bin/</code></pre>
 <h3><a id="mac-os" class="anchor" href="#mac-os">
   <svg class="octicon-link" aria-hidden="true">
@@ -205,7 +205,7 @@ sudo mv chatgpt /usr/local/bin/</code></pre>
 </a>macOS</h3>
 <pre><code class="language-crystal">curl -L -o chatgpt \
   https://github.com/kojix2/chatgpt-cli/releases/download/v0.1.9/chatgpt-cli-mac-amd64
-chmod +x chatgpt-cli-mac-amd64
+chmod +x chatgpt
 sudo mv chatgpt /usr/local/bin/</code></pre>
 <p>They are not statically compiled and require shared libraries such as <code>libssl</code> and <code>libcrypto</code>.
 Please check <code>otool -L /usr/local/bin/chatgpt</code> if you get errors.</p>
