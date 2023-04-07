@@ -19,4 +19,6 @@ jobs:
           iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
           scoop bucket add crystal-preview https://github.com/neatorobito/scoop-crystal
           scoop install crystal
-          crystal --version
+      - run: |
+          shards install
+          shards build
