@@ -20,9 +20,9 @@
 ### Linux
 
 ```
-curl -L -o chatgpt　\
+curl -L -o chatgpt \
   https://github.com/kojix2/chatgpt-cli/releases/download/v0.1.9/chatgpt-cli-linux-x86_64
-chmod +x chatgpt-cli-linux-x86_64
+chmod +x chatgpt
 sudo mv chatgpt /usr/local/bin/
 ```
 
@@ -31,7 +31,7 @@ sudo mv chatgpt /usr/local/bin/
 ```
 curl -L -o chatgpt \
   https://github.com/kojix2/chatgpt-cli/releases/download/v0.1.9/chatgpt-cli-mac-amd64
-chmod +x chatgpt-cli-mac-amd64
+chmod +x chatgpt
 sudo mv chatgpt /usr/local/bin/
 ```
 
