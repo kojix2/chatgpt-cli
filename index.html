@@ -221,6 +221,7 @@ sudo mv chatgpt /usr/local/bin/</code></pre>
 <li>
 <p>Build the project:</p>
 <pre><code class="language-bash">git clone https://github.com/kojix2/chatgpt-cli
+git submodule update -i # Awesome ChatGPT Prompts
 cd chatgpt-cli
 make
 sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.</code></pre>
@@ -439,6 +440,7 @@ rm ~/.chatgpt_history       # Remove command history</code></pre>
 </a>Development</h2>
 <p>Building:</p>
 <pre><code class="language-bash">git clone https://github.com/kojix2/chatgpt-cli
+git submodule update -i
 cd chatgpt-cli
 shards install
 shards build</code></pre>
