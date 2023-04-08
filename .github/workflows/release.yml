@@ -44,13 +44,6 @@ jobs:
           shards build --release
           chmod +x bin/chatgpt
 
-      - name: Run Mac Build ARM
-        if: matrix.os == 'ARM64'
-        run: |
-          shards install --without-development --release
-          shards build --release
-          chmod +x bin/chatgpt
-
       - name: Upload Release Asset
         run: |
           cp bin/chatgpt chatgpt-cli-${{ matrix.release_suffix }}
