@@ -46,6 +46,7 @@ Windows is not supported.
 
    ```bash
    git clone https://github.com/kojix2/chatgpt-cli
+   git submodule update -i # Awesome ChatGPT Prompts
    cd chatgpt-cli
    make
    sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.
@@ -388,6 +389,7 @@ Building:
 
 ```bash
 git clone https://github.com/kojix2/chatgpt-cli
+git submodule update -i
 cd chatgpt-cli
 shards install
 shards build
