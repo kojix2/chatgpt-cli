@@ -31,11 +31,14 @@ jobs:
       - name: Run Linux Build
         if: matrix.os == 'ubuntu-latest'
         run: |
+          mkdir -p bin
+          chmod 755 bin
           docker run -d --name alpine -v $(pwd):/workspace -w /workspace crystallang/crystal:latest-alpine tail -f /dev/null
           docker exec alpine apk add cmake build-base readline-dev readline-static ncurses-dev ncurses-static ncurses-libs 
           docker exec alpine shards install --without-development --release --static
           docker exec alpine shards build --release --static
           docker exec alpine chmod +x bin/chatgpt
+          zip -j bin/chatgpt-linux.zip bin/chatgpt
 
       - name: Run Mac Build x64
         if: matrix.os == 'macos-latest'
@@ -43,15 +46,13 @@ jobs:
           shards install --without-development --release
           shards build --release
           chmod +x bin/chatgpt
+          zip -j bin/chatgpt-macos.zip bin/chatgpt
 
       - name: Upload Release Asset
-        run: |
-          cp bin/chatgpt chatgpt-cli-${{ matrix.release_suffix }}
-          gh release create ${{ env.VERSION }} -n "${{ env.MESSAGE }}" -t "${{ env.NAME }}" || true
-          gh release upload ${{ env.VERSION }} ${{ env.FILES }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VERSION: ${{ github.ref_name }}
-          MESSAGE: "WIP"
-          NAME: ${{ github.ref_name }}
-          FILES: chatgpt-cli-${{ matrix.release_suffix }}
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            bin/chatgpt-linux.zip
+            bin/chatgpt-macos.zip
+            LICENSE.txt
+
