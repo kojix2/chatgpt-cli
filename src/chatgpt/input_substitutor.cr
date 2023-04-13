@@ -105,17 +105,13 @@ module ChatGPT
     private def fetch_and_compress_url_contents(url_match, url)
       url = "https://" + url unless url.starts_with?("http")
       begin
-        response = HTTP::Client.get(url)
+        wpc = WebPageCompressor.new(url)
       rescue ex
         STDERR.puts "Warning: Failed to fetch url: #{url} leave it as it is"._colorize(:warning, :bold)
         STDERR.puts ex.message._colorize(:warning)
         return url_match
       end
-      unless response.success?
-        STDERR.puts "Warning: Failed to fetch url: #{url} leave it as it is"._colorize(:warning, :bold)
-        return url_match
-      end
-      compressed_text = WebPageCompressor.new(url).compressed_text
+      compressed_text = wpc.compress
 
       <<-CODE_BLOCK
       

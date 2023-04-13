@@ -9,14 +9,22 @@ end
 
 module ChatGPT
   class WebPageCompressor
+    class FetchError < Exception; end
+
     def initialize(url : String)
       @uri = URI.parse(url)
+      @body = ""
+      fetch
     end
 
-    def compressed_text
+    def fetch
       res = HTTP::Client.get(@uri)
-      body = res.body.to_s
-      words(Lexbor::Parser.new(body)).join("|")
+      FetchError.new unless res.success?
+      @body = res.body.to_s
+    end
+
+    def compress
+      words(Lexbor::Parser.new(@body)).join("|")
     end
 
     def words(parser)
