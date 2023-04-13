@@ -20,5 +20,7 @@ dependencies:
     branch: kojix2-patch-1
   lexbor:
     github: kostya/lexbor
+  http_proxy:
+    github: mamantoha/http_proxy
 
 license: MIT

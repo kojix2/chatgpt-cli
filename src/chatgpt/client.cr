@@ -1,4 +1,5 @@
-require "http/client"
+require "http_proxy"
+require "./utils/proxy"
 
 module ChatGPT
   # Define custom exceptions for API key errors and SIGINT signals

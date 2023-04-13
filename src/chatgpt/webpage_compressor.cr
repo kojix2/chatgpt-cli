@@ -1,5 +1,6 @@
 require "lexbor"
-require "http/client"
+require "http_proxy"
+require "./utils/proxy"
 
 struct Lexbor::Node
   def displayble?
@@ -18,7 +19,8 @@ module ChatGPT
     end
 
     def fetch
-      res = HTTP::Client.get(@uri)
+      client = HTTP::Client.new(@uri)
+      res = client.get("/")
       FetchError.new unless res.success?
       @body = res.body.to_s
     end

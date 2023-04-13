@@ -1,5 +1,4 @@
 require "option_parser"
-require "http/client"
 require "json"
 require "colorize"
 require "./colorize_extensions"
