@@ -28,7 +28,7 @@ describe ChatGPT::SystemCommandRunner do
 
       runner.try_run(input).should be_true
       runner.last_command.should eq("echo hello")
-      runner.last_stdout.should  eq("hello\n")
+      runner.last_stdout.should eq("hello\n")
       runner.last_stderr.should eq("")
     end
 
@@ -37,7 +37,7 @@ describe ChatGPT::SystemCommandRunner do
 
       runner.try_run(input).should be_true
       runner.last_command.should eq("echo hello 1>&2")
-      runner.last_stdout.should  eq("")
+      runner.last_stdout.should eq("")
       runner.last_stderr.should eq("hello\n")
     end
   end
