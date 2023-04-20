@@ -29,9 +29,10 @@ require "http_proxy"
 module HTTP
   class Client
     private def self.exec(uri : URI, tls : TLSContext = nil)
-      Logger.debug "Using monkey-patched HTTP::Client"
       previous_def uri, tls do |client, path|
-        client.set_proxy get_proxy uri
+        if proxy = get_proxy(uri)
+          client.proxy = proxy
+        end
         yield client, path
       end
     end
@@ -59,7 +60,8 @@ private def env_to_proxy(key : String) : HTTP::Proxy::Client?
 
   begin
     uri = URI.parse val
-    HTTP::Proxy::Client.new uri.hostname.not_nil!, uri.port.not_nil!
+    HTTP::Proxy::Client.new uri.hostname.not_nil!, uri.port.not_nil!,
+      username: uri.user, password: uri.password
   rescue
     nil
   end

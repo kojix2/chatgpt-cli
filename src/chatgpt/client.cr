@@ -1,4 +1,3 @@
-require "http_proxy"
 require "./utils/proxy"
 
 module ChatGPT
