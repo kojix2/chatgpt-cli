@@ -214,24 +214,12 @@
     <use href="#octicon-link"/>
   </svg>
 </a>Installation</h2>
-<h3><a id="linux" class="anchor" href="#linux">
+<h3><a id="gti-hub-release" class="anchor" href="#gti-hub-release">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Linux</h3>
-<pre><code class="language-crystal">curl -L -o chatgpt \
-  https://github.com/kojix2/chatgpt-cli/releases/download/v0.2.1/chatgpt-cli-linux-x86_64
-chmod +x chatgpt
-sudo mv chatgpt /usr/local/bin/</code></pre>
-<h3><a id="mac-os" class="anchor" href="#mac-os">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>macOS</h3>
-<pre><code class="language-crystal">curl -L -o chatgpt \
-  https://github.com/kojix2/chatgpt-cli/releases/download/v0.2.1/chatgpt-cli-mac-amd64
-chmod +x chatgpt
-sudo mv chatgpt /usr/local/bin/</code></pre>
+</a>GtiHub Release</h3>
+<p>Download binaries from <a href="https://github.com/kojix2/chatgpt-cli/releases/latest">Github Release</a> for Linux or macOS.</p>
 <p>Note: Binaries for macOS are <a href="https://crystal-lang.org/reference/1.7/guides/static_linking.html#macos">not statically compiled</a> and require shared libraries, such as <code>libssl</code> and <code>libcrypto</code>. If you encounter any errors, please check the required libraries by running <code>otool -L /usr/local/bin/chatgpt</code>.</p>
 <p>Windows is not supported.</p>
 <h3><a id="from-source-code" class="anchor" href="#from-source-code">
