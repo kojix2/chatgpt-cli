@@ -302,14 +302,14 @@ are silently ignored when reading text content.</p>
   </h2>
   
     
-      <a href="https://github.com/kojix2/chatgpt-cli/blob/a30c3e74a2f1f1a30c7d42af2768265a3789f72f/lib/http_proxy/src/ext/http/client.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/chatgpt-cli/blob/ce7bab2a9f6d00a7c0f33188d7ee8c9874cfdceb/lib/http_proxy/src/ext/http/client.cr#L4" target="_blank">
         lib/http_proxy/src/ext/http/client.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/chatgpt-cli/blob/a30c3e74a2f1f1a30c7d42af2768265a3789f72f/src/chatgpt/utils/proxy.cr#L30" target="_blank">
+      <a href="https://github.com/kojix2/chatgpt-cli/blob/ce7bab2a9f6d00a7c0f33188d7ee8c9874cfdceb/src/chatgpt/utils/proxy.cr#L30" target="_blank">
         chatgpt/utils/proxy.cr
       </a>
     
@@ -319,6 +319,25 @@ are silently ignored when reading text content.</p>
 
 
 
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28uri%3AURI%2Ctls%3ATLSContext%3Dnil%29-class-method" class="signature"><strong>.new</strong>(uri : URI, tls : TLSContext = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>Creates a new HTTP client from a URI.</p></div>
+        
+      </li>
+    
+  </ul>
 
 
 
@@ -352,6 +371,55 @@ are silently ignored when reading text content.</p>
   
 </div>
 
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(uri:URI,tls:TLSContext=nil)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(uri : URI, tls : TLSContext = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#new%28uri%3AURI%2Ctls%3ATLSContext%3Dnil%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a new HTTP client from a URI. Parses the <em>host</em>, <em>port</em>,
+and <em>tls</em> configuration from the URI provided. Port defaults to
+80 if not specified unless using the https protocol, which defaults
+to port 443 and sets tls to <code>true</code>.</p>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;http/client&quot;</span>
+<span class="k">require</span> <span class="s">&quot;uri&quot;</span>
+
+uri <span class="o">=</span> <span class="t">URI</span>.parse(<span class="s">&quot;https://secure.example.com&quot;</span>)
+client <span class="o">=</span> <span class="t">HTTP</span><span class="t">::</span><span class="t">Client</span>.new(uri)
+
+client.tls? <span class="c"># =&gt; #&lt;OpenSSL::SSL::Context::Client&gt;</span>
+client.get(<span class="s">&quot;/&quot;</span>)</code></pre>
+<p>This constructor will <em>ignore</em> any path or query segments in the URI
+as those will need to be passed to the client when a request is made.</p>
+<p>If <em>tls</em> is given it will be used, if not a new TLS context will be created.
+If <em>tls</em> is given and <em>uri</em> is a HTTP URI, <code>ArgumentError</code> is raised.
+In any case the active context can be accessed through <code>tls</code>.</p>
+<p>This constructor will raise an exception if any scheme but HTTP or HTTPS
+is used.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/ce7bab2a9f6d00a7c0f33188d7ee8c9874cfdceb/src/chatgpt/utils/proxy.cr#L31" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
 
 
 
