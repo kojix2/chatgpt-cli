@@ -17,23 +17,9 @@
 
 ## Installation
 
-### Linux
+### GtiHub Release
 
-```
-curl -L -o chatgpt \
-  https://github.com/kojix2/chatgpt-cli/releases/download/v0.2.1/chatgpt-cli-linux-x86_64
-chmod +x chatgpt
-sudo mv chatgpt /usr/local/bin/
-```
-
-### macOS
-
-```
-curl -L -o chatgpt \
-  https://github.com/kojix2/chatgpt-cli/releases/download/v0.2.1/chatgpt-cli-mac-amd64
-chmod +x chatgpt
-sudo mv chatgpt /usr/local/bin/
-```
+Download binaries from [Github Release](https://github.com/kojix2/chatgpt-cli/releases/latest) for Linux or macOS.
 
 Note: Binaries for macOS are [not statically compiled](https://crystal-lang.org/reference/1.7/guides/static_linking.html#macos) and require shared libraries, such as `libssl` and `libcrypto`. If you encounter any errors, please check the required libraries by running `otool -L /usr/local/bin/chatgpt`.
 
