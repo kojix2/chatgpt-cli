@@ -28,13 +28,20 @@ require "http_proxy"
 #   environment variables
 module HTTP
   class Client
-    private def self.exec(uri : URI, tls : TLSContext = nil)
-      previous_def uri, tls do |client, path|
-        if proxy = get_proxy(uri)
-          client.proxy = proxy
-        end
-        yield client, path
+    def self.new(uri : URI, tls : TLSContext = nil)
+      client = previous_def(uri, tls)
+      if proxy = get_proxy(uri)
+        client.proxy = proxy
       end
+      client
+    end
+
+    private def self.exec(uri : URI, tls : TLSContext = nil)
+      client, path = previous_def(uri, tls)
+      if proxy = get_proxy(uri)
+        client.proxy = proxy
+      end
+      [client, path]
     end
   end
 end

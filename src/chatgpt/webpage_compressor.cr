@@ -1,5 +1,4 @@
 require "lexbor"
-require "http_proxy"
 require "./utils/proxy"
 
 struct Lexbor::Node
