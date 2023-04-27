@@ -44,6 +44,13 @@ Windows is not supported.
 export OPENAI_API_KEY="your_openai_api_key"
 ```
 
+### Using a proxy server
+
+```
+export HTTP_PROXY=http://[IP]:[port]
+export HTTPS_PROXY=https://[IP]:[port]
+```
+
 ## Usage
 
 To start using ChatGPT CLI, run the `chatgpt` command in your terminal:
