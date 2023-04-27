@@ -91,6 +91,20 @@ module ChatGPT
           "method"      => "undo",
         },
         {
+          "name"        => "shift",
+          "description" => "Remove first message and response",
+          "pattern"     => "shift",
+          "n_args"      => 0,
+          "method"      => "shift",
+        },
+        {
+          "name"        => "shift <n>",
+          "description" => "Remove first <n> messages and responses",
+          "pattern"     => /^shift\s+(\d+)/,
+          "n_args"      => 1,
+          "method"      => "shift",
+        },
+        {
           "name"        => "resume",
           "description" => "Resume from auto-saved data",
           "pattern"     => "resume",
@@ -315,6 +329,24 @@ module ChatGPT
         data.messages.pop # query
       end
       puts "Undo #{n == 1 ? "last" : n} messages"._colorize(:warning)
+      @total_tokens = -1
+      true
+    end
+
+    def shift
+      shift(1)
+      @total_tokens = -1
+      true
+    end
+
+    def shift(n)
+      number_of_user_messages = data.count_user_messages
+      n = [n.to_i, number_of_user_messages].min
+      n.times do
+        data.messages.shift # query
+        data.messages.shift # response
+      end
+      puts "Shift #{n} messages"._colorize(:warning)
       @total_tokens = -1
       true
     end

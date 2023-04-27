@@ -161,6 +161,13 @@ Clear all messages. This is useful when you want to change the topic and set TOK
 Undo the last n query and response [1]. If you make a mistake asking ChatGPT or if the reply is not what you are looking for, you can undo.
 
 ```
+%shift <n>
+```
+
+Remove first <n> messages and responses. This is useful when you want to continue the chat even after the Token count has reached its limit.
+
+
+```
 %write <filename>
 ```
 
