@@ -9,7 +9,7 @@ targets:
     main: src/chatgpt.cr
 
 description: |
-  Scripts for OpenAI
+  Yet another ChatGPT command line tool
 
 dependencies:
   spinner:
