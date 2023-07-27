@@ -22,6 +22,8 @@ module ChatGPT
 
     alias ConfigData = Hash(String, Hash(String, Hash(String, String)))
 
+    class NoPromptIdError < Exception; end
+
     getter config_data : ConfigData
 
     def self.instance
@@ -90,7 +92,12 @@ module ChatGPT
     end
 
     def select_id(id)
-      {"role" => "system", "content" => @prompts[id]}
+      if @prompts.has_key?(id)
+        prompt = @prompts[id]
+      else
+        raise NoPromptIdError.new("No such prompt id: \"#{id}\"")
+      end
+      {"role" => "system", "content" => prompt}
     end
 
     def terminal_colors
