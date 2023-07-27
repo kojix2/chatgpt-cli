@@ -38,13 +38,13 @@ module ChatGPT
         on "-s STR", "--system STR", "System message" do |v|
           data.messages << {"role" => "system", "content" => v.to_s}
         end
-        on "-n INT", "Number of edits to generate [1]" do |v|
+        on "-E INT", "Number of edits to generate [1]" do |v|
           data.n = v.to_i? || (STDERR.puts "Error: Invalid number of edits"; exit 1)
         end
-        on "-t Float", "--temperature Float", "Sampling temperature to use [1.0]" do |v|
+        on "-T Float", "--temperature Float", "Sampling temperature to use [1.0]" do |v|
           data.temperature = v.to_f? || (STDERR.puts "Error: Invalid temperature"; exit 1)
         end
-        on "-p Float", "--top_p Float", "Probability threshold of nucleus sampling [1.0]" do |v|
+        on "-P Float", "--top_p Float", "Probability threshold of nucleus sampling [1.0]" do |v|
           data.top_p = v.to_f? || (STDERR.puts "Error: Invalid top_p"; exit 1)
         end
         on "-o", "--stdout", "Output to stdout then exit" do
