@@ -25,6 +25,7 @@ module ChatGPT
     class NoPromptIdError < Exception; end
 
     getter config_data : ConfigData
+    getter prompts : Hash(String, String)
 
     def self.instance
       @@instance ||= new

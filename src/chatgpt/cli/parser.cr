@@ -22,6 +22,13 @@ module ChatGPT
 
           Usage: #{PROGRAM_NAME} [options]
           BANNER
+        on("ids", "Print all system message IDs and exit") do
+          banner = "Usage: #{PROGRAM_NAME} ids [options]"
+          config.prompts.each do |k, v|
+            puts k
+          end
+          exit
+        end
         on "-r", "--resume", "Resume the session" do
           load_session(Config::POST_DATA_FILE)
         end
