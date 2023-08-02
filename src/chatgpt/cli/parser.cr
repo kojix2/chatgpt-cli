@@ -64,7 +64,15 @@ module ChatGPT
           puts CLI::VERSION
           exit
         end
-        on("-h", "--help", "Print help") { puts self; exit }
+        on("-h", "--help", "Print help") do
+          puts self
+          exit
+        end
+        unknown_args do |args|
+          unless args.empty?
+            STDERR.puts "Error: Unknown arguments: #{args.join(" ")}"._colorize(:warning, :bold)
+          end
+        end
       end
 
       def load_session(filename)
