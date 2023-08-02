@@ -22,8 +22,8 @@ module ChatGPT
 
           Usage: #{PROGRAM_NAME} [options]
           BANNER
-        on("ids", "Print all system message IDs and exit") do
-          banner = "Usage: #{PROGRAM_NAME} ids [options]"
+        on("prompts", "Print all system message IDs and exit") do
+          banner = "Usage: #{PROGRAM_NAME} prompts [options]"
           config.prompts.each do |k, v|
             puts k
           end
