@@ -1,4 +1,5 @@
 require "./utils/proxy"
+require "openai"
 
 module ChatGPT
   # Define custom exceptions for API key errors and SIGINT signals
@@ -8,79 +9,23 @@ module ChatGPT
 
   # Define the Client class that handles communication with the ChatGPT API
   class Client
-    # Set the API endpoint URL
-    API_ENDPOINT = "https://api.openai.com"
-
-    # Initialize instance variable for HTTP headers
-    @http_headers : HTTP::Headers
-
     # Initialize the Client object by building the required HTTP headers
     def initialize
-      @http_headers = build_http_headers
-    end
-
-    # Build the required HTTP headers using the API key from environment variables
-    def build_http_headers
-      HTTP::Headers{
-        "Authorization" => "Bearer #{fetch_api_key}",
-        "Content-Type"  => "application/json",
-      }
-    end
-
-    # Fetch the API key from the environment variables or display an error if not present
-    def fetch_api_key
-      if ENV.has_key?("OPENAI_API_KEY")
-        ENV["OPENAI_API_KEY"]
-      else
-        STDERR.puts "Error: OPENAI_API_KEY is not set. "._colorize(:warning, :bold)
-        STDERR.puts "Please get your API key and set it as an environment variable."._colorize(:warning)
-        ""
-      end
+      @openai = OpenAI::Client.new(access_token: ENV.fetch("OPENAI_API_KEY"))
     end
 
     # Send a chat request to the ChatGPT API and log the request and response data if in debug mode
     def send_chat_request(request_data)
-      log_request_data(request_data) if debug_mode?
-      begin
-        chat_response = post_request(request_data)
-      rescue ex
-        raise ex
+      @openai.chat("gpt-3.5-turbo", [
+        {role: "user", content: "Hi!"},
+      ], {"stream" => true}) do |chunk|
+        pp chunk.choices.first.delta
       end
-      log_response_data(chat_response) if debug_mode?
-      chat_response
-    end
-
-    # Send a POST request with the provided request data to the ChatGPT API
-    def post_request(request_data)
-      client = HTTP::Client.new(URI.parse(API_ENDPOINT))
-      Signal::INT.trap do |s|
-        client.close
-      end
-      response = client.post("/v1/chat/completions", headers: @http_headers, body: request_data.to_json)
-    rescue ex
-      Signal::INT.reset
-      raise ex
     end
 
     # Check if the client is running in debug mode
     private def debug_mode?
       DEBUG_FLAG[0]
-    end
-
-    # Log the request data sent to the API in debug mode
-    private def log_request_data(request_data)
-      STDERR.puts
-      STDERR.puts "Sending request to #{API_ENDPOINT}"._colorize(:debug, :bold)
-      STDERR.puts request_data.pretty_inspect._colorize(:debug)
-      STDERR.puts
-    end
-
-    # Log the response data received from the API in debug mode
-    private def log_response_data(chat_response)
-      STDERR.puts "Received response from #{API_ENDPOINT}"._colorize(:debug, :bold)
-      STDERR.puts "Response status: #{chat_response.status}"._colorize(:debug)
-      STDERR.puts "Response body: #{JSON.parse(chat_response.body).pretty_inspect}"._colorize(:debug)
-      STDERR.puts
     end
   end
 end

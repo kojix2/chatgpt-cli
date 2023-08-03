@@ -89,29 +89,20 @@ module ChatGPT
       input_msg = substitute(input_msg)
 
       post_data.add_message("user", input_msg)
-      begin
-        response = chat_gpt_client.send_chat_request(post_data)
-      rescue ex
-        STDERR.puts "Error: #{ex.message}"._colorize(:warning, :bold)
-        post_data.messages.pop
-        return
-      end
 
-      if response.success?
-        @response_data = ResponseData.new(response.body)
-        result_msg = response_data.assistant_message
-        post_data.add_message("assistant", result_msg)
-        File.write(Config::POST_DATA_FILE, post_data.to_pretty_json)
+      # FIXME: ERROR HANDLING
+      response = chat_gpt_client.send_chat_request(post_data)
 
-        set_response_env(result_msg, "RESP") # TODO: make this configurable
+      @response_data = ResponseData.new(response.body)
+      result_msg = response_data.assistant_message
+      post_data.add_message("assistant", result_msg)
+      File.write(Config::POST_DATA_FILE, post_data.to_pretty_json)
 
-        extract_code_blocks(result_msg)
-        @total_tokens = response_data.total_tokens
-        puts result_msg._colorize(:chatgpt)
-      else
-        display_errors(response)
-        post_data.messages.pop
-      end
+      set_response_env(result_msg, "RESP") # TODO: make this configurable
+
+      extract_code_blocks(result_msg)
+      @total_tokens = response_data.total_tokens
+      puts result_msg._colorize(:chatgpt)
     end
 
     private def message_count
@@ -192,11 +183,11 @@ module ChatGPT
       end
     end
 
-    private def display_errors(response)
-      STDERR.puts "Error: #{response.status_code} #{response.status}"._colorize(:warning, :bold)
-      STDERR.puts response.body._colorize(:warning)
-      STDERR.puts "Hint: try %undo, %edit, %clear, %model or %help"._colorize(:warning, :bold)
-    end
+    # private def display_errors(response)
+    #   STDERR.puts "Error: #{response.status_code} #{response.status}"._colorize(:warning, :bold)
+    #   STDERR.puts response.body._colorize(:warning)
+    #   STDERR.puts "Hint: try %undo, %edit, %clear, %model or %help"._colorize(:warning, :bold)
+    # end
 
     private def debug_mode?
       DEBUG_FLAG[0]
