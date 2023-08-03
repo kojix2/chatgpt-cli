@@ -3,7 +3,6 @@ require "json"
 require "colorize"
 require "./colorize_extensions"
 require "readline"
-require "spinner"
 
 require "./file_extensions"
 require "./post_data"

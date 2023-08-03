@@ -41,15 +41,11 @@ module ChatGPT
     # Send a chat request to the ChatGPT API and log the request and response data if in debug mode
     def send_chat_request(request_data)
       log_request_data(request_data) if debug_mode?
-      spinner = create_spinner
-      spinner.start
       begin
         chat_response = post_request(request_data)
       rescue ex
-        spinner.stop
         raise ex
       end
-      spinner.stop
       log_response_data(chat_response) if debug_mode?
       chat_response
     end
@@ -64,12 +60,6 @@ module ChatGPT
     rescue ex
       Signal::INT.reset
       raise ex
-    end
-
-    # Create a spinner for displaying progress while waiting for API response
-    private def create_spinner
-      spinner_text = "ChatGPT"._colorize(:chatgpt, :bold)
-      Spin.new(0.2, Spinner::Charset[:pulsate2], spinner_text, output: STDERR)
     end
 
     # Check if the client is running in debug mode

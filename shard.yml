@@ -12,9 +12,6 @@ description: |
   Yet another ChatGPT command line tool
 
 dependencies:
-  spinner:
-    github: kojix2/spinner
-    branch: master
   readline:
     github: kojix2/crystal-readline
     branch: kojix2-patch-1
@@ -22,5 +19,7 @@ dependencies:
     github: kostya/lexbor
   http_proxy:
     github: mamantoha/http_proxy
+  openai:
+    github: lancecarlson/openai.cr
 
 license: MIT
