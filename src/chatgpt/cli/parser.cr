@@ -57,6 +57,9 @@ module ChatGPT
         on "--stdout", "Output to stdout then exit" do
           @interactive = false
         end
+        on "--batch", "Same as --stdout" do
+          @interactive = false
+        end
         on "-d", "--debug", "Debug mode" do
           DEBUG_FLAG[0] = true
         end
