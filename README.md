@@ -121,10 +121,8 @@ Unfortunately, line breaks are not currently supported, but still you can copy-p
 ```sh
 echo "hello" | chatgpt -b
 # How can I assist you today?
-echo "It's okay now. Rest." | chatgpt -b
-# Alright, it's okay now. You can rest and take a break.
-echo "%html" | chatgpt -b
-# (your browser will start...)
+echo "It's okay now. Rest." | chatgpt -b -r
+# Thank you for your concern. I hope you have a pleasant day as well. Feel free to reach out if you need any assistance in the future. Take care and rest well!
 ```
 
 ### Selecting ChatGPT System Commands
