@@ -54,7 +54,7 @@ module ChatGPT
         on "-P Float", "--top_p Float", "Probability threshold of nucleus sampling [1.0]" do |v|
           data.top_p = v.to_f? || (STDERR.puts "Error: Invalid top_p"; exit 1)
         end
-        on "-b", "--batch", "Same as --stdout" do
+        on "-b", "--batch", "Batch mode (no interactive prompts)" do
           @interactive = false
         end
         on "-d", "--debug", "Debug mode" do
