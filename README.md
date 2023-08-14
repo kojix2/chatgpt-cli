@@ -113,6 +113,20 @@ You can cancel a query to ChatGPT with `Ctrl + C`. This is especially useful whe
 
 Unfortunately, line breaks are not currently supported, but still you can copy-paste line breaks.
 
+### Batch mode
+
+- `-b` `--batch` Pass input by filename or standard input. ChatGPT will output to standard output and exit immediately.
+- `-r` `--resume` The chat from the last time you exited is carried over to the startup.
+
+```sh
+echo "hello" | chatgpt -b
+# How can I assist you today?
+echo "It's okay now. Rest." | chatgpt -b
+# Alright, it's okay now. You can rest and take a break.
+echo "%html" | chatgpt -b
+# (your browser will start...)
+```
+
 ### Selecting ChatGPT System Commands
 
 Select pre-registered system commands:
