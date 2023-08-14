@@ -66,14 +66,18 @@ Type a message and press Enter to get a response from GPT-3.5 Turbo. To exit, ty
 You can set various options when running the `chatgpt` command:
 
 ```
-Usage: bin/chatgpt [options]
+Usage: chatgpt [options]
+    prompts                          Print all system message IDs and exit
     -r, --resume                     Resume the session
+    -l FILE, --load FILE             Load session from file
     -m MODEL, --model MODEL          Model name [gpt-3.5-turbo]
     -i ID, --id ID                   ID of the custom system message
     -s STR, --system STR             System message
     -E INT                           Number of edits to generate [1]
     -T Float, --temperature Float    Sampling temperature to use [1.0]
     -P Float, --top_p Float          Probability threshold of nucleus sampling [1.0]
+    -b, --batch                      Batch mode (no interactive prompts)
+    -d, --debug                      Debug mode
     -v, --version                    Print version info and exit
     -h, --help                       Print help
 ```
@@ -172,7 +176,6 @@ Undo the last n query and response [1]. If you make a mistake asking ChatGPT or 
 ```
 
 Remove first <n> messages and responses. This is useful when you want to continue the chat even after the Token count has reached its limit.
-
 
 ```
 %write <filename>
