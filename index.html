@@ -278,14 +278,18 @@ export HTTPS_PROXY=https://[IP]:[port]</code></pre>
   </svg>
 </a>Options</h3>
 <p>You can set various options when running the <code>chatgpt</code> command:</p>
-<pre><code class="language-crystal">Usage: bin/chatgpt [options]
+<pre><code class="language-crystal">Usage: chatgpt [options]
+    prompts                          Print all system message IDs and exit
     -r, --resume                     Resume the session
+    -l FILE, --load FILE             Load session from file
     -m MODEL, --model MODEL          Model name [gpt-3.5-turbo]
     -i ID, --id ID                   ID of the custom system message
     -s STR, --system STR             System message
     -E INT                           Number of edits to generate [1]
     -T Float, --temperature Float    Sampling temperature to use [1.0]
     -P Float, --top_p Float          Probability threshold of nucleus sampling [1.0]
+    -b, --batch                      Batch mode (no interactive prompts)
+    -d, --debug                      Debug mode
     -v, --version                    Print version info and exit
     -h, --help                       Print help</code></pre>
 <p>Restore the previous chat and use the gpt-4 model.</p>
