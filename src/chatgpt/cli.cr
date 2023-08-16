@@ -63,7 +63,6 @@ module ChatGPT
 
     def run_in_batch
       input_msg = ARGF.gets_to_end
-      post_data.add_message("user", input_msg)
       add_history(input_msg)
       main_run(input_msg)
     end
