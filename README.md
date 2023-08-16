@@ -313,6 +313,8 @@ Bug reports and pull requests are welcome on GitHub at [https://github.com/kojix
 
 ## Development
 
+![overview](https://raw.githubusercontent.com/kojix2/chatgpt-cli/main/docs/overview.png)
+
 Building:
 
 ```bash
