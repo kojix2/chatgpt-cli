@@ -20,7 +20,7 @@ module ChatGPT
     def fetch
       client = HTTP::Client.new(@uri)
       res = client.get("/")
-      FetchError.new unless res.success?
+      raise FetchError.new unless res.success?
       @body = res.body.to_s
     end
 
