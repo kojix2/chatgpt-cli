@@ -57,11 +57,11 @@ module ChatGPT
       if @interactive
         run_interacitively
       else
-        run_as_oneliner
+        run_in_batch
       end
     end
 
-    def run_as_oneliner
+    def run_in_batch
       input_msg = ARGF.gets_to_end
       post_data.add_message("user", input_msg)
       add_history(input_msg)
