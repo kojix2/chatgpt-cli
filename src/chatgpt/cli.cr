@@ -1,7 +1,7 @@
 require "option_parser"
 require "json"
 require "colorize"
-require "./colorize_extensions"
+require "./utils/colorize_extensions"
 require "readline"
 require "spinner"
 
