@@ -46,7 +46,7 @@ module ChatGPT
 
       @chat_gpt_client = Client.new
       @system_command_runner = SystemCommandRunner.new
-      @magic_command_runner = MagicCommandRunner.new(post_data, key: "%")
+      @magic_command_runner = MagicCommand.new(post_data, key: "%")
       @substitutor = InputSubstitutor.new(@system_command_runner)
 
       @total_tokens = -1
