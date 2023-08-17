@@ -71,11 +71,14 @@ module ChatGPT
       LibReadline.read_history(Config::HISTORY_FILE)
       loop do
         input_msg = Readline.readline(readline_prompt, true)
+        # ctrl + d
         break if input_msg.nil?
+        # linebreak
         next if input_msg.empty?
 
         add_history(input_msg)
 
+        # exit or quit
         break if ["exit", "quit"].includes?(input_msg)
 
         main_run(input_msg)
@@ -83,8 +86,8 @@ module ChatGPT
     end
 
     def main_run(input_msg)
-      return if try_system_command(input_msg)
-      return if try_magic_command(input_msg)
+      return if system_command(input_msg)
+      return if magic_command(input_msg)
 
       input_msg = substitute(input_msg)
 
@@ -139,11 +142,11 @@ module ChatGPT
       input_msg = substitutor.file(input_msg, config.file_regex)
     end
 
-    private def try_system_command(input_msg)
+    private def system_command(input_msg)
       system_command_runner.try_run(input_msg)
     end
 
-    private def try_magic_command(input_msg)
+    private def magic_command(input_msg)
       return false unless magic_command_runner.try_run(input_msg, post_data, response_data, total_tokens)
 
       @post_data = magic_command_runner.data
