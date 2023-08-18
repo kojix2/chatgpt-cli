@@ -12,7 +12,7 @@
 - Magic commands to `clear`, `undo`, `edit`, `write`, `save`, and `load` data.
 - Execute system commands and pass captured stdout and stderr output to ChatGPT.
 - Code blocks in the response are saved in temp files and can be referenced from `$CODE1`, `$CODE2`...
-- Output execution results in HTML (experimental).
+- Output execution results in HTML.
 - Substitution patterns of placeholders can be configurable in the configuration file.
 
 ## Installation
