@@ -251,17 +251,17 @@ make
 sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.</code></pre>
 </li>
 </ol>
-<h3><a id="set-your-open-ai-api-key-as-an-environment-variable-by-running" class="anchor" href="#set-your-open-ai-api-key-as-an-environment-variable-by-running">
+<h3><a id="set-your-open-ai-api-key" class="anchor" href="#set-your-open-ai-api-key">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Set your <a href="https://platform.openai.com/account/api-keys">OpenAI API key</a> as an environment variable by running:</h3>
+</a>Set your <a href="https://platform.openai.com/account/api-keys">OpenAI API key</a></h3>
 <pre><code class="language-bash">export OPENAI_API_KEY=&quot;your_openai_api_key&quot;</code></pre>
-<h3><a id="using-a-proxy-server" class="anchor" href="#using-a-proxy-server">
+<h3><a id="proxy-settings" class="anchor" href="#proxy-settings">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Using a proxy server</h3>
+</a>Proxy settings</h3>
 <pre><code class="language-crystal">export HTTP_PROXY=http://[IP]:[port]
 export HTTPS_PROXY=https://[IP]:[port]</code></pre>
 <h2><a id="usage" class="anchor" href="#usage">
@@ -269,15 +269,12 @@ export HTTPS_PROXY=https://[IP]:[port]</code></pre>
     <use href="#octicon-link"/>
   </svg>
 </a>Usage</h2>
-<p>To start using ChatGPT CLI, run the <code>chatgpt</code> command in your terminal:</p>
 <pre><code class="language-bash">chatgpt</code></pre>
-<p>Type a message and press Enter to get a response from GPT-3.5 Turbo. To exit, type <code>exit</code>, <code>quit</code>, or press <code>Ctrl + D</code>.</p>
 <h3><a id="options" class="anchor" href="#options">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Options</h3>
-<p>You can set various options when running the <code>chatgpt</code> command:</p>
 <pre><code class="language-crystal">Usage: chatgpt [options]
     prompts                          Print all system message IDs and exit
     -r, --resume                     Resume the session
@@ -297,17 +294,18 @@ export HTTPS_PROXY=https://[IP]:[port]</code></pre>
 <p>Note that short options cannot be concatenated.</p>
 <pre><code class="language-crystal">chatgpt <span class="o">-</span>rm gpt<span class="n">-4</span>
 <span class="c"># Error: Invalid option: -rm</span></code></pre>
-<h3><a id="using-chat-gpt-interactively" class="anchor" href="#using-chat-gpt-interactively">
+<h3><a id="interactive-mode-default" class="anchor" href="#interactive-mode-default">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Using ChatGPT interactively</h3>
+</a>Interactive mode (default)</h3>
 <p>Start ChatGPT CLI.</p>
 <pre><code class="language-crystal">chatgpt</code></pre>
-<p>Write your message using GNU Readline, which supports <a href="https://en.wikipedia.org/wiki/GNU_Readline">Emacs shortcuts</a>, such as <code>↑</code> and <code>↓</code>.</p>
+<p>To exit, type <code>exit</code>, <code>quit</code>, or press <code>Ctrl + D</code>.
+Write your message using GNU Readline, which supports <a href="https://en.wikipedia.org/wiki/GNU_Readline">Emacs shortcuts</a>, such as <code>↑</code> and <code>↓</code>.</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Hi</span></code></pre>
 <p>You can cancel a query to ChatGPT with <code>Ctrl + C</code>. This is especially useful when you make a writing mistake, and it takes a long time to reply.</p>
-<p>Unfortunately, line breaks are not currently supported, but still you can copy-paste line breaks.</p>
+<p>Unfortunately, line breaks are not currently supported in the interactive mode, but still you can copy-paste line breaks.</p>
 <h3><a id="batch-mode" class="anchor" href="#batch-mode">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -320,20 +318,20 @@ export HTTPS_PROXY=https://[IP]:[port]</code></pre>
 <pre><code class="language-sh">echo &quot;hello&quot; | chatgpt -b
 # How can I assist you today?
 echo &quot;It's okay now. Rest.&quot; | chatgpt -b -r
-# Thank you for your concern. I hope you have a pleasant day as well. Feel free to reach out if you need any assistance in the future. Take care and rest well!</code></pre>
-<h3><a id="selecting-chat-gpt-system-commands" class="anchor" href="#selecting-chat-gpt-system-commands">
+# Thank you for your concern. I hope you have a pleasant day as well. Feel free to reach out if you need any assistance in the future. Take care and rest well!
+echo &quot;%html&quot; | chatgpt -b -r</code></pre>
+<h3><a id="awesome-chat-gpt-prompts" class="anchor" href="#awesome-chat-gpt-prompts">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Selecting ChatGPT System Commands</h3>
-<p>Select pre-registered system commands:</p>
+</a>Awesome ChatGPT Prompts</h3>
+<p>You can select system commands in <a href="https://github.com/f/awesome-chatgpt-prompts">Awesome ChatGPT Prompts</a>.</p>
 <pre><code class="language-bash">chatgpt -i &quot;Linux Terminal&quot;</code></pre>
-<p><a href="https://github.com/f/awesome-chatgpt-prompts">Awesome ChatGPT Prompts</a> are available.</p>
-<h3><a id="passing-files-to-chat-gpt" class="anchor" href="#passing-files-to-chat-gpt">
+<h3><a id="files" class="anchor" href="#files">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Passing Files to ChatGPT</h3>
+</a>Files</h3>
 <p>You can pass the contents of files to ChatGPT by using the <code>%{foo.txt}</code> pattern.</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Please</span> explain the following code: <span class="s">%{src/beatles.py}</span> <span class="t">Are</span> there any bugs?</code></pre>
 <p>With this feature, you can pass the code to ChatGPT and have them write README.md.</p>
@@ -342,11 +340,11 @@ echo &quot;It's okay now. Rest.&quot; | chatgpt -b -r
 <span class="o">&gt;</span> <span class="o">%</span>w <span class="t">README</span>.md <span class="c"># This will save README.md</span></code></pre>
 <p>Note: READMEs created this way tend to be characterless. Still, it is marvelous to have a computer write the README for you.</p>
 <p><code>%{}</code> can be changed in the config file.</p>
-<h3><a id="passing-web-pages-to-chat-gpt" class="anchor" href="#passing-web-pages-to-chat-gpt">
+<h3><a id="web-pages" class="anchor" href="#web-pages">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Passing Web Pages to ChatGPT</h3>
+</a>Web pages</h3>
 <p>You can pass the contents of a web page to ChatGPT by using <code>%%{www.example.com}</code>.</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Pick</span> five interesting news items: <span class="o">%</span><span class="s">%{https://news.ycombinator.com/}</span></code></pre>
 <p>Here, the HTML from the URL is fetched, the words used in the <code>body</code> are extracted and passed to ChatGPT. It is much smaller than the raw HTML, but still not enough.</p>
@@ -405,11 +403,11 @@ Note that the tool is still being improved and the behavior of the magic command
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Explain</span> the meaning <span class="k">of</span> this error message: <span class="o">%</span><span class="t">STDERR</span></code></pre>
 <p>You can also use <code>!{ cmd }</code>. In this case, it will be replaced by the contents of standard input</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">What</span> time is it now? <span class="t">Hint</span>: <span class="o">!</span>{date}</code></pre>
-<h4><a id="run-code-blocks-in-the-response" class="anchor" href="#run-code-blocks-in-the-response">
+<h4><a id="code-blocks-in-the-response" class="anchor" href="#code-blocks-in-the-response">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Run Code Blocks in the Response</h4>
+</a>Code Blocks in the Response</h4>
 <p>When ChatGPT returns code blocks, ChatGPT CLI saves these blocks temporarily and assigns them to environment variables named <code>CODE1</code>, <code>CODE2</code>, ... and so on. This allows you to execute the code blocks on your computer.</p>
 <pre><code class="language-md">&gt; Write code to display 1 to 10 in Python and Ruby.
 &gt; Python:
