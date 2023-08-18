@@ -86,35 +86,36 @@ module ChatGPT
     end
 
     def main_run(input_msg)
-      return if system_command(input_msg)
-      return if magic_command(input_msg)
+      return true if system_command(input_msg)
+      return true if magic_command(input_msg)
 
       input_msg = substitute(input_msg)
 
       post_data.add_message("user", input_msg)
+
       begin
         response = chat_gpt_client.send_chat_request(post_data)
       rescue ex
         STDERR.puts "Error: #{ex.message}"._colorize(:warning, :bold)
         post_data.messages.pop
-        return
+        return false
       end
 
-      if response.success?
-        @response_data = ResponseData.new(response.body)
-        result_msg = response_data.assistant_message
-        post_data.add_message("assistant", result_msg)
-        File.write(Config::POST_DATA_FILE, post_data.to_pretty_json)
-
-        set_response_env(result_msg, "RESP") # TODO: make this configurable
-
-        extract_code_blocks(result_msg)
-        @total_tokens = response_data.total_tokens
-        puts result_msg._colorize(:chatgpt)
-      else
+      unless response.success?
         display_errors(response)
         post_data.messages.pop
+        return false
       end
+
+      @response_data = ResponseData.new(response.body)
+      result_msg = response_data.assistant_message
+      post_data.add_message("assistant", result_msg)
+      File.write(Config::POST_DATA_FILE, post_data.to_pretty_json)
+
+      set_envs_from_response(result_msg)
+      @total_tokens = response_data.total_tokens
+      puts result_msg._colorize(:chatgpt)
+      return true
     end
 
     private def message_count
@@ -147,12 +148,18 @@ module ChatGPT
     end
 
     private def magic_command(input_msg)
+      # FIXME
       return false unless magic_command_runner.try_run(input_msg, post_data, response_data, total_tokens)
 
       @post_data = magic_command_runner.data
       @total_tokens = magic_command_runner.total_tokens
 
       magic_command_runner.next?
+    end
+
+    private def set_envs_from_response(msg)
+      set_response_env(msg, "RESPONSE")
+      extract_code_blocks(msg)
     end
 
     private def set_response_env(msg, name)

@@ -3,7 +3,6 @@ require "./html_generator/message"
 
 module ChatGPT
   class HtmlGenerator
-
     @messages : Array(Message)
 
     def initialize(data)
