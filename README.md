@@ -21,9 +21,8 @@
 
 Download binaries from [Github Release](https://github.com/kojix2/chatgpt-cli/releases/latest) for Linux or macOS.
 
-Note: Binaries for macOS are [not statically compiled](https://crystal-lang.org/reference/1.7/guides/static_linking.html#macos) and require shared libraries, such as `libssl` and `libcrypto`. If you encounter any errors, please check the required libraries by running `otool -L /usr/local/bin/chatgpt`.
-
-Windows is not supported.
+- Binaries for macOS are [not statically compiled](https://crystal-lang.org/reference/1.7/guides/static_linking.html#macos).
+- Windows is not supported.
 
 ### From source code
 
@@ -38,13 +37,13 @@ Windows is not supported.
    sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.
    ```
 
-### Set your [OpenAI API key](https://platform.openai.com/account/api-keys) as an environment variable by running:
+### Set your [OpenAI API key](https://platform.openai.com/account/api-keys)
 
 ```bash
 export OPENAI_API_KEY="your_openai_api_key"
 ```
 
-### Using a proxy server
+### Proxy settings
 
 ```
 export HTTP_PROXY=http://[IP]:[port]
@@ -53,17 +52,11 @@ export HTTPS_PROXY=https://[IP]:[port]
 
 ## Usage
 
-To start using ChatGPT CLI, run the `chatgpt` command in your terminal:
-
 ```bash
 chatgpt
 ```
 
-Type a message and press Enter to get a response from GPT-3.5 Turbo. To exit, type `exit`, `quit`, or press `Ctrl + D`.
-
 ### Options
-
-You can set various options when running the `chatgpt` command:
 
 ```
 Usage: chatgpt [options]
@@ -95,7 +88,7 @@ chatgpt -rm gpt-4
 # Error: Invalid option: -rm
 ```
 
-### Using ChatGPT interactively
+### Interactive mode (default)
 
 Start ChatGPT CLI.
 
@@ -103,15 +96,16 @@ Start ChatGPT CLI.
 chatgpt
 ```
 
+To exit, type `exit`, `quit`, or press `Ctrl + D`.
 Write your message using GNU Readline, which supports [Emacs shortcuts](https://en.wikipedia.org/wiki/GNU_Readline), such as `↑` and `↓`.
 
 ```
 > Hi
 ```
 
-You can cancel a query to ChatGPT with `Ctrl + C`. This is especially useful when you make a writing mistake, and it takes a long time to reply.
+You can cancel a query to ChatGPT with `Ctrl + C`.
 
-Unfortunately, line breaks are not currently supported, but still you can copy-paste line breaks.
+Unfortunately, line breaks are not currently supported in the interactive mode, but still you can copy-paste line breaks.
 
 ### Batch mode
 
@@ -123,27 +117,22 @@ echo "hello" | chatgpt -b
 # How can I assist you today?
 echo "It's okay now. Rest." | chatgpt -b -r
 # Thank you for your concern. I hope you have a pleasant day as well. Feel free to reach out if you need any assistance in the future. Take care and rest well!
+echo "%html" | chatgpt -b -r
 ```
 
-### Selecting ChatGPT System Commands
+### Awesome ChatGPT Prompts
 
-Select pre-registered system commands:
+You can select system commands in [Awesome ChatGPT Prompts](https://github.com/f/awesome-chatgpt-prompts).
 
 ```bash
 chatgpt -i "Linux Terminal"
 ```
 
-[Awesome ChatGPT Prompts](https://github.com/f/awesome-chatgpt-prompts) are available.
-
-### Passing Files to ChatGPT
-
-You can pass the contents of files to ChatGPT by using the `%{foo.txt}` pattern.
+### Embed files `%{foo.txt}`
 
 ```
 > Please explain the following code: %{src/beatles.py} Are there any bugs?
 ```
-
-With this feature, you can pass the code to ChatGPT and have them write README.md.
 
 ```
 > Please read the code of the tool: %{src/*.cr} %{src/**/*.cr} Then update README.md %{README.md}
@@ -151,87 +140,73 @@ With this feature, you can pass the code to ChatGPT and have them write README.m
 > %w README.md # This will save README.md
 ```
 
-Note: READMEs created this way tend to be characterless. Still, it is marvelous to have a computer write the README for you.
-
 `%{}` can be changed in the config file.
 
-### Passing Web Pages to ChatGPT
-
-You can pass the contents of a web page to ChatGPT by using `%%{www.example.com}`.
+### Web pages `%%{www.example.com}`
 
 ```
 > Pick five interesting news items: %%{https://news.ycombinator.com/}
 ```
 
-Here, the HTML from the URL is fetched, the words used in the `body` are extracted and passed to ChatGPT. It is much smaller than the raw HTML, but still not enough.
+Here, the HTML from the URL is fetched, the words used in the `body` are extracted and passed to ChatGPT.
 
 `%%{}` can be changed in the config file.
 
-### Magic Commands
+### Magic Commands `%HELP`
 
 During the dialogue, you can use a variety of magic commands.
 
-| Magic Command       | Description                                                                             |
-| ------------------- | --------------------------------------------------------------------------------------- |
-| `%clear`            | Clear all messages. Change the topic and set TOKEN back to zero.                        |
-| `%undo <n>`         | Undo the last n query and response [1].                                                 |
-| `%shift <n>`        | Remove first <n> messages and responses. Continue the chat after the Token limit.       |
-| `%write <filename>` | Write the most recent message to a file. Save the text or code.                         |
-| `%w <filename>`     | Alias for `write`.                                                                      |
-| `%config`           | Edit the config file. Open a text editor and rewrite the settings.                      |
-| `%system`           | Show the current system message.                                                        |
-| `%system <message>` | Set a new system message.                                                               |
-| `%edit`             | Edit data in JSON format. You are free to tamper with the past.                         |
-| `%html <filename>`  | Export the conversation to HTML and launch your browser.                                |
-| `%save <filename>`  | Save the data. This allows you to do things like "save session".                        |
-| `%load <filename>`  | Load the data. This allows you to do things like "load session".                        |
-| `%resume`           | Load data from auto-saved data file.                                                    |
-| `%model <name>`     | Change the model.                                                                       |
-| `%tokens`           | Show number of tokens used from the ChatGPT response.                                   |
-| `%webapp`           | Open the ChatGPT website.                                                               |
-| `%debug`            | Show debug message. Display the data posted to ChatGPT and the response in JSON format. |
-| `%help`             | Show the help. Humans forget commands.                                                  |
+| Magic Command       | Description                                                        |
+| ------------------- | ------------------------------------------------------------------ |
+| `%clear`            | Clear all messages. Change the topic and set token back to zero.   |
+| `%undo <n>`         | Undo the last n query and response [1].                            |
+| `%shift <n>`        | Remove first <n> messages and responses.                           |
+| `%write <filename>` | Write the most recent message to a file. Save the text or code.    |
+| `%w <filename>`     | Alias for `write`.                                                 |
+| `%config`           | Edit the config file. Open a text editor and rewrite the settings. |
+| `%system`           | Show the current system message.                                   |
+| `%system <message>` | Set a new system message.                                          |
+| `%edit`             | Edit data in JSON format. You are free to tamper with the past.    |
+| `%html <filename>`  | Export the conversation to HTML and launch your browser.           |
+| `%save <filename>`  | Save the data. This allows you to do things like "save session".   |
+| `%load <filename>`  | Load the data. This allows you to do things like "load session".   |
+| `%resume`           | Load data from auto-saved data file.                               |
+| `%model <name>`     | Change the model.                                                  |
+| `%tokens`           | Show number of tokens used from the ChatGPT response.              |
+| `%webapp`           | Open the ChatGPT website.                                          |
+| `%debug`            | Show debug message.                                                |
+| `%help`             | Show the help. Humans forget commands.                             |
 
 Note that for `%config`, `%data`, and other commands launch an editor. The editor used can be set by the `EDITOR` environment variable.
 Note that the tool is still being improved and the behavior of the magic commands will continue to change.
 
-### Executing System Commands
+### Executing System Commands `!pwd`
 
-You can execute system commands while chatting by prefixing the command with the `!` symbol.
-
-Execute a command, and display the output immediately:
-
-```bash
+```
 > !pwd
 ```
 
-This way you can also run commands like `vim` and `top`.
-
-#### Capture STDOUT and STDERR
-
-Capture the output of a command for later use:
-
-```bash
-> !!git diff
+```
+> !vim
 ```
 
-The standard output can be inserted into the chat with `%STDOUT`.
+```
+> !top
+```
+
+#### Capture STDOUT and STDERR `!!cmd` `%STDOUT` `%STDERR` `!{cmd}`
+
+````
+```bash
+> !!git diff
+````
 
 ```
 > Please write a commit message: %STDOUT
 ```
 
-The results can be referenced through the environment variable `RESP` (experimental).
-
-```
-> !git commit -m "$RESP"
-```
-
-You can also insert the contents of the standard error output into the chat using `%STDERR`.
-
 ```bash
 > !!wrong_command
-
 ```
 
 ```
@@ -244,7 +219,7 @@ You can also use `!{ cmd }`. In this case, it will be replaced by the contents o
 > What time is it now? Hint: !{date}
 ```
 
-#### Run Code Blocks in the Response
+#### Code Blocks in the Response `$CODE1` `$CODE2`
 
 When ChatGPT returns code blocks, ChatGPT CLI saves these blocks temporarily and assigns them to environment variables named `CODE1`, `CODE2`, ... and so on. This allows you to execute the code blocks on your computer.
 
