@@ -171,26 +171,26 @@ Here, the HTML from the URL is fetched, the words used in the `body` are extract
 
 During the dialogue, you can use a variety of magic commands.
 
-| Magic Command       | Description                                                                                                                                                                                                                                                                                    |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `%clear`            | Clear all messages. This is useful when you want to change the topic and set TOKEN back to zero.                                                                                                                                                                                               |
-| `%undo <n>`         | Undo the last n query and response [1]. If you make a mistake asking ChatGPT or if the reply is not what you are looking for, you can undo.                                                                                                                                                    |
-| `%shift <n>`        | Remove first <n> messages and responses. This is useful when you want to continue the chat even after the Token count has reached its limit.                                                                                                                                                   |
-| `%write <filename>` | Write the most recent message to a file. Save the text and scripts written by ChatGPT.                                                                                                                                                                                                         |
-| `%w <filename>`     | Alias for `write`. This magic command is used so often that an alias is provided.                                                                                                                                                                                                              |
-| `%config`           | Edit the config file. Open a text editor and rewrite the settings.                                                                                                                                                                                                                             |
-| `%system`           | Show the current system message.                                                                                                                                                                                                                                                               |
-| `%system <message>` | Set a new system message (this behavior is subject to change).                                                                                                                                                                                                                                 |
-| `%edit`             | Edit data in JSON format. All data passed to ChatGPT can be edited here. You are free to tamper with the past.                                                                                                                                                                                 |
-| `%html <filename>`  | Export the conversation to HTML and launch your browser. This feature is useful when you want to save a conversation or check path expansion, etc. (Experimental and the output HTML may not be correct)                                                                                       |
-| `%save <filename>`  | Save the data. This allows you to do things like "save session". The file is a JSON file to be posted to ChatGPT.                                                                                                                                                                              |
-| `%load <filename>`  | Load the data. This allows you to do things like "load session".                                                                                                                                                                                                                               |
-| `%resume`           | Load data from auto-saved data file. We humans forget to save data. Therefore, the last session is automatically saved.                                                                                                                                                                        |
-| `%model <name>`     | You can change the model used in the next request. For example, if you find your question is too difficult for gpt-3.5-turbo, you can change to gpt-4 at that point.                                                                                                                           |
-| `%tokens`           | Total tokens used. You will see a more detailed number of TOKENs than is shown in the prompt. Please note that chatgpt-cli does not have the ability to calculate the number of TOKENs. It only displays the ChatGPT response. Therefore, if any edits may have been made, it will be Unknown. |
-| `%webapp`           | Open the ChatGPT website.                                                                                                                                                                                                                                                                      |
-| `%debug`            | Show debug message. Display the data actually posted to ChatGPT and the response in JSON format.                                                                                                                                                                                               |
-| `%help`             | Show the help. Humans forget commands.                                                                                                                                                                                                                                                         |
+| Magic Command       | Description                                                                             |
+| ------------------- | --------------------------------------------------------------------------------------- |
+| `%clear`            | Clear all messages. Change the topic and set TOKEN back to zero.                        |
+| `%undo <n>`         | Undo the last n query and response [1].                                                 |
+| `%shift <n>`        | Remove first <n> messages and responses. Continue the chat after the Token limit.       |
+| `%write <filename>` | Write the most recent message to a file. Save the text or code.                         |
+| `%w <filename>`     | Alias for `write`.                                                                      |
+| `%config`           | Edit the config file. Open a text editor and rewrite the settings.                      |
+| `%system`           | Show the current system message.                                                        |
+| `%system <message>` | Set a new system message.                                                               |
+| `%edit`             | Edit data in JSON format. You are free to tamper with the past.                         |
+| `%html <filename>`  | Export the conversation to HTML and launch your browser.                                |
+| `%save <filename>`  | Save the data. This allows you to do things like "save session".                        |
+| `%load <filename>`  | Load the data. This allows you to do things like "load session".                        |
+| `%resume`           | Load data from auto-saved data file.                                                    |
+| `%model <name>`     | Change the model.                                                                       |
+| `%tokens`           | Show number of tokens used from the ChatGPT response.                                   |
+| `%webapp`           | Open the ChatGPT website.                                                               |
+| `%debug`            | Show debug message. Display the data posted to ChatGPT and the response in JSON format. |
+| `%help`             | Show the help. Humans forget commands.                                                  |
 
 Note that for `%config`, `%data`, and other commands launch an editor. The editor used can be set by the `EDITOR` environment variable.
 Note that the tool is still being improved and the behavior of the magic commands will continue to change.
