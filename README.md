@@ -221,8 +221,11 @@ What time is it now? Hint: !{date}
 
 When ChatGPT returns code blocks, ChatGPT CLI saves these blocks temporarily and assigns them to environment variables named `CODE1`, `CODE2`, ... and so on. This allows you to execute the code blocks on your computer.
 
-````md
+```
 Write code to display 1 to 10 in Python and Ruby.
+```
+
+````md
 Python:
 
 ```
@@ -235,12 +238,14 @@ Ruby:
 ```
 (1..10).each { |i| puts i }
 ```
+`````
 
+```
 ! python $CODE1
 ! ruby $CODE2
-````
+```
 
-Save code block only.
+Save code block.
 
 ```
 Please write comments/documentation for the code: %{src/client.cr}
