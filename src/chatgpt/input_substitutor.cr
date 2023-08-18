@@ -2,7 +2,7 @@ require "./webpage_compressor"
 
 module ChatGPT
   class InputSubstitutor
-    def initialize(@system_command_runner : SystemCommandRunner)
+    def initialize(@system_command_runner : SystemCommand)
     end
 
     private def last_command

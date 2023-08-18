@@ -1,9 +1,9 @@
 require "./spec_helper"
-require "../src/chatgpt/system_command_runner"
+require "../src/chatgpt/system_command"
 
-describe ChatGPT::SystemCommandRunner do
+describe ChatGPT::SystemCommand do
   describe "try_run" do
-    runner = ChatGPT::SystemCommandRunner.new
+    runner = ChatGPT::SystemCommand.new
 
     it "returns false if input does not start with '!' or '!!'" do
       input = "hello world"

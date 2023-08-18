@@ -9,7 +9,7 @@ require "./file_extensions"
 require "./post_data"
 require "./client"
 require "./response_data"
-require "./system_command_runner"
+require "./system_command"
 require "./magic_command"
 require "./input_substitutor"
 require "./cli/version"
@@ -45,7 +45,7 @@ module ChatGPT
       @interactive = command_parser.interactive
 
       @chat_gpt_client = Client.new
-      @system_command_runner = SystemCommandRunner.new
+      @system_command_runner = SystemCommand.new
       @magic_command_runner = MagicCommand.new(post_data, key: "%")
       @substitutor = InputSubstitutor.new(@system_command_runner)
 

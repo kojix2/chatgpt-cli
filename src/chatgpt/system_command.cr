@@ -1,5 +1,5 @@
 module ChatGPT
-  class SystemCommandRunner
+  class SystemCommand
     getter last_stdout
     getter last_stderr
     getter last_command
