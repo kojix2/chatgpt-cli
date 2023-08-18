@@ -5,7 +5,6 @@ require "./utils/colorize_extensions"
 require "readline"
 require "spinner"
 
-require "./file_extensions"
 require "./post_data"
 require "./client"
 require "./response_data"

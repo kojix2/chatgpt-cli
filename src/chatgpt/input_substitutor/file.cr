@@ -1,3 +1,5 @@
+require "./file_extensions"
+
 module ChatGPT
   class InputSubstitutor
     def file(input_msg, file_pattern)
