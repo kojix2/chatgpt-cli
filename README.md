@@ -100,7 +100,7 @@ To exit, type `exit`, `quit`, or press `Ctrl + D`.
 Write your message using GNU Readline, which supports [Emacs shortcuts](https://en.wikipedia.org/wiki/GNU_Readline), such as `↑` and `↓`.
 
 ```
-> Hi
+Hi
 ```
 
 You can cancel a query to ChatGPT with `Ctrl + C`.
@@ -131,13 +131,11 @@ chatgpt -i "Linux Terminal"
 ### Embed files `%{foo.txt}`
 
 ```
-> Please explain the following code: %{src/beatles.py} Are there any bugs?
+Please explain the following code: %{src/beatles.py} Are there any bugs?
 ```
 
 ```
-> Please read the code of the tool: %{src/*.cr} %{src/**/*.cr} Then update README.md %{README.md}
-...
-> %w README.md # This will save README.md
+Please read the code of the tool: %{src/*.cr} %{src/**/*.cr} Then update README.md %{README.md}
 ```
 
 `%{}` can be changed in the config file.
@@ -145,7 +143,7 @@ chatgpt -i "Linux Terminal"
 ### Web pages `%%{www.example.com}`
 
 ```
-> Pick five interesting news items: %%{https://news.ycombinator.com/}
+Pick five interesting news items: %%{https://news.ycombinator.com/}
 ```
 
 Here, the HTML from the URL is fetched, the words used in the `body` are extracted and passed to ChatGPT.
@@ -183,40 +181,40 @@ Note that the tool is still being improved and the behavior of the magic command
 ### Executing System Commands `!pwd`
 
 ```
-> !pwd
+!pwd
 ```
 
 ```
-> !vim
+!vim
 ```
 
 ```
-> !top
+!top
 ```
 
 #### Capture STDOUT and STDERR `!!cmd` `%STDOUT` `%STDERR` `!{cmd}`
 
 ````
 ```bash
-> !!git diff
+!!git diff
 ````
 
 ```
-> Please write a commit message: %STDOUT
+Please write a commit message: %STDOUT
 ```
 
 ```bash
-> !!wrong_command
+!!wrong_command
 ```
 
 ```
-> Explain the meaning of this error message: %STDERR
+Explain the meaning of this error message: %STDERR
 ```
 
 You can also use `!{ cmd }`. In this case, it will be replaced by the contents of standard input
 
 ```
-> What time is it now? Hint: !{date}
+What time is it now? Hint: !{date}
 ```
 
 #### Code Blocks in the Response `$CODE1` `$CODE2`
@@ -224,8 +222,8 @@ You can also use `!{ cmd }`. In this case, it will be replaced by the contents o
 When ChatGPT returns code blocks, ChatGPT CLI saves these blocks temporarily and assigns them to environment variables named `CODE1`, `CODE2`, ... and so on. This allows you to execute the code blocks on your computer.
 
 ````md
-> Write code to display 1 to 10 in Python and Ruby.
-> Python:
+Write code to display 1 to 10 in Python and Ruby.
+Python:
 
 ```
 for i in range(1, 11):
@@ -238,15 +236,15 @@ Ruby:
 (1..10).each { |i| puts i }
 ```
 
-> ! python $CODE1
-> ! ruby $CODE2
+! python $CODE1
+! ruby $CODE2
 ````
 
 Save code block only.
 
 ```
-> Please write comments/documentation for the code: %{src/client.cr}
-> !cp $CODE1 src/client.cr
+Please write comments/documentation for the code: %{src/client.cr}
+!cp $CODE1 src/client.cr
 # Then check diff with your code editor...
 ```
 
