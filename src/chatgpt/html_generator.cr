@@ -12,6 +12,6 @@ module ChatGPT
       end
     end
 
-    ECR.def_to_s "#{__DIR__}/html_generator/output.html.ecr"
+    ECR.def_to_s "#{__DIR__}/html_generator/template.html.ecr"
   end
 end
