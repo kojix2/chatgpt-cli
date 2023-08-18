@@ -231,8 +231,10 @@
   </svg>
 </a>GtiHub Release</h3>
 <p>Download binaries from <a href="https://github.com/kojix2/chatgpt-cli/releases/latest">Github Release</a> for Linux or macOS.</p>
-<p>Note: Binaries for macOS are <a href="https://crystal-lang.org/reference/1.7/guides/static_linking.html#macos">not statically compiled</a> and require shared libraries, such as <code>libssl</code> and <code>libcrypto</code>. If you encounter any errors, please check the required libraries by running <code>otool -L /usr/local/bin/chatgpt</code>.</p>
-<p>Windows is not supported.</p>
+<ul>
+<li>Binaries for macOS are <a href="https://crystal-lang.org/reference/1.7/guides/static_linking.html#macos">not statically compiled</a>.</li>
+<li>Windows is not supported.</li>
+</ul>
 <h3><a id="from-source-code" class="anchor" href="#from-source-code">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -304,7 +306,7 @@ export HTTPS_PROXY=https://[IP]:[port]</code></pre>
 <p>To exit, type <code>exit</code>, <code>quit</code>, or press <code>Ctrl + D</code>.
 Write your message using GNU Readline, which supports <a href="https://en.wikipedia.org/wiki/GNU_Readline">Emacs shortcuts</a>, such as <code>↑</code> and <code>↓</code>.</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Hi</span></code></pre>
-<p>You can cancel a query to ChatGPT with <code>Ctrl + C</code>. This is especially useful when you make a writing mistake, and it takes a long time to reply.</p>
+<p>You can cancel a query to ChatGPT with <code>Ctrl + C</code>.</p>
 <p>Unfortunately, line breaks are not currently supported in the interactive mode, but still you can copy-paste line breaks.</p>
 <h3><a id="batch-mode" class="anchor" href="#batch-mode">
   <svg class="octicon-link" aria-hidden="true">
@@ -327,87 +329,77 @@ echo &quot;%html&quot; | chatgpt -b -r</code></pre>
 </a>Awesome ChatGPT Prompts</h3>
 <p>You can select system commands in <a href="https://github.com/f/awesome-chatgpt-prompts">Awesome ChatGPT Prompts</a>.</p>
 <pre><code class="language-bash">chatgpt -i &quot;Linux Terminal&quot;</code></pre>
-<h3><a id="files" class="anchor" href="#files">
+<h3><a id="embed-files-foo.txt" class="anchor" href="#embed-files-foo.txt">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Files</h3>
-<p>You can pass the contents of files to ChatGPT by using the <code>%{foo.txt}</code> pattern.</p>
+</a>Embed files <code>%{foo.txt}</code></h3>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Please</span> explain the following code: <span class="s">%{src/beatles.py}</span> <span class="t">Are</span> there any bugs?</code></pre>
-<p>With this feature, you can pass the code to ChatGPT and have them write README.md.</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Please</span> read the code <span class="k">of</span> the tool: <span class="s">%{src/*.cr}</span> <span class="s">%{src/**/*.cr}</span> <span class="t">Then</span> update <span class="t">README</span>.md <span class="s">%{README.md}</span>
 ...
 <span class="o">&gt;</span> <span class="o">%</span>w <span class="t">README</span>.md <span class="c"># This will save README.md</span></code></pre>
-<p>Note: READMEs created this way tend to be characterless. Still, it is marvelous to have a computer write the README for you.</p>
 <p><code>%{}</code> can be changed in the config file.</p>
-<h3><a id="web-pages" class="anchor" href="#web-pages">
+<h3><a id="web-pages-www.example.com" class="anchor" href="#web-pages-www.example.com">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Web pages</h3>
-<p>You can pass the contents of a web page to ChatGPT by using <code>%%{www.example.com}</code>.</p>
+</a>Web pages <code>%%{www.example.com}</code></h3>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Pick</span> five interesting news items: <span class="o">%</span><span class="s">%{https://news.ycombinator.com/}</span></code></pre>
-<p>Here, the HTML from the URL is fetched, the words used in the <code>body</code> are extracted and passed to ChatGPT. It is much smaller than the raw HTML, but still not enough.</p>
+<p>Here, the HTML from the URL is fetched, the words used in the <code>body</code> are extracted and passed to ChatGPT.</p>
 <p><code>%%{}</code> can be changed in the config file.</p>
-<h3><a id="magic-commands" class="anchor" href="#magic-commands">
+<h3><a id="magic-commands-help" class="anchor" href="#magic-commands-help">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Magic Commands</h3>
+</a>Magic Commands <code>%HELP</code></h3>
 <p>During the dialogue, you can use a variety of magic commands.</p>
-<p>| Magic Command       | Description                                                                             |
-| ------------------- | --------------------------------------------------------------------------------------- |
-| <code>%clear</code>            | Clear all messages. Change the topic and set TOKEN back to zero.                        |
-| <code>%undo &lt;n&gt;</code>         | Undo the last n query and response [1].                                                 |
-| <code>%shift &lt;n&gt;</code>        | Remove first <n> messages and responses. Continue the chat after the Token limit.       |
-| <code>%write &lt;filename&gt;</code> | Write the most recent message to a file. Save the text or code.                         |
-| <code>%w &lt;filename&gt;</code>     | Alias for <code>write</code>.                                                                      |
-| <code>%config</code>           | Edit the config file. Open a text editor and rewrite the settings.                      |
-| <code>%system</code>           | Show the current system message.                                                        |
-| <code>%system &lt;message&gt;</code> | Set a new system message.                                                               |
-| <code>%edit</code>             | Edit data in JSON format. You are free to tamper with the past.                         |
-| <code>%html &lt;filename&gt;</code>  | Export the conversation to HTML and launch your browser.                                |
-| <code>%save &lt;filename&gt;</code>  | Save the data. This allows you to do things like &quot;save session&quot;.                        |
-| <code>%load &lt;filename&gt;</code>  | Load the data. This allows you to do things like &quot;load session&quot;.                        |
-| <code>%resume</code>           | Load data from auto-saved data file.                                                    |
-| <code>%model &lt;name&gt;</code>     | Change the model.                                                                       |
-| <code>%tokens</code>           | Show number of tokens used from the ChatGPT response.                                   |
-| <code>%webapp</code>           | Open the ChatGPT website.                                                               |
-| <code>%debug</code>            | Show debug message. Display the data posted to ChatGPT and the response in JSON format. |
-| <code>%help</code>             | Show the help. Humans forget commands.                                                  |</p>
+<p>| Magic Command       | Description                                                        |
+| ------------------- | ------------------------------------------------------------------ |
+| <code>%clear</code>            | Clear all messages. Change the topic and set token back to zero.   |
+| <code>%undo &lt;n&gt;</code>         | Undo the last n query and response [1].                            |
+| <code>%shift &lt;n&gt;</code>        | Remove first <n> messages and responses.                           |
+| <code>%write &lt;filename&gt;</code> | Write the most recent message to a file. Save the text or code.    |
+| <code>%w &lt;filename&gt;</code>     | Alias for <code>write</code>.                                                 |
+| <code>%config</code>           | Edit the config file. Open a text editor and rewrite the settings. |
+| <code>%system</code>           | Show the current system message.                                   |
+| <code>%system &lt;message&gt;</code> | Set a new system message.                                          |
+| <code>%edit</code>             | Edit data in JSON format. You are free to tamper with the past.    |
+| <code>%html &lt;filename&gt;</code>  | Export the conversation to HTML and launch your browser.           |
+| <code>%save &lt;filename&gt;</code>  | Save the data. This allows you to do things like &quot;save session&quot;.   |
+| <code>%load &lt;filename&gt;</code>  | Load the data. This allows you to do things like &quot;load session&quot;.   |
+| <code>%resume</code>           | Load data from auto-saved data file.                               |
+| <code>%model &lt;name&gt;</code>     | Change the model.                                                  |
+| <code>%tokens</code>           | Show number of tokens used from the ChatGPT response.              |
+| <code>%webapp</code>           | Open the ChatGPT website.                                          |
+| <code>%debug</code>            | Show debug message.                                                |
+| <code>%help</code>             | Show the help. Humans forget commands.                             |</p>
 <p>Note that for <code>%config</code>, <code>%data</code>, and other commands launch an editor. The editor used can be set by the <code>EDITOR</code> environment variable.
 Note that the tool is still being improved and the behavior of the magic commands will continue to change.</p>
-<h3><a id="executing-system-commands" class="anchor" href="#executing-system-commands">
+<h3><a id="executing-system-commands-pwd" class="anchor" href="#executing-system-commands-pwd">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Executing System Commands</h3>
-<p>You can execute system commands while chatting by prefixing the command with the <code>!</code> symbol.</p>
-<p>Execute a command, and display the output immediately:</p>
-<pre><code class="language-bash">&gt; !pwd</code></pre>
-<p>This way you can also run commands like <code>vim</code> and <code>top</code>.</p>
-<h4><a id="capture-stdout-and-stderr" class="anchor" href="#capture-stdout-and-stderr">
+</a>Executing System Commands <code>!pwd</code></h3>
+<pre><code class="language-crystal"><span class="o">&gt;</span> <span class="o">!</span>pwd</code></pre>
+<pre><code class="language-crystal"><span class="o">&gt;</span> <span class="o">!</span>vim</code></pre>
+<pre><code class="language-crystal"><span class="o">&gt;</span> <span class="o">!</span>top</code></pre>
+<h4><a id="capture-stdout-and-stderr-cmd-stdout-stderr-cmd" class="anchor" href="#capture-stdout-and-stderr-cmd-stdout-stderr-cmd">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Capture STDOUT and STDERR</h4>
-<p>Capture the output of a command for later use:</p>
-<pre><code class="language-bash">&gt; !!git diff</code></pre>
-<p>The standard output can be inserted into the chat with <code>%STDOUT</code>.</p>
+</a>Capture STDOUT and STDERR <code>!!cmd</code> <code>%STDOUT</code> <code>%STDERR</code> <code>!{cmd}</code></h4>
+<pre><code class="language-crystal">```bash
+&gt; !!git diff</code></pre>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Please</span> write a commit message: <span class="o">%</span><span class="t">STDOUT</span></code></pre>
-<p>The results can be referenced through the environment variable <code>RESP</code> (experimental).</p>
-<pre><code class="language-crystal"><span class="o">&gt;</span> <span class="o">!</span>git commit <span class="o">-</span>m <span class="s">&quot;$RESP&quot;</span></code></pre>
-<p>You can also insert the contents of the standard error output into the chat using <code>%STDERR</code>.</p>
-<pre><code class="language-bash">&gt; !!wrong_command
-</code></pre>
+<pre><code class="language-bash">&gt; !!wrong_command</code></pre>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">Explain</span> the meaning <span class="k">of</span> this error message: <span class="o">%</span><span class="t">STDERR</span></code></pre>
 <p>You can also use <code>!{ cmd }</code>. In this case, it will be replaced by the contents of standard input</p>
 <pre><code class="language-crystal"><span class="o">&gt;</span> <span class="t">What</span> time is it now? <span class="t">Hint</span>: <span class="o">!</span>{date}</code></pre>
-<h4><a id="code-blocks-in-the-response" class="anchor" href="#code-blocks-in-the-response">
+<h4><a id="code-blocks-in-the-response-code1-code2" class="anchor" href="#code-blocks-in-the-response-code1-code2">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Code Blocks in the Response</h4>
+</a>Code Blocks in the Response <code>$CODE1</code> <code>$CODE2</code></h4>
 <p>When ChatGPT returns code blocks, ChatGPT CLI saves these blocks temporarily and assigns them to environment variables named <code>CODE1</code>, <code>CODE2</code>, ... and so on. This allows you to execute the code blocks on your computer.</p>
 <pre><code class="language-md">&gt; Write code to display 1 to 10 in Python and Ruby.
 &gt; Python:
