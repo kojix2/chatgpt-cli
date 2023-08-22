@@ -17,8 +17,8 @@ module ChatGPT
     POST_DATA_FILE = "#{BASE_DIR}/post_data.json"
     HISTORY_FILE   = "#{ENV["HOME"]}/.chatgpt_history"
 
-    DEFAULT_CONFIG  = {{ `cat #{__DIR__}/../../config.json`.chomp.stringify }}
-    DEFAULT_PROMPTS = {{ `cat #{__DIR__}/../../awesome-chatgpt-prompts/prompts.csv`.chomp.stringify }}
+    DEFAULT_CONFIG  = {{ read_file "#{__DIR__}/../../config.json" }}
+    DEFAULT_PROMPTS = {{ read_file "#{__DIR__}/../../awesome-chatgpt-prompts/prompts.csv" }}
 
     alias ConfigData = Hash(String, Hash(String, Hash(String, String)))
 
