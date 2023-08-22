@@ -24,8 +24,8 @@ module ChatGPT
           BANNER
         on("prompts", "Print all system message IDs and exit") do
           banner = "Usage: #{PROGRAM_NAME} prompts [options]"
-          config.prompts.each do |k, v|
-            puts k
+          config.prompts.each_with_index do |(k, v), i|
+            puts "#{i}\t#{k}"
           end
           exit
         end

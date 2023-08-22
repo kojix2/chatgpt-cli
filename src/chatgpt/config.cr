@@ -95,6 +95,10 @@ module ChatGPT
     def select_id(id)
       if @prompts.has_key?(id)
         prompt = @prompts[id]
+      elsif id =~ /^[0-9]+$/
+        prompt = @prompts.values[id.to_i]
+        key = @prompts.keys[id.to_i]
+        STDERR.puts key._colorize(:warning)
       else
         raise NoPromptIdError.new("No such prompt id: \"#{id}\"")
       end
