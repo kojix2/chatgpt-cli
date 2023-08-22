@@ -21,6 +21,7 @@ require "./magic_command/response"
 require "./magic_command/tokens"
 require "./magic_command/history"
 require "./magic_command/webapp"
+require "./magic_command/chdir"
 require "./magic_command/help"
 
 module ChatGPT

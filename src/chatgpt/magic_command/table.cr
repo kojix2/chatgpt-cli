@@ -173,6 +173,13 @@ module ChatGPT
           "method"      => "open_webapp",
         },
         {
+          "name"        => "cd <path>",
+          "description" => "Change current directory",
+          "pattern"     => /^chdir\s+(.+)/,
+          "n_args"      => 1,
+          "method"      => "change_directory",
+        },
+        {
           "name"        => "help",
           "description" => "Show this help",
           "pattern"     => "help",
