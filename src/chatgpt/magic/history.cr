@@ -7,7 +7,7 @@ module ChatGPT
         @sender = sender
         @name = "history"
         @description = "Show history"
-        @patterns = [/\Ahistory\E/]
+        @patterns = [/\Ahistory\z/]
       end
 
       def run

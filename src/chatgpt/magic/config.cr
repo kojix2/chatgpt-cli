@@ -7,7 +7,7 @@ module ChatGPT
         @sender = sender
         @name = "config"
         @description = "Edit config file"
-        @patterns = [/\Aconfig\E/]
+        @patterns = [/\Aconfig\z/]
       end
 
       def run

@@ -7,7 +7,7 @@ module ChatGPT
         @sender = sender
         @name = "html"
         @description = "Show data in the browser"
-        @patterns = [/\Ahtml\E/, /\Ahtml\s+(.+)/]
+        @patterns = [/\Ahtml\z/, /\Ahtml\s+(.+)/]
       end
 
       def run

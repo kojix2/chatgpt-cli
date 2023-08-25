@@ -7,7 +7,7 @@ module ChatGPT
         @sender = sender
         @name = "resume"
         @description = "Resume from auto-saved data"
-        @patterns = [/\Aresume\E/]
+        @patterns = [/\Aresume\z/]
       end
 
       def run

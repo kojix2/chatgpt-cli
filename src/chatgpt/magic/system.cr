@@ -7,7 +7,7 @@ module ChatGPT
         @sender = sender
         @name = "system"
         @description = "Show system messages"
-        @patterns = [/\Asystem\E/, /\Asystem\s+(.+)/]
+        @patterns = [/\Asystem\z/, /\Asystem\s+(.+)/]
       end
 
       def run

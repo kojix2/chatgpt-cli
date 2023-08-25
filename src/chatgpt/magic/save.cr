@@ -7,7 +7,7 @@ module ChatGPT
         @sender = sender
         @name = "save"
         @description = "Save data to chatgpt-<timestamp>.json"
-        @patterns = [/\Asave\E/, /\Asave\s+(.+)/] # FIXME
+        @patterns = [/\Asave\z/, /\Asave\s+(.+)/] # FIXME
       end
 
       def run

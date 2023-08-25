@@ -7,7 +7,7 @@ module ChatGPT
         @sender = sender
         @name = "webapp"
         @description = "Open ChatGPT webapp"
-        @patterns = [/\Awebapp\E/]
+        @patterns = [/\Awebapp\z/]
       end
 
       def run

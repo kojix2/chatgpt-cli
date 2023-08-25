@@ -7,7 +7,7 @@ module ChatGPT
         @sender = sender
         @name = "clear"
         @description = "Clear messages and initialize data"
-        @patterns = [/\Aclear\E/]
+        @patterns = [/\Aclear\z/]
       end
 
       def run

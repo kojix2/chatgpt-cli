@@ -7,7 +7,7 @@ module ChatGPT
         @sender = sender
         @name = "undo"
         @description = "Undo last message and response"
-        @patterns = [/\Aundo\E/, /\Aundo\s+(\d+)/]
+        @patterns = [/\Aundo\z/, /\Aundo\s+(\d+)/]
       end
 
       def run

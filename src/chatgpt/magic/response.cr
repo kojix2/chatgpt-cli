@@ -7,7 +7,7 @@ module ChatGPT
         @sender = sender
         @name = "response"
         @description = "Show last response in JSON"
-        @patterns = [/\Aresponse\E/]
+        @patterns = [/\Aresponse\z/]
       end
 
       def run

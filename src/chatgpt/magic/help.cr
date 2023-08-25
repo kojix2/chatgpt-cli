@@ -7,7 +7,7 @@ module ChatGPT
         @sender = sender
         @name = "help"
         @description = "Show this help"
-        @patterns = [/\Ahelp\E/]
+        @patterns = [/\Ahelp\z/]
       end
 
       def run

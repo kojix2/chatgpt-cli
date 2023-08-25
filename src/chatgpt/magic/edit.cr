@@ -7,7 +7,7 @@ module ChatGPT
         @sender = sender
         @name = "edit"
         @description = "Show or edit data in JSON"
-        @patterns = [/\Aedit\E/]
+        @patterns = [/\Aedit\z/]
       end
 
       def run

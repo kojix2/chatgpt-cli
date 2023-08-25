@@ -7,7 +7,7 @@ module ChatGPT
         @sender = sender
         @name = "tokens"
         @description = "Show total tokens used"
-        @patterns = [/\Atokens\E/]
+        @patterns = [/\Atokens\z/]
       end
 
       def run

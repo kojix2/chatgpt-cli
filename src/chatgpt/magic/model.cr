@@ -7,7 +7,7 @@ module ChatGPT
         @sender = sender
         @name = "model"
         @description = "Show model name"
-        @patterns = [/\Amodel\E/, /\Amodel\s+(.+)/] # FIXME
+        @patterns = [/\Amodel\z/, /\Amodel\s+(.+)/] # FIXME
       end
 
       def run

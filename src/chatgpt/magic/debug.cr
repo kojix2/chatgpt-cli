@@ -7,7 +7,7 @@ module ChatGPT
         @sender = sender
         @name = "debug"
         @description = "Toggle debug mode"
-        @patterns = [/\Adebug\E/]
+        @patterns = [/\Adebug\z/]
       end
 
       def run

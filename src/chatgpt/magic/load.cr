@@ -7,7 +7,7 @@ module ChatGPT
         @sender = sender
         @name = "load"
         @description = "Load latest saved data from current directory"
-        @patterns = [/\Aload\E/, /\Aload\s+(.+)/] # FIXME
+        @patterns = [/\Aload\z/, /\Aload\s+(.+)/] # FIXME
       end
 
       def run

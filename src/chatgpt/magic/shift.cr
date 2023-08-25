@@ -7,7 +7,7 @@ module ChatGPT
         @sender = sender
         @name = "shift"
         @description = "Remove first message and response"
-        @patterns = [/\Ashift\E/, /\Ashift\s+(\d+)/] # FIXME
+        @patterns = [/\Ashift\z/, /\Ashift\s+(\d+)/] # FIXME
       end
 
       def run
