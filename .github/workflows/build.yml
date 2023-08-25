@@ -26,3 +26,24 @@ jobs:
         with:
           name: excutable-${{ matrix.os }}
           path: bin/chatgpt-${{ matrix.os }}
+
+  build_windows:
+    name: windows
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - uses: crystal-lang/install-crystal@v1
+        with:
+          crystal: latest
+      - run: |
+          Move-Item -Path 'shard.win.yml' -Destination 'shard.yml' -Force
+      - run: shards build --release
+        env:
+          CHATGPT_NO_READLINE: 1
+          CHATGPT_NO_URL: 1
+      - uses: actions/upload-artifact@v3
+        with:
+          name: excutable-windows
+          path: bin/chatgpt.exe

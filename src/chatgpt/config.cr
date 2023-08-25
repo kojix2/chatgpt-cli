@@ -15,7 +15,12 @@ module ChatGPT
     CONFIG_FILE    = "#{BASE_DIR}/config.json"
     PROMPTS_FILE   = "#{BASE_DIR}/prompts.csv"
     POST_DATA_FILE = "#{BASE_DIR}/post_data.json"
-    HISTORY_FILE   = "#{ENV["HOME"]}/.chatgpt_history"
+    HISTORY_FILE   = 
+      if ENV.has_key?("HOME")
+        "#{ENV["HOME"]}/.chatgpt_history"
+      else # especially for Windows
+        "#{BASE_DIR}/chatgpt_history"
+      end
 
     DEFAULT_CONFIG  = {{ read_file "#{__DIR__}/../../config.json" }}
     DEFAULT_PROMPTS = {{ read_file "#{__DIR__}/../../awesome-chatgpt-prompts/prompts.csv" }}

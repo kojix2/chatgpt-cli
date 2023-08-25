@@ -22,7 +22,6 @@
 Download binaries from [Github Release](https://github.com/kojix2/chatgpt-cli/releases/latest) for Linux or macOS.
 
 - Binaries for macOS are [not statically compiled](https://crystal-lang.org/reference/1.7/guides/static_linking.html#macos).
-- Windows is not supported.
 
 ### From source code
 
@@ -37,7 +36,7 @@ Download binaries from [Github Release](https://github.com/kojix2/chatgpt-cli/re
    sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.
    ```
 
-Build options:
+Build options (for windows):
 `CHATGPT_NO_READLINE=1` disables GNU Readline.
 `CHATGPT_NO_URL=1` disables URL fetching.
 
@@ -59,6 +58,10 @@ export HTTPS_PROXY=https://[IP]:[port]
 ```bash
 chatgpt
 ```
+
+`CHATGPT_CLI_CONFIG` path to the config file. (nessesary for Windows)
+
+```bash
 
 ### Options
 

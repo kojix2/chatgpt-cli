@@ -1,0 +1,21 @@
+name: chatgpt-cli
+version: 0.2.3
+
+authors:
+  - kojix2 <2xijok@gmail.com>
+
+targets:
+  chatgpt:
+    main: src/chatgpt.cr
+
+description: |
+  Yet another ChatGPT command line tool
+
+dependencies:
+  spinner:
+    github: kojix2/spinner
+    branch: master
+  http_proxy:
+    github: mamantoha/http_proxy
+
+license: MIT
