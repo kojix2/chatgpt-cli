@@ -20,8 +20,10 @@ module ChatGPT
 
       def avatar_class
         case role
-        when "user", "system" # FIXME system
+        when "user"
           "avatar human"
+        when "system"
+          "avatar system"
         when "assistant"
           "avatar gpt"
         else
