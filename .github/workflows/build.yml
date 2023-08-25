@@ -39,7 +39,7 @@ jobs:
           crystal: latest
       - run: |
           Move-Item -Path 'shard.win.yml' -Destination 'shard.yml' -Force
-      - run: shards build --release
+      - run: shards build --release --debug
         env:
           CHATGPT_NO_READLINE: 1
           CHATGPT_NO_URL: 1

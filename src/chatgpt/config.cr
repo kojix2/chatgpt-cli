@@ -9,8 +9,10 @@ module ChatGPT
     BASE_DIR =
       if ENV.has_key?("CHATGPT_CLI_CONFIG")
         ENV["CHATGPT_CLI_CONFIG"]
-      else
+      elsif ENV.has_key?("HOME")
         "#{ENV["HOME"]}/.config/chatgpt-cli"
+      else
+        raise "Please set CHATGPT_CLI_CONFIG environment variable."
       end
     CONFIG_FILE    = "#{BASE_DIR}/config.json"
     PROMPTS_FILE   = "#{BASE_DIR}/prompts.csv"
