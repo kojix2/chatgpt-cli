@@ -57,12 +57,14 @@ module ChatGPT
     # Send a POST request with the provided request data to the ChatGPT API
     def post_request(request_data)
       client = HTTP::Client.new(URI.parse(API_ENDPOINT))
-      Signal::INT.trap do |s|
-        client.close
-      end
+      {% if (flag?(:linux) || flag?(:darwin)) %}
+        Signal::INT.trap { |s| client.close }
+      {% end %}
       response = client.post("/v1/chat/completions", headers: @http_headers, body: request_data.to_json)
     rescue ex
-      Signal::INT.reset
+      {% if (flag?(:linux) || flag?(:darwin)) %}
+        Signal::INT.reset
+      {% end %}
       raise ex
     end
 
