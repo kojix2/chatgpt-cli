@@ -36,9 +36,26 @@ Download binaries from [Github Release](https://github.com/kojix2/chatgpt-cli/re
    sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.
    ```
 
-Build options (for windows):
-`CHATGPT_NO_READLINE=1` disables GNU Readline.
-`CHATGPT_NO_URL=1` disables URL fetching.
+<details>
+<summary><b>Windows</b></summary>
+
+To compile on Windows, set environment variables to turn off the following two features.
+
+- `CHATGPT_NO_READLINE=1` disables GNU Readline.
+- `CHATGPT_NO_URL=1` disables URL fetching.
+
+   ```powershell
+   git clone https://github.com/kojix2/chatgpt-cli
+   git submodule update -i # Awesome ChatGPT Prompts
+   cd chatgpt-cli
+   mv shard.win.yml shard.yml -Force
+   $env:CHATGPT_NO_READLINE=1
+   $env:CHATGPT_NO_URL=1
+   shard build --release
+   # bin/chatgpt.ext is created
+   ```
+ 
+</details>
 
 ### Set your [OpenAI API key](https://platform.openai.com/account/api-keys)
 
@@ -59,7 +76,14 @@ export HTTPS_PROXY=https://[IP]:[port]
 chatgpt
 ```
 
-`CHATGPT_CLI_CONFIG` path to the config file. (nessesary for Windows)
+<details>
+<summary><b>Windows</b></summary>
+
+Set the environment variable `CHATGPT_CLI_CONFIG`.
+
+The path to the directory where the configuration file will be saved. This is required on Windows.
+
+</details>
 
 ### Options
 
