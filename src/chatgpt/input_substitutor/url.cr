@@ -1,3 +1,5 @@
+require "./webpage_compressor"
+
 module ChatGPT
   class InputSubstitutor
     def url(input_msg, url_pattern)

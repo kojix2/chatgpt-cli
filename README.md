@@ -37,7 +37,9 @@ Download binaries from [Github Release](https://github.com/kojix2/chatgpt-cli/re
    sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.
    ```
 
-`CHATGPT_NO_READLINE=1` disables the use of GNU Readline.
+Build options:
+`CHATGPT_NO_READLINE=1` disables GNU Readline.
+`CHATGPT_NO_URL=1` disables URL fetching.
 
 ### Set your [OpenAI API key](https://platform.openai.com/account/api-keys)
 

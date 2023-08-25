@@ -157,7 +157,9 @@ module ChatGPT
       input_msg = substitutor.stdout(input_msg, config.stdout_regex)
       input_msg = substitutor.stderr(input_msg, config.stderr_regex)
       input_msg = substitutor.command(input_msg, config.command_regex)
-      input_msg = substitutor.url(input_msg, config.url_regex)
+      {% unless env("CHATGPT_NO_URL") %}
+        input_msg = substitutor.url(input_msg, config.url_regex)
+      {% end %}
       input_msg = substitutor.file(input_msg, config.file_regex)
     end
 
