@@ -1,7 +1,7 @@
 require "./base"
 
 module ChatGPT
-  class MagicCommand
+  class Magic
     class Tokens < Base
       def initialize(sender)
         @sender = sender

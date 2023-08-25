@@ -1,7 +1,7 @@
 module ChatGPT
-  class MagicCommand
+  class Magic
     class Base
-      getter sender : MagicCommand
+      getter sender : Magic
       getter name : String
       getter description : String
       getter patterns : Array(Regex)
@@ -11,7 +11,7 @@ module ChatGPT
       delegate response_data, to: @sender
       delegate :total_tokens=, to: @sender
 
-      def initialize(sender : MagicCommand)
+      def initialize(sender : Magic)
         @name = ""
         @description = ""
         @patterns = [/(?!)/] # never match
@@ -32,12 +32,12 @@ module ChatGPT
       end
 
       def run
-        raise NotImplementedError.new("Do not call MagicCommand::Base#run directly")
+        raise NotImplementedError.new("Do not call Magic::Base#run directly")
         false
       end
 
       def run(dummy)
-        raise NotImplementedError.new("Do not call MagicCommand::Base#run directly")
+        raise NotImplementedError.new("Do not call Magic::Base#run directly")
         false
       end
 

@@ -23,12 +23,12 @@ require "./magic/cd"
 require "./magic/help"
 
 module ChatGPT
-  class MagicCommand
+  class Magic
     getter key : String
     property data : PostData
     getter response_data : ResponseData
     getter total_tokens : Int32
-    getter commands : Array(ChatGPT::MagicCommand::Base)
+    getter commands : Array(ChatGPT::Magic::Base)
     getter result : Bool
 
     def initialize(data = nil, @key = "%")
@@ -36,8 +36,8 @@ module ChatGPT
       @response_data = ResponseData.new("{}")
       @result = false
       @total_tokens = -1
-      @commands = [] of ChatGPT::MagicCommand::Base
-      {% for i in ChatGPT::MagicCommand.constants %}
+      @commands = [] of ChatGPT::Magic::Base
+      {% for i in ChatGPT::Magic.constants %}
           @commands << {{i}}.new(self)
       {% end %}
     end
