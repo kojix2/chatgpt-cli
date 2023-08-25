@@ -153,7 +153,7 @@ module ChatGPT
       @post_data = magic_command_runner.data
       @total_tokens = magic_command_runner.total_tokens
 
-      magic_command_runner.next?
+      magic_command_runner.result
     end
 
     private def set_envs_from_response(msg)
