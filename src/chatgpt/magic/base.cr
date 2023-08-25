@@ -22,9 +22,9 @@ module ChatGPT
         patterns.each do |pattern|
           if pattern =~ command
             if $1?
-              run($1)
+              return run($1)
             else
-              run()
+              return run()
             end
           end
         end
