@@ -61,8 +61,6 @@ chatgpt
 
 `CHATGPT_CLI_CONFIG` path to the config file. (nessesary for Windows)
 
-```bash
-
 ### Options
 
 ```
@@ -244,7 +242,7 @@ Ruby:
 ```
 (1..10).each { |i| puts i }
 ```
-`````
+````
 
 ```
 ! python $CODE1
