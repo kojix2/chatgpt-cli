@@ -51,7 +51,13 @@ module ChatGPT
     end
 
     private def run_without_record(command)
-      system(command)
+      {% if flag?(:win32) %}
+        # FIXME
+        # https://github.com/crystal-lang/crystal/issues/12873
+        system("cmd.exe /v /c #{command}")
+      {% else %}
+        system(command)
+      {% end %}
     end
   end
 end

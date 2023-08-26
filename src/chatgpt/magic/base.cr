@@ -42,7 +42,15 @@ module ChatGPT
       end
 
       private def open_editor(file_name)
-        editor = ENV.has_key?("EDITOR") ? ENV["EDITOR"] : "vim"
+        editor = if ENV.has_key?("EDITOR")
+                   ENV["EDITOR"]
+                 else
+                   {% if flag?(:win32) %}
+                     "notepad"
+                   {% else %}
+                     "vim"
+                   {% end %}
+                 end
         system("#{editor} #{file_name}")
       end
 
@@ -52,7 +60,7 @@ module ChatGPT
         {% elsif flag?(:darwin) %}
           system("open #{file_name}")
         {% elsif flag?(:win32) %}
-          system("start #{file_name}")
+          system("cmd /c start #{file_name}")
         {% end %}
       end
 
