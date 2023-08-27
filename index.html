@@ -324,21 +324,20 @@
   </svg>
 </a>ChatGPT CLI</h1>
 <p><a href="https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml"><img src="https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml/badge.svg" alt="build" /></a></p>
-<p><a href="https://github.com/kojix2/chatgpt-cli/">ChatGPT CLI</a> is a command-line interface tool that interacts with OpenAI's <a href="https://platform.openai.com/docs/api-reference/chat">ChatGPT API</a>. It allows users to communicate with GPT models, adjust API parameters, use magic commands, insert file contents, fetch content from URLs, and execute system commands while chatting.</p>
+<p>:eight_spoked_asterisk: Yet another ChatGPT command line tool.</p>
 <h2><a id="features" class="anchor" href="#features">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Features</h2>
 <ul>
-<li>Interactive command-line interface using <a href="https://tiswww.case.edu/php/chet/readline/rltop.html">GNU Readline</a> with <a href="https://en.wikipedia.org/wiki/GNU_Readline">Emacs keyboard shortcuts</a>.</li>
+<li>Interactive command-line interface using <a href="https://tiswww.case.edu/php/chet/readline/rltop.html">GNU Readline</a>.</li>
 <li>Expand file contents from the file path(s) using the placeholder.</li>
 <li>Expand web page contents from the URL using the placeholder.</li>
 <li>Magic commands to <code>clear</code>, <code>undo</code>, <code>edit</code>, <code>write</code>, <code>save</code>, and <code>load</code> data.</li>
 <li>Execute system commands and pass captured stdout and stderr output to ChatGPT.</li>
-<li>Code blocks in the response are saved in temp files and can be referenced from <code>$CODE1</code>, <code>$CODE2</code>...</li>
-<li>Output execution results in HTML.</li>
-<li>Substitution patterns of placeholders can be configurable in the configuration file.</li>
+<li>Code blocks in the response can be referenced from <code>$CODE1</code>, <code>$CODE2</code>...</li>
+<li>Output HTML.</li>
 </ul>
 <h2><a id="installation" class="anchor" href="#installation">
   <svg class="octicon-link" aria-hidden="true">
@@ -350,28 +349,18 @@
     <use href="#octicon-link"/>
   </svg>
 </a>GtiHub Release</h3>
-<p>Download binaries from <a href="https://github.com/kojix2/chatgpt-cli/releases/latest">Github Release</a> for Linux or macOS.</p>
-<ul>
-<li>Binaries for macOS are <a href="https://crystal-lang.org/reference/1.7/guides/static_linking.html#macos">not statically compiled</a>.</li>
-</ul>
+<p>Download binaries from <a href="https://github.com/kojix2/chatgpt-cli/releases/latest">Github Release</a>.</p>
 <h3><a id="from-source-code" class="anchor" href="#from-source-code">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>From source code</h3>
-<ol>
-<li>
-<p>Install <a href="https://github.com/crystal-lang/crystal">Crystal</a></p>
-</li>
-<li>
-<p>Build the project:</p>
+<p>Install <a href="https://github.com/crystal-lang/crystal">Crystal</a> and build the project:</p>
 <pre><code class="language-bash">git clone https://github.com/kojix2/chatgpt-cli
 git submodule update -i # Awesome ChatGPT Prompts
 cd chatgpt-cli
 make
 sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.</code></pre>
-</li>
-</ol>
 <details>
 <summary><b>Windows</b></summary>
 <p>To compile on Windows, set environment variables to turn off the following two features.</p>
