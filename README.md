@@ -334,6 +334,10 @@ crystal spec
 
 You can quickly try development by using [Gitpod](https://www.gitpod.io/).
 
+## Acknowledgments
+
+- @hidao80 - [MonopolyGPT](https://github.com/hidao80/MonopolyGPT)
+
 ## License
 
 This project is open source and available under the terms of the [MIT License](https://opensource.org/licenses/MIT).
