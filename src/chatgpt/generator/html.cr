@@ -1,8 +1,8 @@
 require "ecr"
-require "./html_generator/message"
+require "./message"
 
 module ChatGPT
-  class HtmlGenerator
+  class Generator::Html
     @messages : Array(Message)
 
     def initialize(data)
@@ -11,6 +11,6 @@ module ChatGPT
       end
     end
 
-    ECR.def_to_s "#{__DIR__}/html_generator/template.html.ecr"
+    ECR.def_to_s "#{__DIR__}/template.html.ecr"
   end
 end

@@ -1,7 +1,7 @@
 require "html"
 
 module ChatGPT
-  class HtmlGenerator
+  class Generator::Html
     class HtmlGenerationError < Exception; end
 
     class Message

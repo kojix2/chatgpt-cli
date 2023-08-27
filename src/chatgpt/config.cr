@@ -17,7 +17,7 @@ module ChatGPT
     CONFIG_FILE    = "#{BASE_DIR}/config.json"
     PROMPTS_FILE   = "#{BASE_DIR}/prompts.csv"
     POST_DATA_FILE = "#{BASE_DIR}/post_data.json"
-    HISTORY_FILE   = 
+    HISTORY_FILE   =
       if ENV.has_key?("HOME")
         "#{ENV["HOME"]}/.chatgpt_history"
       else # especially for Windows

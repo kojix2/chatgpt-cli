@@ -11,14 +11,14 @@ module ChatGPT
       end
 
       def run
-        html = HtmlGenerator.new(data).to_s
+        html = Generator::Html.new(data).to_s
         timestamp = Time.local.to_s("%Y%m%d-%H%M%S")
         file_name = "chatgpt-#{timestamp}.html"
         run(file_name)
       end
 
       def run(file_name)
-        html = HtmlGenerator.new(data).to_s
+        html = Generator::Html.new(data).to_s
         File.write(file_name, html)
         open_browser(file_name)
         # file.delete   # FIXME: delete file

@@ -1,6 +1,6 @@
 require "./post_data"
 require "./response_data"
-require "./html_generator"
+require "./generator/html"
 
 require "./magic/debug"
 require "./magic/model"

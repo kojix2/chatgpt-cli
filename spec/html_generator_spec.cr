@@ -1,5 +1,5 @@
 require "./spec_helper"
-require "../src/chatgpt/html_generator"
+require "../src/chatgpt/generator/html"
 
 messages = [
   {
@@ -24,11 +24,11 @@ messages = [
   },
 ]
 
-describe ChatGPT::HtmlGenerator do
+describe ChatGPT::Generator::Html do
   it "generates html" do
     data = ChatGPT::PostData.new
     data.messages = messages
-    generator = ChatGPT::HtmlGenerator.new(data)
+    generator = ChatGPT::Generator::Html.new(data)
     expected_html = File.read("#{__DIR__}/fixtures/meow.html")
     # File.write("#{__DIR__}/meow.html", generator.to_s)
     actual_html = generator.to_s
