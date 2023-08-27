@@ -48,10 +48,9 @@ To compile on Windows, set environment variables to turn off the following two f
    git clone https://github.com/kojix2/chatgpt-cli
    git submodule update -i # Awesome ChatGPT Prompts
    cd chatgpt-cli
-   mv shard.win.yml shard.yml -Force
    $env:CHATGPT_NO_READLINE=1
    $env:CHATGPT_NO_URL=1
-   shard build --release
+   shard build --release --skip-postinstall
    # bin/chatgpt.ext is created
    ```
  

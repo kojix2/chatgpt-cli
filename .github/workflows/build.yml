@@ -37,9 +37,7 @@ jobs:
       - uses: crystal-lang/install-crystal@v1
         with:
           crystal: latest
-      - run: |
-          Move-Item -Path 'shard.win.yml' -Destination 'shard.yml' -Force
-      - run: shards build --release --debug
+      - run: shards build --release --debug --skip-postinstall
         env:
           CHATGPT_NO_READLINE: 1
           CHATGPT_NO_URL: 1
