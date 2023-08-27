@@ -2,7 +2,7 @@
 
 [![build](https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml/badge.svg)](https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml)
 
-:eight_spoked_asterisk: Yet another ChatGPT command line tool. 
+:eight_spoked_asterisk: Yet another ChatGPT command line tool.
 
 ## Features
 
@@ -24,13 +24,13 @@ Download binaries from [Github Release](https://github.com/kojix2/chatgpt-cli/re
 
 Install [Crystal](https://github.com/crystal-lang/crystal) and build the project:
 
-   ```bash
-   git clone https://github.com/kojix2/chatgpt-cli
-   git submodule update -i # Awesome ChatGPT Prompts
-   cd chatgpt-cli
-   make
-   sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.
-   ```
+```bash
+git clone https://github.com/kojix2/chatgpt-cli
+git submodule update -i # Awesome ChatGPT Prompts
+cd chatgpt-cli
+make
+sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.
+```
 
 <details>
 <summary><b>Windows</b></summary>
@@ -40,16 +40,16 @@ To compile on Windows, set environment variables to turn off the following two f
 - `CHATGPT_NO_READLINE=1` disables GNU Readline.
 - `CHATGPT_NO_URL=1` disables URL fetching.
 
-   ```powershell
-   git clone https://github.com/kojix2/chatgpt-cli
-   git submodule update -i # Awesome ChatGPT Prompts
-   cd chatgpt-cli
-   $env:CHATGPT_NO_READLINE=1
-   $env:CHATGPT_NO_URL=1
-   shard build --release --skip-postinstall
-   # bin/chatgpt.ext is created
-   ```
- 
+  ```powershell
+  git clone https://github.com/kojix2/chatgpt-cli
+  git submodule update -i # Awesome ChatGPT Prompts
+  cd chatgpt-cli
+  $env:CHATGPT_NO_READLINE=1
+  $env:CHATGPT_NO_URL=1
+  shard build --release --skip-postinstall
+  # bin/chatgpt.ext is created
+  ```
+
 </details>
 
 ### Set your [OpenAI API key](https://platform.openai.com/account/api-keys)
@@ -122,7 +122,7 @@ Hi
 
 You can cancel a query to ChatGPT with `Ctrl + C`.
 
-Unfortunately, line breaks are not currently supported in the interactive mode, but still you can copy-paste line breaks.
+Line breaks are not currently supported in the interactive mode.
 
 #### Batch mode
 
@@ -171,7 +171,6 @@ During the dialogue, you can use a variety of magic commands.
 | `%help`             | Show the help. Humans forget commands.                             |
 
 Note that for `%config`, `%data`, and other commands launch an editor. The editor used can be set by the `EDITOR` environment variable.
-Note that the tool is still being improved and the behavior of the magic commands will continue to change.
 
 ### Substitution
 
@@ -196,6 +195,7 @@ Pick five interesting news items: %%{https://news.ycombinator.com/}
 Here, the HTML from the URL is fetched, the words used in the `body` are extracted and passed to ChatGPT.
 
 `%%{}` can be changed in the config file.
+
 ### Executing System Commands `!pwd`
 
 ```
