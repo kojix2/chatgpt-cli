@@ -153,8 +153,7 @@ module ChatGPT
     end
 
     private def substitute(input_msg)
-      config = Config.instance
-      input_msg = substitutor.substitute(input_msg, config)
+      substitutor.substitute(input_msg)
     end
 
     private def system_command(input_msg)

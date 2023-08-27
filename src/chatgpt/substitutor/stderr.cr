@@ -6,8 +6,8 @@ module ChatGPT
       def initialize(@system_command_runner : SystemCommand)
       end
 
-      def substitute(input_msg, config)
-        stderr(input_msg, config.stderr_regex)
+      def substitute(input_msg)
+        stderr(input_msg, Config.instance.stderr_regex)
       end
 
       def stderr(input_msg, stderr_pattern)

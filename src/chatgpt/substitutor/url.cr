@@ -4,8 +4,8 @@ require "./webpage_compressor"
 module ChatGPT
   class Substitutor
     class Url < Base
-      def substitute(input_msg, config)
-        url(input_msg, config.url_regex)
+      def substitute(input_msg)
+        url(input_msg, Config.instance.url_regex)
       end
 
       def url(input_msg, url_pattern)

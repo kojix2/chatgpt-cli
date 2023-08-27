@@ -7,7 +7,7 @@ module ChatGPT
       end
 
       def substitute(input_msg, config)
-        stdout(input_msg, config.stdout_regex)
+        stdout(input_msg, Config.instance.stdout_regex)
       end
 
       def stdout(input_msg, stdout_pattern)

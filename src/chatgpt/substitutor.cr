@@ -21,9 +21,9 @@ module ChatGPT
       @substitutors << ChatGPT::Substitutor::FilePath.new
     end
 
-    def substitute(input_msg, config)
+    def substitute(input_msg)
       @substitutors.each do |substitutor|
-        input_msg = substitutor.substitute(input_msg, config)
+        input_msg = substitutor.substitute(input_msg)
       end
       input_msg
     end

@@ -4,8 +4,8 @@ require "./file_extensions"
 module ChatGPT
   class Substitutor
     class FilePath < Base
-      def substitute(input_msg, config)
-        file(input_msg, config.file_regex)
+      def substitute(input_msg)
+        file(input_msg, Config.instance.file_regex)
       end
 
       def file(input_msg, file_pattern)
