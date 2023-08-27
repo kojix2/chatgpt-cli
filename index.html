@@ -436,7 +436,7 @@ export HTTPS_PROXY=https://[IP]:[port]</code></pre>
 Write your message using GNU Readline, which supports <a href="https://en.wikipedia.org/wiki/GNU_Readline">Emacs shortcuts</a>, such as <code>↑</code> and <code>↓</code>.</p>
 <pre><code class="language-crystal"><span class="t">Hi</span></code></pre>
 <p>You can cancel a query to ChatGPT with <code>Ctrl + C</code>.</p>
-<p>Unfortunately, line breaks are not currently supported in the interactive mode, but still you can copy-paste line breaks.</p>
+<p>Line breaks are not currently supported in the interactive mode.</p>
 <h4><a id="batch-mode" class="anchor" href="#batch-mode">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -484,8 +484,7 @@ echo &quot;%html&quot; | chatgpt -b -r</code></pre>
 | <code>%webapp</code>           | Open the ChatGPT website.                                          |
 | <code>%debug</code>            | Show debug message.                                                |
 | <code>%help</code>             | Show the help. Humans forget commands.                             |</p>
-<p>Note that for <code>%config</code>, <code>%data</code>, and other commands launch an editor. The editor used can be set by the <code>EDITOR</code> environment variable.
-Note that the tool is still being improved and the behavior of the magic commands will continue to change.</p>
+<p>Note that for <code>%config</code>, <code>%data</code>, and other commands launch an editor. The editor used can be set by the <code>EDITOR</code> environment variable.</p>
 <h3><a id="substitution" class="anchor" href="#substitution">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
