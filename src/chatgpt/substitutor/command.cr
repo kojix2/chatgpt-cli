@@ -4,7 +4,7 @@ module ChatGPT
   class Substitutor
     class Command < Base
       def substitute(input_msg)
-        command(input_msg, Config.instance.command_regex)
+        command(input_msg, Config.instance.command_pattern)
       end
 
       def command(input_msg, command_pattern)

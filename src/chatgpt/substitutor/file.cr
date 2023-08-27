@@ -5,7 +5,7 @@ module ChatGPT
   class Substitutor
     class FilePath < Base
       def substitute(input_msg)
-        file(input_msg, Config.instance.file_regex)
+        file(input_msg, Config.instance.filepath_pattern)
       end
 
       def file(input_msg, file_pattern)

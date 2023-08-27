@@ -5,7 +5,7 @@ module ChatGPT
   class Substitutor
     class Url < Base
       def substitute(input_msg)
-        url(input_msg, Config.instance.url_regex)
+        url(input_msg, Config.instance.command_pattern)
       end
 
       def url(input_msg, url_pattern)

@@ -132,23 +132,23 @@ module ChatGPT
       substitute_patterns.fetch(id.to_s, default)
     end
 
-    def stdout_regex
+    def stdout_pattern
       Regex.new(pattern(:stdout)["pattern"])
     end
 
-    def stderr_regex
+    def stderr_pattern
       Regex.new(pattern(:stderr)["pattern"])
     end
 
-    def command_regex
+    def command_pattern
       Regex.new(pattern(:command)["pattern"])
     end
 
-    def url_regex
+    def command_pattern
       Regex.new(pattern(:url)["pattern"])
     end
 
-    def file_regex
+    def filepath_pattern
       Regex.new(pattern(:file)["pattern"])
     end
   end
