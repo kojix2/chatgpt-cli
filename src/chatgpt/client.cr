@@ -8,6 +8,9 @@ module ChatGPT
 
   # Define the Client class that handles communication with the ChatGPT API
   class Client
+    # ChatGPT Web App URL
+    WEB_APP_URL = "https://chat.openai.com"
+
     # Set the API endpoint URL
     API_ENDPOINT = "https://api.openai.com"
 

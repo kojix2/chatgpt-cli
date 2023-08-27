@@ -12,7 +12,7 @@ module ChatGPT
 
       def run
         # FIXME: do not write url directly
-        open_browser("https://chat.openai.com/")
+        open_browser(Client::WEB_APP_URL)
         true
       end
     end
