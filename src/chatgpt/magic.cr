@@ -37,7 +37,7 @@ module ChatGPT
       @result = false
       @total_tokens = -1
       @commands = [] of ChatGPT::Magic::Base
-      {% for i in ChatGPT::Magic.constants %}
+      {% for i in ChatGPT::Magic.constants.reject { |i| i == "Base" } %}
           @commands << {{i}}.new(self)
       {% end %}
     end
