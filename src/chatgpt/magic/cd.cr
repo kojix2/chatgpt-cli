@@ -7,7 +7,13 @@ module ChatGPT
         @sender = sender
         @name = "cd <path>"
         @description = "Change current directory"
-        @patterns = [/^chdir\s+(.+)/]
+        @patterns = [/\Acd\z/, /^cd\s+(.+)/]
+
+        @original_dir = Dir.current
+      end
+
+      def run
+        run(@original_dir)
       end
 
       def run(path)
