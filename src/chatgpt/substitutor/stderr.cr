@@ -1,8 +1,18 @@
+require "./base"
+
 module ChatGPT
   class Substitutor
-    def stderr(input_msg, stderr_pattern)
-      input_msg.gsub(stderr_pattern) do |stderr_match|
-        <<-CODE_BLOCK
+    class Stderr < Base
+      def initialize(@system_command_runner : SystemCommand)
+      end
+
+      def substitute(input_msg, config)
+        stderr(input_msg, config.stderr_regex)
+      end
+
+      def stderr(input_msg, stderr_pattern)
+        input_msg.gsub(stderr_pattern) do |stderr_match|
+          <<-CODE_BLOCK
 
         command: `#{last_command}`
 
@@ -11,15 +21,16 @@ module ChatGPT
         ```
 
         CODE_BLOCK
+        end
       end
-    end
 
-    private def last_command
-      @system_command_runner.last_command
-    end
+      private def last_command
+        @system_command_runner.last_command
+      end
 
-    private def last_stderr
-      @system_command_runner.last_stderr
+      private def last_stderr
+        @system_command_runner.last_stderr
+      end
     end
   end
 end
