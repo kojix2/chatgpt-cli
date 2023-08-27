@@ -12,7 +12,7 @@ require "./client"
 require "./response_data"
 require "./system_command"
 require "./magic"
-require "./input_substitutor"
+require "./substitutor"
 require "./cli/version"
 require "./cli/parser"
 
@@ -48,7 +48,7 @@ module ChatGPT
       @chat_gpt_client = Client.new
       @system_command_runner = SystemCommand.new
       @magic_command_runner = Magic.new(post_data, key: "%")
-      @substitutor = InputSubstitutor.new(@system_command_runner)
+      @substitutor = Substitutor.new(@system_command_runner)
 
       @total_tokens = -1
       @code_blocks = [] of File

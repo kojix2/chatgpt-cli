@@ -1,7 +1,7 @@
 require "./webpage_compressor"
 
 module ChatGPT
-  class InputSubstitutor
+  class Substitutor
     def url(input_msg, url_pattern)
       input_msg.gsub(url_pattern) do |url_match|
         url_pattern = $1.strip

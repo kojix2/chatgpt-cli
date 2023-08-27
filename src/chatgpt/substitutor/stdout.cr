@@ -1,5 +1,5 @@
 module ChatGPT
-  class InputSubstitutor
+  class Substitutor
     def stdout(input_msg, stdout_pattern)
       input_msg.gsub(stdout_pattern) do |stdout_match|
         <<-CODE_BLOCK

@@ -8,7 +8,7 @@ struct Lexbor::Node
 end
 
 module ChatGPT
-  class InputSubstitutor
+  class Substitutor
     class WebPageCompressor
       class FetchError < Exception; end
 

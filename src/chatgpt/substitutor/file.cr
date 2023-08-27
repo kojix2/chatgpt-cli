@@ -1,7 +1,7 @@
 require "./file_extensions"
 
 module ChatGPT
-  class InputSubstitutor
+  class Substitutor
     def file(input_msg, file_pattern)
       input_msg.gsub(file_pattern) do |file_match|
         file_pattern = $1.strip

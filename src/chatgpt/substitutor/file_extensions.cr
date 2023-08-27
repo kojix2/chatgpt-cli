@@ -1,5 +1,5 @@
 module ChatGPT
-  class InputSubstitutor
+  class Substitutor
     FILE_EXTENSIONS = {
       ".c"        => "c",
       ".cr"       => "crystal",

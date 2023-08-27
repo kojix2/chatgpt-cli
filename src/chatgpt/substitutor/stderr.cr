@@ -1,5 +1,5 @@
 module ChatGPT
-  class InputSubstitutor
+  class Substitutor
     def stderr(input_msg, stderr_pattern)
       input_msg.gsub(stderr_pattern) do |stderr_match|
         <<-CODE_BLOCK
