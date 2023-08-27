@@ -168,13 +168,14 @@ module ChatGPT
     end
 
     private def magic_command(input_msg)
-      # FIXME
-      return false unless magic_command_runner.try_run(input_msg, post_data, response_data, total_tokens)
-
-      @post_data = magic_command_runner.data
-      @total_tokens = magic_command_runner.total_tokens
-
-      magic_command_runner.result
+      if magic_command_runner.try_run(input_msg, post_data, response_data, total_tokens)
+        @post_data = magic_command_runner.data
+        @total_tokens = magic_command_runner.total_tokens
+        # magic_command_runner.result
+        true
+      else
+        false
+      end
     end
 
     private def set_envs_from_response(msg)
