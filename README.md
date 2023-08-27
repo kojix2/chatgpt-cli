@@ -105,14 +105,7 @@ Restore the previous chat and use the gpt-4 model.
 chatgpt -r -m gpt-4
 ```
 
-Note that short options cannot be concatenated.
-
-```
-chatgpt -rm gpt-4
-# Error: Invalid option: -rm
-```
-
-### Interactive mode (default)
+#### Interactive mode (default)
 
 Start ChatGPT CLI.
 
@@ -131,7 +124,7 @@ You can cancel a query to ChatGPT with `Ctrl + C`.
 
 Unfortunately, line breaks are not currently supported in the interactive mode, but still you can copy-paste line breaks.
 
-### Batch mode
+#### Batch mode
 
 - `-b` `--batch` Pass input by filename or standard input. ChatGPT will output to standard output and exit immediately.
 - `-r` `--resume` The chat from the last time you exited is carried over to the startup.
@@ -144,7 +137,7 @@ echo "It's okay now. Rest." | chatgpt -b -r
 echo "%html" | chatgpt -b -r
 ```
 
-### Awesome ChatGPT Prompts
+#### Awesome ChatGPT Prompts
 
 You can select system commands in [Awesome ChatGPT Prompts](https://github.com/f/awesome-chatgpt-prompts).
 
@@ -152,29 +145,7 @@ You can select system commands in [Awesome ChatGPT Prompts](https://github.com/f
 chatgpt -i "Linux Terminal"
 ```
 
-### Embed files `%{foo.txt}`
-
-```
-Please explain the following code: %{src/beatles.py} Are there any bugs?
-```
-
-```
-Please read the code of the tool: %{src/*.cr} %{src/**/*.cr} Then update README.md %{README.md}
-```
-
-`%{}` can be changed in the config file.
-
-### Web pages `%%{www.example.com}`
-
-```
-Pick five interesting news items: %%{https://news.ycombinator.com/}
-```
-
-Here, the HTML from the URL is fetched, the words used in the `body` are extracted and passed to ChatGPT.
-
-`%%{}` can be changed in the config file.
-
-### Magic Commands `%HELP`
+### Magic Commands
 
 During the dialogue, you can use a variety of magic commands.
 
@@ -202,6 +173,29 @@ During the dialogue, you can use a variety of magic commands.
 Note that for `%config`, `%data`, and other commands launch an editor. The editor used can be set by the `EDITOR` environment variable.
 Note that the tool is still being improved and the behavior of the magic commands will continue to change.
 
+### Substitution
+
+#### Files `%{foo.txt}`
+
+```
+Please explain the following code: %{src/beatles.py} Are there any bugs?
+```
+
+```
+Please read the code of the tool: %{src/*.cr} %{src/**/*.cr} Then update README.md %{README.md}
+```
+
+`%{}` can be changed in the config file.
+
+#### Web pages `%%{www.example.com}`
+
+```
+Pick five interesting news items: %%{https://news.ycombinator.com/}
+```
+
+Here, the HTML from the URL is fetched, the words used in the `body` are extracted and passed to ChatGPT.
+
+`%%{}` can be changed in the config file.
 ### Executing System Commands `!pwd`
 
 ```
