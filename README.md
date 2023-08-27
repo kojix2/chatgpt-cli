@@ -2,31 +2,27 @@
 
 [![build](https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml/badge.svg)](https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml)
 
-[ChatGPT CLI](https://github.com/kojix2/chatgpt-cli/) is a command-line interface tool that interacts with OpenAI's [ChatGPT API](https://platform.openai.com/docs/api-reference/chat). It allows users to communicate with GPT models, adjust API parameters, use magic commands, insert file contents, fetch content from URLs, and execute system commands while chatting.
+:eight_spoked_asterisk: Yet another ChatGPT command line tool. 
 
 ## Features
 
-- Interactive command-line interface using [GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html) with [Emacs keyboard shortcuts](https://en.wikipedia.org/wiki/GNU_Readline).
+- Interactive command-line interface using [GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html).
 - Expand file contents from the file path(s) using the placeholder.
 - Expand web page contents from the URL using the placeholder.
 - Magic commands to `clear`, `undo`, `edit`, `write`, `save`, and `load` data.
 - Execute system commands and pass captured stdout and stderr output to ChatGPT.
-- Code blocks in the response are saved in temp files and can be referenced from `$CODE1`, `$CODE2`...
-- Output execution results in HTML.
-- Substitution patterns of placeholders can be configurable in the configuration file.
+- Code blocks in the response can be referenced from `$CODE1`, `$CODE2`...
+- Output HTML.
 
 ## Installation
 
 ### GtiHub Release
 
-Download binaries from [Github Release](https://github.com/kojix2/chatgpt-cli/releases/latest) for Linux or macOS.
-
-- Binaries for macOS are [not statically compiled](https://crystal-lang.org/reference/1.7/guides/static_linking.html#macos).
+Download binaries from [Github Release](https://github.com/kojix2/chatgpt-cli/releases/latest).
 
 ### From source code
 
-1. Install [Crystal](https://github.com/crystal-lang/crystal)
-2. Build the project:
+Install [Crystal](https://github.com/crystal-lang/crystal) and build the project:
 
    ```bash
    git clone https://github.com/kojix2/chatgpt-cli
