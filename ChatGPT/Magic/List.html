@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../js/doc.js"></script>
 
   <meta name="repository-name" content="chatgpt-cli">
-  <title>ChatGPT::Substitutor::Stdout - chatgpt-cli main</title>
+  <title>ChatGPT::Magic::List - chatgpt-cli main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../";
   </script>
@@ -137,7 +137,7 @@
       
     </li>
   
-  <li class="parent " data-id="chatgpt-cli/ChatGPT/Magic" data-name="chatgpt::magic">
+  <li class="parent open current" data-id="chatgpt-cli/ChatGPT/Magic" data-name="chatgpt::magic">
       <a href="../../ChatGPT/Magic.html">Magic</a>
       
         <ul>
@@ -187,7 +187,7 @@
       
     </li>
   
-  <li class=" " data-id="chatgpt-cli/ChatGPT/Magic/List" data-name="chatgpt::magic::list">
+  <li class=" current" data-id="chatgpt-cli/ChatGPT/Magic/List" data-name="chatgpt::magic::list">
       <a href="../../ChatGPT/Magic/List.html">List</a>
       
     </li>
@@ -267,7 +267,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="chatgpt-cli/ChatGPT/Substitutor" data-name="chatgpt::substitutor">
+  <li class="parent " data-id="chatgpt-cli/ChatGPT/Substitutor" data-name="chatgpt::substitutor">
       <a href="../../ChatGPT/Substitutor.html">Substitutor</a>
       
         <ul>
@@ -292,7 +292,7 @@
       
     </li>
   
-  <li class=" current" data-id="chatgpt-cli/ChatGPT/Substitutor/Stdout" data-name="chatgpt::substitutor::stdout">
+  <li class=" " data-id="chatgpt-cli/ChatGPT/Substitutor/Stdout" data-name="chatgpt::substitutor::stdout">
       <a href="../../ChatGPT/Substitutor/Stdout.html">Stdout</a>
       
     </li>
@@ -356,12 +356,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> ChatGPT::Substitutor::Stdout
+  <span class="kind">class</span> ChatGPT::Magic::List
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../ChatGPT/Substitutor/Stdout.html">ChatGPT::Substitutor::Stdout</a></li><li class="superclass"><a href="../../ChatGPT/Substitutor/Base.html">ChatGPT::Substitutor::Base</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../ChatGPT/Magic/List.html">ChatGPT::Magic::List</a></li><li class="superclass"><a href="../../ChatGPT/Magic/Base.html">ChatGPT::Magic::Base</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -389,8 +389,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/chatgpt-cli/blob/955448603b09b982c1ede533c92056f4ad839dbf/src/chatgpt/substitutor/stdout.cr#L5" target="_blank">
-        chatgpt/substitutor/stdout.cr
+      <a href="https://github.com/kojix2/chatgpt-cli/blob/955448603b09b982c1ede533c92056f4ad839dbf/src/chatgpt/magic/list.cr#L5" target="_blank">
+        chatgpt/magic/list.cr
       </a>
     
     <br/>
@@ -411,7 +411,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28system_command_runner%3ASystemCommand%29-class-method" class="signature"><strong>.new</strong>(system_command_runner : SystemCommand)</a>
+        <a href="#new%28sender%29-class-method" class="signature"><strong>.new</strong>(sender)</a>
         
       </li>
     
@@ -432,12 +432,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#stdout%28input_msg%2Cstdout_pattern%29-instance-method" class="signature"><strong>#stdout</strong>(input_msg, stdout_pattern)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#substitute%28input_msg%29-instance-method" class="signature"><strong>#substitute</strong>(input_msg)</a>
+        <a href="#run-instance-method" class="signature"><strong>#run</strong></a>
         
       </li>
     
@@ -451,17 +446,71 @@
   
     
 
-  <h3>Instance methods inherited from class <code><a href="../../ChatGPT/Substitutor/Base.html">ChatGPT::Substitutor::Base</a></code></h3>
+  <h3>Instance methods inherited from class <code><a href="../../ChatGPT/Magic/Base.html">ChatGPT::Magic::Base</a></code></h3>
   
   
-    <a href="../../ChatGPT/Substitutor/Base.html#substitute%28text%29-instance-method" class="tooltip">
-      <span>substitute(text)</span>
-    substitute</a>
+    <a href="../../ChatGPT/Magic/Base.html#data%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="tooltip">
+      <span>data(*args, **options)<br/>data(*args, **options, &)</span>
+    data</a>, 
+    
+  
+    <a href="../../ChatGPT/Magic/Base.html#data%3D%28arg%29-instance-method" class="tooltip">
+      <span>data=(arg)</span>
+    data=</a>, 
+    
+  
+    <a href="../../ChatGPT/Magic/Base.html#description%3AString-instance-method" class="tooltip">
+      <span>description : String</span>
+    description</a>, 
+    
+  
+    <a href="../../ChatGPT/Magic/Base.html#name%3AString-instance-method" class="tooltip">
+      <span>name : String</span>
+    name</a>, 
+    
+  
+    <a href="../../ChatGPT/Magic/Base.html#patterns%3AArray%28Regex%29-instance-method" class="tooltip">
+      <span>patterns : Array(Regex)</span>
+    patterns</a>, 
+    
+  
+    <a href="../../ChatGPT/Magic/Base.html#response_data%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="tooltip">
+      <span>response_data(*args, **options)<br/>response_data(*args, **options, &)</span>
+    response_data</a>, 
+    
+  
+    <a href="../../ChatGPT/Magic/Base.html#run%28dummy%29-instance-method" class="tooltip">
+      <span>run(dummy)<br/>run</span>
+    run</a>, 
+    
+  
+    <a href="../../ChatGPT/Magic/Base.html#sender%3AMagic-instance-method" class="tooltip">
+      <span>sender : Magic</span>
+    sender</a>, 
+    
+  
+    <a href="../../ChatGPT/Magic/Base.html#total_tokens%3D%28arg%29-instance-method" class="tooltip">
+      <span>total_tokens=(arg)</span>
+    total_tokens=</a>, 
+    
+  
+    <a href="../../ChatGPT/Magic/Base.html#try_run%28command%29%3ABool-instance-method" class="tooltip">
+      <span>try_run(command) : Bool</span>
+    try_run</a>
     
   
 
 
     
+
+  <h3>Constructor methods inherited from class <code><a href="../../ChatGPT/Magic/Base.html">ChatGPT::Magic::Base</a></code></h3>
+  
+  
+    <a href="../../ChatGPT/Magic/Base.html#new%28sender%3AMagic%29-class-method" class="tooltip">
+      <span>new(sender : Magic)</span>
+    new</a>
+    
+  
 
 
     
@@ -500,18 +549,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(system_command_runner:SystemCommand)-class-method">
+    <div class="entry-detail" id="new(sender)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(system_command_runner : <a href="../../ChatGPT/SystemCommand.html">SystemCommand</a>)
+        def self.<strong>new</strong>(sender)
 
-        <a class="method-permalink" href="#new%28system_command_runner%3ASystemCommand%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28sender%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/955448603b09b982c1ede533c92056f4ad839dbf/src/chatgpt/substitutor/stdout.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/955448603b09b982c1ede533c92056f4ad839dbf/src/chatgpt/magic/list.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -530,34 +579,18 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="stdout(input_msg,stdout_pattern)-instance-method">
+    <div class="entry-detail" id="run-instance-method">
       <div class="signature">
         
-        def <strong>stdout</strong>(input_msg, stdout_pattern)
+        def <strong>run</strong>
 
-        <a class="method-permalink" href="#stdout%28input_msg%2Cstdout_pattern%29-instance-method">#</a>
+        <a class="method-permalink" href="#run-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/955448603b09b982c1ede533c92056f4ad839dbf/src/chatgpt/substitutor/stdout.cr#L13" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="substitute(input_msg)-instance-method">
-      <div class="signature">
-        
-        def <strong>substitute</strong>(input_msg)
-
-        <a class="method-permalink" href="#substitute%28input_msg%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/955448603b09b982c1ede533c92056f4ad839dbf/src/chatgpt/substitutor/stdout.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/955448603b09b982c1ede533c92056f4ad839dbf/src/chatgpt/magic/list.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
