@@ -61,11 +61,11 @@ module ChatGPT
         end
       end
       unknown_command_error(command)
+      false
     end
 
-    def unknown_command_error(command)
+    private def unknown_command_error(command) : Nil
       STDERR.puts "Error: Unknown magic command: #{command}"._colorize(:warning, :bold)
-      false
     end
   end
 end
