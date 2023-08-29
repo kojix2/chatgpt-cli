@@ -16,10 +16,10 @@ jobs:
       - uses: crystal-lang/install-crystal@v1
         with:
           crystal: latest
-      - run: make
-      - run: make install
-      - run: make test
-      - run: chatgpt --help
+      - run: shards install
+      - run: shards build --release --debug
+      - run: crystal spec
+      - run: bin/chatgpt --help
       - name: Rename executable for ${{ matrix.os }}
         run: mv bin/chatgpt bin/chatgpt-${{ matrix.os }}
       - uses: actions/upload-artifact@v3
