@@ -394,8 +394,8 @@
 <pre><code class="language-bash">git clone https://github.com/kojix2/chatgpt-cli
 git submodule update -i # Awesome ChatGPT Prompts
 cd chatgpt-cli
-make
-sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.</code></pre>
+shards build --release
+sudo cp bin/chatgpt /usr/local/bin</code></pre>
 <details>
 <summary><b>Windows</b></summary>
 <p>To compile on Windows, set environment variables to turn off the following two features.</p>
@@ -613,8 +613,6 @@ Placeholders such as <code>%{}</code> and <code>%%{}</code> can be set with regu
 <pre><code class="language-sh">rm /usr/local/bin/chatgpt   # Remove the executable
 rm -r ~/.config/chatgpt-cli # Remove the config directory
 rm ~/.chatgpt_history       # Remove command history</code></pre>
-<p>Or</p>
-<pre><code class="language-crystal">sudo make uninstall</code></pre>
 <h2><a id="contributing" class="anchor" href="#contributing">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
