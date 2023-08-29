@@ -28,8 +28,8 @@ Install [Crystal](https://github.com/crystal-lang/crystal) and build the project
 git clone https://github.com/kojix2/chatgpt-cli
 git submodule update -i # Awesome ChatGPT Prompts
 cd chatgpt-cli
-make
-sudo make install # Or simply copy bin/chatgpt to your directory in $PATH.
+shards build --release
+sudo cp bin/chatgpt /usr/local/bin
 ```
 
 <details>
@@ -294,12 +294,6 @@ ChatGPT CLI uses the following 3 files and directories. This is all there is to 
 rm /usr/local/bin/chatgpt   # Remove the executable
 rm -r ~/.config/chatgpt-cli # Remove the config directory
 rm ~/.chatgpt_history       # Remove command history
-```
-
-Or
-
-```
-sudo make uninstall
 ```
 
 ## Contributing
