@@ -196,45 +196,40 @@ Here, the HTML from the URL is fetched, the words used in the `body` are extract
 
 `%%{}` can be changed in the config file.
 
-### Executing System Commands `!pwd`
+### System Commands
+
+#### `!cmd`
 
 ```
 !pwd
 ```
 
-```
-!vim
-```
+#### `!{ cmd }`
 
 ```
-!top
+Please write a commit message: !{git diff}
 ```
 
-#### Capture STDOUT and STDERR `!!cmd` `%STDOUT` `%STDERR` `!{cmd}`
+#### `!!cmd`
+
+capture STDOUT and STDERR.
 
 ```bash
 !!git diff
-```
 
-```
 Please write a commit message: %STDOUT
 ```
 
 ```bash
 !!wrong_command
+
+Explain this error message: %STDERR
 ```
 
-```
-Explain the meaning of this error message: %STDERR
-```
 
-You can also use `!{ cmd }`. In this case, it will be replaced by the contents of standard input
+### Code Blocks in the Response
 
-```
-What time is it now? Hint: !{date}
-```
-
-#### Code Blocks in the Response `$CODE1` `$CODE2`
+#### `$CODE1` `$CODE2`
 
 When ChatGPT returns code blocks, ChatGPT CLI saves these blocks temporarily and assigns them to environment variables named `CODE1`, `CODE2`, ... and so on. This allows you to execute the code blocks on your computer.
 
