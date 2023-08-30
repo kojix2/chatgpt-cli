@@ -24,6 +24,11 @@ module ChatGPT
     end
 
     private def run(command, record = true)
+      {% if flag?(:win32) %}
+        # FIXME
+        # https://github.com/crystal-lang/crystal/issues/12873
+        command = "cmd.exe /v /c #{command}"
+      {% end %}
       @history << command
       if record
         run_with_record(command)
@@ -51,13 +56,7 @@ module ChatGPT
     end
 
     private def run_without_record(command)
-      {% if flag?(:win32) %}
-        # FIXME
-        # https://github.com/crystal-lang/crystal/issues/12873
-        system("cmd.exe /v /c #{command}")
-      {% else %}
-        system(command)
-      {% end %}
+      system(command)
     end
   end
 end
