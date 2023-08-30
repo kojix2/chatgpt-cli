@@ -541,30 +541,45 @@ echo &quot;%html&quot; | chatgpt -b -r</code></pre>
 <pre><code class="language-crystal"><span class="t">Pick</span> five interesting news items: <span class="o">%</span><span class="s">%{https://news.ycombinator.com/}</span></code></pre>
 <p>Here, the HTML from the URL is fetched, the words used in the <code>body</code> are extracted and passed to ChatGPT.</p>
 <p><code>%%{}</code> can be changed in the config file.</p>
-<h3><a id="executing-system-commands-pwd" class="anchor" href="#executing-system-commands-pwd">
+<h3><a id="system-commands" class="anchor" href="#system-commands">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Executing System Commands <code>!pwd</code></h3>
+</a>System Commands</h3>
+<h4><a id="cmd" class="anchor" href="#cmd">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a><code>!cmd</code></h4>
 <pre><code class="language-crystal"><span class="o">!</span>pwd</code></pre>
-<pre><code class="language-crystal"><span class="o">!</span>vim</code></pre>
-<pre><code class="language-crystal"><span class="o">!</span>top</code></pre>
-<h4><a id="capture-stdout-and-stderr-cmd-stdout-stderr-cmd" class="anchor" href="#capture-stdout-and-stderr-cmd-stdout-stderr-cmd">
+<h4><a id="cmd-1" class="anchor" href="#cmd-1">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Capture STDOUT and STDERR <code>!!cmd</code> <code>%STDOUT</code> <code>%STDERR</code> <code>!{cmd}</code></h4>
-<pre><code class="language-bash">!!git diff</code></pre>
-<pre><code class="language-crystal"><span class="t">Please</span> write a commit message: <span class="o">%</span><span class="t">STDOUT</span></code></pre>
-<pre><code class="language-bash">!!wrong_command</code></pre>
-<pre><code class="language-crystal"><span class="t">Explain</span> the meaning <span class="k">of</span> this error message: <span class="o">%</span><span class="t">STDERR</span></code></pre>
-<p>You can also use <code>!{ cmd }</code>. In this case, it will be replaced by the contents of standard input</p>
-<pre><code class="language-crystal"><span class="t">What</span> time is it now? <span class="t">Hint</span>: <span class="o">!</span>{date}</code></pre>
-<h4><a id="code-blocks-in-the-response-code1-code2" class="anchor" href="#code-blocks-in-the-response-code1-code2">
+</a><code>!{ cmd }</code></h4>
+<pre><code class="language-crystal"><span class="t">Please</span> write a commit message: <span class="o">!</span>{git diff}</code></pre>
+<h4><a id="cmd-2" class="anchor" href="#cmd-2">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Code Blocks in the Response <code>$CODE1</code> <code>$CODE2</code></h4>
+</a><code>!!cmd</code></h4>
+<p>capture STDOUT and STDERR.</p>
+<pre><code class="language-bash">!!git diff
+
+Please write a commit message: %STDOUT</code></pre>
+<pre><code class="language-bash">!!wrong_command
+
+Explain this error message: %STDERR</code></pre>
+<h3><a id="code-blocks-in-the-response" class="anchor" href="#code-blocks-in-the-response">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Code Blocks in the Response</h3>
+<h4><a id="code1-code2" class="anchor" href="#code1-code2">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a><code>$CODE1</code> <code>$CODE2</code></h4>
 <p>When ChatGPT returns code blocks, ChatGPT CLI saves these blocks temporarily and assigns them to environment variables named <code>CODE1</code>, <code>CODE2</code>, ... and so on. This allows you to execute the code blocks on your computer.</p>
 <pre><code class="language-crystal"><span class="t">Write</span> code to display <span class="n">1</span> to <span class="n">10</span> <span class="k">in</span> <span class="t">Python</span> and <span class="t">Ruby</span>.</code></pre>
 <pre><code class="language-md">Python:
