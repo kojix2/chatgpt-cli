@@ -144,7 +144,7 @@ module ChatGPT
       Regex.new(pattern(:command)["pattern"])
     end
 
-    def command_pattern
+    def url_pattern
       Regex.new(pattern(:url)["pattern"])
     end
 
