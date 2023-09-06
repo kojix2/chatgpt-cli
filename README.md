@@ -58,7 +58,7 @@ To compile on Windows, set environment variables to turn off the following two f
 export OPENAI_API_KEY="your_openai_api_key"
 ```
 
-### Proxy settings
+### Proxy settings (optional)
 
 ```
 export HTTP_PROXY=http://[IP]:[port]
