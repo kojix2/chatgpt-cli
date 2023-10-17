@@ -11,17 +11,29 @@ module ChatGPT
       end
 
       def run
-        data.messages.each do |message|
-          case message["role"]
+        data.messages.each_with_index do |message, i|
+          role = message["role"]
+          print "[#{i.to_s}]".ljust(3) + "[#{role[0..3]}]" + " : "
+          puts case role
           when "system"
-            puts message["content"]
+            trancate_message(message["content"])
           when "user"
-            puts message["content"]
+            trancate_message(message["content"])
           when "assistant"
-            puts message["content"]._colorize(:chatgpt)
+            trancate_message(message["content"])._colorize(:chatgpt)
           end
         end
         true
+      end
+
+      private def trancate_message(str)
+        return str if str.size <= chars_to_show
+
+        str[0..chars_to_show] + "..."
+      end
+
+      private def chars_to_show
+        40
       end
     end
   end
