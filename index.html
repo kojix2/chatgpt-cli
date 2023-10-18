@@ -492,15 +492,21 @@ echo &quot;%html&quot; | chatgpt -b -r</code></pre>
   </svg>
 </a>Awesome ChatGPT Prompts</h4>
 <p>You can select system commands in <a href="https://github.com/f/awesome-chatgpt-prompts">Awesome ChatGPT Prompts</a>.</p>
-<pre><code class="language-bash">chatgpt -i &quot;Linux Terminal&quot;</code></pre>
+<pre><code class="language-bash"># Output list of available prompts
+chatgpt prompts
+# Set system message by name
+chatgpt -i &quot;Linux Terminal&quot;
+# by id number
+chatgpt -i 0</code></pre>
 <h3><a id="magic-commands" class="anchor" href="#magic-commands">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Magic Commands</h3>
-<p>During the dialogue, you can use a variety of magic commands.</p>
+<p>During the dialogue, you can use a variety of magic commands. <code>%help</code></p>
 <p>| Magic Command       | Description                                                        |
 | ------------------- | ------------------------------------------------------------------ |
+| <code>%list</code>             | Displays the beginning of each message.                            |
 | <code>%clear</code>            | Clear all messages. Change the topic and set token back to zero.   |
 | <code>%undo &lt;n&gt;</code>         | Undo the last n query and response [1].                            |
 | <code>%shift &lt;n&gt;</code>        | Remove first <n> messages and responses.                           |
