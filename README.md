@@ -142,15 +142,21 @@ echo "%html" | chatgpt -b -r
 You can select system commands in [Awesome ChatGPT Prompts](https://github.com/f/awesome-chatgpt-prompts).
 
 ```bash
+# Output list of available prompts
+chatgpt prompts
+# Set system message by name
 chatgpt -i "Linux Terminal"
+# by id number
+chatgpt -i 0
 ```
 
 ### Magic Commands
 
-During the dialogue, you can use a variety of magic commands.
+During the dialogue, you can use a variety of magic commands. `%help`
 
 | Magic Command       | Description                                                        |
 | ------------------- | ------------------------------------------------------------------ |
+| `%list`             | Displays the beginning of each message.                            |
 | `%clear`            | Clear all messages. Change the topic and set token back to zero.   |
 | `%undo <n>`         | Undo the last n query and response [1].                            |
 | `%shift <n>`        | Remove first <n> messages and responses.                           |
