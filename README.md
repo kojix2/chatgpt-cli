@@ -9,7 +9,7 @@
 - Interactive command-line interface using [GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html).
 - Expand file contents from the file path(s) using the placeholder.
 - Expand web page contents from the URL using the placeholder.
-- Magic commands to `clear`, `undo`, `edit`, `write`, `save`, and `load` data.
+- Magic commands to `clear`, `pop`, `edit`, `write`, `save`, and `load` data.
 - Execute system commands and pass captured stdout and stderr output to ChatGPT.
 - Code blocks in the response can be referenced from `$CODE1`, `$CODE2`...
 - Output HTML.
@@ -158,7 +158,7 @@ During the dialogue, you can use a variety of magic commands. `%help`
 | ------------------- | ------------------------------------------------------------------ |
 | `%list`             | Displays the beginning of each message.                            |
 | `%clear`            | Clear all messages. Change the topic and set token back to zero.   |
-| `%undo <n>`         | Undo the last n query and response [1].                            |
+| `%pop <n>`         | Undo the last n query and response [1].                            |
 | `%shift <n>`        | Remove first <n> messages and responses.                           |
 | `%write <filename>` | Write the most recent message to a file. Save the text or code.    |
 | `%w <filename>`     | Alias for `write`.                                                 |

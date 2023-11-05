@@ -5,9 +5,9 @@ module ChatGPT
     class Undo < Base
       def initialize(sender)
         @sender = sender
-        @name = "undo"
-        @description = "Undo last message and response"
-        @patterns = [/\Aundo\z/, /\Aundo\s+(\d+)/]
+        @name = "pop"
+        @description = "Remove last message and response"
+        @patterns = [/\Apop\z/, /\Apop\s+(\d+)/]
       end
 
       def run

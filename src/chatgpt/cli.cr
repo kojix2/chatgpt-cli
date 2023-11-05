@@ -219,7 +219,7 @@ module ChatGPT
     private def display_errors(response)
       STDERR.puts "Error: #{response.status_code} #{response.status}"._colorize(:warning, :bold)
       STDERR.puts response.body._colorize(:warning)
-      STDERR.puts "Hint: try %undo, %edit, %clear, %model or %help"._colorize(:warning, :bold)
+      STDERR.puts "Hint: try %pop, %edit, %clear, %model or %help"._colorize(:warning, :bold)
     end
 
     private def debug_mode?

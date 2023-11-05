@@ -16,7 +16,7 @@ What is the title of this README? hint: %{../README.md}
 
 Please choose five interesting topics from %%{https://news.ycombinator.com/}
 
-%undo
+%pop
 
 %model
 
