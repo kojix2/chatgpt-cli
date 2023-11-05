@@ -17,7 +17,7 @@ dependencies:
     branch: master
   readline:
     github: kojix2/crystal-readline
-    branch: kojix2-patch-1
+    branch: develop
   lexbor:
     github: kostya/lexbor
   http_proxy:
