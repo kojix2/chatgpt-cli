@@ -506,10 +506,10 @@ chatgpt -i 0</code></pre>
 <p>During the dialogue, you can use a variety of magic commands. <code>%help</code></p>
 <p>| Magic Command       | Description                                                        |
 | ------------------- | ------------------------------------------------------------------ |
-| <code>%list</code>             | Displays the beginning of each message.                            |
+| <code>%list</code> <code>%list[n]</code>  | Displays the message(s).                                           |
 | <code>%clear</code>            | Clear all messages. Change the topic and set token back to zero.   |
-| <code>%pop &lt;n&gt;</code>         | Undo the last n query and response [1].                            |
-| <code>%shift &lt;n&gt;</code>        | Remove first <n> messages and responses.                           |
+| <code>%pop &lt;n&gt;</code>          | Remove the last n messages and response [1].                       |
+| <code>%shift &lt;n&gt;</code>        | Remove first n messages and responses [1].                         |
 | <code>%write &lt;filename&gt;</code> | Write the most recent message to a file. Save the text or code.    |
 | <code>%w &lt;filename&gt;</code>     | Alias for <code>write</code>.                                                 |
 | <code>%config</code>           | Edit the config file. Open a text editor and rewrite the settings. |
