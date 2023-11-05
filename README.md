@@ -156,10 +156,10 @@ During the dialogue, you can use a variety of magic commands. `%help`
 
 | Magic Command       | Description                                                        |
 | ------------------- | ------------------------------------------------------------------ |
-| `%list`             | Displays the beginning of each message.                            |
+| `%list` `%list[n]`  | Displays the message(s).                                           |
 | `%clear`            | Clear all messages. Change the topic and set token back to zero.   |
-| `%pop <n>`         | Undo the last n query and response [1].                            |
-| `%shift <n>`        | Remove first <n> messages and responses.                           |
+| `%pop <n>`          | Remove the last n messages and response [1].                       |
+| `%shift <n>`        | Remove first n messages and responses [1].                         |
 | `%write <filename>` | Write the most recent message to a file. Save the text or code.    |
 | `%w <filename>`     | Alias for `write`.                                                 |
 | `%config`           | Edit the config file. Open a text editor and rewrite the settings. |
@@ -231,7 +231,6 @@ Please write a commit message: %STDOUT
 
 Explain this error message: %STDERR
 ```
-
 
 ### Code Blocks in the Response
 
