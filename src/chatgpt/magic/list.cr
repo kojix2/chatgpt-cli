@@ -7,7 +7,27 @@ module ChatGPT
         @sender = sender
         @name = "list"
         @description = "Show chat summaries"
-        @patterns = [/\Alist\z/]
+        @patterns = [/\Alist\z/, /\Alist\[(\-?\d+)\]/]
+      end
+
+      def run(n)
+        n = n.to_i
+        msg_count = data.messages.size
+        if (n >= msg_count || n < -msg_count)
+          puts "Invalid index: #{n}"._colorize(:warning)
+          return false
+        end
+        message = data.messages[n]
+        role = message["role"]
+        puts case role
+        when "system"
+          message["content"]
+        when "user"
+          message["content"]
+        when "assistant"
+          message["content"]._colorize(:chatgpt)
+        end
+        true
       end
 
       def run
