@@ -20,8 +20,8 @@ module ChatGPT
       def run(file_name)
         html = Generator::Html.new(data).to_s
         File.write(file_name, html)
+        puts "Saved to #{file_name}"._colorize(:warning)
         open_browser(file_name)
-        # file.delete   # FIXME: delete file
         true
       end
     end
