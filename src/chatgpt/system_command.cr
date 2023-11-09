@@ -14,6 +14,8 @@ module ChatGPT
 
     def try_run(input_message)
       return false unless input_message.starts_with? "!"
+      # !{} is for substitution command run
+      return false if input_message.starts_with? "!{"
 
       if input_message.starts_with? "!!"
         run(input_message[2..-1].strip, record: true)
