@@ -25,7 +25,9 @@ module ChatGPT
           end
         rescue ex
           STDERR.puts "Error: Failed to run command: #{command}"._colorize(:warning, :bold)
+          return command
         end
+        std_oe.to_s
       end
     end
   end
