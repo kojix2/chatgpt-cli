@@ -29,21 +29,21 @@ module ChatGPT
           end
           exit
         end
+        on "-m MODEL", "--model MODEL", "Model name [gpt-3.5-turbo]" do |v|
+          data.model = v.to_s
+        end
         on "-r", "--resume", "Resume the session" do
           load_session(Config::POST_DATA_FILE)
         end
-        on "-l FILE", "--load FILE", "Load session from file" do |v|
-          load_session(v.to_s)
+        on "-b", "--batch", "Batch mode (no interactive prompts)" do
+          @interactive = false
         end
-        on "-m MODEL", "--model MODEL", "Model name [gpt-3.5-turbo]" do |v|
-          data.model = v.to_s
+        on "-s STR", "--system STR", "System message" do |v|
+          data.messages << {"role" => "system", "content" => v.to_s}
         end
         on "-i ID", "--id ID", "ID of the custom system message" do |v|
           system_message = config.select_id(v.to_s)
           data.messages << system_message if system_message
-        end
-        on "-s STR", "--system STR", "System message" do |v|
-          data.messages << {"role" => "system", "content" => v.to_s}
         end
         on "-E INT", "Number of edits to generate [1]" do |v|
           data.n = v.to_i? || (STDERR.puts "Error: Invalid number of edits"; exit 1)
@@ -54,8 +54,8 @@ module ChatGPT
         on "-P Float", "--top_p Float", "Probability threshold of nucleus sampling [1.0]" do |v|
           data.top_p = v.to_f? || (STDERR.puts "Error: Invalid top_p"; exit 1)
         end
-        on "-b", "--batch", "Batch mode (no interactive prompts)" do
-          @interactive = false
+        on "-l FILE", "--load FILE", "Load session from file" do |v|
+          load_session(v.to_s)
         end
         on "-d", "--debug", "Debug mode" do
           DEBUG_FLAG[0] = true
