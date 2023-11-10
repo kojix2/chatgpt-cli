@@ -32,6 +32,8 @@ shards build --release
 sudo cp bin/chatgpt /usr/local/bin
 ```
 
+Please disable Conda or similar environments when building to ensure correct linking.
+
 <details>
 <summary><b>Windows</b></summary>
 
