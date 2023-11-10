@@ -20,7 +20,7 @@
 
 Download binaries from [Github Release](https://github.com/kojix2/chatgpt-cli/releases/latest).
 
-### From source code
+### From source code (recommended)
 
 Install [Crystal](https://github.com/crystal-lang/crystal) and build the project:
 
