@@ -190,14 +190,14 @@ module ChatGPT
 
       env_prefix = "CODE" # FIXIT make this configurable
       # Remove temporary files and environment variables for previous code blocks
-      code_blocks.each_with_index(1) do |f, index|
+      code_blocks.each_with_index do |f, index|
         env_name = "#{env_prefix}#{index}"
         f.delete if File.exists?(f.path)
         ENV.delete(env_name)
       end
       code_blocks.clear
       # Create temporary files and environment variables for new code blocks
-      code_block_matches.each_with_index(1) do |match, index|
+      code_block_matches.each_with_index do |match, index|
         env_name = "#{env_prefix}#{index}"
         temp_file = File.tempfile("chatgpt-codeblock") do |f|
           code = match[1]

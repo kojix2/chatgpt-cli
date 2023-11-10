@@ -11,7 +11,7 @@
 - Expand web page contents from the URL using the placeholder.
 - Magic commands to `clear`, `pop`, `edit`, `write`, `save`, and `load` data.
 - Execute system commands and pass captured stdout and stderr output to ChatGPT.
-- Code blocks in the response can be referenced from `$CODE1`, `$CODE2`...
+- Code blocks in the response can be referenced from `$CODE0`, `$CODE1`...
 - Output HTML.
 
 ## Installation
@@ -236,9 +236,9 @@ Explain this error message: %STDERR
 
 ### Code Blocks in the Response
 
-#### `$CODE1` `$CODE2`
+#### `$CODE0` `$CODE1`
 
-When ChatGPT returns code blocks, ChatGPT CLI saves these blocks temporarily and assigns them to environment variables named `CODE1`, `CODE2`, ... and so on. This allows you to execute the code blocks on your computer.
+When ChatGPT returns code blocks, ChatGPT CLI saves these blocks temporarily and assigns them to environment variables named `CODE0`, `CODE1`, ... and so on. This allows you to execute the code blocks on your computer.
 
 ```
 Write code to display 1 to 10 in Python and Ruby.
@@ -260,15 +260,15 @@ Ruby:
 ````
 
 ```
-! python $CODE1
-! ruby $CODE2
+! python $CODE0
+! ruby $CODE1
 ```
 
 Save code block.
 
 ```
 Please write comments/documentation for the code: %{src/client.cr}
-!cp $CODE1 src/client.cr
+!cp $CODE0 src/client.cr
 # Then check diff with your code editor...
 ```
 
