@@ -197,8 +197,8 @@ module ChatGPT
       # Create temporary files and environment variables for new code blocks
       code_block_matches.each_with_index do |match, index|
         env_name = "#{env_prefix}#{index}"
-        temp_file = File.tempfile("chatgpt-codeblock") do |f|
-          code = match[1]
+        temp_file = File.tempfile("-chatgpt-codeblock") do |f|
+          code = match[2]
           f.print(code)
         end
         code_blocks << temp_file
@@ -208,7 +208,8 @@ module ChatGPT
     end
 
     private def extract_code_blocks(result_msg)
-      result_msg.scan(/```.*?\n(.*?)```/m)
+      # language, code
+      result_msg.scan(/```(.*?)\n(.*?)```/m)
     end
 
     private def check_env(name)
