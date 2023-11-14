@@ -107,7 +107,7 @@ module ChatGPT
       return true if system_command(input_msg)
       return true if magic_command(input_msg)
 
-      input_msg = substitute(input_msg)
+      input_msg = substitute_input(input_msg)
 
       post_data.add_message("user", input_msg)
 
@@ -131,6 +131,7 @@ module ChatGPT
       File.write(Config::POST_DATA_FILE, post_data.to_pretty_json)
 
       set_envs_from_response(result_msg)
+      result_msg = substitute_output(result_msg)
       @total_tokens = response_data.total_tokens
       puts result_msg._colorize(:chatgpt)
       return true
@@ -152,7 +153,7 @@ module ChatGPT
       File.open(Config::HISTORY_FILE, "a") { |f| f.puts(input_msg) }
     end
 
-    private def substitute(input_msg)
+    private def substitute_input(input_msg)
       substitutor.substitute(input_msg)
     end
 
@@ -214,6 +215,10 @@ module ChatGPT
         STDERR.puts "Overwriting #{name} environment variable"._colorize(:debug)
         STDERR.flush
       end
+    end
+
+    private def substitute_output(msg)
+      msg
     end
 
     private def display_errors(response)
