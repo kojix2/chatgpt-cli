@@ -220,6 +220,18 @@ module ChatGPT
     end
 
     private def substitute_output(msg)
+      colorize_code_blocks(msg)
+    end
+
+    private def colorize_code_blocks(msg)
+      # FXIME!! THIS IS A HACK
+      {% if env("CHATGPT_BAT") %}
+        code_block_matches = extract_code_blocks(msg)
+        code_block_matches.each_with_index do |match, index|
+          colored_code = `bat -f #{match[1] ? "-l " + match[1] : ""} --style plain,grid #{code_blocks[index].path}`
+          msg = msg.gsub(match[0], colored_code)
+        end
+      {% end %}
       msg
     end
 
