@@ -174,7 +174,7 @@ module ChatGPT
 
     private def set_envs_from_response(msg)
       set_response_env(msg, "RESPONSE")
-      extract_code_blocks(msg)
+      set_code_env(msg, "CODE")
     end
 
     private def set_response_env(msg, name)
@@ -185,11 +185,8 @@ module ChatGPT
       ENV[name] = msg
     end
 
-    private def extract_code_blocks(result_msg)
-      code_block_matches = result_msg.scan(/```.*?\n(.*?)```/m)
-      return if code_block_matches.empty?
-
-      env_prefix = "CODE" # FIXIT make this configurable
+    private def set_code_env(msg, env_prefix)
+      code_block_matches = extract_code_blocks(msg)
       # Remove temporary files and environment variables for previous code blocks
       code_blocks.each_with_index do |f, index|
         env_name = "#{env_prefix}#{index}"
@@ -208,6 +205,10 @@ module ChatGPT
         check_env(env_name)
         ENV[env_name] = temp_file.path
       end
+    end
+
+    private def extract_code_blocks(result_msg)
+      result_msg.scan(/```.*?\n(.*?)```/m)
     end
 
     private def check_env(name)
