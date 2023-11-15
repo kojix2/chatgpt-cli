@@ -29,6 +29,11 @@ module ChatGPT
           end
           exit
         end
+        on("config", "Edit config file") do
+          banner = "Usage: #{PROGRAM_NAME} config [options]"
+          Launcher.open_editor(ChatGPT::Config::CONFIG_FILE)
+          exit
+        end
         on "-m MODEL", "--model MODEL", "Model name [gpt-3.5-turbo]" do |v|
           data.model = v.to_s
         end
