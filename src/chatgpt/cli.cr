@@ -238,7 +238,9 @@ module ChatGPT
           Process.run(command, shell: true) do |ps|
             ps.input.puts(match[2])
             ps.input.close
-            colored_code = ps.output.gets_to_end
+            colored_code = "\e[39;49m" + ps.output.gets_to_end
+            colored_code = colored_code.chomp
+            colored_code = colored_code.append_colorize_start(:chatgpt)
             msg = msg.gsub(match[0], colored_code)
           end
           msg
