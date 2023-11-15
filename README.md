@@ -29,6 +29,7 @@ git clone https://github.com/kojix2/chatgpt-cli
 git submodule update -i # Awesome ChatGPT Prompts
 cd chatgpt-cli
 shards build --release
+# CHATGPT_BAT=1 shards build --release # enable syntax highlighing using `bat` (experimental)
 sudo cp bin/chatgpt /usr/local/bin
 ```
 
