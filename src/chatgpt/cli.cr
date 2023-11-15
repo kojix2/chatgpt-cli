@@ -228,18 +228,20 @@ module ChatGPT
       {% if env("CHATGPT_BAT") %}
         code_block_matches = extract_code_blocks(msg)
         code_block_matches.each_with_index do |match, index|
-          next if index >= code_blocks.size
-          tempfile_path = code_blocks[index].path
-          next unless File.exists?(tempfile_path)
           command = String.build do |s|
             s << "bat"
             s << " -l #{match[1]}" if match[0]
             s << " --color=always"
             s << " --style plain,grid"
-            s << " #{tempfile_path}"
+            s << " -"
           end
-          colored_code = `#{command}`
-          msg = msg.gsub(match[0], colored_code)
+          Process.run(command, shell: true) do |ps|
+            ps.input.puts(match[2])
+            ps.input.close
+            colored_code = ps.output.gets_to_end
+            msg = msg.gsub(match[0], colored_code)
+          end
+          msg
         end
       {% end %}
       msg
