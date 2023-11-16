@@ -561,14 +561,14 @@ chatgpt -i 0</code></pre>
 <pre><code class="language-crystal"><span class="t">Please</span> explain the following code: <span class="s">%{src/beatles.py}</span> <span class="t">Are</span> there any bugs?</code></pre>
 <pre><code class="language-crystal"><span class="t">Please</span> read the code <span class="k">of</span> the tool: <span class="s">%{src/*.cr}</span> <span class="s">%{src/**/*.cr}</span> <span class="t">Then</span> update <span class="t">README</span>.md <span class="s">%{README.md}</span></code></pre>
 <p><code>%{}</code> can be changed in the config file.</p>
-<h4><a id="web-pages-www.example.com" class="anchor" href="#web-pages-www.example.com">
+<h4><a id="web-pages-uwww.example.com" class="anchor" href="#web-pages-uwww.example.com">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Web pages <code>%%{www.example.com}</code></h4>
-<pre><code class="language-crystal"><span class="t">Pick</span> five interesting news items: <span class="o">%</span><span class="s">%{https://news.ycombinator.com/}</span></code></pre>
+</a>Web pages <code>%u{www.example.com}</code></h4>
+<pre><code class="language-crystal"><span class="t">Pick</span> five interesting news items: <span class="o">%</span>u{https<span class="n">://</span>news.ycombinator.com<span class="o">/</span>}</code></pre>
 <p>Here, the HTML from the URL is fetched, the words used in the <code>body</code> are extracted and passed to ChatGPT.</p>
-<p><code>%%{}</code> can be changed in the config file.</p>
+<p><code>%u{}</code> can be changed in the config file.</p>
 <h3><a id="system-commands" class="anchor" href="#system-commands">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -635,11 +635,11 @@ Ruby:
 </a>Configuration</h2>
 <p><code>config.json</code> is located in <code>~/.config/chatgpt-cli/</code> by default.</p>
 <ul>
-<li>substitute_patterns: <code>%{}</code> <code>%%{}</code> <code>!{}</code> <code>%STDOUT</code> <code>%STDERR</code></li>
+<li>substitute_patterns: <code>%{}</code> <code>%u{}</code> <code>!{}</code> <code>%STDOUT</code> <code>%STDERR</code></li>
 <li>terminal_colors: <code>chatgpt</code> <code>warning</code> <code>debug</code> <code>stdout</code> <code>stderr</code></li>
 </ul>
 <p>Type <code>%config</code> to launch editor.
-Placeholders such as <code>%{}</code> and <code>%%{}</code> can be set with regular expressions</p>
+Placeholders such as <code>%{}</code> and <code>%u{}</code> can be set with regular expressions</p>
 <p>Please refer to the latest <code>config.json</code> file in the repository for the most recent information.</p>
 <h3><a id="prompts-system-commands" class="anchor" href="#prompts-system-commands">
   <svg class="octicon-link" aria-hidden="true">
