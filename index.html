@@ -579,12 +579,14 @@ chatgpt -i 0</code></pre>
     <use href="#octicon-link"/>
   </svg>
 </a><code>!cmd</code></h4>
+<p>Simply execute the system command.</p>
 <pre><code class="language-crystal"><span class="o">!</span>pwd</code></pre>
 <h4><a id="cmd-1" class="anchor" href="#cmd-1">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a><code>!{ cmd }</code></h4>
+<p>Replaced by the contents of the standard output and standard error output.</p>
 <pre><code class="language-crystal"><span class="t">Please</span> write a commit message: <span class="o">!</span>{git diff}</code></pre>
 <h4><a id="cmd-2" class="anchor" href="#cmd-2">
   <svg class="octicon-link" aria-hidden="true">
@@ -603,6 +605,16 @@ Explain this error message: %STDERR</code></pre>
     <use href="#octicon-link"/>
   </svg>
 </a>Code Blocks in the Response</h3>
+<h4><a id="syntax-highlighting" class="anchor" href="#syntax-highlighting">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Syntax highlighting</h4>
+<p>The <a href="https://github.com/sharkdp/bat"><code>bat</code></a> command is required. You can use the development version by setting the following environment variables and compiling.</p>
+<ul>
+<li><code>CHATGPT_BAT=1 shards build</code> Only code blocks are targeted for syntax highlighting.</li>
+<li><code>CHATGPT_BAT=2 shards bulid</code> The entire response is considered markdown and subject to syntax highlighting.</li>
+</ul>
 <h4><a id="code0-code1" class="anchor" href="#code0-code1">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
