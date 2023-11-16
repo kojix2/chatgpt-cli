@@ -209,11 +209,15 @@ Here, the HTML from the URL is fetched, the words used in the `body` are extract
 
 #### `!cmd`
 
+Simply execute the system command.
+
 ```
 !pwd
 ```
 
 #### `!{ cmd }`
+
+Replaced by the contents of the standard output and standard error output.
 
 ```
 Please write a commit message: !{git diff}
@@ -236,6 +240,13 @@ Explain this error message: %STDERR
 ```
 
 ### Code Blocks in the Response
+
+#### Syntax highlighting
+
+The [`bat`](https://github.com/sharkdp/bat) command is required. You can use the development version by setting the following environment variables and compiling.
+
+- `CHATGPT_BAT=1 shards build` Only code blocks are targeted for syntax highlighting.
+- `CHATGPT_BAT=2 shards bulid` The entire response is considered markdown and subject to syntax highlighting.
 
 #### `$CODE0` `$CODE1`
 
