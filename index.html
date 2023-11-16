@@ -542,24 +542,24 @@ chatgpt -i 0</code></pre>
 | <code>%debug</code>            | Show debug message.                                                |
 | <code>%help</code>             | Show the help. Humans forget commands.                             |</p>
 <p>Note that for <code>%config</code>, <code>%data</code>, and other commands launch an editor. The editor used can be set by the <code>EDITOR</code> environment variable.</p>
-<h3><a id="substitution" class="anchor" href="#substitution">
+<h3><a id="template-processing" class="anchor" href="#template-processing">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Substitution</h3>
-<h4><a id="files-foo.txt" class="anchor" href="#files-foo.txt">
+</a>Template processing</h3>
+<h4><a id="file-inclusion-foo.txt" class="anchor" href="#file-inclusion-foo.txt">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Files <code>%{foo.txt}</code></h4>
+</a>File inclusion <code>%{foo.txt}</code></h4>
 <pre><code class="language-crystal"><span class="t">Please</span> explain the following code: <span class="s">%{src/beatles.py}</span> <span class="t">Are</span> there any bugs?</code></pre>
 <pre><code class="language-crystal"><span class="t">Please</span> read the code <span class="k">of</span> the tool: <span class="s">%{src/*.cr}</span> <span class="s">%{src/**/*.cr}</span> <span class="t">Then</span> update <span class="t">README</span>.md <span class="s">%{README.md}</span></code></pre>
 <p><code>%{}</code> can be changed in the config file.</p>
-<h4><a id="web-pages-uwww.example.com" class="anchor" href="#web-pages-uwww.example.com">
+<h4><a id="web-pages-inclusion-uwww.example.com" class="anchor" href="#web-pages-inclusion-uwww.example.com">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Web pages <code>%u{www.example.com}</code></h4>
+</a>Web pages inclusion <code>%u{www.example.com}</code></h4>
 <pre><code class="language-crystal"><span class="t">Pick</span> five interesting news items: <span class="o">%</span>u{https<span class="n">://</span>news.ycombinator.com<span class="o">/</span>}</code></pre>
 <p>Here, the HTML from the URL is fetched, the words used in the <code>body</code> are extracted and passed to ChatGPT.</p>
 <p><code>%u{}</code> can be changed in the config file.</p>
@@ -588,12 +588,10 @@ chatgpt -i 0</code></pre>
   </svg>
 </a><code>!!cmd</code></h4>
 <p>capture STDOUT and STDERR.</p>
-<pre><code class="language-bash">!!git diff
-
-Please write a commit message: %STDOUT</code></pre>
-<pre><code class="language-bash">!!wrong_command
-
-Explain this error message: %STDERR</code></pre>
+<p><code>!!git diff</code></p>
+<pre><code class="language-crystal"><span class="t">Please</span> write a commit message: <span class="o">%</span><span class="t">STDOUT</span></code></pre>
+<p>`!!wrong_command``</p>
+<pre><code class="language-crystal"><span class="t">Explain</span> this error message: <span class="o">%</span><span class="t">STDERR</span></code></pre>
 <h3><a id="code-blocks-in-the-response" class="anchor" href="#code-blocks-in-the-response">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
