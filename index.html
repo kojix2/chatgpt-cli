@@ -379,7 +379,7 @@
   </svg>
 </a>ChatGPT CLI</h1>
 <p><a href="https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml"><img src="https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml/badge.svg" alt="build" /></a></p>
-<p>:eight_spoked_asterisk: Yet another ChatGPT command line tool.</p>
+<p>:eight_spoked_asterisk: Yet another <a href="https://openai.com/chatgpt">ChatGPT</a> command line tool.</p>
 <h2><a id="features" class="anchor" href="#features">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -389,13 +389,13 @@
 <li>Interactive mode using <a href="https://tiswww.case.edu/php/chet/readline/rltop.html">GNU Readline</a>.</li>
 <li>Batch mode.</li>
 <li>Ready-to-use system messages.</li>
-<li>Expand file contents from the file path(s) using the placeholder.</li>
-<li>Expand web page contents from the URL using the placeholder.</li>
-<li>Magic commands to <code>clear</code>, <code>pop</code>, <code>edit</code>, <code>write</code>, <code>save</code>, and <code>load</code> data.</li>
-<li>Execute system commands and pass captured stdout and stderr output to ChatGPT.</li>
+<li>Expand file contents from the <code>%{file/path}</code>.</li>
+<li>Expand web page contents from the <code>%u{URL}</code>.</li>
+<li>Magic commands to <code>%clear</code>, <code>%pop</code>, <code>%list</code>, <code>%w</code>, <code>%save</code>, and <code>%load</code> data.</li>
+<li>Execute system <code>!{commands}</code> and pass captured stdout and stderr.</li>
 <li>Code blocks in the response can be referenced from <code>$CODE0</code>, <code>$CODE1</code>...</li>
-<li>Syntax highlighting for code blocks using <a href="https://github.com/sharkdp/bat">bat</a>.</li>
-<li>Output HTML.</li>
+<li>Syntax highlighting for code blocks using <a href="https://github.com/sharkdp/bat"><code>bat</code></a>.</li>
+<li>Output <a href="https://github.com/hidao80/MonopolyGPT"><code>%HTML</code></a>.</li>
 </ul>
 <h2><a id="installation" class="anchor" href="#installation">
   <svg class="octicon-link" aria-hidden="true">
@@ -462,11 +462,6 @@ export HTTPS_PROXY=https://[IP]:[port]</code></pre>
 <p>Set the environment variable <code>CHATGPT_CLI_CONFIG</code>.</p>
 <p>The path to the directory where the configuration file will be saved. This is required on Windows.</p>
 </details>
-<h3><a id="options" class="anchor" href="#options">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>Options</h3>
 <pre><code class="language-crystal">Usage: chatgpt [options]
     prompts                          Print all system message IDs and exit
     -r, --resume                     Resume the session
@@ -483,22 +478,22 @@ export HTTPS_PROXY=https://[IP]:[port]</code></pre>
     -h, --help                       Print help</code></pre>
 <p>Restore the previous chat and use the gpt-4 model.</p>
 <pre><code class="language-crystal">chatgpt <span class="o">-</span>r <span class="o">-</span>m gpt<span class="n">-4</span></code></pre>
-<h4><a id="interactive-mode" class="anchor" href="#interactive-mode">
+<h3><a id="interactive-mode" class="anchor" href="#interactive-mode">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Interactive mode</h4>
+</a>Interactive mode</h3>
 <pre><code class="language-crystal">chatgpt i</code></pre>
 <p>To exit, type <code>exit</code>, <code>quit</code>, or press <code>Ctrl + D</code>.
 Write your message using GNU Readline, which supports <a href="https://en.wikipedia.org/wiki/GNU_Readline">Emacs shortcuts</a>, such as <code>↑</code> and <code>↓</code>.</p>
 <pre><code class="language-crystal"><span class="t">Hi</span></code></pre>
 <p>You can cancel a query to ChatGPT with <code>Ctrl + C</code>.</p>
 <p>Line breaks are not currently supported in the interactive mode.</p>
-<h4><a id="batch-mode" class="anchor" href="#batch-mode">
+<h3><a id="batch-mode" class="anchor" href="#batch-mode">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Batch mode</h4>
+</a>Batch mode</h3>
 <ul>
 <li><code>-r</code> <code>--resume</code> The chat from the last time you exited is carried over to the startup.</li>
 </ul>
@@ -507,11 +502,11 @@ Write your message using GNU Readline, which supports <a href="https://en.wikipe
 echo &quot;It's okay now. Rest.&quot; | chatgpt -r
 # Thank you for your concern. I hope you have a pleasant day as well. Feel free to reach out if you need any assistance in the future. Take care and rest well!
 echo &quot;%html&quot; | chatgpt -r</code></pre>
-<h4><a id="awesome-chat-gpt-prompts" class="anchor" href="#awesome-chat-gpt-prompts">
+<h3><a id="awesome-chat-gpt-prompts" class="anchor" href="#awesome-chat-gpt-prompts">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Awesome ChatGPT Prompts</h4>
+</a>Awesome ChatGPT Prompts</h3>
 <p>You can select system commands in <a href="https://github.com/f/awesome-chatgpt-prompts">Awesome ChatGPT Prompts</a>.</p>
 <pre><code class="language-bash"># Output list of available prompts
 chatgpt prompts
@@ -678,16 +673,14 @@ rm ~/.chatgpt_history       # Remove command history</code></pre>
     <use href="#octicon-link"/>
   </svg>
 </a>Development</h2>
+<details>
+<summary><b>Overview</b></summary>
 <p><img src="https://raw.githubusercontent.com/kojix2/chatgpt-cli/main/docs/overview.png" alt="overview" /></p>
-<p>Building:</p>
-<pre><code class="language-bash">git clone https://github.com/kojix2/chatgpt-cli
-git submodule update -i
-cd chatgpt-cli
-shards install
-shards build</code></pre>
-<p>Testing:</p>
+</details>
 <pre><code class="language-crystal">crystal spec</code></pre>
-<p>You can quickly try development by using <a href="https://www.gitpod.io/">Gitpod</a>.</p>
+<ul>
+<li>You can quickly try development by using <a href="https://www.gitpod.io/">Gitpod</a>.</li>
+</ul>
 <h2><a id="acknowledgments" class="anchor" href="#acknowledgments">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
