@@ -482,13 +482,13 @@ export HTTPS_PROXY=https://[IP]:[port]</code></pre>
     -h, --help                       Print help</code></pre>
 <p>Restore the previous chat and use the gpt-4 model.</p>
 <pre><code class="language-crystal">chatgpt <span class="o">-</span>r <span class="o">-</span>m gpt<span class="n">-4</span></code></pre>
-<h4><a id="interactive-mode-default" class="anchor" href="#interactive-mode-default">
+<h4><a id="interactive-mode" class="anchor" href="#interactive-mode">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Interactive mode (default)</h4>
+</a>Interactive mode</h4>
 <p>Start ChatGPT CLI.</p>
-<pre><code class="language-crystal">chatgpt</code></pre>
+<pre><code class="language-crystal">chatgpt i</code></pre>
 <p>To exit, type <code>exit</code>, <code>quit</code>, or press <code>Ctrl + D</code>.
 Write your message using GNU Readline, which supports <a href="https://en.wikipedia.org/wiki/GNU_Readline">Emacs shortcuts</a>, such as <code>↑</code> and <code>↓</code>.</p>
 <pre><code class="language-crystal"><span class="t">Hi</span></code></pre>
@@ -500,14 +500,13 @@ Write your message using GNU Readline, which supports <a href="https://en.wikipe
   </svg>
 </a>Batch mode</h4>
 <ul>
-<li><code>-b</code> <code>--batch</code> Pass input by filename or standard input. ChatGPT will output to standard output and exit immediately.</li>
 <li><code>-r</code> <code>--resume</code> The chat from the last time you exited is carried over to the startup.</li>
 </ul>
-<pre><code class="language-sh">echo &quot;hello&quot; | chatgpt -b
+<pre><code class="language-sh">echo &quot;hello&quot; | chatgpt
 # How can I assist you today?
-echo &quot;It's okay now. Rest.&quot; | chatgpt -b -r
+echo &quot;It's okay now. Rest.&quot; | chatgpt -r
 # Thank you for your concern. I hope you have a pleasant day as well. Feel free to reach out if you need any assistance in the future. Take care and rest well!
-echo &quot;%html&quot; | chatgpt -b -r</code></pre>
+echo &quot;%html&quot; | chatgpt -r</code></pre>
 <h4><a id="awesome-chat-gpt-prompts" class="anchor" href="#awesome-chat-gpt-prompts">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
