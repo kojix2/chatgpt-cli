@@ -108,12 +108,12 @@ Restore the previous chat and use the gpt-4 model.
 chatgpt -r -m gpt-4
 ```
 
-#### Interactive mode (default)
+#### Interactive mode
 
 Start ChatGPT CLI.
 
 ```
-chatgpt
+chatgpt i
 ```
 
 To exit, type `exit`, `quit`, or press `Ctrl + D`.
@@ -129,15 +129,14 @@ Line breaks are not currently supported in the interactive mode.
 
 #### Batch mode
 
-- `-b` `--batch` Pass input by filename or standard input. ChatGPT will output to standard output and exit immediately.
 - `-r` `--resume` The chat from the last time you exited is carried over to the startup.
 
 ```sh
-echo "hello" | chatgpt -b
+echo "hello" | chatgpt
 # How can I assist you today?
-echo "It's okay now. Rest." | chatgpt -b -r
+echo "It's okay now. Rest." | chatgpt -r
 # Thank you for your concern. I hope you have a pleasant day as well. Feel free to reach out if you need any assistance in the future. Take care and rest well!
-echo "%html" | chatgpt -b -r
+echo "%html" | chatgpt -r
 ```
 
 #### Awesome ChatGPT Prompts

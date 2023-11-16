@@ -10,7 +10,7 @@ module ChatGPT
 
       def initialize
         @data = PostData.new
-        @interactive = true
+        @interactive = false
         super()
         config = Config.instance
         self.banner =
@@ -34,14 +34,14 @@ module ChatGPT
           Launcher.open_editor(ChatGPT::Config::CONFIG_FILE)
           exit
         end
+        on("i", "Interactive mode") do
+          @interactive = true
+        end
         on "-m MODEL", "--model MODEL", "Model name [gpt-3.5-turbo]" do |v|
           data.model = v.to_s
         end
         on "-r", "--resume", "Resume the session" do
           load_session(Config::POST_DATA_FILE)
-        end
-        on "-b", "--batch", "Batch mode (no interactive prompts)" do
-          @interactive = false
         end
         on "-s STR", "--system STR", "System message" do |v|
           data.messages << {"role" => "system", "content" => v.to_s}
