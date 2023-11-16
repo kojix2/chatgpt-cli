@@ -228,9 +228,10 @@ module ChatGPT
       {% if env("CHATGPT_BAT") %}
         code_block_matches = extract_code_blocks(msg)
         code_block_matches.each_with_index do |match, index|
+          lang = match[1]
           command = String.build do |s|
             s << "bat"
-            s << " -l #{match[1]}" if match[0]
+            s << " -l #{lang}" if lang
             s << " --color=always"
             s << " --style plain,grid"
             s << " -"
@@ -238,8 +239,9 @@ module ChatGPT
           Process.run(command, shell: true) do |ps|
             ps.input.puts(match[2])
             ps.input.close
-            colored_code = "\e[39;49m" + ps.output.gets_to_end
-            colored_code = colored_code.chomp
+            colored_code = ps.output.gets_to_end
+            next if colored_code.empty? # FIXME whether the command failed or not
+            colored_code = "\e[39;49m" + colored_code.chomp
             colored_code = colored_code.append_colorize_start(:chatgpt)
             msg = msg.gsub(match[0], colored_code)
           end
