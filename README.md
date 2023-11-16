@@ -101,12 +101,6 @@ Usage: chatgpt [options]
     -h, --help                       Print help
 ```
 
-Restore the previous chat and use the gpt-4 model.
-
-```
-chatgpt -r -m gpt-4
-```
-
 ### Interactive mode
 
 ```
@@ -179,47 +173,37 @@ Note that for `%config`, `%data`, and other commands launch an editor. The edito
 
 ### Template processing
 
-#### File inclusion `%{foo.txt}`
+#### File inclusion
 
 ```
-Please explain the following code: %{src/beatles.py} Are there any bugs?
+Improve the code: %{my/script.py}
 ```
 
 ```
-Please read the code of the tool: %{src/*.cr} %{src/**/*.cr} Then update README.md %{README.md}
+Find the bugs: %{my/script.py}
 ```
 
-`%{}` can be changed in the config file.
-
-#### Web pages inclusion `%u{www.example.com}`
+#### Web page inclusion
 
 ```
-Pick five interesting news items: %u{https://news.ycombinator.com/}
+Select important news: %u{https://news.ycombinator.com/}
 ```
 
-Here, the HTML from the URL is fetched, the words used in the `body` are extracted and passed to ChatGPT.
-
-`%u{}` can be changed in the config file.
+The words used in the `<body>` are extracted.
 
 ### System Commands
 
-#### `!cmd`
-
-Simply execute the system command.
+Execute the system command.
 
 ```
 !pwd
 ```
 
-#### `!{ cmd }`
-
-Replaced by the contents of the standard output and standard error output.
+Execute the command and insert standard output and standard error output.
 
 ```
 Please write a commit message: !{git diff}
 ```
-
-#### `!!cmd`
 
 capture STDOUT and STDERR.
 
@@ -229,7 +213,7 @@ capture STDOUT and STDERR.
 Please write a commit message: %STDOUT
 ```
 
-`!!wrong_command``
+`!!wrong_command`
 
 ```
 Explain this error message: %STDERR
