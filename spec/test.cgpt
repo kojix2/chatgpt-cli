@@ -14,7 +14,7 @@ What is the title of this README? hint: %{../README.md}
 
 %clear
 
-Please choose five interesting topics from %%{https://news.ycombinator.com/}
+Please choose five interesting topics from %u{https://news.ycombinator.com/}
 
 %pop
 

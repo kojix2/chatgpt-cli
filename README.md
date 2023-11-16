@@ -195,15 +195,15 @@ Please read the code of the tool: %{src/*.cr} %{src/**/*.cr} Then update README.
 
 `%{}` can be changed in the config file.
 
-#### Web pages `%%{www.example.com}`
+#### Web pages `%u{www.example.com}`
 
 ```
-Pick five interesting news items: %%{https://news.ycombinator.com/}
+Pick five interesting news items: %u{https://news.ycombinator.com/}
 ```
 
 Here, the HTML from the URL is fetched, the words used in the `body` are extracted and passed to ChatGPT.
 
-`%%{}` can be changed in the config file.
+`%u{}` can be changed in the config file.
 
 ### System Commands
 
@@ -277,11 +277,11 @@ Please write comments/documentation for the code: %{src/client.cr}
 
 `config.json` is located in `~/.config/chatgpt-cli/` by default.
 
-- substitute_patterns: `%{}` `%%{}` `!{}` `%STDOUT` `%STDERR`
+- substitute_patterns: `%{}` `%u{}` `!{}` `%STDOUT` `%STDERR`
 - terminal_colors: `chatgpt` `warning` `debug` `stdout` `stderr`
 
 Type `%config` to launch editor.
-Placeholders such as `%{}` and `%%{}` can be set with regular expressions
+Placeholders such as `%{}` and `%u{}` can be set with regular expressions
 
 Please refer to the latest `config.json` file in the repository for the most recent information.
 
