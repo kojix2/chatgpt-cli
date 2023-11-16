@@ -476,8 +476,6 @@ export HTTPS_PROXY=https://[IP]:[port]</code></pre>
     -d, --debug                      Debug mode
     -v, --version                    Print version info and exit
     -h, --help                       Print help</code></pre>
-<p>Restore the previous chat and use the gpt-4 model.</p>
-<pre><code class="language-crystal">chatgpt <span class="o">-</span>r <span class="o">-</span>m gpt<span class="n">-4</span></code></pre>
 <h3><a id="interactive-mode" class="anchor" href="#interactive-mode">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -547,50 +545,33 @@ chatgpt -i 0</code></pre>
     <use href="#octicon-link"/>
   </svg>
 </a>Template processing</h3>
-<h4><a id="file-inclusion-foo.txt" class="anchor" href="#file-inclusion-foo.txt">
+<h4><a id="file-inclusion" class="anchor" href="#file-inclusion">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>File inclusion <code>%{foo.txt}</code></h4>
-<pre><code class="language-crystal"><span class="t">Please</span> explain the following code: <span class="s">%{src/beatles.py}</span> <span class="t">Are</span> there any bugs?</code></pre>
-<pre><code class="language-crystal"><span class="t">Please</span> read the code <span class="k">of</span> the tool: <span class="s">%{src/*.cr}</span> <span class="s">%{src/**/*.cr}</span> <span class="t">Then</span> update <span class="t">README</span>.md <span class="s">%{README.md}</span></code></pre>
-<p><code>%{}</code> can be changed in the config file.</p>
-<h4><a id="web-pages-inclusion-uwww.example.com" class="anchor" href="#web-pages-inclusion-uwww.example.com">
+</a>File inclusion</h4>
+<pre><code class="language-crystal"><span class="t">Improve</span> the code: <span class="s">%{my/script.py}</span></code></pre>
+<pre><code class="language-crystal"><span class="t">Find</span> the bugs: <span class="s">%{my/script.py}</span></code></pre>
+<h4><a id="web-page-inclusion" class="anchor" href="#web-page-inclusion">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Web pages inclusion <code>%u{www.example.com}</code></h4>
-<pre><code class="language-crystal"><span class="t">Pick</span> five interesting news items: <span class="o">%</span>u{https<span class="n">://</span>news.ycombinator.com<span class="o">/</span>}</code></pre>
-<p>Here, the HTML from the URL is fetched, the words used in the <code>body</code> are extracted and passed to ChatGPT.</p>
-<p><code>%u{}</code> can be changed in the config file.</p>
+</a>Web page inclusion</h4>
+<pre><code class="language-crystal"><span class="t">Select</span> important news: <span class="o">%</span>u{https<span class="n">://</span>news.ycombinator.com<span class="o">/</span>}</code></pre>
+<p>The words used in the <code>&lt;body&gt;</code> are extracted.</p>
 <h3><a id="system-commands" class="anchor" href="#system-commands">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>System Commands</h3>
-<h4><a id="cmd" class="anchor" href="#cmd">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a><code>!cmd</code></h4>
-<p>Simply execute the system command.</p>
+<p>Execute the system command.</p>
 <pre><code class="language-crystal"><span class="o">!</span>pwd</code></pre>
-<h4><a id="cmd-1" class="anchor" href="#cmd-1">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a><code>!{ cmd }</code></h4>
-<p>Replaced by the contents of the standard output and standard error output.</p>
+<p>Execute the command and insert standard output and standard error output.</p>
 <pre><code class="language-crystal"><span class="t">Please</span> write a commit message: <span class="o">!</span>{git diff}</code></pre>
-<h4><a id="cmd-2" class="anchor" href="#cmd-2">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a><code>!!cmd</code></h4>
 <p>capture STDOUT and STDERR.</p>
 <p><code>!!git diff</code></p>
 <pre><code class="language-crystal"><span class="t">Please</span> write a commit message: <span class="o">%</span><span class="t">STDOUT</span></code></pre>
-<p>`!!wrong_command``</p>
+<p><code>!!wrong_command</code></p>
 <pre><code class="language-crystal"><span class="t">Explain</span> this error message: <span class="o">%</span><span class="t">STDERR</span></code></pre>
 <h3><a id="code-blocks-in-the-response" class="anchor" href="#code-blocks-in-the-response">
   <svg class="octicon-link" aria-hidden="true">
