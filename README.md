@@ -6,12 +6,15 @@
 
 ## Features
 
-- Interactive command-line interface using [GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html).
+- Interactive mode using [GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html).
+- Batch mode.
+- Ready-to-use system messages.
 - Expand file contents from the file path(s) using the placeholder.
 - Expand web page contents from the URL using the placeholder.
 - Magic commands to `clear`, `pop`, `edit`, `write`, `save`, and `load` data.
 - Execute system commands and pass captured stdout and stderr output to ChatGPT.
 - Code blocks in the response can be referenced from `$CODE0`, `$CODE1`...
+- Syntax highlighting for code blocks using [bat](https://github.com/sharkdp/bat).
 - Output HTML.
 
 ## Installation
@@ -107,8 +110,6 @@ chatgpt -r -m gpt-4
 ```
 
 #### Interactive mode
-
-Start ChatGPT CLI.
 
 ```
 chatgpt i
