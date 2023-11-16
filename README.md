@@ -171,6 +171,20 @@ During the dialogue, you can use a variety of magic commands. `%help`
 
 Note that for `%config`, `%data`, and other commands launch an editor. The editor used can be set by the `EDITOR` environment variable.
 
+### System Commands
+
+Execute the system command.
+
+```
+!pwd
+```
+
+Execute the system command and capture `%STDOUT` and `%STDERR`.
+
+```
+!!git diff --cached
+```
+
 ### Template processing
 
 #### File inclusion
@@ -191,29 +205,21 @@ Select important news: %u{https://news.ycombinator.com/}
 
 The words used in the `<body>` are extracted.
 
-### System Commands
+#### System Commands
 
-Execute the system command.
-
-```
-!pwd
-```
-
-Execute the command and insert standard output and standard error output.
+`!{command}` Execute the command and insert standard output and standard error output.
 
 ```
 Please write a commit message: !{git diff}
 ```
 
-capture STDOUT and STDERR.
-
-`!!git diff`
+`%STDOUT` - captured standard output of `!!{command}`
 
 ```
 Please write a commit message: %STDOUT
 ```
 
-`!!wrong_command`
+`%STDERR` - captured standard error output of `!!{command}`
 
 ```
 Explain this error message: %STDERR
