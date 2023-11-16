@@ -540,6 +540,15 @@ chatgpt -i 0</code></pre>
 | <code>%debug</code>            | Show debug message.                                                |
 | <code>%help</code>             | Show the help. Humans forget commands.                             |</p>
 <p>Note that for <code>%config</code>, <code>%data</code>, and other commands launch an editor. The editor used can be set by the <code>EDITOR</code> environment variable.</p>
+<h3><a id="system-commands" class="anchor" href="#system-commands">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>System Commands</h3>
+<p>Execute the system command.</p>
+<pre><code class="language-crystal"><span class="o">!</span>pwd</code></pre>
+<p>Execute the system command and capture <code>%STDOUT</code> and <code>%STDERR</code>.</p>
+<pre><code class="language-crystal">!!git diff --cached</code></pre>
 <h3><a id="template-processing" class="anchor" href="#template-processing">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -559,19 +568,16 @@ chatgpt -i 0</code></pre>
 </a>Web page inclusion</h4>
 <pre><code class="language-crystal"><span class="t">Select</span> important news: <span class="o">%</span>u{https<span class="n">://</span>news.ycombinator.com<span class="o">/</span>}</code></pre>
 <p>The words used in the <code>&lt;body&gt;</code> are extracted.</p>
-<h3><a id="system-commands" class="anchor" href="#system-commands">
+<h4><a id="system-commands-1" class="anchor" href="#system-commands-1">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>System Commands</h3>
-<p>Execute the system command.</p>
-<pre><code class="language-crystal"><span class="o">!</span>pwd</code></pre>
-<p>Execute the command and insert standard output and standard error output.</p>
+</a>System Commands</h4>
+<p><code>!{command}</code> Execute the command and insert standard output and standard error output.</p>
 <pre><code class="language-crystal"><span class="t">Please</span> write a commit message: <span class="o">!</span>{git diff}</code></pre>
-<p>capture STDOUT and STDERR.</p>
-<p><code>!!git diff</code></p>
+<p><code>%STDOUT</code> - captured standard output of <code>!!{command}</code></p>
 <pre><code class="language-crystal"><span class="t">Please</span> write a commit message: <span class="o">%</span><span class="t">STDOUT</span></code></pre>
-<p><code>!!wrong_command</code></p>
+<p><code>%STDERR</code> - captured standard error output of <code>!!{command}</code></p>
 <pre><code class="language-crystal"><span class="t">Explain</span> this error message: <span class="o">%</span><span class="t">STDERR</span></code></pre>
 <h3><a id="code-blocks-in-the-response" class="anchor" href="#code-blocks-in-the-response">
   <svg class="octicon-link" aria-hidden="true">
