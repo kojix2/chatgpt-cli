@@ -25,11 +25,9 @@ Download binaries from [Github Release](https://github.com/kojix2/chatgpt-cli/re
 Install [Crystal](https://github.com/crystal-lang/crystal) and build the project:
 
 ```bash
-git clone https://github.com/kojix2/chatgpt-cli
-git submodule update -i # Awesome ChatGPT Prompts
+git clone --recursive https://github.com/kojix2/chatgpt-cli
 cd chatgpt-cli
 shards build --release
-# CHATGPT_BAT=1 shards build --release # enable syntax highlighing using `bat` (experimental)
 sudo cp bin/chatgpt /usr/local/bin
 ```
 
