@@ -177,9 +177,9 @@ During the dialogue, you can use a variety of magic commands. `%help`
 
 Note that for `%config`, `%data`, and other commands launch an editor. The editor used can be set by the `EDITOR` environment variable.
 
-### Substitution
+### Template processing
 
-#### Files `%{foo.txt}`
+#### File inclusion `%{foo.txt}`
 
 ```
 Please explain the following code: %{src/beatles.py} Are there any bugs?
@@ -191,7 +191,7 @@ Please read the code of the tool: %{src/*.cr} %{src/**/*.cr} Then update README.
 
 `%{}` can be changed in the config file.
 
-#### Web pages `%u{www.example.com}`
+#### Web pages inclusion `%u{www.example.com}`
 
 ```
 Pick five interesting news items: %u{https://news.ycombinator.com/}
@@ -223,15 +223,15 @@ Please write a commit message: !{git diff}
 
 capture STDOUT and STDERR.
 
-```bash
-!!git diff
+`!!git diff`
 
+```
 Please write a commit message: %STDOUT
 ```
 
-```bash
-!!wrong_command
+`!!wrong_command``
 
+```
 Explain this error message: %STDERR
 ```
 
