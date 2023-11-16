@@ -185,19 +185,17 @@ Execute the system command and capture `%STDOUT` and `%STDERR`.
 !!git diff --cached
 ```
 
-### Template processing
-
-#### File inclusion
+### File Inclusion
 
 ```
 Improve the code: %{my/script.py}
 ```
 
 ```
-Find the bugs: %{my/script.py}
+Find the bugs: %{src/*.py}
 ```
 
-#### Web page inclusion
+### Web Page Inclusion
 
 ```
 Select important news: %u{https://news.ycombinator.com/}
@@ -205,7 +203,7 @@ Select important news: %u{https://news.ycombinator.com/}
 
 The words used in the `<body>` are extracted.
 
-#### System Commands
+### Standard Streams Inclusion
 
 `!{command}` Execute the command and insert standard output and standard error output.
 
@@ -234,9 +232,10 @@ The [`bat`](https://github.com/sharkdp/bat) command is required. You can use the
 - `CHATGPT_BAT=1 shards build` Only code blocks are targeted for syntax highlighting.
 - `CHATGPT_BAT=2 shards bulid` The entire response is considered markdown and subject to syntax highlighting.
 
-#### `$CODE0` `$CODE1`
+#### Code block temporary file path `$CODE0` `$CODE1`
 
-When ChatGPT returns code blocks, ChatGPT CLI saves these blocks temporarily and assigns them to environment variables named `CODE0`, `CODE1`, ... and so on. This allows you to execute the code blocks on your computer.
+- Code blocks are extracted and saved in the temporary files.
+- `$CODE0`, `$CODE1`, ... are path to the temporary files.
 
 ```
 Write code to display 1 to 10 in Python and Ruby.
@@ -245,14 +244,14 @@ Write code to display 1 to 10 in Python and Ruby.
 ````md
 Python:
 
-```
+```python
 for i in range(1, 11):
     print(i)
 ```
 
 Ruby:
 
-```
+```ruby
 (1..10).each { |i| puts i }
 ```
 ````
@@ -262,12 +261,10 @@ Ruby:
 ! ruby $CODE1
 ```
 
-Save code block.
+Save the code block to a file. (There is obvious room for improvement here)
 
 ```
-Please write comments/documentation for the code: %{src/client.cr}
 !cp $CODE0 src/client.cr
-# Then check diff with your code editor...
 ```
 
 ## Configuration
@@ -277,10 +274,10 @@ Please write comments/documentation for the code: %{src/client.cr}
 - substitute_patterns: `%{}` `%u{}` `!{}` `%STDOUT` `%STDERR`
 - terminal_colors: `chatgpt` `warning` `debug` `stdout` `stderr`
 
-Type `%config` to launch editor.
+To edit, run `chatgpt config`. Or use `%config` in interactive mode.
 Placeholders such as `%{}` and `%u{}` can be set with regular expressions
 
-Please refer to the latest `config.json` file in the repository for the most recent information.
+[config.json](config.json)
 
 ### Prompts (system commands)
 
