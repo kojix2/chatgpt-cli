@@ -549,30 +549,25 @@ chatgpt -i 0</code></pre>
 <pre><code class="language-crystal"><span class="o">!</span>pwd</code></pre>
 <p>Execute the system command and capture <code>%STDOUT</code> and <code>%STDERR</code>.</p>
 <pre><code class="language-crystal">!!git diff --cached</code></pre>
-<h3><a id="template-processing" class="anchor" href="#template-processing">
+<h3><a id="file-inclusion" class="anchor" href="#file-inclusion">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Template processing</h3>
-<h4><a id="file-inclusion" class="anchor" href="#file-inclusion">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>File inclusion</h4>
+</a>File Inclusion</h3>
 <pre><code class="language-crystal"><span class="t">Improve</span> the code: <span class="s">%{my/script.py}</span></code></pre>
-<pre><code class="language-crystal"><span class="t">Find</span> the bugs: <span class="s">%{my/script.py}</span></code></pre>
-<h4><a id="web-page-inclusion" class="anchor" href="#web-page-inclusion">
+<pre><code class="language-crystal"><span class="t">Find</span> the bugs: <span class="s">%{src/*.py}</span></code></pre>
+<h3><a id="web-page-inclusion" class="anchor" href="#web-page-inclusion">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Web page inclusion</h4>
+</a>Web Page Inclusion</h3>
 <pre><code class="language-crystal"><span class="t">Select</span> important news: <span class="o">%</span>u{https<span class="n">://</span>news.ycombinator.com<span class="o">/</span>}</code></pre>
 <p>The words used in the <code>&lt;body&gt;</code> are extracted.</p>
-<h4><a id="system-commands-1" class="anchor" href="#system-commands-1">
+<h3><a id="standard-streams-inclusion" class="anchor" href="#standard-streams-inclusion">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>System Commands</h4>
+</a>Standard Streams Inclusion</h3>
 <p><code>!{command}</code> Execute the command and insert standard output and standard error output.</p>
 <pre><code class="language-crystal"><span class="t">Please</span> write a commit message: <span class="o">!</span>{git diff}</code></pre>
 <p><code>%STDOUT</code> - captured standard output of <code>!!{command}</code></p>
@@ -594,31 +589,32 @@ chatgpt -i 0</code></pre>
 <li><code>CHATGPT_BAT=1 shards build</code> Only code blocks are targeted for syntax highlighting.</li>
 <li><code>CHATGPT_BAT=2 shards bulid</code> The entire response is considered markdown and subject to syntax highlighting.</li>
 </ul>
-<h4><a id="code0-code1" class="anchor" href="#code0-code1">
+<h4><a id="code-block-temporary-file-path-code0-code1" class="anchor" href="#code-block-temporary-file-path-code0-code1">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a><code>$CODE0</code> <code>$CODE1</code></h4>
-<p>When ChatGPT returns code blocks, ChatGPT CLI saves these blocks temporarily and assigns them to environment variables named <code>CODE0</code>, <code>CODE1</code>, ... and so on. This allows you to execute the code blocks on your computer.</p>
+</a>Code block temporary file path <code>$CODE0</code> <code>$CODE1</code></h4>
+<ul>
+<li>Code blocks are extracted and saved in the temporary files.</li>
+<li><code>$CODE0</code>, <code>$CODE1</code>, ... are path to the temporary files.</li>
+</ul>
 <pre><code class="language-crystal"><span class="t">Write</span> code to display <span class="n">1</span> to <span class="n">10</span> <span class="k">in</span> <span class="t">Python</span> and <span class="t">Ruby</span>.</code></pre>
 <pre><code class="language-md">Python:
 
-```
+```python
 for i in range(1, 11):
     print(i)
 ```
 
 Ruby:
 
-```
+```ruby
 (1..10).each { |i| puts i }
 ```</code></pre>
 <pre><code class="language-crystal"><span class="o">!</span> python $CODE0
 <span class="o">!</span> ruby $CODE1</code></pre>
-<p>Save code block.</p>
-<pre><code class="language-crystal"><span class="t">Please</span> write comments<span class="o">/</span>documentation <span class="k">for</span> the code: <span class="s">%{src/client.cr}</span>
-<span class="o">!</span>cp $CODE0 src<span class="o">/</span>client.cr
-<span class="c"># Then check diff with your code editor...</span></code></pre>
+<p>Save the code block to a file. (There is obvious room for improvement here)</p>
+<pre><code class="language-crystal"><span class="o">!</span>cp $CODE0 src<span class="o">/</span>client.cr</code></pre>
 <h2><a id="configuration" class="anchor" href="#configuration">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -629,9 +625,9 @@ Ruby:
 <li>substitute_patterns: <code>%{}</code> <code>%u{}</code> <code>!{}</code> <code>%STDOUT</code> <code>%STDERR</code></li>
 <li>terminal_colors: <code>chatgpt</code> <code>warning</code> <code>debug</code> <code>stdout</code> <code>stderr</code></li>
 </ul>
-<p>Type <code>%config</code> to launch editor.
+<p>To edit, run <code>chatgpt config</code>. Or use <code>%config</code> in interactive mode.
 Placeholders such as <code>%{}</code> and <code>%u{}</code> can be set with regular expressions</p>
-<p>Please refer to the latest <code>config.json</code> file in the repository for the most recent information.</p>
+<p><a href="config.json">config.json</a></p>
 <h3><a id="prompts-system-commands" class="anchor" href="#prompts-system-commands">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
