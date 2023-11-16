@@ -2,20 +2,20 @@
 
 [![build](https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml/badge.svg)](https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml)
 
-:eight_spoked_asterisk: Yet another ChatGPT command line tool.
+:eight_spoked_asterisk: Yet another [ChatGPT](https://openai.com/chatgpt) command line tool.
 
 ## Features
 
 - Interactive mode using [GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html).
 - Batch mode.
 - Ready-to-use system messages.
-- Expand file contents from the file path(s) using the placeholder.
-- Expand web page contents from the URL using the placeholder.
-- Magic commands to `clear`, `pop`, `edit`, `write`, `save`, and `load` data.
-- Execute system commands and pass captured stdout and stderr output to ChatGPT.
+- Expand file contents from the `%{file/path}`.
+- Expand web page contents from the `%u{URL}`.
+- Magic commands to `%clear`, `%pop`, `%list`, `%w`, `%save`, and `%load` data.
+- Execute system `!{commands}` and pass captured stdout and stderr.
 - Code blocks in the response can be referenced from `$CODE0`, `$CODE1`...
-- Syntax highlighting for code blocks using [bat](https://github.com/sharkdp/bat).
-- Output HTML.
+- Syntax highlighting for code blocks using [`bat`](https://github.com/sharkdp/bat).
+- Output [`%HTML`](https://github.com/hidao80/MonopolyGPT).
 
 ## Installation
 
@@ -84,8 +84,6 @@ The path to the directory where the configuration file will be saved. This is re
 
 </details>
 
-### Options
-
 ```
 Usage: chatgpt [options]
     prompts                          Print all system message IDs and exit
@@ -109,7 +107,7 @@ Restore the previous chat and use the gpt-4 model.
 chatgpt -r -m gpt-4
 ```
 
-#### Interactive mode
+### Interactive mode
 
 ```
 chatgpt i
@@ -126,7 +124,7 @@ You can cancel a query to ChatGPT with `Ctrl + C`.
 
 Line breaks are not currently supported in the interactive mode.
 
-#### Batch mode
+### Batch mode
 
 - `-r` `--resume` The chat from the last time you exited is carried over to the startup.
 
@@ -138,7 +136,7 @@ echo "It's okay now. Rest." | chatgpt -r
 echo "%html" | chatgpt -r
 ```
 
-#### Awesome ChatGPT Prompts
+### Awesome ChatGPT Prompts
 
 You can select system commands in [Awesome ChatGPT Prompts](https://github.com/f/awesome-chatgpt-prompts).
 
@@ -314,25 +312,18 @@ Bug reports and pull requests are welcome on GitHub at [https://github.com/kojix
 
 ## Development
 
+<details>
+<summary><b>Overview</b></summary>
+
 ![overview](https://raw.githubusercontent.com/kojix2/chatgpt-cli/main/docs/overview.png)
 
-Building:
-
-```bash
-git clone https://github.com/kojix2/chatgpt-cli
-git submodule update -i
-cd chatgpt-cli
-shards install
-shards build
-```
-
-Testing:
+</details>
 
 ```
 crystal spec
 ```
 
-You can quickly try development by using [Gitpod](https://www.gitpod.io/).
+- You can quickly try development by using [Gitpod](https://www.gitpod.io/).
 
 ## Acknowledgments
 
