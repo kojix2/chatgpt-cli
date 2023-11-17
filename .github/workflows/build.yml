@@ -18,6 +18,10 @@ jobs:
           crystal: latest
       - run: shards install
       - run: shards build --release --debug
+        env :
+          CHATGPT_READLINE: "1"
+          CHATGPT_URL: "1"
+          CHATGPT_BAT: "1"
       - run: crystal spec
       - run: bin/chatgpt version
       - name: Rename executable for ${{ matrix.os }}
@@ -38,9 +42,6 @@ jobs:
         with:
           crystal: latest
       - run: shards build --release --debug --skip-postinstall
-        env:
-          CHATGPT_READLINE: 0
-          CHATGPT_URL: 0
       - uses: actions/upload-artifact@v3
         with:
           name: excutable-windows
