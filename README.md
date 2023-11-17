@@ -137,7 +137,7 @@ Execute the system command and capture `%STDOUT` and `%STDERR`.
 !!git diff --cached
 ```
 
-### File Inclusion
+### Embed files
 
 ```
 Improve the code: %{my/script.py}
@@ -147,7 +147,7 @@ Improve the code: %{my/script.py}
 Find the bugs: %{src/*.py}
 ```
 
-### Web Page Inclusion
+### Embed Web Pages
 
 ```
 Select important news: %u{https://news.ycombinator.com/}
@@ -155,7 +155,7 @@ Select important news: %u{https://news.ycombinator.com/}
 
 The words used in the `<body>` are extracted.
 
-### Standard Streams Inclusion
+### Embed Standard Output
 
 `!{command}` Execute the command and insert standard output and standard error output.
 
@@ -175,7 +175,7 @@ Please write a commit message: %STDOUT
 Explain this error message: %STDERR
 ```
 
-### Code Blocks in the Response
+### Extract code blocks
 
 #### Syntax highlighting
 
