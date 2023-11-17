@@ -84,17 +84,15 @@ echo "It's okay now. Rest." | chatgpt -r
 echo "%html" | chatgpt -r
 ```
 
-### Awesome ChatGPT Prompts
+### Preset Prompts
 
 You can select system commands in [Awesome ChatGPT Prompts](https://github.com/f/awesome-chatgpt-prompts).
 
 ```bash
 # Output list of available prompts
 chatgpt prompts
-# Set system message by name
-chatgpt -i "Linux Terminal"
 # by id number
-chatgpt -i 0
+chatgpt i -i 0
 ```
 
 ### Magic Commands
