@@ -2,7 +2,7 @@ require "option_parser"
 require "json"
 require "colorize"
 require "./utils/colorize_extensions"
-{% unless env("CHATGPT_NO_READLINE") %}
+{% if env("CHATGPT_READLINE") %}
   require "readline"
 {% end %}
 require "spinner"
@@ -134,14 +134,14 @@ module ChatGPT
     end
 
     def run_interacitively
-      {% unless env("CHATGPT_NO_READLINE") %}
+      {% if env("CHATGPT_READLINE") %}
         LibReadline.read_history(Config::HISTORY_FILE)
       {% end %}
 
       input_msg = nil # This is needed to avoid a warning
 
       loop do
-        {% unless env("CHATGPT_NO_READLINE") %}
+        {% if env("CHATGPT_READLINE") %}
           input_msg = Readline.readline(readline_prompt, true)
           # ctrl + d
           break if input_msg.nil?

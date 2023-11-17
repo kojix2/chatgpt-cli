@@ -41,15 +41,15 @@ Please disable Conda or similar environments when building to ensure correct lin
 
 To compile on Windows, set environment variables to turn off the following two features.
 
-- `CHATGPT_NO_READLINE=1` disables GNU Readline.
-- `CHATGPT_NO_URL=1` disables URL fetching.
+- `CHATGPT_READLINE=0` disables GNU Readline.
+- `CHATGPT_URL=0` disables URL fetching.
 
   ```powershell
   git clone https://github.com/kojix2/chatgpt-cli
   git submodule update -i # Awesome ChatGPT Prompts
   cd chatgpt-cli
-  $env:CHATGPT_NO_READLINE=1
-  $env:CHATGPT_NO_URL=1
+  $env:CHATGPT_READLINE=0
+  $env:CHATGPT_URL=0
   shard build --release --skip-postinstall
   # bin/chatgpt.ext is created
   ```

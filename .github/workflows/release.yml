@@ -54,8 +54,8 @@ jobs:
           shards build --release --skip-postinstall
           compress-archive bin/chatgpt.exe bin/chatgpt-windows.zip
         env:
-          CHATGPT_NO_READLINE: 1
-          CHATGPT_NO_URL: 1
+          CHATGPT_READLINE: 0
+          CHATGPT_URL: 0
 
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v1

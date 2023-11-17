@@ -53,7 +53,7 @@ module ChatGPT
       end
 
       private def chars_to_show
-        {% unless env("CHATGPT_NO_READLINE") %}
+        {% if env("CHATGPT_READLINE") %}
           Readline.get_screen_size[1] - 20
         {% else %}
           40
