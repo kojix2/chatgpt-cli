@@ -50,10 +50,10 @@ module ChatGPT
         end
       end
 
-      macro add_unknown_args(allow_empty_args = 0)
+      macro add_unknown_args(allow_args_size = -1)
         unknown_args do |args|
-          {% if allow_empty_args == 1 %}
-            next if args.empty?
+          {% if allow_args_size > -1 %}
+            next if args.size <= {{allow_args_size}}
           {% end %}
           unless args.empty?
             STDERR.puts "Error: Unknown arguments: #{args.join(" ")}"._colorize(:warning, :bold)
@@ -84,7 +84,7 @@ module ChatGPT
           add_banner
           add_chatgpt_options
           add_help_option
-          add_unknown_args(1)
+          add_unknown_args(0)
         end
         on("run", "Run the program") do
           @subcommand = "run"
