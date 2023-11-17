@@ -464,6 +464,10 @@ export HTTPS_PROXY=https://[IP]:[port]</code></pre>
 echo &quot;It's okay now. Rest.&quot; | chatgpt -r
 # Thank you for your concern. I hope you have a pleasant day as well. Feel free to reach out if you need any assistance in the future. Take care and rest well!
 echo &quot;%html&quot; | chatgpt -r</code></pre>
+<p>(under development) Run chatgpt script with the <a href="https://github.com/straight-shoota/crinja">Crinja</a>  template engine.</p>
+<pre><code class="language-crystal"><span class="t">Please</span> translate the following text into <span class="o">{{</span>language}}.</code></pre>
+<pre><code class="language-sh"># This command does not yet work.
+cat document.txt | chatgpt run -m gpt-4 translate.txt -- --language spanish</code></pre>
 <h3><a id="preset-prompts" class="anchor" href="#preset-prompts">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
