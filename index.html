@@ -424,15 +424,15 @@ sudo cp bin/chatgpt /usr/local/bin</code></pre>
 <p>To compile on Windows, set environment variables to turn off the following two features.</p>
 <ul>
 <li>
-<p><code>CHATGPT_NO_READLINE=1</code> disables GNU Readline.</p>
+<p><code>CHATGPT_READLINE=0</code> disables GNU Readline.</p>
 </li>
 <li>
-<p><code>CHATGPT_NO_URL=1</code> disables URL fetching.</p>
+<p><code>CHATGPT_URL=0</code> disables URL fetching.</p>
 <pre><code class="language-powershell">git clone https://github.com/kojix2/chatgpt-cli
 git submodule update -i # Awesome ChatGPT Prompts
 cd chatgpt-cli
-$env:CHATGPT_NO_READLINE=1
-$env:CHATGPT_NO_URL=1
+$env:CHATGPT_READLINE=0
+$env:CHATGPT_URL=0
 shard build --release --skip-postinstall
 # bin/chatgpt.ext is created</code></pre>
 </li>
