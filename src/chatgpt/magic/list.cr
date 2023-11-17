@@ -5,9 +5,9 @@ module ChatGPT
     class List < Base
       def initialize(sender)
         @sender = sender
-        @name = "list"
+        @name = "list, list[n], n"
         @description = "Show chat summaries"
-        @patterns = [/\Alist\z/, /\Alist\[(\-?\d+)\]/]
+        @patterns = [/\Alist\z/, /\Alist\[(\-?\d+)\]/, /\A(\d+)/]
       end
 
       def run(n)
