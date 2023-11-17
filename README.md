@@ -69,12 +69,6 @@ export HTTP_PROXY=http://[IP]:[port]
 export HTTPS_PROXY=https://[IP]:[port]
 ```
 
-## Usage
-
-```bash
-chatgpt
-```
-
 <details>
 <summary><b>Windows</b></summary>
 
@@ -84,22 +78,7 @@ The path to the directory where the configuration file will be saved. This is re
 
 </details>
 
-```
-Usage: chatgpt [options]
-    prompts                          Print all system message IDs and exit
-    -r, --resume                     Resume the session
-    -l FILE, --load FILE             Load session from file
-    -m MODEL, --model MODEL          Model name [gpt-3.5-turbo]
-    -i ID, --id ID                   ID of the custom system message
-    -s STR, --system STR             System message
-    -E INT                           Number of edits to generate [1]
-    -T Float, --temperature Float    Sampling temperature to use [1.0]
-    -P Float, --top_p Float          Probability threshold of nucleus sampling [1.0]
-    -b, --batch                      Batch mode (no interactive prompts)
-    -d, --debug                      Debug mode
-    -v, --version                    Print version info and exit
-    -h, --help                       Print help
-```
+## Usage
 
 ### Interactive mode
 
@@ -107,20 +86,16 @@ Usage: chatgpt [options]
 chatgpt i
 ```
 
-To exit, type `exit`, `quit`, or press `Ctrl + D`.
-Write your message using GNU Readline, which supports [Emacs shortcuts](https://en.wikipedia.org/wiki/GNU_Readline), such as `↑` and `↓`.
-
-```
-Hi
-```
-
-You can cancel a query to ChatGPT with `Ctrl + C`.
-
-Line breaks are not currently supported in the interactive mode.
+- To exit, type `exit`, `quit`, or press `Ctrl + D`.
+- You can cancel a query to ChatGPT with `Ctrl + C`.
+- GNU Readline supports [Emacs shortcuts](https://en.wikipedia.org/wiki/GNU_Readline), such as `↑` and `↓`.
+- Line breaks are not currently supported.
 
 ### Batch mode
 
-- `-r` `--resume` The chat from the last time you exited is carried over to the startup.
+```
+chatgpt run
+```
 
 ```sh
 echo "hello" | chatgpt
