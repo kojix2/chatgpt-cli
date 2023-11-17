@@ -84,6 +84,17 @@ echo "It's okay now. Rest." | chatgpt -r
 echo "%html" | chatgpt -r
 ```
 
+(under development) Run chatgpt script with the [Crinja](https://github.com/straight-shoota/crinja)  template engine.
+
+```
+Please translate the following text into {{language}}.
+```
+
+```sh
+# This command does not yet work.
+cat document.txt | chatgpt run -m gpt-4 translate.txt -- --language spanish
+```
+
 ### Preset Prompts
 
 You can select system commands in [Awesome ChatGPT Prompts](https://github.com/f/awesome-chatgpt-prompts).
