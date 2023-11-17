@@ -6,7 +6,7 @@ module ChatGPT
   class CLI
     class Parser < OptionParser
       getter data : PostData
-      getter interactive : Bool
+    getter subcommand : String
 
       macro add_chatgpt_options
         on "-m MODEL", "--model MODEL", "Model name [gpt-3.5-turbo]" do |v|
@@ -65,7 +65,6 @@ module ChatGPT
 
       def initialize
         @data = PostData.new
-        @interactive = true
         @subcommand = ""
         super()
         config = Config.instance
@@ -80,7 +79,6 @@ module ChatGPT
           BANNER
         on("i", "Interactive mode") do
           @subcommand = "i"
-          @interactive = true
           add_banner
           add_chatgpt_options
           add_help_option
@@ -88,7 +86,6 @@ module ChatGPT
         end
         on("run", "Run the program") do
           @subcommand = "run"
-          @interactive = false
           add_banner
           add_chatgpt_options
           add_help_option

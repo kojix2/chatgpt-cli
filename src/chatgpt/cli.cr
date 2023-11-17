@@ -22,7 +22,7 @@ module ChatGPT
   class CLI
     getter post_data : PostData
     getter chat_gpt_client
-    getter interactive : Bool
+    getter subcommand : String
     getter system_command_runner
     getter magic_command_runner
     getter substitutor
@@ -45,7 +45,7 @@ module ChatGPT
       end
       @post_data = command_parser.data
       @response_data = ResponseData.new("{}")
-      @interactive = command_parser.interactive
+      @subcommand = command_parser.subcommand
 
       @chat_gpt_client = Client.new
       @system_command_runner = SystemCommand.new
@@ -57,9 +57,10 @@ module ChatGPT
     end
 
     def run
-      if @interactive
+      case @subcommand
+      when "i"
         run_interacitively
-      else
+      when "run"
         run_in_batch
       end
     end
