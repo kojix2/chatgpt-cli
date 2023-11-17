@@ -22,5 +22,7 @@ dependencies:
     github: kostya/lexbor
   http_proxy:
     github: mamantoha/http_proxy
+  crinja:
+    github: straight-shoota/crinja
 
 license: MIT

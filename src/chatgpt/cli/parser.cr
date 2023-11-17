@@ -92,7 +92,8 @@ module ChatGPT
           add_banner
           add_chatgpt_options
           add_help_option
-          add_unknown_args(1)
+          unknown_args { }
+          # add_unknown_args(1)
         end
         on("prompts", "Print all system message IDs and exit") do
           @subcommand = "prompts"

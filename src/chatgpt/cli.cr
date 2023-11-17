@@ -7,6 +7,8 @@ require "./utils/colorize_extensions"
 {% end %}
 require "spinner"
 
+require "crinja"
+
 require "./post_data"
 require "./client"
 require "./response_data"
@@ -63,7 +65,54 @@ module ChatGPT
     end
 
     def run_in_batch
-      input_msg = ARGF.gets_to_end
+      # accept only one file
+      args = ARGV.pop(ARGV.size - 1)
+      begin
+        input_msg = ARGF.gets_to_end
+      rescue File::NotFoundError
+        STDERR.puts "Error: file not found"._colorize(:warning, :bold)
+        exit(1)
+      end
+      # Enable Crinja if there are arguments
+      # FIXME: we should make this more explicit?
+      unless args.empty?
+        # parse arguments
+        h = Hash(String, String | Bool | Int32 | Float64).new
+        a = Array(String | Bool | Int32 | Float64).new
+        key = ""
+        args.each do |arg|
+          if arg.starts_with?("-") && arg.size == 2 && !arg[1].to_i?
+            h[key] = true unless key.empty?
+            next
+          end
+
+          if arg.starts_with?("--") && arg.size > 2
+            h[key] = true unless key.empty?
+            key = arg[2..-1].gsub("-", "_")
+            next
+          end
+
+          # value
+          if arg.to_i?
+            arg = arg.to_i
+          elsif arg.to_f?
+            arg = arg.to_f
+          end
+
+          if key.empty?
+            a << arg
+          else
+            h[key] = arg
+            key = ""
+          end
+        end
+        h[key] = true unless key.empty?
+        # p! a
+        # p! h
+        # a.each{|x| p! x}
+        # h.values.each{|x| p x.class}
+        input_msg = Crinja.render(input_msg, h)
+      end
       add_history(input_msg)
       main_run(input_msg)
     end
