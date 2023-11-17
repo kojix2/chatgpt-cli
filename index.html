@@ -451,50 +451,34 @@ shard build --release --skip-postinstall
 </a>Proxy settings (optional)</h3>
 <pre><code class="language-crystal">export HTTP_PROXY=http://[IP]:[port]
 export HTTPS_PROXY=https://[IP]:[port]</code></pre>
-<h2><a id="usage" class="anchor" href="#usage">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>Usage</h2>
-<pre><code class="language-bash">chatgpt</code></pre>
 <details>
 <summary><b>Windows</b></summary>
 <p>Set the environment variable <code>CHATGPT_CLI_CONFIG</code>.</p>
 <p>The path to the directory where the configuration file will be saved. This is required on Windows.</p>
 </details>
-<pre><code class="language-crystal">Usage: chatgpt [options]
-    prompts                          Print all system message IDs and exit
-    -r, --resume                     Resume the session
-    -l FILE, --load FILE             Load session from file
-    -m MODEL, --model MODEL          Model name [gpt-3.5-turbo]
-    -i ID, --id ID                   ID of the custom system message
-    -s STR, --system STR             System message
-    -E INT                           Number of edits to generate [1]
-    -T Float, --temperature Float    Sampling temperature to use [1.0]
-    -P Float, --top_p Float          Probability threshold of nucleus sampling [1.0]
-    -b, --batch                      Batch mode (no interactive prompts)
-    -d, --debug                      Debug mode
-    -v, --version                    Print version info and exit
-    -h, --help                       Print help</code></pre>
+<h2><a id="usage" class="anchor" href="#usage">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Usage</h2>
 <h3><a id="interactive-mode" class="anchor" href="#interactive-mode">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Interactive mode</h3>
 <pre><code class="language-crystal">chatgpt i</code></pre>
-<p>To exit, type <code>exit</code>, <code>quit</code>, or press <code>Ctrl + D</code>.
-Write your message using GNU Readline, which supports <a href="https://en.wikipedia.org/wiki/GNU_Readline">Emacs shortcuts</a>, such as <code>↑</code> and <code>↓</code>.</p>
-<pre><code class="language-crystal"><span class="t">Hi</span></code></pre>
-<p>You can cancel a query to ChatGPT with <code>Ctrl + C</code>.</p>
-<p>Line breaks are not currently supported in the interactive mode.</p>
+<ul>
+<li>To exit, type <code>exit</code>, <code>quit</code>, or press <code>Ctrl + D</code>.</li>
+<li>You can cancel a query to ChatGPT with <code>Ctrl + C</code>.</li>
+<li>GNU Readline supports <a href="https://en.wikipedia.org/wiki/GNU_Readline">Emacs shortcuts</a>, such as <code>↑</code> and <code>↓</code>.</li>
+<li>Line breaks are not currently supported.</li>
+</ul>
 <h3><a id="batch-mode" class="anchor" href="#batch-mode">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>Batch mode</h3>
-<ul>
-<li><code>-r</code> <code>--resume</code> The chat from the last time you exited is carried over to the startup.</li>
-</ul>
+<pre><code class="language-crystal">chatgpt run</code></pre>
 <pre><code class="language-sh">echo &quot;hello&quot; | chatgpt
 # How can I assist you today?
 echo &quot;It's okay now. Rest.&quot; | chatgpt -r
