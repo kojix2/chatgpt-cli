@@ -19,7 +19,7 @@ jobs:
       - run: shards install
       - run: shards build --release --debug
       - run: crystal spec
-      - run: bin/chatgpt --help
+      - run: bin/chatgpt version
       - name: Rename executable for ${{ matrix.os }}
         run: mv bin/chatgpt bin/chatgpt-${{ matrix.os }}
       - uses: actions/upload-artifact@v3
