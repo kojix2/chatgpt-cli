@@ -6,7 +6,7 @@ module ChatGPT
   class CLI
     class Parser < OptionParser
       getter data : PostData
-    getter subcommand : String
+      getter subcommand : String
 
       macro add_chatgpt_options
         on "-m MODEL", "--model MODEL", "Model name [gpt-3.5-turbo]" do |v|
@@ -95,12 +95,12 @@ module ChatGPT
         on("prompts", "Print all system message IDs and exit") do
           @subcommand = "prompts"
           add_banner
-          config.prompts.each_with_index do |(k, v), i|
-            puts "#{i}\t#{k}"
+          on("--reset", "Reset prompts file") do
+            config.create_default_prompts
+            exit
           end
           add_help_option
-          add_unknown_args
-          exit
+          add_unknown_args(0)
         end
         on("config", "Edit config file") do
           @subcommand = "config"
@@ -114,12 +114,11 @@ module ChatGPT
             exit
           end
           add_help_option
-          add_unknown_args
+          add_unknown_args(0)
         end
         on "version", "Print version info and exit" do
           @subcommand = "version"
-          puts CLI::VERSION
-          exit
+          add_unknown_args(0)
         end
         add_unknown_args
       end

@@ -90,13 +90,13 @@ module ChatGPT
       @config_data = ConfigData.from_json(DEFAULT_CONFIG)
       overwrite = File.exists?(CONFIG_FILE)
       File.write(CONFIG_FILE, config_data.to_pretty_json)
-      STDERR.puts("#{overwrite ? "Overwrote" : "Created"} config at #{CONFIG_FILE}")
+      STDERR.puts("#{overwrite ? "Overwrote" : "Created"} config at #{CONFIG_FILE}"._colorize(:warning))
     end
 
-    private def create_default_prompts
+    def create_default_prompts
       overwrite = File.exists?(PROMPTS_FILE)
       File.write(PROMPTS_FILE, DEFAULT_PROMPTS)
-      STDERR.puts("#{overwrite ? "Overwrote" : "Created"} prompts at #{PROMPTS_FILE}")
+      STDERR.puts("#{overwrite ? "Overwrote" : "Created"} prompts at #{PROMPTS_FILE}"._colorize(:warning))
     end
 
     def select_id(id)

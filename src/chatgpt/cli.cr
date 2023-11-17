@@ -62,6 +62,21 @@ module ChatGPT
         run_interacitively
       when "run"
         run_in_batch
+      when "prompts"
+        Config.instance.prompts.each_with_index do |(k, v), i|
+          puts "#{i}\t#{k}"
+        end
+      when "config"
+        p! Config::BASE_DIR
+        p! Config::CONFIG_FILE
+        p! Config::PROMPTS_FILE
+        p! Config::POST_DATA_FILE
+        p! Config::HISTORY_FILE
+      when "version"
+        puts VERSION
+        exit
+      else
+        STDERR.puts "Error: unknown subcommand"._colorize(:warning, :bold)
       end
     end
 
