@@ -8,35 +8,7 @@ module ChatGPT
       getter data : PostData
       getter interactive : Bool
 
-      def initialize
-        @data = PostData.new
-        @interactive = false
-        super()
-        config = Config.instance
-        self.banner =
-          <<-BANNER
-        
-          Program: #{PROGRAM_NAME}
-          Version: #{VERSION}
-          Source: #{SOURCE_URL}
-
-          Usage: #{PROGRAM_NAME} [options]
-          BANNER
-        on("prompts", "Print all system message IDs and exit") do
-          banner = "Usage: #{PROGRAM_NAME} prompts [options]"
-          config.prompts.each_with_index do |(k, v), i|
-            puts "#{i}\t#{k}"
-          end
-          exit
-        end
-        on("config", "Edit config file") do
-          banner = "Usage: #{PROGRAM_NAME} config [options]"
-          Launcher.open_editor(ChatGPT::Config::CONFIG_FILE)
-          exit
-        end
-        on("i", "Interactive mode") do
-          @interactive = true
-        end
+      macro add_chatgpt_options
         on "-m MODEL", "--model MODEL", "Model name [gpt-3.5-turbo]" do |v|
           data.model = v.to_s
         end
@@ -65,11 +37,57 @@ module ChatGPT
         on "-d", "--debug", "Debug mode" do
           DEBUG_FLAG[0] = true
         end
-        on "-v", "--version", "Print version info and exit" do
+        on "-h", "--help", "Print help" do
+          puts self
+          exit
+        end
+      end
+
+      def initialize
+        @data = PostData.new
+        @interactive = false
+        super()
+        config = Config.instance
+        self.banner =
+          <<-BANNER
+        
+          Program: #{PROGRAM_NAME}
+          Version: #{VERSION}
+          Source: #{SOURCE_URL}
+
+          Usage: #{PROGRAM_NAME} [options]
+          BANNER
+        on("i", "Interactive mode") do
+          @interactive = true
+          add_chatgpt_options
+        end
+        on("run", "Run the program") do
+          @interactive = false
+          add_chatgpt_options
+        end
+        on("prompts", "Print all system message IDs and exit") do
+          banner = "Usage: #{PROGRAM_NAME} prompts [options]"
+          config.prompts.each_with_index do |(k, v), i|
+            puts "#{i}\t#{k}"
+          end
+          exit
+        end
+        on("config", "Edit config file") do
+          banner = "Usage: #{PROGRAM_NAME} config [options]"
+          on("--reset", "Reset config file") do
+            config.create_default_config
+            exit
+          end
+          on("--edit", "Edit config file") do
+            Launcher.open_editor(ChatGPT::Config::CONFIG_FILE)
+            exit
+          end
+        end
+        on "version", "Print version info and exit" do
           puts CLI::VERSION
           exit
         end
-        on("-h", "--help", "Print help") do
+        on "help", "Print help" do
           puts self
           exit
         end

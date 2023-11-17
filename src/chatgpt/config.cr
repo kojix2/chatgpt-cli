@@ -86,7 +86,7 @@ module ChatGPT
       end
     end
 
-    private def create_default_config
+    def create_default_config
       @config_data = ConfigData.from_json(DEFAULT_CONFIG)
       overwrite = File.exists?(CONFIG_FILE)
       File.write(CONFIG_FILE, config_data.to_pretty_json)
