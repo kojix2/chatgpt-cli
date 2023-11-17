@@ -37,15 +37,36 @@ module ChatGPT
         on "-d", "--debug", "Debug mode" do
           DEBUG_FLAG[0] = true
         end
-        on "-h", "--help", "Print help" do
+      end
+
+      macro add_banner
+        self.banner = "Usage: #{PROGRAM_NAME} #{@subcommand} [options]"
+      end
+
+      macro add_help_option
+        on "-h", "--help", "Print a help message" do
           puts self
           exit
         end
       end
 
+      macro add_unknown_args(allow_empty_args = 0)
+        unknown_args do |args|
+          {% if allow_empty_args == 1 %}
+            next if args.empty?
+          {% end %}
+          unless args.empty?
+            STDERR.puts "Error: Unknown arguments: #{args.join(" ")}"._colorize(:warning, :bold)
+          end
+          STDERR.puts self
+          exit 1
+        end
+      end
+
       def initialize
         @data = PostData.new
-        @interactive = false
+        @interactive = true
+        @subcommand = ""
         super()
         config = Config.instance
         self.banner =
@@ -58,22 +79,34 @@ module ChatGPT
           Usage: #{PROGRAM_NAME} [options]
           BANNER
         on("i", "Interactive mode") do
+          @subcommand = "i"
           @interactive = true
+          add_banner
           add_chatgpt_options
+          add_help_option
+          add_unknown_args(1)
         end
         on("run", "Run the program") do
+          @subcommand = "run"
           @interactive = false
+          add_banner
           add_chatgpt_options
+          add_help_option
+          add_unknown_args(1)
         end
         on("prompts", "Print all system message IDs and exit") do
-          banner = "Usage: #{PROGRAM_NAME} prompts [options]"
+          @subcommand = "prompts"
+          add_banner
           config.prompts.each_with_index do |(k, v), i|
             puts "#{i}\t#{k}"
           end
+          add_help_option
+          add_unknown_args
           exit
         end
         on("config", "Edit config file") do
-          banner = "Usage: #{PROGRAM_NAME} config [options]"
+          @subcommand = "config"
+          add_banner
           on("--reset", "Reset config file") do
             config.create_default_config
             exit
@@ -82,20 +115,15 @@ module ChatGPT
             Launcher.open_editor(ChatGPT::Config::CONFIG_FILE)
             exit
           end
+          add_help_option
+          add_unknown_args
         end
         on "version", "Print version info and exit" do
+          @subcommand = "version"
           puts CLI::VERSION
           exit
         end
-        on "help", "Print help" do
-          puts self
-          exit
-        end
-        unknown_args do |args|
-          unless args.empty?
-            STDERR.puts "Error: Unknown arguments: #{args.join(" ")}"._colorize(:warning, :bold)
-          end
-        end
+        add_unknown_args
       end
 
       def load_session(filename)
