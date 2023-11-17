@@ -511,36 +511,36 @@ chatgpt i -i 0</code></pre>
 <pre><code class="language-crystal"><span class="o">!</span>pwd</code></pre>
 <p>Execute the system command and capture <code>%STDOUT</code> and <code>%STDERR</code>.</p>
 <pre><code class="language-crystal">!!git diff --cached</code></pre>
-<h3><a id="file-inclusion" class="anchor" href="#file-inclusion">
+<h3><a id="embed-files" class="anchor" href="#embed-files">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>File Inclusion</h3>
+</a>Embed files</h3>
 <pre><code class="language-crystal"><span class="t">Improve</span> the code: <span class="s">%{my/script.py}</span></code></pre>
 <pre><code class="language-crystal"><span class="t">Find</span> the bugs: <span class="s">%{src/*.py}</span></code></pre>
-<h3><a id="web-page-inclusion" class="anchor" href="#web-page-inclusion">
+<h3><a id="embed-web-pages" class="anchor" href="#embed-web-pages">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Web Page Inclusion</h3>
+</a>Embed Web Pages</h3>
 <pre><code class="language-crystal"><span class="t">Select</span> important news: <span class="o">%</span>u{https<span class="n">://</span>news.ycombinator.com<span class="o">/</span>}</code></pre>
 <p>The words used in the <code>&lt;body&gt;</code> are extracted.</p>
-<h3><a id="standard-streams-inclusion" class="anchor" href="#standard-streams-inclusion">
+<h3><a id="embed-standard-output" class="anchor" href="#embed-standard-output">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Standard Streams Inclusion</h3>
+</a>Embed Standard Output</h3>
 <p><code>!{command}</code> Execute the command and insert standard output and standard error output.</p>
 <pre><code class="language-crystal"><span class="t">Please</span> write a commit message: <span class="o">!</span>{git diff}</code></pre>
 <p><code>%STDOUT</code> - captured standard output of <code>!!{command}</code></p>
 <pre><code class="language-crystal"><span class="t">Please</span> write a commit message: <span class="o">%</span><span class="t">STDOUT</span></code></pre>
 <p><code>%STDERR</code> - captured standard error output of <code>!!{command}</code></p>
 <pre><code class="language-crystal"><span class="t">Explain</span> this error message: <span class="o">%</span><span class="t">STDERR</span></code></pre>
-<h3><a id="code-blocks-in-the-response" class="anchor" href="#code-blocks-in-the-response">
+<h3><a id="extract-code-blocks" class="anchor" href="#extract-code-blocks">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Code Blocks in the Response</h3>
+</a>Extract code blocks</h3>
 <h4><a id="syntax-highlighting" class="anchor" href="#syntax-highlighting">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
