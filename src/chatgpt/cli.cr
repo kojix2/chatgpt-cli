@@ -122,8 +122,10 @@ module ChatGPT
     end
 
     def run_in_batch
+      # FIXME
       # accept only one file
-      args = ARGV.pop(ARGV.size - 1)
+      args = ARGV.class.new
+      args = ARGV.pop(ARGV.size - 1) if ARGV.size > 1
       input_msg = read_input_file
       # Enable Crinja if there are arguments
       # FIXME: we should make this more explicit?
