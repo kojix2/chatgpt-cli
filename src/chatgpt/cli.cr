@@ -63,18 +63,11 @@ module ChatGPT
       when "run"
         run_in_batch
       when "prompts"
-        Config.instance.prompts.each_with_index do |(k, v), i|
-          puts "#{i}\t#{k}"
-        end
+        run_prompts
       when "config"
-        p! Config::BASE_DIR
-        p! Config::CONFIG_FILE
-        p! Config::PROMPTS_FILE
-        p! Config::POST_DATA_FILE
-        p! Config::HISTORY_FILE
+        run_config
       when "version"
-        puts VERSION
-        exit
+        run_version
       else
         STDERR.puts "Error: unknown subcommand"._colorize(:warning, :bold)
       end
@@ -175,6 +168,25 @@ module ChatGPT
 
         main_run(input_msg)
       end
+    end
+
+    def run_prompts
+      Config.instance.prompts.each_with_index do |(k, v), i|
+        puts "#{i}\t#{k}"
+      end
+    end
+
+    def run_config
+      p! Config::BASE_DIR
+      p! Config::CONFIG_FILE
+      p! Config::PROMPTS_FILE
+      p! Config::POST_DATA_FILE
+      p! Config::HISTORY_FILE
+    end
+
+    def run_version
+      puts VERSION
+      exit
     end
 
     def main_run(input_msg)
