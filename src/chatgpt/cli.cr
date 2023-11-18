@@ -74,17 +74,17 @@ module ChatGPT
     end
 
     def parse_args(args)
-      h = Hash(String, String | Bool | Int32 | Float64).new
+      opts = Hash(String, String | Bool | Int32 | Float64).new
       a = Array(String | Bool | Int32 | Float64).new
       key = ""
       args.each do |arg|
         if arg.starts_with?("-") && arg.size == 2 && !arg[1].to_i?
-          h[key] = true unless key.empty?
+          opts[key] = true unless key.empty?
           next
         end
 
         if arg.starts_with?("--") && arg.size > 2
-          h[key] = true unless key.empty?
+          opts[key] = true unless key.empty?
           key = arg[2..-1].gsub("-", "_")
           next
         end
@@ -99,16 +99,16 @@ module ChatGPT
         if key.empty?
           a << arg
         else
-          h[key] = arg
+          opts[key] = arg
           key = ""
         end
       end
-      h[key] = true unless key.empty?
-      return h, a
+      opts[key] = true unless key.empty?
+      return opts, a
     end
 
-    def apply_crinja_rendering(input_msg, h)
-      return Crinja.render(input_msg, h)
+    def apply_crinja_rendering(input_msg, opts)
+      return Crinja.render(input_msg, opts)
     end
 
     def read_input_file
