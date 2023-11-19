@@ -256,7 +256,8 @@ module ChatGPT
     end
 
     private def readline_prompt
-      "#{post_data.model}:#{ntokens}:#{message_count}> "
+      # .to_s is needed for LibReadline#readline
+      "#{post_data.model}:#{ntokens}:#{message_count}> "._colorize(:prompt).to_s
     end
 
     private def add_history(input_msg)

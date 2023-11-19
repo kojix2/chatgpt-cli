@@ -22,8 +22,12 @@
     }
   },
   "terminal_colors": {
-    "chatgpt": {
+    "prompt": {
       "fore": "green",
+      "back": "default"
+    },
+    "chatgpt": {
+      "fore": "white",
       "back": "default"
     },
     "warning": {
