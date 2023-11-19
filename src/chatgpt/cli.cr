@@ -319,7 +319,7 @@ module ChatGPT
 
     private def extract_code_blocks(result_msg)
       # language, code
-      result_msg.scan(/^```(.*?)\n([\s\S]*?)^```/m)
+      result_msg.scan(Config.instance.code_block_pattern)
     end
 
     private def check_env(name)

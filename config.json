@@ -16,6 +16,11 @@
       "pattern": "%\\{(.+?)\\}"
     }
   },
+  "extraction pattern": {
+    "code_block": {
+      "pattern": "^```(.*?)\\n([\\s\\S]*?)^```"
+    }
+  },
   "terminal_colors": {
     "chatgpt": {
       "fore": "green",

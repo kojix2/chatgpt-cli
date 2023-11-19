@@ -127,29 +127,43 @@ module ChatGPT
       @config_data.fetch("embedded_patterns", default)
     end
 
-    def pattern(id : Symbol)
+    def embedded_pattern(id : Symbol)
       default = @config_data_default["embedded_patterns"][id.to_s]
       embedded_patterns.fetch(id.to_s, default)
     end
 
     def stdout_pattern
-      Regex.new(pattern(:stdout)["pattern"])
+      Regex.new(embedded_pattern(:stdout)["pattern"])
     end
 
     def stderr_pattern
-      Regex.new(pattern(:stderr)["pattern"])
+      Regex.new(embedded_pattern(:stderr)["pattern"])
     end
 
     def command_pattern
-      Regex.new(pattern(:command)["pattern"])
+      Regex.new(embedded_pattern(:command)["pattern"])
     end
 
     def url_pattern
-      Regex.new(pattern(:url)["pattern"])
+      Regex.new(embedded_pattern(:url)["pattern"])
     end
 
     def filepath_pattern
-      Regex.new(pattern(:file)["pattern"])
+      Regex.new(embedded_pattern(:file)["pattern"])
+    end
+
+    def extraction_patterns
+      default = @config_data_default["extraction pattern"]
+      @config_data.fetch("extraction pattern", default)
+    end
+
+    def extraction_pattern(id : Symbol)
+      default = @config_data_default["extraction pattern"][id.to_s]
+      extraction_patterns.fetch(id.to_s, default)
+    end
+
+    def code_block_pattern
+      Regex.new(extraction_pattern(:code_block)["pattern"], Regex::CompileOptions::MULTILINE)
     end
   end
 end
