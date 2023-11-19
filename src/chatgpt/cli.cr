@@ -190,12 +190,12 @@ module ChatGPT
         STDERR.puts "Error: --reset and --edit cannot be used together"._colorize(:warning, :bold)
         exit(1)
       end
-      case @options["reset"]
+      case @options.fetch("reset", false)
       when true
         Config.instance.create_default_config
         exit
       end
-      case @options["edit"]
+      case @options.fetch("edit", false)
       when true
         Launcher.open_editor(Config::CONFIG_FILE)
         exit
