@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../js/doc.js"></script>
 
   <meta name="repository-name" content="chatgpt-cli">
-  <title>ChatGPT::CLI::Parser - chatgpt-cli main</title>
+  <title>ChatGPT::Magic::Copy - chatgpt-cli main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../";
   </script>
@@ -67,12 +67,12 @@
       
     </li>
   
-  <li class="parent open current" data-id="chatgpt-cli/ChatGPT/CLI" data-name="chatgpt::cli">
+  <li class="parent " data-id="chatgpt-cli/ChatGPT/CLI" data-name="chatgpt::cli">
       <a href="../../ChatGPT/CLI.html">CLI</a>
       
         <ul>
   
-  <li class=" current" data-id="chatgpt-cli/ChatGPT/CLI/Parser" data-name="chatgpt::cli::parser">
+  <li class=" " data-id="chatgpt-cli/ChatGPT/CLI/Parser" data-name="chatgpt::cli::parser">
       <a href="../../ChatGPT/CLI/Parser.html">Parser</a>
       
     </li>
@@ -142,7 +142,7 @@
       
     </li>
   
-  <li class="parent " data-id="chatgpt-cli/ChatGPT/Magic" data-name="chatgpt::magic">
+  <li class="parent open current" data-id="chatgpt-cli/ChatGPT/Magic" data-name="chatgpt::magic">
       <a href="../../ChatGPT/Magic.html">Magic</a>
       
         <ul>
@@ -167,7 +167,7 @@
       
     </li>
   
-  <li class=" " data-id="chatgpt-cli/ChatGPT/Magic/Copy" data-name="chatgpt::magic::copy">
+  <li class=" current" data-id="chatgpt-cli/ChatGPT/Magic/Copy" data-name="chatgpt::magic::copy">
       <a href="../../ChatGPT/Magic/Copy.html">Copy</a>
       
     </li>
@@ -381,12 +381,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> ChatGPT::<wbr>CLI::<wbr>Parser
+  <span class="kind">class</span> ChatGPT::<wbr>Magic::<wbr>Copy
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../ChatGPT/CLI/Parser.html">ChatGPT::CLI::Parser</a></li><li class="superclass">OptionParser</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../ChatGPT/Magic/Copy.html">ChatGPT::Magic::Copy</a></li><li class="superclass"><a href="../../ChatGPT/Magic/Base.html">ChatGPT::Magic::Base</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -414,8 +414,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/chatgpt-cli/blob/7b7a727a72b4385e5b4cff322ba4f1f35c96dca5/src/chatgpt/cli/parser.cr#L7" target="_blank">
-        chatgpt/cli/parser.cr
+      <a href="https://github.com/kojix2/chatgpt-cli/blob/7b7a727a72b4385e5b4cff322ba4f1f35c96dca5/src/chatgpt/magic/copy.cr#L5" target="_blank">
+        chatgpt/magic/copy.cr
       </a>
     
     <br/>
@@ -436,7 +436,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
+        <a href="#new%28sender%29-class-method" class="signature"><strong>.new</strong>(sender)</a>
         
       </li>
     
@@ -457,73 +457,111 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#data%3APostData-instance-method" class="signature"><strong>#data</strong> : PostData</a>
+        <a href="#run%28n%29-instance-method" class="signature"><strong>#run</strong>(n)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#load_session%28filename%29-instance-method" class="signature"><strong>#load_session</strong>(filename)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#options%3AHash%28String%2CString%7CBool%29-instance-method" class="signature"><strong>#options</strong> : Hash(String, String | Bool)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#parse%28args%3DARGV%29-instance-method" class="signature"><strong>#parse</strong>(args = <span class="t">ARGV</span>)</a>
-        
-          <div class="summary"><p>Parses the passed <em>args</em> (defaults to <code>ARGV</code>), running the handlers associated to each option.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#subcommand%3AString-instance-method" class="signature"><strong>#subcommand</strong> : String</a>
+        <a href="#run-instance-method" class="signature"><strong>#run</strong></a>
         
       </li>
     
   </ul>
 
 
-
-  <h2>
-    <a id="macro-summary" class="anchor" href="#macro-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Macro Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#add_banner-macro" class="signature"><strong>add_banner</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#add_chatgpt_options-macro" class="signature"><strong>add_chatgpt_options</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#add_help_option-macro" class="signature"><strong>add_help_option</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#add_unknown_args%28allow_args_size%3D-1%29-macro" class="signature"><strong>add_unknown_args</strong>(allow_args_size = <span class="n">-1</span>)</a>
-        
-      </li>
-    
-  </ul>
 
 
 
 <div class="methods-inherited">
   
     
+
+  <h3>Instance methods inherited from class <code><a href="../../ChatGPT/Magic/Base.html">ChatGPT::Magic::Base</a></code></h3>
+  
+  
+    <a href="../../ChatGPT/Magic/Base.html#data%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="tooltip">
+      <span>data(*args, **options)<br/>data(*args, **options, &)</span>
+    data</a>, 
+    
+  
+    <a href="../../ChatGPT/Magic/Base.html#data%3D%28arg%29-instance-method" class="tooltip">
+      <span>data=(arg)</span>
+    data=</a>, 
+    
+  
+    <a href="../../ChatGPT/Magic/Base.html#description%3AString-instance-method" class="tooltip">
+      <span>description : String</span>
+    description</a>, 
+    
+  
+    <a href="../../ChatGPT/Magic/Base.html#name%3AString-instance-method" class="tooltip">
+      <span>name : String</span>
+    name</a>, 
+    
+  
+    <a href="../../ChatGPT/Magic/Base.html#patterns%3AArray%28Regex%29-instance-method" class="tooltip">
+      <span>patterns : Array(Regex)</span>
+    patterns</a>, 
+    
+  
+    <a href="../../ChatGPT/Magic/Base.html#response_data%28%2Aargs%2C%2A%2Aoptions%29-instance-method" class="tooltip">
+      <span>response_data(*args, **options)<br/>response_data(*args, **options, &)</span>
+    response_data</a>, 
+    
+  
+    <a href="../../ChatGPT/Magic/Base.html#run%28dummy%29-instance-method" class="tooltip">
+      <span>run(dummy)<br/>run</span>
+    run</a>, 
+    
+  
+    <a href="../../ChatGPT/Magic/Base.html#sender%3AMagic-instance-method" class="tooltip">
+      <span>sender : Magic</span>
+    sender</a>, 
+    
+  
+    <a href="../../ChatGPT/Magic/Base.html#total_tokens%3D%28arg%29-instance-method" class="tooltip">
+      <span>total_tokens=(arg)</span>
+    total_tokens=</a>, 
+    
+  
+    <a href="../../ChatGPT/Magic/Base.html#try_run%28command%29%3ABool-instance-method" class="tooltip">
+      <span>try_run(command) : Bool</span>
+    try_run</a>
+    
+  
+
+
+    
+
+  <h3>Constructor methods inherited from class <code><a href="../../ChatGPT/Magic/Base.html">ChatGPT::Magic::Base</a></code></h3>
+  
+  
+    <a href="../../ChatGPT/Magic/Base.html#new%28sender%3AMagic%29-class-method" class="tooltip">
+      <span>new(sender : Magic)</span>
+    new</a>
+    
+  
+
+
+    
+
+
+  
+    
+
+  <h3>Instance methods inherited from module <code><a href="../../ChatGPT/Launcher.html">ChatGPT::Launcher</a></code></h3>
+  
+  
+    <a href="../../ChatGPT/Launcher.html#open_browser%28file_name%29-instance-method" class="tooltip">
+      <span>open_browser(file_name)</span>
+    open_browser</a>, 
+    
+  
+    <a href="../../ChatGPT/Launcher.html#open_editor%28file_name%29-instance-method" class="tooltip">
+      <span>open_editor(file_name)</span>
+    open_editor</a>
+    
+  
 
 
     
@@ -565,18 +603,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new-class-method">
+    <div class="entry-detail" id="new(sender)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>
+        def self.<strong>new</strong>(sender)
 
-        <a class="method-permalink" href="#new-class-method">#</a>
+        <a class="method-permalink" href="#new%28sender%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/7b7a727a72b4385e5b4cff322ba4f1f35c96dca5/src/chatgpt/cli/parser.cr#L75" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/7b7a727a72b4385e5b4cff322ba4f1f35c96dca5/src/chatgpt/magic/copy.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -595,171 +633,40 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="data:PostData-instance-method">
+    <div class="entry-detail" id="run(n)-instance-method">
       <div class="signature">
         
-        def <strong>data</strong> : <a href="../../ChatGPT/PostData.html">PostData</a>
+        def <strong>run</strong>(n)
 
-        <a class="method-permalink" href="#data%3APostData-instance-method">#</a>
+        <a class="method-permalink" href="#run%28n%29-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/7b7a727a72b4385e5b4cff322ba4f1f35c96dca5/src/chatgpt/cli/parser.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/7b7a727a72b4385e5b4cff322ba4f1f35c96dca5/src/chatgpt/magic/copy.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="load_session(filename)-instance-method">
+    <div class="entry-detail" id="run-instance-method">
       <div class="signature">
         
-        def <strong>load_session</strong>(filename)
+        def <strong>run</strong>
 
-        <a class="method-permalink" href="#load_session%28filename%29-instance-method">#</a>
+        <a class="method-permalink" href="#run-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/7b7a727a72b4385e5b4cff322ba4f1f35c96dca5/src/chatgpt/cli/parser.cr#L127" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="options:Hash(String,String|Bool)-instance-method">
-      <div class="signature">
-        
-        def <strong>options</strong> : Hash(String, String | Bool)
-
-        <a class="method-permalink" href="#options%3AHash%28String%2CString%7CBool%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/7b7a727a72b4385e5b4cff322ba4f1f35c96dca5/src/chatgpt/cli/parser.cr#L10" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="parse(args=ARGV)-instance-method">
-      <div class="signature">
-        
-        def <strong>parse</strong>(args = <span class="t">ARGV</span>)
-
-        <a class="method-permalink" href="#parse%28args%3DARGV%29-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-            <div class="doc-inherited">
-              Description copied from class OptionParser
-            </div>
-          
-          <p>Parses the passed <em>args</em> (defaults to <code>ARGV</code>), running the handlers associated to each option.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/7b7a727a72b4385e5b4cff322ba4f1f35c96dca5/src/chatgpt/cli/parser.cr#L67" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="subcommand:String-instance-method">
-      <div class="signature">
-        
-        def <strong>subcommand</strong> : String
-
-        <a class="method-permalink" href="#subcommand%3AString-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/7b7a727a72b4385e5b4cff322ba4f1f35c96dca5/src/chatgpt/cli/parser.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/7b7a727a72b4385e5b4cff322ba4f1f35c96dca5/src/chatgpt/magic/copy.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
   
 
 
-
-  <h2>
-    <a id="macro-detail" class="anchor" href="#macro-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Macro Detail
-  </h2>
-  
-    <div class="entry-detail" id="add_banner-macro">
-      <div class="signature">
-        
-        macro <strong>add_banner</strong>
-
-        <a class="method-permalink" href="#add_banner-macro">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/7b7a727a72b4385e5b4cff322ba4f1f35c96dca5/src/chatgpt/cli/parser.cr#L43" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="add_chatgpt_options-macro">
-      <div class="signature">
-        
-        macro <strong>add_chatgpt_options</strong>
-
-        <a class="method-permalink" href="#add_chatgpt_options-macro">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/7b7a727a72b4385e5b4cff322ba4f1f35c96dca5/src/chatgpt/cli/parser.cr#L12" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="add_help_option-macro">
-      <div class="signature">
-        
-        macro <strong>add_help_option</strong>
-
-        <a class="method-permalink" href="#add_help_option-macro">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/7b7a727a72b4385e5b4cff322ba4f1f35c96dca5/src/chatgpt/cli/parser.cr#L47" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="add_unknown_args(allow_args_size=-1)-macro">
-      <div class="signature">
-        
-        macro <strong>add_unknown_args</strong>(allow_args_size = <span class="n">-1</span>)
-
-        <a class="method-permalink" href="#add_unknown_args%28allow_args_size%3D-1%29-macro">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/7b7a727a72b4385e5b4cff322ba4f1f35c96dca5/src/chatgpt/cli/parser.cr#L54" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 </div>
