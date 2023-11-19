@@ -311,47 +311,58 @@ module ChatGPT
       colorize_code_blocks(msg)
     end
 
-    private def colorize_code_blocks(msg)
-      # FXIME!! THIS IS A HACK
+    def colorize_code_blocks(msg)
       {% if env("CHATGPT_BAT") == "1" %}
-        code_block_matches = extract_code_blocks(msg)
-        code_block_matches.each_with_index do |match, index|
-          lang = match[1]
-          command = String.build do |s|
-            s << "bat"
-            s << " -l #{lang}" if lang
-            s << " --color=always"
-            s << " --style plain,grid"
-            s << " -"
-          end
-          Process.run(command, shell: true) do |ps|
-            ps.input.puts(match[2])
-            ps.input.close
-            colored_code = ps.output.gets_to_end
-            next if colored_code.empty? # FIXME whether the command failed or not
-            colored_code = "\e[39;49m" + colored_code.chomp
-            colored_code = colored_code.append_colorize_start(:chatgpt)
-            msg = msg.gsub(match[0], colored_code)
-          end
-        end
-        # Parhaps this is better?
+        colorize_code_blocks_bat1(msg)
       {% elsif env("CHATGPT_BAT") == "2" %}
-        command = String.build do |s|
-          s << "bat"
-          s << " -l markdown"
-          s << " --color=always"
-          s << " --style plain"
-          s << " -"
-        end
-        Process.run(command, shell: true) do |ps|
+        colorize_code_blocks_bat2(msg)
+      {% else %}
+        msg
+      {% end %}
+    end
+
+    private def bat_command(lang, styles = "plain,grid", color = "always")
+      String.build do |s|
+        s << "bat"
+        s << " -l #{lang}" if lang
+        s << " --color #{color}"
+        s << " --style #{styles}"
+        s << " -"
+      end
+    end
+
+    private def execute_bat(msg, lang = nil, styles = "plain,grid", color = "always")
+      cmd = bat_command(lang, styles, color)
+
+      # 2023-11-19
+      # Process.run returns the last value of the current block if the block is given.
+      # However, I am not convinced that this is a stable API.
+      # This is why String.build is used here.
+      String.build do |colored_code|
+        Process.run(cmd, shell: true) do |ps|
           ps.input.puts(msg)
           ps.input.close
-          colored_code = ps.output.gets_to_end
-          next if colored_code.empty? # FIXME
-          msg = colored_code
+          colored_code << ps.output.gets_to_end
         end
-      {% end %}
+      end
+    end
+
+    private def colorize_code_blocks_bat1(msg)
+      code_block_matches = extract_code_blocks(msg)
+      code_block_matches.each_with_index do |match, index|
+        lang = match[1]
+        code_block = match[2]
+        colored_code = execute_bat(code_block, lang: lang)
+        next if colored_code.empty?
+        colored_code = "\e[39;49m" + colored_code.chomp
+        colored_code = colored_code.append_colorize_start(:chatgpt)
+        msg = msg.gsub(match[0], colored_code)
+      end
       msg
+    end
+
+    private def colorize_code_blocks_bat2(msg)
+      execute_bat(msg, lang: "markdown", styles: "plain")
     end
 
     private def display_errors(response)
