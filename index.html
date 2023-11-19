@@ -392,7 +392,7 @@
 </a>Features</h2>
 <ul>
 <li>Interactive mode using <a href="https://tiswww.case.edu/php/chet/readline/rltop.html">GNU Readline</a>.</li>
-<li>Batch mode.</li>
+<li>Support for batch mode and Crinja template engine (experimental)</li>
 <li>Ready-to-use system messages.</li>
 <li>Expand file contents from the <code>%{file/path}</code>.</li>
 <li>Expand web page contents from the <code>%u{URL}</code>.</li>
@@ -401,6 +401,7 @@
 <li>Code blocks in the response can be referenced from <code>$CODE0</code>, <code>$CODE1</code>...</li>
 <li>Syntax highlighting for code blocks using <a href="https://github.com/sharkdp/bat"><code>bat</code></a>.</li>
 <li>Output <a href="https://github.com/hidao80/MonopolyGPT"><code>%HTML</code></a>.</li>
+<li>Support for clipboard.</li>
 </ul>
 <h2><a id="installation" class="anchor" href="#installation">
   <svg class="octicon-link" aria-hidden="true">
@@ -491,10 +492,11 @@ chatgpt i -i 0</code></pre>
 <p>During the dialogue, you can use a variety of magic commands. <code>%help</code></p>
 <p>| Magic Command       | Description                                                        |
 | ------------------- | ------------------------------------------------------------------ |
-| <code>%list</code> <code>%list[n]</code>  | Displays the message(s).                                           |
+| <code>%list</code> <code>%list[n]</code> <code>n</code> | Displays the message(s).                                           |
 | <code>%clear</code>            | Clear all messages. Change the topic and set token back to zero.   |
 | <code>%pop &lt;n&gt;</code>          | Remove the last n messages and response [1].                       |
 | <code>%shift &lt;n&gt;</code>        | Remove first n messages and responses [1].                         |
+| <code>%copy &lt;n&gt;</code>         | Save the nth message to the clipboard. [-1]                        |
 | <code>%write &lt;filename&gt;</code> | Write the most recent message to a file. Save the text or code.    |
 | <code>%w &lt;filename&gt;</code>     | Alias for <code>write</code>.                                                 |
 | <code>%config</code>           | Edit the config file. Open a text editor and rewrite the settings. |
