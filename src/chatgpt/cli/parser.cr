@@ -63,6 +63,14 @@ module ChatGPT
         end
       end
 
+      def parse(args = ARGV)
+        # Assume "run" if no subcommand is given
+        if args.empty? || @handlers.has_key?(args[0])
+          args.unshift("run")
+        end
+        super(args)
+      end
+
       def initialize
         @data = PostData.new
         @subcommand = ""
