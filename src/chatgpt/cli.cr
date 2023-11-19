@@ -297,7 +297,7 @@ module ChatGPT
 
     private def extract_code_blocks(result_msg)
       # language, code
-      result_msg.scan(/```(.*?)\n(.*?)```/m)
+      result_msg.scan(/^```(.*?)\n([\s\S]*?)^```/m)
     end
 
     private def check_env(name)
@@ -321,30 +321,37 @@ module ChatGPT
       {% end %}
     end
 
-    private def bat_command(lang, styles = "plain,grid", color = "always")
+    private def bat_command(lang = "txt", styles = "plain,grid", color = "always")
+      lang = "txt" if lang.empty?
       String.build do |s|
         s << "bat"
-        s << " -l #{lang}" if lang
+        s << " -l #{lang}"
         s << " --color #{color}"
         s << " --style #{styles}"
         s << " -"
       end
     end
 
-    private def execute_bat(msg, lang = nil, styles = "plain,grid", color = "always")
+    private def execute_bat(msg, lang = "txt", styles = "plain,grid", color = "always")
       cmd = bat_command(lang, styles, color)
 
       # 2023-11-19
       # Process.run returns the last value of the current block if the block is given.
       # However, I am not convinced that this is a stable API.
-      # This is why String.build is used here.
-      String.build do |colored_code|
-        Process.run(cmd, shell: true) do |ps|
-          ps.input.puts(msg)
-          ps.input.close
-          colored_code << ps.output.gets_to_end
-        end
+      # This is why colored_code = "" is used here.
+      ps = Process.new(cmd, shell: true, input: Process::Redirect::Pipe, output: Process::Redirect::Pipe, error: Process::Redirect::Pipe)
+      stdin = ps.input
+      stdout = ps.output
+      stderr = ps.error
+      stdin.puts(msg)
+      stdin.close
+      colored_code = stdout.gets_to_end
+      error_message = stderr.gets_to_end
+      status = ps.wait
+      unless status.success?
+        error_message._colorize(:warning)
       end
+      colored_code
     end
 
     private def colorize_code_blocks_bat1(msg)
