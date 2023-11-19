@@ -277,7 +277,14 @@ crystal spec
 
 ## Acknowledgments
 
+This tool has been very much influenced directly and indirectly by the creative work of the following people.
+
+- @mamantoha - [http_proxy](https://github.com/mamantoha/http_proxy)
+- @hkalexling - [Mango/src/util/proxy.cr](https://github.com/getmango/Mango/blob/master/src/util/proxy.cr)
 - @hidao80 - [MonopolyGPT](https://github.com/hidao80/MonopolyGPT)
+- @lancecarlson - [clipboard_manager.cr](https://github.com/lancecarlson/chatcopy)
+- @straight-shoota - [Crinja](https://github.com/straight-shoota/crinja)
+- @Flipez - [spinner](https://github.com/Flipez/spinner)
 
 ## License
 
