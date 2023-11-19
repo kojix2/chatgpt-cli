@@ -23,6 +23,7 @@ module ChatGPT
     getter post_data : PostData
     getter chat_gpt_client
     getter subcommand : String
+    getter options : Hash(String, String | Bool)
     getter system_command_runner
     getter magic_command_runner
     getter substitutor
@@ -46,6 +47,7 @@ module ChatGPT
       @post_data = command_parser.data
       @response_data = ResponseData.new("{}")
       @subcommand = command_parser.subcommand
+      @options = command_parser.options
 
       @chat_gpt_client = Client.new
       @system_command_runner = SystemCommand.new
@@ -179,11 +181,26 @@ module ChatGPT
     end
 
     def run_config
+      if @options.has_key?("reset") && @options.has_key?("edit")
+        STDERR.puts "Error: --reset and --edit cannot be used together"._colorize(:warning, :bold)
+        exit(1)
+      end
+      case @options["reset"]
+      when true
+        Config.instance.create_default_config
+        exit
+      end
+      case @options["edit"]
+      when true
+        Launcher.open_editor(Config::CONFIG_FILE)
+        exit
+      end
       p! Config::BASE_DIR
       p! Config::CONFIG_FILE
       p! Config::PROMPTS_FILE
       p! Config::POST_DATA_FILE
       p! Config::HISTORY_FILE
+      exit
     end
 
     def run_version

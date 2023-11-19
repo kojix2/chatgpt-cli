@@ -7,6 +7,7 @@ module ChatGPT
     class Parser < OptionParser
       getter data : PostData
       getter subcommand : String
+      getter options : Hash(String, String | Bool)
 
       macro add_chatgpt_options
         on "-m MODEL", "--model MODEL", "Model name [gpt-3.5-turbo]" do |v|
@@ -74,6 +75,7 @@ module ChatGPT
       def initialize
         @data = PostData.new
         @subcommand = ""
+        @options = {} of String => String | Bool
         super()
         config = Config.instance
         self.banner =
@@ -113,14 +115,8 @@ module ChatGPT
         on("config", "Edit config file") do
           @subcommand = "config"
           add_banner
-          on("--reset", "Reset config file") do
-            config.create_default_config
-            exit
-          end
-          on("--edit", "Edit config file") do
-            Launcher.open_editor(ChatGPT::Config::CONFIG_FILE)
-            exit
-          end
+          on("--reset", "Reset config file") { @options["reset"] = true }
+          on("--edit", "Edit config file") { @options["edit"] = true }
           add_help_option
           add_unknown_args(0)
         end
