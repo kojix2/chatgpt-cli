@@ -45,6 +45,15 @@ module ChatGPT
 
       include ChatGPT::Launcher
 
+      private def get_message(n : Int32)
+        msg_count = data.messages.size
+        if (n >= msg_count || n < -msg_count)
+          puts "Invalid index: #{n}"._colorize(:warning)
+          return nil
+        end
+        message = data.messages[n]
+      end
+
       # FIXME: refactor
       private def load_data_from_json(file_name)
         begin

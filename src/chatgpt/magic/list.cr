@@ -12,12 +12,8 @@ module ChatGPT
 
       def run(n)
         n = n.to_i
-        msg_count = data.messages.size
-        if (n >= msg_count || n < -msg_count)
-          puts "Invalid index: #{n}"._colorize(:warning)
-          return false
-        end
-        message = data.messages[n]
+        message = get_message(n) # Defined in Base
+        return true if message.nil?
         role = message["role"]
         puts case role
         when "system"
