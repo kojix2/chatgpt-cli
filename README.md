@@ -234,7 +234,7 @@ Save the code block to a file. (There is obvious room for improvement here)
 
 `config.json` is located in `~/.config/chatgpt-cli/` by default.
 
-- substitute_patterns: `%{}` `%u{}` `!{}` `%STDOUT` `%STDERR`
+- embedded_patterns: `%{}` `%u{}` `!{}` `%STDOUT` `%STDERR`
 - terminal_colors: `chatgpt` `warning` `debug` `stdout` `stderr`
 
 To edit, run `chatgpt config`. Or use `%config` in interactive mode.

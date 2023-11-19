@@ -1,5 +1,5 @@
 {
-  "substitute_patterns": {
+  "embedded_patterns": {
     "stdout": {
       "pattern": "%STDOUT"
     },

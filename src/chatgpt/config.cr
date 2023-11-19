@@ -122,14 +122,14 @@ module ChatGPT
       terminal_colors.fetch(id.to_s, default)
     end
 
-    def substitute_patterns
-      default = @config_data_default["substitute_patterns"]
-      @config_data.fetch("substitute_patterns", default)
+    def embedded_patterns
+      default = @config_data_default["embedded_patterns"]
+      @config_data.fetch("embedded_patterns", default)
     end
 
     def pattern(id : Symbol)
-      default = @config_data_default["substitute_patterns"][id.to_s]
-      substitute_patterns.fetch(id.to_s, default)
+      default = @config_data_default["embedded_patterns"][id.to_s]
+      embedded_patterns.fetch(id.to_s, default)
     end
 
     def stdout_pattern
