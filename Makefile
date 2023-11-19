@@ -28,8 +28,8 @@ spec:
 	$(CRYSTAL_BIN) spec
 
 .PHONY: lint
-lint: build
-	$(CRYSTAL_BIN) tool format --check
+lint:
+	$(CRYSTAL_BIN) tool format
 
 .PHONY: clean
 clean:
