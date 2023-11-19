@@ -11,7 +11,6 @@ module ChatGPT
       end
 
       def run
-        # FIXME: do not write url directly
         open_browser(Client::WEB_APP_URL)
         true
       end
