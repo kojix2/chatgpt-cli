@@ -8,9 +8,9 @@ DEFAULT_READLINE := $(if $(filter $(UNAME_S), Linux Darwin),1,0)
 DEFAULT_BAT := $(if $(filter $(UNAME_S), Linux Darwin),1,0)
 DEFAULT_URL := $(if $(filter $(UNAME_S), Linux Darwin),1,0)
 
-READLINE ?= $(DEFAULT_READLINE)
-BAT ?= $(DEFAULT_BAT)
-URL ?= $(DEFAULT_URL)
+readline ?= $(DEFAULT_READLINE)
+bat ?= $(DEFAULT_BAT)
+url ?= $(DEFAULT_URL)
 
 RELEASE_FLAG :=
 ifeq ($(release), 1)
@@ -21,7 +21,7 @@ endif
 build: ./bin/chatgpt
 
 ./bin/chatgpt:
-	CHATGPT_READLINE=$(READLINE) CHATGPT_URL=$(URL) CHATGPT_BAT=$(BAT) $(SHARDS_BIN) build $(RELEASE_FLAG)
+	CHATGPT_READLINE=$(readline) CHATGPT_URL=$(url) CHATGPT_BAT=$(bat) $(SHARDS_BIN) build $(RELEASE_FLAG)
 
 .PHONY: spec
 spec:
