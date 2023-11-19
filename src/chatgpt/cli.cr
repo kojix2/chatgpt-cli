@@ -357,11 +357,6 @@ module ChatGPT
 
     private def execute_bat(msg, lang = "txt", styles = "plain,grid", color = "always")
       cmd = bat_command(lang, styles, color)
-
-      # 2023-11-19
-      # Process.run returns the last value of the current block if the block is given.
-      # However, I am not convinced that this is a stable API.
-      # This is why colored_code = "" is used here.
       ps = Process.new(cmd, shell: true, input: Process::Redirect::Pipe, output: Process::Redirect::Pipe, error: Process::Redirect::Pipe)
       stdin = ps.input
       stdout = ps.output
