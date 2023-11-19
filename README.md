@@ -7,7 +7,7 @@
 ## Features
 
 - Interactive mode using [GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html).
-- Batch mode.
+- Support for batch mode and Crinja template engine (experimental)
 - Ready-to-use system messages.
 - Expand file contents from the `%{file/path}`.
 - Expand web page contents from the `%u{URL}`.
@@ -16,6 +16,7 @@
 - Code blocks in the response can be referenced from `$CODE0`, `$CODE1`...
 - Syntax highlighting for code blocks using [`bat`](https://github.com/sharkdp/bat).
 - Output [`%HTML`](https://github.com/hidao80/MonopolyGPT).
+- Support for clipboard.
 
 ## Installation
 
@@ -112,10 +113,11 @@ During the dialogue, you can use a variety of magic commands. `%help`
 
 | Magic Command       | Description                                                        |
 | ------------------- | ------------------------------------------------------------------ |
-| `%list` `%list[n]`  | Displays the message(s).                                           |
+| `%list` `%list[n]` `n` | Displays the message(s).                                           |
 | `%clear`            | Clear all messages. Change the topic and set token back to zero.   |
 | `%pop <n>`          | Remove the last n messages and response [1].                       |
 | `%shift <n>`        | Remove first n messages and responses [1].                         |
+| `%copy <n>`         | Save the nth message to the clipboard. [-1]                        |
 | `%write <filename>` | Write the most recent message to a file. Save the text or code.    |
 | `%w <filename>`     | Alias for `write`.                                                 |
 | `%config`           | Edit the config file. Open a text editor and rewrite the settings. |
