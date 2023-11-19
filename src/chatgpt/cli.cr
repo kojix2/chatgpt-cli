@@ -175,9 +175,14 @@ module ChatGPT
     end
 
     def run_prompts
+      if @options["reset"]
+        Config.instance.create_default_prompts
+        exit
+      end
       Config.instance.prompts.each_with_index do |(k, v), i|
         puts "#{i}\t#{k}"
       end
+      exit
     end
 
     def run_config

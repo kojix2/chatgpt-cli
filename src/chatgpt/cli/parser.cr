@@ -105,10 +105,7 @@ module ChatGPT
         on("prompts", "Print all system message IDs and exit") do
           @subcommand = "prompts"
           add_banner
-          on("--reset", "Reset prompts file") do
-            config.create_default_prompts
-            exit
-          end
+          on("--reset", "Reset prompts file") { @options["reset"] = true }
           add_help_option
           add_unknown_args(0)
         end
