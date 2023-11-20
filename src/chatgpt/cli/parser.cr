@@ -69,7 +69,7 @@ module ChatGPT
           args.unshift("run")
         elsif args[0] == "--version"
           args = ["version"]
-        elsif args[0] == "--help"
+        elsif (args[0] == "--help" || args[0] == "-h")
           args = ["help"]
           # Assume "run" if no subcommand is given
         elsif !@handlers.has_key?(args[0])
