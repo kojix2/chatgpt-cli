@@ -71,7 +71,7 @@ module ChatGPT
           args = ["version"]
         elsif args[0] == "--help"
           args = ["help"]
-        # Assume "run" if no subcommand is given
+          # Assume "run" if no subcommand is given
         elsif !@handlers.has_key?(args[0])
           args.unshift("run")
         end
@@ -104,6 +104,7 @@ module ChatGPT
           @subcommand = "run"
           add_banner
           add_chatgpt_options
+          on("-m MSG", "--message MSG", "Add a message to the input file/stream") { |s| @options["message"] = s }
           add_help_option
           unknown_args { }
           # add_unknown_args(1)

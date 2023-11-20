@@ -131,6 +131,10 @@ module ChatGPT
       args = ARGV.class.new
       args = ARGV.pop(ARGV.size - 1) if ARGV.size > 1
       input_msg = read_input_file
+      if @options.has_key?("message")
+        msg = @options["message"]
+        input_msg = "#{input_msg}\n#{msg}" # FIXME placement
+      end
       # Enable Crinja if there are arguments
       # FIXME: we should make this more explicit?
       unless args.empty?
@@ -213,6 +217,7 @@ module ChatGPT
     def run_help
       puts @options["help_message"]
     end
+
     def run_version
       puts "#{PROGRAM_NAME} #{VERSION}"
       exit
