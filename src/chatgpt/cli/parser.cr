@@ -113,6 +113,7 @@ module ChatGPT
           @subcommand = "prompts"
           add_banner
           on("--reset", "Reset prompts file") { @options["reset"] = true }
+          on("--edit", "Edit prompts file") { @options["edit"] = true }
           add_help_option
           add_unknown_args(0)
         end

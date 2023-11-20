@@ -181,8 +181,16 @@ module ChatGPT
     end
 
     def run_prompts
+      if @options.has_key?("reset") && @options.has_key?("edit")
+        STDERR.puts "Error: --reset and --edit cannot be used together"._colorize(:warning, :bold)
+        exit(1)
+      end
       if @options.fetch("reset", false)
         Config.instance.create_default_prompts
+        exit
+      end
+      if @options.fetch("edit", false)
+        Launcher.open_editor(Config::PROMPTS_FILE)
         exit
       end
       Config.instance.prompts.each_with_index do |(k, v), i|
@@ -196,13 +204,11 @@ module ChatGPT
         STDERR.puts "Error: --reset and --edit cannot be used together"._colorize(:warning, :bold)
         exit(1)
       end
-      case @options.fetch("reset", false)
-      when true
+      if @options.fetch("reset", false)
         Config.instance.create_default_config
         exit
       end
-      case @options.fetch("edit", false)
-      when true
+      if @options.fetch("edit", false)
         Launcher.open_editor(Config::CONFIG_FILE)
         exit
       end
