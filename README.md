@@ -77,12 +77,26 @@ chatgpt i
 chatgpt run
 ```
 
+```
+chatgpt
+```
+
 ```sh
 echo "hello" | chatgpt
 # How can I assist you today?
+
 echo "It's okay now. Rest." | chatgpt -r
 # Thank you for your concern. I hope you have a pleasant day as well. Feel free to reach out if you need any assistance in the future. Take care and rest well!
-echo "%html" | chatgpt -r
+```
+
+(under development)
+
+```sh
+cat paper.txt | chatgpt -m gpt-4 -i "Please summarize this paper."
+```
+
+```sh
+chatgpt -m gpt-4 -i "Please summarize this paper." paper.txt
 ```
 
 (under development) Run chatgpt script with the [Crinja](https://github.com/straight-shoota/crinja)  template engine.
@@ -104,7 +118,7 @@ You can select system commands in [Awesome ChatGPT Prompts](https://github.com/f
 # Output list of available prompts
 chatgpt prompts
 # by id number
-chatgpt i -i 0
+chatgpt i -p 0
 ```
 
 ### Magic Commands
@@ -166,7 +180,7 @@ Find the bugs: %{src/*.py}
 Select important news: %u{https://news.ycombinator.com/}
 ```
 
-The words used in the `<body>` are extracted.
+The words used in the `<body>` are extracted using [lexbor](https://github.com/kostya/lexbor).
 
 ### Embed Standard Output
 
@@ -234,8 +248,9 @@ Save the code block to a file. (There is obvious room for improvement here)
 
 ## Configuration
 
+Run `chatgpt config` to get the path to the configuration file.
+
 `config.json` is located in `~/.config/chatgpt-cli/` by default.
-Run `chatgpt config` to see the actual path.
 
 - `embedded_patterns`: Define patterns for `%{}`, `%u{}`, `!{}`, `%STDOUT` and `%STDERR`
 - `extraction pattern`: Define the pattern for code block extraction.
