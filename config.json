@@ -27,7 +27,7 @@
       "back": "default"
     },
     "chatgpt": {
-      "fore": "white",
+      "fore": "default",
       "back": "default"
     },
     "warning": {
