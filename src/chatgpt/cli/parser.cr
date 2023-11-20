@@ -65,8 +65,14 @@ module ChatGPT
       end
 
       def parse(args = ARGV)
+        if args.empty?
+          args.unshift("run")
+        elsif args[0] == "--version"
+          args = ["version"]
+        elsif args[0] == "--help"
+          args = ["help"]
         # Assume "run" if no subcommand is given
-        if args.empty? || !@handlers.has_key?(args[0])
+        elsif !@handlers.has_key?(args[0])
           args.unshift("run")
         end
         super(args)
@@ -120,6 +126,12 @@ module ChatGPT
         on "version", "Print version info and exit" do
           @subcommand = "version"
           add_unknown_args(0)
+        end
+        help_message = self.to_s
+        on "help", "Print this help screen" do
+          @subcommand = "help"
+          add_unknown_args(0)
+          @options["help_message"] = help_message
         end
         add_unknown_args
       end

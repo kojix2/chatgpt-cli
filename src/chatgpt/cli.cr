@@ -68,6 +68,8 @@ module ChatGPT
         run_prompts
       when "config"
         run_config
+      when "help"
+        run_help
       when "version"
         run_version
       else
@@ -208,8 +210,11 @@ module ChatGPT
       exit
     end
 
+    def run_help
+      puts @options["help_message"]
+    end
     def run_version
-      puts VERSION
+      puts "#{PROGRAM_NAME} #{VERSION}"
       exit
     end
 
