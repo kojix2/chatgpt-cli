@@ -175,7 +175,7 @@ module ChatGPT
     end
 
     def run_prompts
-      if @options["reset"]
+      if @options.fetch("reset", false)
         Config.instance.create_default_prompts
         exit
       end
