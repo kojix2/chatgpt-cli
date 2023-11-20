@@ -593,13 +593,15 @@ Ruby:
     <use href="#octicon-link"/>
   </svg>
 </a>Configuration</h2>
-<p><code>config.json</code> is located in <code>~/.config/chatgpt-cli/</code> by default.</p>
+<p><code>config.json</code> is located in <code>~/.config/chatgpt-cli/</code> by default.
+Run <code>chatgpt config</code> to see the actual path.</p>
 <ul>
-<li>embedded_patterns: <code>%{}</code> <code>%u{}</code> <code>!{}</code> <code>%STDOUT</code> <code>%STDERR</code></li>
-<li>terminal_colors: <code>chatgpt</code> <code>warning</code> <code>debug</code> <code>stdout</code> <code>stderr</code></li>
+<li><code>embedded_patterns</code>: Define patterns for <code>%{}</code>, <code>%u{}</code>, <code>!{}</code>, <code>%STDOUT</code> and <code>%STDERR</code></li>
+<li><code>extraction pattern</code>: Define the pattern for code block extraction.</li>
+<li><code>terminal_colors</code>: Set colors for <code>chatgpt</code>, <code>warning</code>, <code>debug</code>, <code>stdout</code> and <code>stderr</code>.</li>
 </ul>
-<p>To edit, run <code>chatgpt config</code>. Or use <code>%config</code> in interactive mode.
-Placeholders such as <code>%{}</code> and <code>%u{}</code> can be set with regular expressions</p>
+<p>To edit, run <code>chatgpt config --edit</code>. Or use <code>%config</code> in interactive mode.
+To reset, run <code>chatgpt config --reset</code>.</p>
 <p><a href="config.json">config.json</a></p>
 <h3><a id="prompts-system-commands" class="anchor" href="#prompts-system-commands">
   <svg class="octicon-link" aria-hidden="true">
