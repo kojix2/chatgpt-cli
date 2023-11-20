@@ -131,9 +131,9 @@ module ChatGPT
       args = ARGV.class.new
       args = ARGV.pop(ARGV.size - 1) if ARGV.size > 1
       input_msg = read_input_file
-      if @options.has_key?("message")
-        msg = @options["message"]
-        input_msg = "#{input_msg}\n#{msg}" # FIXME placement
+      if @options.has_key?("input")
+        input = @options["input"]
+        input_msg = "#{input_msg}\n#{input}" # FIXME placement option: forward or backward
       end
       # Enable Crinja if there are arguments
       # FIXME: we should make this more explicit?

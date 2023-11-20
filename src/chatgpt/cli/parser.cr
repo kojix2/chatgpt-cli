@@ -19,7 +19,7 @@ module ChatGPT
         on "-s STR", "--system STR", "System message" do |v|
           data.messages << {"role" => "system", "content" => v.to_s}
         end
-        on "-i ID", "--id ID", "ID of the custom system message" do |v|
+        on "-p ID", "--ap ID", "Awesome-Chatgpt-Prompts" do |v|
           system_message = config.select_id(v.to_s)
           data.messages << system_message if system_message
         end
@@ -104,7 +104,7 @@ module ChatGPT
           @subcommand = "run"
           add_banner
           add_chatgpt_options
-          on("-m MSG", "--message MSG", "Add a message to the input file/stream") { |s| @options["message"] = s }
+          on("-i MSG", "--input MSG", "Add a message to the input file/stream") { |s| @options["input"] = s }
           add_help_option
           unknown_args { }
           # add_unknown_args(1)
