@@ -465,11 +465,15 @@ export HTTPS_PROXY=https://[IP]:[port]</code></pre>
   </svg>
 </a>Batch mode</h3>
 <pre><code class="language-crystal">chatgpt run</code></pre>
+<pre><code class="language-crystal">chatgpt</code></pre>
 <pre><code class="language-sh">echo &quot;hello&quot; | chatgpt
 # How can I assist you today?
+
 echo &quot;It's okay now. Rest.&quot; | chatgpt -r
-# Thank you for your concern. I hope you have a pleasant day as well. Feel free to reach out if you need any assistance in the future. Take care and rest well!
-echo &quot;%html&quot; | chatgpt -r</code></pre>
+# Thank you for your concern. I hope you have a pleasant day as well. Feel free to reach out if you need any assistance in the future. Take care and rest well!</code></pre>
+<p>(under development)</p>
+<pre><code class="language-sh">cat paper.txt | chatgpt -m gpt-4 -i &quot;Please summarize this paper.&quot;</code></pre>
+<pre><code class="language-sh">chatgpt -m gpt-4 -i &quot;Please summarize this paper.&quot; paper.txt</code></pre>
 <p>(under development) Run chatgpt script with the <a href="https://github.com/straight-shoota/crinja">Crinja</a>  template engine.</p>
 <pre><code class="language-crystal"><span class="t">Please</span> translate the following text into <span class="o">{{</span>language}}.</code></pre>
 <pre><code class="language-sh"># This command does not yet work.
@@ -483,7 +487,7 @@ cat document.txt | chatgpt run -m gpt-4 translate.txt -- --language spanish</cod
 <pre><code class="language-bash"># Output list of available prompts
 chatgpt prompts
 # by id number
-chatgpt i -i 0</code></pre>
+chatgpt i -p 0</code></pre>
 <h3><a id="magic-commands" class="anchor" href="#magic-commands">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -535,7 +539,7 @@ chatgpt i -i 0</code></pre>
   </svg>
 </a>Embed Web Pages</h3>
 <pre><code class="language-crystal"><span class="t">Select</span> important news: <span class="o">%</span>u{https<span class="n">://</span>news.ycombinator.com<span class="o">/</span>}</code></pre>
-<p>The words used in the <code>&lt;body&gt;</code> are extracted.</p>
+<p>The words used in the <code>&lt;body&gt;</code> are extracted using <a href="https://github.com/kostya/lexbor">lexbor</a>.</p>
 <h3><a id="embed-standard-output" class="anchor" href="#embed-standard-output">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -593,8 +597,8 @@ Ruby:
     <use href="#octicon-link"/>
   </svg>
 </a>Configuration</h2>
-<p><code>config.json</code> is located in <code>~/.config/chatgpt-cli/</code> by default.
-Run <code>chatgpt config</code> to see the actual path.</p>
+<p>Run <code>chatgpt config</code> to get the path to the configuration file.</p>
+<p><code>config.json</code> is located in <code>~/.config/chatgpt-cli/</code> by default.</p>
 <ul>
 <li><code>embedded_patterns</code>: Define patterns for <code>%{}</code>, <code>%u{}</code>, <code>!{}</code>, <code>%STDOUT</code> and <code>%STDERR</code></li>
 <li><code>extraction pattern</code>: Define the pattern for code block extraction.</li>
