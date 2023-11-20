@@ -212,11 +212,13 @@ module ChatGPT
         Launcher.open_editor(Config::CONFIG_FILE)
         exit
       end
-      p! Config::BASE_DIR
-      p! Config::CONFIG_FILE
-      p! Config::PROMPTS_FILE
-      p! Config::POST_DATA_FILE
-      p! Config::HISTORY_FILE
+      puts(<<-EOS)
+        BASE_DIR       #{Config::BASE_DIR}
+        CONFIG_FILE    #{Config::CONFIG_FILE}
+        PROMPTS_FILE   #{Config::PROMPTS_FILE}
+        POST_DATA_FILE #{Config::POST_DATA_FILE}
+        HISTORY_FILE   #{Config::HISTORY_FILE}
+        EOS
       exit
     end
 
