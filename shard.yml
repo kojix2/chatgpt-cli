@@ -24,5 +24,8 @@ dependencies:
     github: mamantoha/http_proxy
   crinja:
     github: straight-shoota/crinja
+  easyclip:
+    github: kojix2/easyclip
+    branch: main
 
 license: MIT
