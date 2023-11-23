@@ -20,7 +20,7 @@
 
 ## Installation
 
-### GtiHub Release
+### GitHub Release
 
 Download binaries from [Github Release](https://github.com/kojix2/chatgpt-cli/releases/latest).
 
@@ -98,6 +98,8 @@ cat paper.txt | chatgpt -m gpt-4 -i "Please summarize this paper."
 ```sh
 chatgpt -m gpt-4 -i "Please summarize this paper." paper.txt
 ```
+
+#### Template Engine
 
 (under development) Run chatgpt script with the [Crinja](https://github.com/straight-shoota/crinja)  template engine.
 
@@ -209,11 +211,11 @@ Explain this error message: %STDERR
 The [`bat`](https://github.com/sharkdp/bat) command is required. You can use the development version by setting the following environment variables and compiling.
 
 - `CHATGPT_BAT=1 shards build` Only code blocks are targeted for syntax highlighting.
-- `CHATGPT_BAT=2 shards bulid` The entire response is considered markdown and subject to syntax highlighting.
+- `CHATGPT_BAT=2 shards build` The entire response is considered markdown and subject to syntax highlighting.
 
 #### Code block temporary file path `$CODE0` `$CODE1`
 
-- Code blocks are extracted and saved in the temporary files.
+- Code blocks are extracted and stored in temporary files
 - `$CODE0`, `$CODE1`, ... are path to the temporary files.
 
 ```
@@ -252,8 +254,8 @@ Run `chatgpt config` to get the path to the configuration file.
 
 `config.json` is located in `~/.config/chatgpt-cli/` by default.
 
-- `embedded_patterns`: Define patterns for `%{}`, `%u{}`, `!{}`, `%STDOUT` and `%STDERR`
-- `extraction pattern`: Define the pattern for code block extraction.
+- `embedded_patterns`: Defines patterns for `%{}`, `%u{}`, `!{}`, `%STDOUT` and `%STDERR`
+- `extraction pattern`: Defines patterns for code block extraction.
 - `terminal_colors`: Set colors for `chatgpt`, `warning`, `debug`, `stdout` and `stderr`.
 
 To edit, run `chatgpt config --edit`. Or use `%config` in interactive mode. 
@@ -294,9 +296,9 @@ crystal spec
 
 - You can quickly try development by using [Gitpod](https://www.gitpod.io/).
 
-## Acknowledgments
+## Acknowledgements
 
-This tool has been very much influenced directly and indirectly by the creative work of the following people.
+This tool has been greatly influenced, both directly and indirectly, by the creative work of the following individuals.
 
 - @mamantoha - [http_proxy](https://github.com/mamantoha/http_proxy)
 - @hkalexling - [Mango/src/util/proxy.cr](https://github.com/getmango/Mango/blob/master/src/util/proxy.cr)
