@@ -408,11 +408,11 @@
     <use href="#octicon-link"/>
   </svg>
 </a>Installation</h2>
-<h3><a id="gti-hub-release" class="anchor" href="#gti-hub-release">
+<h3><a id="git-hub-release" class="anchor" href="#git-hub-release">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>GtiHub Release</h3>
+</a>GitHub Release</h3>
 <p>Download binaries from <a href="https://github.com/kojix2/chatgpt-cli/releases/latest">Github Release</a>.</p>
 <h3><a id="from-source-code-recommended" class="anchor" href="#from-source-code-recommended">
   <svg class="octicon-link" aria-hidden="true">
@@ -474,6 +474,11 @@ echo &quot;It's okay now. Rest.&quot; | chatgpt -r
 <p>(under development)</p>
 <pre><code class="language-sh">cat paper.txt | chatgpt -m gpt-4 -i &quot;Please summarize this paper.&quot;</code></pre>
 <pre><code class="language-sh">chatgpt -m gpt-4 -i &quot;Please summarize this paper.&quot; paper.txt</code></pre>
+<h4><a id="template-engine" class="anchor" href="#template-engine">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Template Engine</h4>
 <p>(under development) Run chatgpt script with the <a href="https://github.com/straight-shoota/crinja">Crinja</a>  template engine.</p>
 <pre><code class="language-crystal"><span class="t">Please</span> translate the following text into <span class="o">{{</span>language}}.</code></pre>
 <pre><code class="language-sh"># This command does not yet work.
@@ -564,7 +569,7 @@ chatgpt i -p 0</code></pre>
 <p>The <a href="https://github.com/sharkdp/bat"><code>bat</code></a> command is required. You can use the development version by setting the following environment variables and compiling.</p>
 <ul>
 <li><code>CHATGPT_BAT=1 shards build</code> Only code blocks are targeted for syntax highlighting.</li>
-<li><code>CHATGPT_BAT=2 shards bulid</code> The entire response is considered markdown and subject to syntax highlighting.</li>
+<li><code>CHATGPT_BAT=2 shards build</code> The entire response is considered markdown and subject to syntax highlighting.</li>
 </ul>
 <h4><a id="code-block-temporary-file-path-code0-code1" class="anchor" href="#code-block-temporary-file-path-code0-code1">
   <svg class="octicon-link" aria-hidden="true">
@@ -572,7 +577,7 @@ chatgpt i -p 0</code></pre>
   </svg>
 </a>Code block temporary file path <code>$CODE0</code> <code>$CODE1</code></h4>
 <ul>
-<li>Code blocks are extracted and saved in the temporary files.</li>
+<li>Code blocks are extracted and stored in temporary files</li>
 <li><code>$CODE0</code>, <code>$CODE1</code>, ... are path to the temporary files.</li>
 </ul>
 <pre><code class="language-crystal"><span class="t">Write</span> code to display <span class="n">1</span> to <span class="n">10</span> <span class="k">in</span> <span class="t">Python</span> and <span class="t">Ruby</span>.</code></pre>
@@ -600,8 +605,8 @@ Ruby:
 <p>Run <code>chatgpt config</code> to get the path to the configuration file.</p>
 <p><code>config.json</code> is located in <code>~/.config/chatgpt-cli/</code> by default.</p>
 <ul>
-<li><code>embedded_patterns</code>: Define patterns for <code>%{}</code>, <code>%u{}</code>, <code>!{}</code>, <code>%STDOUT</code> and <code>%STDERR</code></li>
-<li><code>extraction pattern</code>: Define the pattern for code block extraction.</li>
+<li><code>embedded_patterns</code>: Defines patterns for <code>%{}</code>, <code>%u{}</code>, <code>!{}</code>, <code>%STDOUT</code> and <code>%STDERR</code></li>
+<li><code>extraction pattern</code>: Defines patterns for code block extraction.</li>
 <li><code>terminal_colors</code>: Set colors for <code>chatgpt</code>, <code>warning</code>, <code>debug</code>, <code>stdout</code> and <code>stderr</code>.</li>
 </ul>
 <p>To edit, run <code>chatgpt config --edit</code>. Or use <code>%config</code> in interactive mode.
@@ -641,12 +646,12 @@ rm ~/.chatgpt_history       # Remove command history</code></pre>
 <ul>
 <li>You can quickly try development by using <a href="https://www.gitpod.io/">Gitpod</a>.</li>
 </ul>
-<h2><a id="acknowledgments" class="anchor" href="#acknowledgments">
+<h2><a id="acknowledgements" class="anchor" href="#acknowledgements">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Acknowledgments</h2>
-<p>This tool has been very much influenced directly and indirectly by the creative work of the following people.</p>
+</a>Acknowledgements</h2>
+<p>This tool has been greatly influenced, both directly and indirectly, by the creative work of the following individuals.</p>
 <ul>
 <li>@mamantoha - <a href="https://github.com/mamantoha/http_proxy">http_proxy</a></li>
 <li>@hkalexling - <a href="https://github.com/getmango/Mango/blob/master/src/util/proxy.cr">Mango/src/util/proxy.cr</a></li>
