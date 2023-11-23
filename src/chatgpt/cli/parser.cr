@@ -10,9 +10,6 @@ module ChatGPT
       getter options : Hash(String, String | Bool)
 
       macro add_chatgpt_options
-        on "-m MODEL", "--model MODEL", "Model name [gpt-3.5-turbo]" do |v|
-          data.model = v.to_s
-        end
         on "-r", "--resume", "Resume the session" do
           load_session(Config::POST_DATA_FILE)
         end
@@ -22,6 +19,9 @@ module ChatGPT
         on "-p ID", "--ap ID", "Awesome-Chatgpt-Prompts" do |v|
           system_message = config.select_id(v.to_s)
           data.messages << system_message if system_message
+        end
+        on "-M MODEL", "--model MODEL", "Model name [gpt-3.5-turbo]" do |v|
+          data.model = v.to_s
         end
         on "-E INT", "Number of edits to generate [1]" do |v|
           data.n = v.to_i? || (STDERR.puts "Error: Invalid number of edits"; exit 1)
@@ -98,13 +98,15 @@ module ChatGPT
           add_banner
           add_chatgpt_options
           add_help_option
+          # unknown_args { }
           add_unknown_args(0)
         end
         on("run", "Run the program") do
           @subcommand = "run"
           add_banner
           add_chatgpt_options
-          on("-i MSG", "--input MSG", "Add a message to the input file/stream") { |s| @options["input"] = s }
+          on("-m MSG", "--message MSG", "Add a message to the input file/stream") { |s| @options["input"] = s }
+          on("-i", "--interactive", "Interactive mode") { @subcommand = "i" }
           add_help_option
           unknown_args { }
           # add_unknown_args(1)
