@@ -419,8 +419,13 @@
     <use href="#octicon-link"/>
   </svg>
 </a>From source code (recommended)</h3>
-<p>Install <a href="https://github.com/crystal-lang/crystal">Crystal</a> and build the project:</p>
-<pre><code class="language-bash">git clone --recursive https://github.com/kojix2/chatgpt-cli
+<ul>
+<li><a href="https://crystal-lang.org/install/">Install Crystal</a></li>
+<li><code>sudo apt install libreadline-dev</code></li>
+<li><code>brew install readline</code></li>
+</ul>
+<pre><code class="language-bash">git clone https://github.com/kojix2/chatgpt-cli
+git submodule update --init --recursive # awesome-chatgpt-prompts
 cd chatgpt-cli
 sudo make install</code></pre>
 <p>Please disable Conda or similar environments when building to ensure correct linking.</p>
@@ -479,7 +484,7 @@ echo &quot;It's okay now. Rest.&quot; | chatgpt -r
     <use href="#octicon-link"/>
   </svg>
 </a>Template Engine</h4>
-<p>(under development) Run chatgpt script with the <a href="https://github.com/straight-shoota/crinja">Crinja</a>  template engine.</p>
+<p>(under development) Run chatgpt script with the <a href="https://github.com/straight-shoota/crinja">Crinja</a> template engine.</p>
 <pre><code class="language-crystal"><span class="t">Please</span> translate the following text into <span class="o">{{</span>language}}.</code></pre>
 <pre><code class="language-sh"># This command does not yet work.
 cat document.txt | chatgpt run -m gpt-4 translate.txt -- --language spanish</code></pre>
@@ -499,28 +504,28 @@ chatgpt i -p 0</code></pre>
   </svg>
 </a>Magic Commands</h3>
 <p>During the dialogue, you can use a variety of magic commands. <code>%help</code></p>
-<p>| Magic Command       | Description                                                        |
-| ------------------- | ------------------------------------------------------------------ |
+<p>| Magic Command          | Description                                                        |
+| ---------------------- | ------------------------------------------------------------------ |
 | <code>%list</code> <code>%list[n]</code> <code>n</code> | Displays the message(s).                                           |
-| <code>%clear</code>            | Clear all messages. Change the topic and set token back to zero.   |
-| <code>%pop &lt;n&gt;</code>          | Remove the last n messages and response [1].                       |
-| <code>%shift &lt;n&gt;</code>        | Remove first n messages and responses [1].                         |
-| <code>%copy &lt;n&gt;</code>         | Save the nth message to the clipboard. [-1]                        |
-| <code>%write &lt;filename&gt;</code> | Write the most recent message to a file. Save the text or code.    |
-| <code>%w &lt;filename&gt;</code>     | Alias for <code>write</code>.                                                 |
-| <code>%config</code>           | Edit the config file. Open a text editor and rewrite the settings. |
-| <code>%system</code>           | Show the current system message.                                   |
-| <code>%system &lt;message&gt;</code> | Set a new system message.                                          |
-| <code>%edit</code>             | Edit data in JSON format. You are free to tamper with the past.    |
-| <code>%html &lt;filename&gt;</code>  | Export the conversation to HTML and launch your browser.           |
-| <code>%save &lt;filename&gt;</code>  | Save the data. This allows you to do things like &quot;save session&quot;.   |
-| <code>%load &lt;filename&gt;</code>  | Load the data. This allows you to do things like &quot;load session&quot;.   |
-| <code>%resume</code>           | Load data from auto-saved data file.                               |
-| <code>%model &lt;name&gt;</code>     | Change the model.                                                  |
-| <code>%tokens</code>           | Show number of tokens used from the ChatGPT response.              |
-| <code>%webapp</code>           | Open the ChatGPT website.                                          |
-| <code>%debug</code>            | Show debug message.                                                |
-| <code>%help</code>             | Show the help. Humans forget commands.                             |</p>
+| <code>%clear</code>               | Clear all messages. Change the topic and set token back to zero.   |
+| <code>%pop &lt;n&gt;</code>             | Remove the last n messages and response [1].                       |
+| <code>%shift &lt;n&gt;</code>           | Remove first n messages and responses [1].                         |
+| <code>%copy &lt;n&gt;</code>            | Save the nth message to the clipboard. [-1]                        |
+| <code>%write &lt;filename&gt;</code>    | Write the most recent message to a file. Save the text or code.    |
+| <code>%w &lt;filename&gt;</code>        | Alias for <code>write</code>.                                                 |
+| <code>%config</code>              | Edit the config file. Open a text editor and rewrite the settings. |
+| <code>%system</code>              | Show the current system message.                                   |
+| <code>%system &lt;message&gt;</code>    | Set a new system message.                                          |
+| <code>%edit</code>                | Edit data in JSON format. You are free to tamper with the past.    |
+| <code>%html &lt;filename&gt;</code>     | Export the conversation to HTML and launch your browser.           |
+| <code>%save &lt;filename&gt;</code>     | Save the data. This allows you to do things like &quot;save session&quot;.   |
+| <code>%load &lt;filename&gt;</code>     | Load the data. This allows you to do things like &quot;load session&quot;.   |
+| <code>%resume</code>              | Load data from auto-saved data file.                               |
+| <code>%model &lt;name&gt;</code>        | Change the model.                                                  |
+| <code>%tokens</code>              | Show number of tokens used from the ChatGPT response.              |
+| <code>%webapp</code>              | Open the ChatGPT website.                                          |
+| <code>%debug</code>               | Show debug message.                                                |
+| <code>%help</code>                | Show the help. Humans forget commands.                             |</p>
 <p>Note that for <code>%config</code>, <code>%data</code>, and other commands launch an editor. The editor used can be set by the <code>EDITOR</code> environment variable.</p>
 <h3><a id="system-commands" class="anchor" href="#system-commands">
   <svg class="octicon-link" aria-hidden="true">
