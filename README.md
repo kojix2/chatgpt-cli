@@ -26,10 +26,13 @@ Download binaries from [Github Release](https://github.com/kojix2/chatgpt-cli/re
 
 ### From source code (recommended)
 
-Install [Crystal](https://github.com/crystal-lang/crystal) and build the project:
+- [Install Crystal](https://crystal-lang.org/install/)
+- `sudo apt install libreadline-dev`
+- `brew install readline`
 
 ```bash
-git clone --recursive https://github.com/kojix2/chatgpt-cli
+git clone https://github.com/kojix2/chatgpt-cli
+git submodule update --init --recursive # awesome-chatgpt-prompts
 cd chatgpt-cli
 sudo make install
 ```
@@ -101,7 +104,7 @@ chatgpt -m gpt-4 -i "Please summarize this paper." paper.txt
 
 #### Template Engine
 
-(under development) Run chatgpt script with the [Crinja](https://github.com/straight-shoota/crinja)  template engine.
+(under development) Run chatgpt script with the [Crinja](https://github.com/straight-shoota/crinja) template engine.
 
 ```
 Please translate the following text into {{language}}.
@@ -127,28 +130,28 @@ chatgpt i -p 0
 
 During the dialogue, you can use a variety of magic commands. `%help`
 
-| Magic Command       | Description                                                        |
-| ------------------- | ------------------------------------------------------------------ |
+| Magic Command          | Description                                                        |
+| ---------------------- | ------------------------------------------------------------------ |
 | `%list` `%list[n]` `n` | Displays the message(s).                                           |
-| `%clear`            | Clear all messages. Change the topic and set token back to zero.   |
-| `%pop <n>`          | Remove the last n messages and response [1].                       |
-| `%shift <n>`        | Remove first n messages and responses [1].                         |
-| `%copy <n>`         | Save the nth message to the clipboard. [-1]                        |
-| `%write <filename>` | Write the most recent message to a file. Save the text or code.    |
-| `%w <filename>`     | Alias for `write`.                                                 |
-| `%config`           | Edit the config file. Open a text editor and rewrite the settings. |
-| `%system`           | Show the current system message.                                   |
-| `%system <message>` | Set a new system message.                                          |
-| `%edit`             | Edit data in JSON format. You are free to tamper with the past.    |
-| `%html <filename>`  | Export the conversation to HTML and launch your browser.           |
-| `%save <filename>`  | Save the data. This allows you to do things like "save session".   |
-| `%load <filename>`  | Load the data. This allows you to do things like "load session".   |
-| `%resume`           | Load data from auto-saved data file.                               |
-| `%model <name>`     | Change the model.                                                  |
-| `%tokens`           | Show number of tokens used from the ChatGPT response.              |
-| `%webapp`           | Open the ChatGPT website.                                          |
-| `%debug`            | Show debug message.                                                |
-| `%help`             | Show the help. Humans forget commands.                             |
+| `%clear`               | Clear all messages. Change the topic and set token back to zero.   |
+| `%pop <n>`             | Remove the last n messages and response [1].                       |
+| `%shift <n>`           | Remove first n messages and responses [1].                         |
+| `%copy <n>`            | Save the nth message to the clipboard. [-1]                        |
+| `%write <filename>`    | Write the most recent message to a file. Save the text or code.    |
+| `%w <filename>`        | Alias for `write`.                                                 |
+| `%config`              | Edit the config file. Open a text editor and rewrite the settings. |
+| `%system`              | Show the current system message.                                   |
+| `%system <message>`    | Set a new system message.                                          |
+| `%edit`                | Edit data in JSON format. You are free to tamper with the past.    |
+| `%html <filename>`     | Export the conversation to HTML and launch your browser.           |
+| `%save <filename>`     | Save the data. This allows you to do things like "save session".   |
+| `%load <filename>`     | Load the data. This allows you to do things like "load session".   |
+| `%resume`              | Load data from auto-saved data file.                               |
+| `%model <name>`        | Change the model.                                                  |
+| `%tokens`              | Show number of tokens used from the ChatGPT response.              |
+| `%webapp`              | Open the ChatGPT website.                                          |
+| `%debug`               | Show debug message.                                                |
+| `%help`                | Show the help. Humans forget commands.                             |
 
 Note that for `%config`, `%data`, and other commands launch an editor. The editor used can be set by the `EDITOR` environment variable.
 
@@ -258,7 +261,7 @@ Run `chatgpt config` to get the path to the configuration file.
 - `extraction pattern`: Defines patterns for code block extraction.
 - `terminal_colors`: Set colors for `chatgpt`, `warning`, `debug`, `stdout` and `stderr`.
 
-To edit, run `chatgpt config --edit`. Or use `%config` in interactive mode. 
+To edit, run `chatgpt config --edit`. Or use `%config` in interactive mode.
 To reset, run `chatgpt config --reset`.
 
 [config.json](config.json)
