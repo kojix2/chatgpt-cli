@@ -77,10 +77,6 @@ chatgpt i
 ### Batch mode
 
 ```
-chatgpt run
-```
-
-```
 chatgpt
 ```
 
@@ -104,14 +100,13 @@ chatgpt -m "Please summarize this paper." paper.txt
 
 #### Template Engine
 
-(under development) Run chatgpt script with the [Crinja](https://github.com/straight-shoota/crinja) template engine.
+Run chatgpt script with the [Crinja](https://github.com/straight-shoota/crinja) template engine. (experimental)
 
 ```
 Please translate the following text into {{language}}.
 ```
 
 ```sh
-# This command does not yet work.
 cat document.txt | chatgpt run -M gpt-4 translate.txt -- --language spanish
 ```
 
@@ -122,8 +117,9 @@ You can select system commands in [Awesome ChatGPT Prompts](https://github.com/f
 ```bash
 # Output list of available prompts
 chatgpt prompts
+
 # by id number
-chatgpt i -p 0
+chatgpt i --ap 0
 ```
 
 ### Magic Commands
