@@ -127,7 +127,7 @@ module ChatGPT
 
     def run_in_batch
       # FIXME
-      # accept only one file
+      # accept only one file. Is this ok?
       args = ARGV.class.new
       args = ARGV.pop(ARGV.size - 1) if ARGV.size > 1
       input_msg = read_input_file
@@ -140,6 +140,11 @@ module ChatGPT
       unless args.empty?
         parsed_args, _ = parse_args(args)
         input_msg = apply_crinja_rendering(input_msg, parsed_args)
+      end
+      # Append stdin if it is not a tty (e.g. piped)
+      # FIXME: we should make this more explicit?
+      unless STDIN.tty?
+        input_msg = "#{input_msg}\n#{STDIN.gets_to_end}"
       end
       add_history(input_msg)
       main_run(input_msg)
