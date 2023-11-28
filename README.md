@@ -95,11 +95,11 @@ echo "It's okay now. Rest." | chatgpt -r
 (under development)
 
 ```sh
-cat paper.txt | chatgpt -m gpt-4 -i "Please summarize this paper."
+cat paper.txt | chatgpt -m "Please summarize this paper."
 ```
 
 ```sh
-chatgpt -m gpt-4 -i "Please summarize this paper." paper.txt
+chatgpt -m "Please summarize this paper." paper.txt
 ```
 
 #### Template Engine
@@ -112,7 +112,7 @@ Please translate the following text into {{language}}.
 
 ```sh
 # This command does not yet work.
-cat document.txt | chatgpt run -m gpt-4 translate.txt -- --language spanish
+cat document.txt | chatgpt run -M gpt-4 translate.txt -- --language spanish
 ```
 
 ### Preset Prompts
