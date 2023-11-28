@@ -180,23 +180,61 @@ module ChatGPT
       end
     end
 
+    private def handle_reset_or_edit_options_in_prompts
+      if @options.fetch("reset", false)
+        Config.instance.create_default_prompts
+        exit
+      elsif @options.fetch("edit", false)
+        Launcher.open_editor(Config::PROMPTS_FILE)
+        exit
+      end
+    end
+
+    private def display_all_prompts
+      Config.instance.prompts.each_with_index do |(k, _), i|
+        puts "#{i}\t#{k}"
+      end
+    end
+
+    private def display_selected_prompt(index)
+      if index < 0 || index >= Config.instance.prompts.size
+        STDERR.puts "Error: invalid index"._colorize(:warning, :bold)
+        exit(1)
+      end
+      key, value = Config.instance.prompts.to_a[index]
+      puts key
+      puts value
+    end
+
     def run_prompts
       if @options.has_key?("reset") && @options.has_key?("edit")
         STDERR.puts "Error: --reset and --edit cannot be used together"._colorize(:warning, :bold)
         exit(1)
       end
-      if @options.fetch("reset", false)
-        Config.instance.create_default_prompts
-        exit
+
+      handle_reset_or_edit_options_in_prompts
+
+      if ARGV.empty?
+        display_all_prompts
+      elsif ARGV[0].to_i?
+        index = ARGV[0].to_i
+        display_selected_prompt(index)
+      else
+        STDERR.puts "Error: invalid argument"._colorize(:warning, :bold)
+        exit 1
       end
-      if @options.fetch("edit", false)
-        Launcher.open_editor(Config::PROMPTS_FILE)
-        exit
-      end
-      Config.instance.prompts.each_with_index do |(k, v), i|
-        puts "#{i}\t#{k}"
-      end
+
       exit
+    end
+
+    private def handle_reset_or_edit_options_in_config
+      if @options.fetch("reset", false)
+        Config.instance.create_default_config
+        exit
+      elsif @options.fetch("edit", false)
+        Launcher.open_editor(Config::CONFIG_FILE)
+        exit
+      end
     end
 
     def run_config
@@ -204,14 +242,9 @@ module ChatGPT
         STDERR.puts "Error: --reset and --edit cannot be used together"._colorize(:warning, :bold)
         exit(1)
       end
-      if @options.fetch("reset", false)
-        Config.instance.create_default_config
-        exit
-      end
-      if @options.fetch("edit", false)
-        Launcher.open_editor(Config::CONFIG_FILE)
-        exit
-      end
+
+      handle_reset_or_edit_options_in_config
+
       puts(<<-EOS)
         BASE_DIR       #{Config::BASE_DIR}
         CONFIG_FILE    #{Config::CONFIG_FILE}

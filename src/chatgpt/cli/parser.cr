@@ -117,7 +117,7 @@ module ChatGPT
           on("--reset", "Reset prompts file") { @options["reset"] = true }
           on("--edit", "Edit prompts file") { @options["edit"] = true }
           add_help_option
-          add_unknown_args(0)
+          add_unknown_args(1)
         end
         on("config", "Edit config file") do
           @subcommand = "config"
