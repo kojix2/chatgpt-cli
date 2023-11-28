@@ -469,7 +469,6 @@ export HTTPS_PROXY=https://[IP]:[port]</code></pre>
     <use href="#octicon-link"/>
   </svg>
 </a>Batch mode</h3>
-<pre><code class="language-crystal">chatgpt run</code></pre>
 <pre><code class="language-crystal">chatgpt</code></pre>
 <pre><code class="language-sh">echo &quot;hello&quot; | chatgpt
 # How can I assist you today?
@@ -484,10 +483,9 @@ echo &quot;It's okay now. Rest.&quot; | chatgpt -r
     <use href="#octicon-link"/>
   </svg>
 </a>Template Engine</h4>
-<p>(under development) Run chatgpt script with the <a href="https://github.com/straight-shoota/crinja">Crinja</a> template engine.</p>
+<p>Run chatgpt script with the <a href="https://github.com/straight-shoota/crinja">Crinja</a> template engine. (experimental)</p>
 <pre><code class="language-crystal"><span class="t">Please</span> translate the following text into <span class="o">{{</span>language}}.</code></pre>
-<pre><code class="language-sh"># This command does not yet work.
-cat document.txt | chatgpt run -M gpt-4 translate.txt -- --language spanish</code></pre>
+<pre><code class="language-sh">cat document.txt | chatgpt run -M gpt-4 translate.txt -- --language spanish</code></pre>
 <h3><a id="preset-prompts" class="anchor" href="#preset-prompts">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -496,8 +494,9 @@ cat document.txt | chatgpt run -M gpt-4 translate.txt -- --language spanish</cod
 <p>You can select system commands in <a href="https://github.com/f/awesome-chatgpt-prompts">Awesome ChatGPT Prompts</a>.</p>
 <pre><code class="language-bash"># Output list of available prompts
 chatgpt prompts
+
 # by id number
-chatgpt i -p 0</code></pre>
+chatgpt i --ap 0</code></pre>
 <h3><a id="magic-commands" class="anchor" href="#magic-commands">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
