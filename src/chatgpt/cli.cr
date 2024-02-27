@@ -299,7 +299,12 @@ module ChatGPT
       set_envs_from_response(result_msg)
       result_msg = substitute_output(result_msg)
       @total_tokens = response_data.total_tokens
-      puts result_msg._colorize(:chatgpt)
+      # TODO: add a option to disable this --color always ?
+      if STDOUT.tty?
+        puts result_msg._colorize(:chatgpt)
+      else
+        puts result_msg
+      end
       return true
     end
 
