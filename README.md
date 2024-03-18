@@ -98,6 +98,10 @@ cat paper.txt | chatgpt -m "Please summarize this paper."
 chatgpt -m "Please summarize this paper." paper.txt
 ```
 
+```sh
+chatgpt -M gpt-4 -m "Please write a simple commit message" <(git diff --cached)
+```
+
 #### Template Engine
 
 Run chatgpt script with the [Crinja](https://github.com/straight-shoota/crinja) template engine. (experimental)
