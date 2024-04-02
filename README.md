@@ -24,6 +24,15 @@
 
 Download binaries from [Github Release](https://github.com/kojix2/chatgpt-cli/releases/latest).
 
+### homebrew
+
+[![chatgpt-cli (macos)](https://github.com/kojix2/homebrew-brew/actions/workflows/chatgpt-cli-macos.yml/badge.svg)](https://github.com/kojix2/homebrew-brew/actions/workflows/chatgpt-cli-macos.yml)
+[![chatgpt-cli (ubuntu)](https://github.com/kojix2/homebrew-brew/actions/workflows/chatgpt-cli-ubuntu.yml/badge.svg)](https://github.com/kojix2/homebrew-brew/actions/workflows/chatgpt-cli-ubuntu.yml)
+
+```sh
+brew install kojix2/brew/chatgpt-cli
+```
+
 ### From source code (recommended)
 
 - [Install Crystal](https://crystal-lang.org/install/)
