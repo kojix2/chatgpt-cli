@@ -46,7 +46,7 @@ cd chatgpt-cli
 sudo make install
 ```
 
-Please disable Conda or similar environments when building to ensure correct linking.
+Please deactivate Conda environments when building to ensure correct linking.
 
 ### Set your [OpenAI API key](https://platform.openai.com/account/api-keys)
 
