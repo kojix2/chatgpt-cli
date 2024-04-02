@@ -2,6 +2,7 @@ bin
 bin/*
 bin/chatgpt
 lib
+tmp
 *.lock
 *.html
 .shards
