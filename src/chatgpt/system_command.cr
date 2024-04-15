@@ -26,7 +26,7 @@ module ChatGPT
     end
 
     private def run(command, record = true)
-      {% if flag?(:win32) %}
+      {% if flag?(:windows) %}
         # FIXME
         # https://github.com/crystal-lang/crystal/issues/12873
         command = "cmd.exe /v /c #{command}"

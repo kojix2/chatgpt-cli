@@ -6,7 +6,7 @@ module ChatGPT
       editor = if ENV.has_key?("EDITOR")
                  ENV["EDITOR"]
                else
-                 {% if flag?(:win32) %}
+                 {% if flag?(:windows) %}
                    "notepad"
                  {% else %}
                    "vim"
@@ -20,7 +20,7 @@ module ChatGPT
         system("xdg-open #{file_name}")
       {% elsif flag?(:darwin) %}
         system("open #{file_name}")
-      {% elsif flag?(:win32) %}
+      {% elsif flag?(:windows) %}
         system("cmd /c start #{file_name}")
       {% end %}
     end
