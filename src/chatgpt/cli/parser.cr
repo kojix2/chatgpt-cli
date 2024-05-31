@@ -20,7 +20,7 @@ module ChatGPT
           system_message = config.select_id(v.to_s)
           data.messages << system_message if system_message
         end
-        on "-M MODEL", "--model MODEL", "Model name [gpt-3.5-turbo]" do |v|
+        on "-M MODEL", "--model MODEL", "Model name [gpt-4o]" do |v|
           data.model = v.to_s
         end
         on "-E INT", "Number of edits to generate [1]" do |v|
