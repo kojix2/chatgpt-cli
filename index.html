@@ -307,26 +307,6 @@
       
     </li>
   
-  <li class=" " data-id="chatgpt-cli/ChatGPT/Substitutor/Url" data-name="chatgpt::substitutor::url">
-      <a href="ChatGPT/Substitutor/Url.html">Url</a>
-      
-    </li>
-  
-  <li class="parent " data-id="chatgpt-cli/ChatGPT/Substitutor/WebPageCompressor" data-name="chatgpt::substitutor::webpagecompressor">
-      <a href="ChatGPT/Substitutor/WebPageCompressor.html">WebPageCompressor</a>
-      
-        <ul>
-  
-  <li class=" " data-id="chatgpt-cli/ChatGPT/Substitutor/WebPageCompressor/FetchError" data-name="chatgpt::substitutor::webpagecompressor::fetcherror">
-      <a href="ChatGPT/Substitutor/WebPageCompressor/FetchError.html">FetchError</a>
-      
-    </li>
-  
-</ul>
-
-      
-    </li>
-  
 </ul>
 
       
@@ -395,7 +375,6 @@
 <li>Support for batch mode and Crinja template engine (experimental)</li>
 <li>Ready-to-use system messages.</li>
 <li>Expand file contents from the <code>%{file/path}</code>.</li>
-<li>Expand web page contents from the <code>%u{URL}</code>.</li>
 <li>Magic commands to <code>%clear</code>, <code>%pop</code>, <code>%list</code>, <code>%w</code>, <code>%save</code>, and <code>%load</code> data.</li>
 <li>Execute system <code>!{commands}</code> and pass captured stdout and stderr.</li>
 <li>Code blocks in the response can be referenced from <code>$CODE0</code>, <code>$CODE1</code>...</li>
@@ -551,13 +530,6 @@ chatgpt i --ap 0</code></pre>
 </a>Embed files</h3>
 <pre><code class="language-crystal"><span class="t">Improve</span> the code: <span class="s">%{my/script.py}</span></code></pre>
 <pre><code class="language-crystal"><span class="t">Find</span> the bugs: <span class="s">%{src/*.py}</span></code></pre>
-<h3><a id="embed-web-pages" class="anchor" href="#embed-web-pages">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>Embed Web Pages</h3>
-<pre><code class="language-crystal"><span class="t">Select</span> important news: <span class="o">%</span>u{https<span class="n">://</span>news.ycombinator.com<span class="o">/</span>}</code></pre>
-<p>The words used in the <code>&lt;body&gt;</code> are extracted using <a href="https://github.com/kostya/lexbor">lexbor</a>.</p>
 <h3><a id="embed-standard-output" class="anchor" href="#embed-standard-output">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
