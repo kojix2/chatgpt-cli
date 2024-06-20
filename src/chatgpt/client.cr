@@ -43,7 +43,7 @@ module ChatGPT
 
     # Send a chat request to the ChatGPT API and log the request and response data if in debug mode
     def send_chat_request(request_data)
-      log_request_data(request_data) if ChatGPT.debug?
+      log_request_data(request_data) if ChatGPT.debug
       spinner = create_spinner
       spinner.start
       begin
@@ -53,7 +53,7 @@ module ChatGPT
         raise ex
       end
       spinner.stop
-      log_response_data(chat_response) if ChatGPT.debug?
+      log_response_data(chat_response) if ChatGPT.debug
       chat_response
     end
 

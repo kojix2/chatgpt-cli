@@ -36,7 +36,7 @@ module ChatGPT
           load_session(v.to_s)
         end
         on "-d", "--debug", "Debug mode" do
-          DEBUG_FLAG[0] = true
+          ChatGPT.debug = true
         end
       end
 
@@ -86,7 +86,7 @@ module ChatGPT
         config = Config.instance
         self.banner =
           <<-BANNER
-        
+
           Program: #{PROGRAM_NAME}
           Version: #{VERSION}
           Source: #{SOURCE_URL}

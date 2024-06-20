@@ -351,7 +351,7 @@ module ChatGPT
 
     private def set_response_env(msg, name)
       if ENV.has_key?(name)
-        STDERR.puts "Overwriting #{name} environment variable"._colorize(:debug) if ChatGPT.debug?
+        STDERR.puts "Overwriting #{name} environment variable"._colorize(:debug) if ChatGPT.debug
         STDERR.flush
       end
       ENV[name] = msg
@@ -385,7 +385,7 @@ module ChatGPT
     end
 
     private def check_env(name)
-      if ENV.has_key?(name) && ChatGPT.debug?
+      if ENV.has_key?(name) && ChatGPT.debug
         STDERR.puts "Overwriting #{name} environment variable"._colorize(:debug)
         STDERR.flush
       end
