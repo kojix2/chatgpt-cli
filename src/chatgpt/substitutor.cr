@@ -2,10 +2,6 @@ require "./substitutor/stdout"
 require "./substitutor/stderr"
 require "./substitutor/command"
 
-{% if env("CHATGPT_URL") %}
-  require "./substitutor/url"
-{% end %}
-
 require "./substitutor/file"
 
 module ChatGPT
@@ -15,9 +11,6 @@ module ChatGPT
       @substitutors << ChatGPT::Substitutor::Stdout.new(@system_command_runner)
       @substitutors << ChatGPT::Substitutor::Stderr.new(@system_command_runner)
       @substitutors << ChatGPT::Substitutor::Command.new
-      {% if env("CHATGPT_URL") %}
-        @substitutors << ChatGPT::Substitutor::Url.new
-      {% end %}
       @substitutors << ChatGPT::Substitutor::FilePath.new
     end
 

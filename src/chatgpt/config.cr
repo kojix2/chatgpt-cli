@@ -144,10 +144,6 @@ module ChatGPT
       Regex.new(embedded_pattern(:command)["pattern"])
     end
 
-    def url_pattern
-      Regex.new(embedded_pattern(:url)["pattern"])
-    end
-
     def filepath_pattern
       Regex.new(embedded_pattern(:file)["pattern"])
     end

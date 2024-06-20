@@ -10,7 +10,6 @@
 - Support for batch mode and Crinja template engine (experimental)
 - Ready-to-use system messages.
 - Expand file contents from the `%{file/path}`.
-- Expand web page contents from the `%u{URL}`.
 - Magic commands to `%clear`, `%pop`, `%list`, `%w`, `%save`, and `%load` data.
 - Execute system `!{commands}` and pass captured stdout and stderr.
 - Code blocks in the response can be referenced from `$CODE0`, `$CODE1`...
@@ -188,14 +187,6 @@ Improve the code: %{my/script.py}
 Find the bugs: %{src/*.py}
 ```
 
-### Embed Web Pages
-
-```
-Select important news: %u{https://news.ycombinator.com/}
-```
-
-The words used in the `<body>` are extracted using [lexbor](https://github.com/kostya/lexbor).
-
 ### Embed Standard Output
 
 `!{command}` Execute the command and insert standard output and standard error output.
@@ -266,7 +257,7 @@ Run `chatgpt config` to get the path to the configuration file.
 
 `config.json` is located in `~/.config/chatgpt-cli/` by default.
 
-- `embedded_patterns`: Defines patterns for `%{}`, `%u{}`, `!{}`, `%STDOUT` and `%STDERR`
+- `embedded_patterns`: Defines patterns for `%{}`, `!{}`, `%STDOUT` and `%STDERR`
 - `extraction pattern`: Defines patterns for code block extraction.
 - `terminal_colors`: Set colors for `chatgpt`, `warning`, `debug`, `stdout` and `stderr`.
 

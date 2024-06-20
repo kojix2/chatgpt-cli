@@ -24,7 +24,6 @@ jobs:
       - run: shards build --release --debug
         env :
           CHATGPT_READLINE: "1"
-          CHATGPT_URL: "1"
           CHATGPT_BAT: "1"
       - run: crystal spec
       - run: bin/chatgpt version

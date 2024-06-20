@@ -18,8 +18,6 @@ dependencies:
   readline:
     github: kojix2/crystal-readline
     branch: develop
-  lexbor:
-    github: kostya/lexbor
   http_proxy:
     github: mamantoha/http_proxy
   crinja:

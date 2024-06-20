@@ -49,7 +49,6 @@ jobs:
           zip -j bin/chatgpt-macos.zip bin/chatgpt
         env:
           CHATGPT_READLINE: 1
-          CHATGPT_URL: 1
           CHATGPT_BAT: 1
 
       - name: Run Windows Build
