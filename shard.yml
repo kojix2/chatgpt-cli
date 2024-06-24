@@ -20,8 +20,9 @@ dependencies:
     branch: develop
   http_proxy:
     github: mamantoha/http_proxy
-  crinja:
-    github: straight-shoota/crinja
+  crustache:
+    github: MakeNowJust/crustache
+    branch: master
   easyclip:
     github: kojix2/easyclip
     branch: main

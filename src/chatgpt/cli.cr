@@ -7,7 +7,7 @@ require "./utils/colorize_extensions"
 {% end %}
 require "spinner"
 
-require "crinja"
+require "crustache"
 
 require "./post_data"
 require "./client"
@@ -111,8 +111,9 @@ module ChatGPT
       return opts, a
     end
 
-    def apply_crinja_rendering(input_msg, opts)
-      return Crinja.render(input_msg, opts)
+    def apply_crustache_rendering(input_msg, opts)
+      template = Crustache.parse(input_msg)
+      Crustache.render(template, opts)
     end
 
     def read_input_file
@@ -135,11 +136,11 @@ module ChatGPT
         input = @options["input"]
         input_msg = "#{input_msg}\n#{input}" # FIXME placement option: forward or backward
       end
-      # Enable Crinja if there are arguments
+      # Enable Crustache if there are arguments
       # FIXME: we should make this more explicit?
       unless args.empty?
         parsed_args, _ = parse_args(args)
-        input_msg = apply_crinja_rendering(input_msg, parsed_args)
+        input_msg = apply_crustache_rendering(input_msg, parsed_args)
       end
       # Append stdin if it is not a tty (e.g. piped)
       # FIXME: we should make this more explicit?

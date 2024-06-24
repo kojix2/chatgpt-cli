@@ -7,7 +7,7 @@
 ## Features
 
 - Interactive mode using [GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html).
-- Support for batch mode and Crinja template engine (experimental)
+- Support for batch mode and  mustache templates. (experimental)
 - Ready-to-use system messages.
 - Expand file contents from the `%{file/path}`.
 - Magic commands to `%clear`, `%pop`, `%list`, `%w`, `%save`, and `%load` data.
@@ -110,9 +110,9 @@ chatgpt -m "Please summarize this paper." paper.txt
 chatgpt -M gpt-4 -m "Please write a simple commit message" <(git diff --cached)
 ```
 
-#### Template Engine
+#### Mustache template
 
-Run chatgpt script with the [Crinja](https://github.com/straight-shoota/crinja) template engine. (experimental)
+Run chatgpt script with the [crustache](https://github.com/makenowjust/crustache) template engine. (experimental)
 
 ```
 Please translate the following text into {{language}}.
@@ -307,7 +307,7 @@ This tool has been greatly influenced, both directly and indirectly, by the crea
 - @hkalexling - [Mango/src/util/proxy.cr](https://github.com/getmango/Mango/blob/master/src/util/proxy.cr)
 - @hidao80 - [MonopolyGPT](https://github.com/hidao80/MonopolyGPT)
 - @lancecarlson - [clipboard_manager.cr](https://github.com/lancecarlson/chatcopy)
-- @straight-shoota - [Crinja](https://github.com/straight-shoota/crinja)
+- @makenowjust - [crustache](https://github.com/makenowjust/crustache)
 - @Flipez - [spinner](https://github.com/Flipez/spinner)
 
 ## License
