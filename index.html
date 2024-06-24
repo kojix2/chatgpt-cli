@@ -372,7 +372,7 @@
 </a>Features</h2>
 <ul>
 <li>Interactive mode using <a href="https://tiswww.case.edu/php/chet/readline/rltop.html">GNU Readline</a>.</li>
-<li>Support for batch mode and Crinja template engine (experimental)</li>
+<li>Support for batch mode and  mustache templates. (experimental)</li>
 <li>Ready-to-use system messages.</li>
 <li>Expand file contents from the <code>%{file/path}</code>.</li>
 <li>Magic commands to <code>%clear</code>, <code>%pop</code>, <code>%list</code>, <code>%w</code>, <code>%save</code>, and <code>%load</code> data.</li>
@@ -466,12 +466,12 @@ echo &quot;It's okay now. Rest.&quot; | chatgpt -r
 <pre><code class="language-sh">cat paper.txt | chatgpt -m &quot;Please summarize this paper.&quot;</code></pre>
 <pre><code class="language-sh">chatgpt -m &quot;Please summarize this paper.&quot; paper.txt</code></pre>
 <pre><code class="language-sh">chatgpt -M gpt-4 -m &quot;Please write a simple commit message&quot; &lt;(git diff --cached)</code></pre>
-<h4><a id="template-engine" class="anchor" href="#template-engine">
+<h4><a id="mustache-template" class="anchor" href="#mustache-template">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Template Engine</h4>
-<p>Run chatgpt script with the <a href="https://github.com/straight-shoota/crinja">Crinja</a> template engine. (experimental)</p>
+</a>Mustache template</h4>
+<p>Run chatgpt script with the <a href="https://github.com/makenowjust/crustache">crustache</a> template engine. (experimental)</p>
 <pre><code class="language-crystal"><span class="t">Please</span> translate the following text into <span class="o">{{</span>language}}.</code></pre>
 <pre><code class="language-sh">cat document.txt | chatgpt run -M gpt-4 translate.txt -- --language spanish</code></pre>
 <h3><a id="preset-prompts" class="anchor" href="#preset-prompts">
@@ -642,7 +642,7 @@ rm ~/.chatgpt_history       # Remove command history</code></pre>
 <li>@hkalexling - <a href="https://github.com/getmango/Mango/blob/master/src/util/proxy.cr">Mango/src/util/proxy.cr</a></li>
 <li>@hidao80 - <a href="https://github.com/hidao80/MonopolyGPT">MonopolyGPT</a></li>
 <li>@lancecarlson - <a href="https://github.com/lancecarlson/chatcopy">clipboard_manager.cr</a></li>
-<li>@straight-shoota - <a href="https://github.com/straight-shoota/crinja">Crinja</a></li>
+<li>@makenowjust - <a href="https://github.com/makenowjust/crustache">crustache</a></li>
 <li>@Flipez - <a href="https://github.com/Flipez/spinner">spinner</a></li>
 </ul>
 <h2><a id="license" class="anchor" href="#license">
