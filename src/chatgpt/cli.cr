@@ -430,6 +430,7 @@ module ChatGPT
       status = ps.wait
       unless status.success?
         error_message._colorize(:warning)
+        STDERR.puts "Error: #{error_message}"._colorize(:warning, :bold)
       end
       colored_code
     end
