@@ -407,7 +407,6 @@
 <li><code>brew install readline</code></li>
 </ul>
 <pre><code class="language-bash">git clone https://github.com/kojix2/chatgpt-cli
-git submodule update --init --recursive # awesome-chatgpt-prompts
 cd chatgpt-cli
 sudo make install</code></pre>
 <p>Please deactivate Conda environments when building to ensure correct linking.</p>
@@ -469,17 +468,6 @@ echo &quot;It's okay now. Rest.&quot; | chatgpt -r
 <p>Run chatgpt script with the <a href="https://github.com/makenowjust/crustache">crustache</a> template engine. (experimental)</p>
 <pre><code class="language-crystal"><span class="t">Please</span> translate the following text into <span class="o">{{</span>language}}.</code></pre>
 <pre><code class="language-sh">cat document.txt | chatgpt run -M gpt-4 translate.txt -- --language spanish</code></pre>
-<h3><a id="preset-prompts" class="anchor" href="#preset-prompts">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>Preset Prompts</h3>
-<p>You can select system commands in <a href="https://github.com/f/awesome-chatgpt-prompts">Awesome ChatGPT Prompts</a>.</p>
-<pre><code class="language-bash"># Output list of available prompts
-chatgpt prompts
-
-# by id number
-chatgpt i --ap 0</code></pre>
 <h3><a id="magic-commands" class="anchor" href="#magic-commands">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -592,12 +580,6 @@ Ruby:
 <p>To edit, run <code>chatgpt config --edit</code>. Or use <code>%config</code> in interactive mode.
 To reset, run <code>chatgpt config --reset</code>.</p>
 <p><a href="config.json">config.json</a></p>
-<h3><a id="prompts-system-commands" class="anchor" href="#prompts-system-commands">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>Prompts (system commands)</h3>
-<p><code>prompts.csv</code> is located in <code>~/.config/chatgpt-cli/</code> by default.</p>
 <h2><a id="uninstallation" class="anchor" href="#uninstallation">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
