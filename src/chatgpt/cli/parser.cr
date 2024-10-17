@@ -16,10 +16,6 @@ module ChatGPT
         on "-s STR", "--system STR", "System message" do |v|
           data.messages << {"role" => "system", "content" => v.to_s}
         end
-        on "-p ID", "--ap ID", "Awesome-Chatgpt-Prompts" do |v|
-          system_message = config.select_id(v.to_s)
-          data.messages << system_message if system_message
-        end
         on "-M MODEL", "--model MODEL", "Model name [gpt-4o]" do |v|
           data.model = v.to_s
         end
@@ -110,14 +106,6 @@ module ChatGPT
           add_help_option
           unknown_args { }
           # add_unknown_args(1)
-        end
-        on("prompts", "Print all system message IDs and exit") do
-          @subcommand = "prompts"
-          add_banner
-          on("--reset", "Reset prompts file") { @options["reset"] = true }
-          on("--edit", "Edit prompts file") { @options["edit"] = true }
-          add_help_option
-          add_unknown_args(1)
         end
         on("config", "Edit config file") do
           @subcommand = "config"

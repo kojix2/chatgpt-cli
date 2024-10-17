@@ -15,7 +15,6 @@ module ChatGPT
         raise "Please set CHATGPT_CLI_CONFIG environment variable."
       end
     CONFIG_FILE    = "#{BASE_DIR}/config.json"
-    PROMPTS_FILE   = "#{BASE_DIR}/prompts.csv"
     POST_DATA_FILE = "#{BASE_DIR}/post_data.json"
     HISTORY_FILE   =
       if ENV.has_key?("HOME")
@@ -25,14 +24,10 @@ module ChatGPT
       end
 
     DEFAULT_CONFIG  = {{ read_file "#{__DIR__}/../../config.json" }}
-    DEFAULT_PROMPTS = {{ read_file "#{__DIR__}/../../awesome-chatgpt-prompts/prompts.csv" }}
 
     alias ConfigData = Hash(String, Hash(String, Hash(String, String)))
 
-    class NoPromptIdError < Exception; end
-
     getter config_data : ConfigData
-    getter prompts : Hash(String, String)
 
     def self.instance
       @@instance ||= new
@@ -41,9 +36,7 @@ module ChatGPT
     def initialize
       @config_data = ConfigData.new
       @config_data_default = ConfigData.from_json(DEFAULT_CONFIG)
-      @prompts = Hash(String, String).new
       load_config
-      load_prompts
       log_deporecation_warnings
     end
 
@@ -58,20 +51,6 @@ module ChatGPT
       end
     end
 
-    def load_prompts
-      create_default_prompts unless File.exists?(PROMPTS_FILE)
-      begin
-        File.open(PROMPTS_FILE) do |f|
-          CSV.each_row(f) do |row|
-            next if row == ["act", "prompt"]
-            @prompts[row[0]] = row[1]
-          end
-        end
-      rescue ex
-        log_load_error(ex, PROMPTS_FILE)
-      end
-    end
-
     private def log_load_error(ex, file)
       STDERR.puts("Error: #{ex}".colorize(:red))
       STDERR.puts("Failed to load #{file}")
@@ -81,7 +60,7 @@ module ChatGPT
       if @config_data.has_key?("system_messages")
         STDERR.puts(
           "Warning: system_messages in config.json is deprecated. \n" +
-          "Please remove them from config.json and use prompts.csv instead."
+          "Please remove them from config.json"
         )
       end
     end
@@ -91,25 +70,6 @@ module ChatGPT
       overwrite = File.exists?(CONFIG_FILE)
       File.write(CONFIG_FILE, config_data.to_pretty_json)
       STDERR.puts("#{overwrite ? "Overwrote" : "Created"} config at #{CONFIG_FILE}"._colorize(:warning))
-    end
-
-    def create_default_prompts
-      overwrite = File.exists?(PROMPTS_FILE)
-      File.write(PROMPTS_FILE, DEFAULT_PROMPTS)
-      STDERR.puts("#{overwrite ? "Overwrote" : "Created"} prompts at #{PROMPTS_FILE}"._colorize(:warning))
-    end
-
-    def select_id(id)
-      if @prompts.has_key?(id)
-        prompt = @prompts[id]
-      elsif id =~ /^[0-9]+$/
-        prompt = @prompts.values[id.to_i]
-        key = @prompts.keys[id.to_i]
-        STDERR.puts key._colorize(:warning)
-      else
-        raise NoPromptIdError.new("No such prompt id: \"#{id}\"")
-      end
-      {"role" => "system", "content" => prompt}
     end
 
     def terminal_colors
