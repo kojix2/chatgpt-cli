@@ -40,7 +40,6 @@ brew install kojix2/brew/chatgpt-cli
 
 ```bash
 git clone https://github.com/kojix2/chatgpt-cli
-git submodule update --init --recursive # awesome-chatgpt-prompts
 cd chatgpt-cli
 sudo make install
 ```
@@ -120,18 +119,6 @@ Please translate the following text into {{language}}.
 
 ```sh
 cat document.txt | chatgpt run -M gpt-4 translate.txt -- --language spanish
-```
-
-### Preset Prompts
-
-You can select system commands in [Awesome ChatGPT Prompts](https://github.com/f/awesome-chatgpt-prompts).
-
-```bash
-# Output list of available prompts
-chatgpt prompts
-
-# by id number
-chatgpt i --ap 0
 ```
 
 ### Magic Commands
@@ -265,10 +252,6 @@ To edit, run `chatgpt config --edit`. Or use `%config` in interactive mode.
 To reset, run `chatgpt config --reset`.
 
 [config.json](config.json)
-
-### Prompts (system commands)
-
-`prompts.csv` is located in `~/.config/chatgpt-cli/` by default.
 
 ## Uninstallation
 
