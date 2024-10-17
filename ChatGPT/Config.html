@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Crystal Docs 1.12.2">
+<meta name="generator" content="Crystal Docs 1.13.3">
 <meta name="crystal_docs.project_version" content="main">
 <meta name="crystal_docs.project_name" content="chatgpt-cli">
 
@@ -94,11 +94,6 @@
   
   <li class=" " data-id="chatgpt-cli/ChatGPT/Config/ConfigData" data-name="chatgpt::config::configdata">
       <a href="../ChatGPT/Config/ConfigData.html">ConfigData</a>
-      
-    </li>
-  
-  <li class=" " data-id="chatgpt-cli/ChatGPT/Config/NoPromptIdError" data-name="chatgpt::config::nopromptiderror">
-      <a href="../ChatGPT/Config/NoPromptIdError.html">NoPromptIdError</a>
       
     </li>
   
@@ -394,7 +389,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L8" target="_blank">
+      <a href="https://github.com/kojix2/chatgpt-cli/blob/3f8ce6af38e5bb0b575194f05d5e3cedeb5ecd36/src/chatgpt/config.cr#L8" target="_blank">
         chatgpt/config.cr
       </a>
     
@@ -438,11 +433,6 @@
       </dt>
       
     
-      <dt class="entry-const" id="DEFAULT_PROMPTS">
-        <strong>DEFAULT_PROMPTS</strong> = <code><span class="o">{{</span> read_file(<span class="s">&quot;/home/runner/work/chatgpt-cli/chatgpt-cli/src/chatgpt/../../awesome-chatgpt-prompts/prompts.csv&quot;</span>) }}</code>
-      </dt>
-      
-    
       <dt class="entry-const" id="HISTORY_FILE">
         <strong>HISTORY_FILE</strong> = <code><span class="k">if</span> <span class="t">ENV</span>.has_key?(<span class="s">&quot;HOME&quot;</span>)
   <span class="s">&quot;</span><span class="i">#{</span><span class="t">ENV</span>[<span class="s">&quot;HOME&quot;</span>]<span class="i">}</span><span class="s">/.chatgpt_history&quot;</span>
@@ -454,11 +444,6 @@
     
       <dt class="entry-const" id="POST_DATA_FILE">
         <strong>POST_DATA_FILE</strong> = <code><span class="s">&quot;</span><span class="i">#{</span><span class="t">BASE_DIR</span><span class="i">}</span><span class="s">/post_data.json&quot;</span></code>
-      </dt>
-      
-    
-      <dt class="entry-const" id="PROMPTS_FILE">
-        <strong>PROMPTS_FILE</strong> = <code><span class="s">&quot;</span><span class="i">#{</span><span class="t">BASE_DIR</span><span class="i">}</span><span class="s">/prompts.csv&quot;</span></code>
       </dt>
       
     
@@ -542,11 +527,6 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#create_default_prompts-instance-method" class="signature"><strong>#create_default_prompts</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
         <a href="#embedded_pattern%28id%3ASymbol%29-instance-method" class="signature"><strong>#embedded_pattern</strong>(id : Symbol)</a>
         
       </li>
@@ -573,21 +553,6 @@
     
       <li class="entry-summary">
         <a href="#load_config-instance-method" class="signature"><strong>#load_config</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#load_prompts-instance-method" class="signature"><strong>#load_prompts</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#prompts%3AHash%28String%2CString%29-instance-method" class="signature"><strong>#prompts</strong> : Hash(String, String)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#select_id%28id%29-instance-method" class="signature"><strong>#select_id</strong>(id)</a>
         
       </li>
     
@@ -661,7 +626,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3f8ce6af38e5bb0b575194f05d5e3cedeb5ecd36/src/chatgpt/config.cr#L36" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -689,7 +654,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3f8ce6af38e5bb0b575194f05d5e3cedeb5ecd36/src/chatgpt/config.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -719,7 +684,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L161" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3f8ce6af38e5bb0b575194f05d5e3cedeb5ecd36/src/chatgpt/config.cr#L121" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -735,7 +700,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L120" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3f8ce6af38e5bb0b575194f05d5e3cedeb5ecd36/src/chatgpt/config.cr#L80" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -751,7 +716,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L143" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3f8ce6af38e5bb0b575194f05d5e3cedeb5ecd36/src/chatgpt/config.cr#L103" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -767,7 +732,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3f8ce6af38e5bb0b575194f05d5e3cedeb5ecd36/src/chatgpt/config.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -783,23 +748,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L89" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="create_default_prompts-instance-method">
-      <div class="signature">
-        
-        def <strong>create_default_prompts</strong>
-
-        <a class="method-permalink" href="#create_default_prompts-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L96" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3f8ce6af38e5bb0b575194f05d5e3cedeb5ecd36/src/chatgpt/config.cr#L68" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -815,7 +764,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L130" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3f8ce6af38e5bb0b575194f05d5e3cedeb5ecd36/src/chatgpt/config.cr#L90" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -831,7 +780,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L125" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3f8ce6af38e5bb0b575194f05d5e3cedeb5ecd36/src/chatgpt/config.cr#L85" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -847,7 +796,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L156" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3f8ce6af38e5bb0b575194f05d5e3cedeb5ecd36/src/chatgpt/config.cr#L116" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -863,7 +812,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L151" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3f8ce6af38e5bb0b575194f05d5e3cedeb5ecd36/src/chatgpt/config.cr#L111" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -879,7 +828,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L147" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3f8ce6af38e5bb0b575194f05d5e3cedeb5ecd36/src/chatgpt/config.cr#L107" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -895,55 +844,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L50" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="load_prompts-instance-method">
-      <div class="signature">
-        
-        def <strong>load_prompts</strong>
-
-        <a class="method-permalink" href="#load_prompts-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L61" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="prompts:Hash(String,String)-instance-method">
-      <div class="signature">
-        
-        def <strong>prompts</strong> : Hash(String, String)
-
-        <a class="method-permalink" href="#prompts%3AHash%28String%2CString%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L35" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="select_id(id)-instance-method">
-      <div class="signature">
-        
-        def <strong>select_id</strong>(id)
-
-        <a class="method-permalink" href="#select_id%28id%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L102" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3f8ce6af38e5bb0b575194f05d5e3cedeb5ecd36/src/chatgpt/config.cr#L43" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -959,7 +860,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L139" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3f8ce6af38e5bb0b575194f05d5e3cedeb5ecd36/src/chatgpt/config.cr#L99" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -975,7 +876,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L135" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3f8ce6af38e5bb0b575194f05d5e3cedeb5ecd36/src/chatgpt/config.cr#L95" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -991,7 +892,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/da6fc09c46dbfc465fbb4ba0c0004845fd40b095/src/chatgpt/config.cr#L115" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/3f8ce6af38e5bb0b575194f05d5e3cedeb5ecd36/src/chatgpt/config.cr#L75" target="_blank">View source</a>]
         
       </div>
     </div>
