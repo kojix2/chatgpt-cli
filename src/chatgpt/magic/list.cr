@@ -29,7 +29,7 @@ module ChatGPT
       def run
         data.messages.each_with_index do |message, i|
           role = message["role"]
-          print "[#{i.to_s}]".ljust(3) + "[#{role[0].upcase}]" + " : "
+          print ("[#{i.to_s}]".ljust(3) + "[#{role[0].upcase}]" + " : ").colorize.bold
           puts case role
           when "system"
             trancate_message(message["content"])
