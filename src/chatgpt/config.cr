@@ -23,7 +23,7 @@ module ChatGPT
         "#{BASE_DIR}/chatgpt_history"
       end
 
-    DEFAULT_CONFIG  = {{ read_file "#{__DIR__}/../../config.json" }}
+    DEFAULT_CONFIG = {{ read_file "#{__DIR__}/../../config.json" }}
 
     alias ConfigData = Hash(String, Hash(String, Hash(String, String)))
 
