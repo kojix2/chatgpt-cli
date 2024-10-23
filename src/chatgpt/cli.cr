@@ -268,8 +268,16 @@ module ChatGPT
     end
 
     private def readline_prompt
+      # See https://stackoverflow.com/questions/9468435
+      # Marking the ANSI color codes as non-printing characters
+      # RL_PROMPT_START_IGNORE = "\001"
+      # RL_PROMPT_END_IGNORE   = "\002"
       # .to_s is needed for LibReadline#readline
-      "#{post_data.model}:#{ntokens}:#{message_count}> "._colorize(:prompt).to_s
+      String.build do |s|
+        s << "\001"
+        s << ("\002#{post_data.model}:#{ntokens}:#{message_count}> \001"._colorize(:prompt).to_s)
+        s << "\002"
+      end
     end
 
     private def add_history(input_msg)
