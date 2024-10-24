@@ -32,17 +32,17 @@ module ChatGPT
           print ("[#{i.to_s}]".ljust(3) + "[#{role[0].upcase}]" + " : ").colorize.bold
           puts case role
           when "system"
-            trancate_message(message["content"])
+            truncate_message(message["content"])
           when "user"
-            trancate_message(message["content"])
+            truncate_message(message["content"])
           when "assistant"
-            trancate_message(message["content"])._colorize(:chatgpt)
+            truncate_message(message["content"])._colorize(:chatgpt)
           end
         end
         true
       end
 
-      private def trancate_message(str)
+      private def truncate_message(str)
         return str if str.size <= chars_to_show
 
         str[0..chars_to_show] + "..."
