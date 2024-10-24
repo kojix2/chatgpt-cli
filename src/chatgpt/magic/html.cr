@@ -11,7 +11,6 @@ module ChatGPT
       end
 
       def run
-        html = Generator::Html.new(data).to_s
         timestamp = Time.local.to_s("%Y%m%d-%H%M%S")
         file_name = "chatgpt-#{timestamp}.html"
         run(file_name)
