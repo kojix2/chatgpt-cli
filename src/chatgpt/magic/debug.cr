@@ -11,8 +11,8 @@ module ChatGPT
       end
 
       def run
-        ChatGPT.debug = !ChatGPT.debug
-        puts "Debug mode: #{ChatGPT.debug}"._colorize(:warning)
+        ChatGPT.debug = !ChatGPT.debug?
+        puts "Debug mode: #{ChatGPT.debug?}"._colorize(:warning)
         true
       end
     end
