@@ -4,6 +4,11 @@
 
 :eight_spoked_asterisk: Yet another [ChatGPT](https://openai.com/chatgpt) command line tool.
 
+2025-01-24
+- ChatGPT CLI is not currently being actively developed.
+- I recommend using [aichat](https://github.com/sigoden/aichat).
+- However, I will continue to accept pull requests and issues.
+
 ## Features
 
 - Interactive mode using [GNU Readline](https://tiswww.case.edu/php/chet/readline/rltop.html).
