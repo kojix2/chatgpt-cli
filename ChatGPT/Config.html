@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Crystal Docs 1.14.0">
+<meta name="generator" content="Crystal Docs 1.16.3">
 <meta name="crystal_docs.project_version" content="main">
 <meta name="crystal_docs.project_name" content="chatgpt-cli">
 
@@ -356,12 +356,16 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> ChatGPT::<wbr>Config
+  <span class="kind">
+    class
+  </span> ChatGPT::<wbr>Config
 
 </h1>
 
 
   <ul class="superclass-hierarchy"><li class="superclass"><a href="../ChatGPT/Config.html">ChatGPT::Config</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
 
 
 
@@ -389,7 +393,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/chatgpt-cli/blob/40a7e23b1e6520e2cf5e69c877404c1e7465fcf2/src/chatgpt/config.cr#L8" target="_blank">
+      <a href="https://github.com/kojix2/chatgpt-cli/blob/d4602f95b796f3ce263f04f121c02ffbd615e421/src/chatgpt/config.cr#L8" target="_blank">
         chatgpt/config.cr
       </a>
     
@@ -413,12 +417,10 @@
       <dt class="entry-const" id="BASE_DIR">
         <strong>BASE_DIR</strong> = <code><span class="k">if</span> <span class="t">ENV</span>.has_key?(<span class="s">&quot;CHATGPT_CLI_CONFIG&quot;</span>)
   <span class="t">ENV</span>[<span class="s">&quot;CHATGPT_CLI_CONFIG&quot;</span>]
+<span class="k">elsif</span> <span class="t">ENV</span>.has_key?(<span class="s">&quot;HOME&quot;</span>)
+  <span class="s">&quot;</span><span class="i">#{</span><span class="t">ENV</span>[<span class="s">&quot;HOME&quot;</span>]<span class="i">}</span><span class="s">/.config/chatgpt-cli&quot;</span>
 <span class="k">else</span>
-  <span class="k">if</span> <span class="t">ENV</span>.has_key?(<span class="s">&quot;HOME&quot;</span>)
-    <span class="s">&quot;</span><span class="i">#{</span><span class="t">ENV</span>[<span class="s">&quot;HOME&quot;</span>]<span class="i">}</span><span class="s">/.config/chatgpt-cli&quot;</span>
-  <span class="k">else</span>
-    raise(<span class="s">&quot;Please set CHATGPT_CLI_CONFIG environment variable.&quot;</span>)
-  <span class="k">end</span>
+  raise(<span class="s">&quot;Please set CHATGPT_CLI_CONFIG environment variable.&quot;</span>)
 <span class="k">end</span></code>
       </dt>
       
@@ -451,6 +453,7 @@
 
 
 
+  
   <h2>
     <a id="constructors" class="anchor" href="#constructors">
   <svg class="octicon-link" aria-hidden="true">
@@ -469,7 +472,7 @@
   </ul>
 
 
-
+  
   <h2>
     <a id="class-method-summary" class="anchor" href="#class-method-summary">
   <svg class="octicon-link" aria-hidden="true">
@@ -488,9 +491,9 @@
   </ul>
 
 
+  
 
-
-
+  
   <h2>
     <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
   <svg class="octicon-link" aria-hidden="true">
@@ -575,37 +578,37 @@
 
 
 
-<div class="methods-inherited">
+  <div class="methods-inherited">
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
+  </div>
+
   
-    
-
-
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-    
-
-
-  
-</div>
-
-
   <h2>
     <a id="constructor-detail" class="anchor" href="#constructor-detail">
   <svg class="octicon-link" aria-hidden="true">
@@ -626,14 +629,14 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7e23b1e6520e2cf5e69c877404c1e7465fcf2/src/chatgpt/config.cr#L36" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d4602f95b796f3ce263f04f121c02ffbd615e421/src/chatgpt/config.cr#L36" target="_blank">View source</a>]
         
       </div>
     </div>
   
 
 
-
+  
   <h2>
     <a id="class-method-detail" class="anchor" href="#class-method-detail">
   <svg class="octicon-link" aria-hidden="true">
@@ -654,16 +657,16 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7e23b1e6520e2cf5e69c877404c1e7465fcf2/src/chatgpt/config.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d4602f95b796f3ce263f04f121c02ffbd615e421/src/chatgpt/config.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
   
 
 
+  
 
-
-
+  
   <h2>
     <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
   <svg class="octicon-link" aria-hidden="true">
@@ -684,7 +687,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7e23b1e6520e2cf5e69c877404c1e7465fcf2/src/chatgpt/config.cr#L121" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d4602f95b796f3ce263f04f121c02ffbd615e421/src/chatgpt/config.cr#L121" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -700,7 +703,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7e23b1e6520e2cf5e69c877404c1e7465fcf2/src/chatgpt/config.cr#L80" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d4602f95b796f3ce263f04f121c02ffbd615e421/src/chatgpt/config.cr#L80" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -716,7 +719,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7e23b1e6520e2cf5e69c877404c1e7465fcf2/src/chatgpt/config.cr#L103" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d4602f95b796f3ce263f04f121c02ffbd615e421/src/chatgpt/config.cr#L103" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -732,7 +735,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7e23b1e6520e2cf5e69c877404c1e7465fcf2/src/chatgpt/config.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d4602f95b796f3ce263f04f121c02ffbd615e421/src/chatgpt/config.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -748,7 +751,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7e23b1e6520e2cf5e69c877404c1e7465fcf2/src/chatgpt/config.cr#L68" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d4602f95b796f3ce263f04f121c02ffbd615e421/src/chatgpt/config.cr#L68" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -764,7 +767,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7e23b1e6520e2cf5e69c877404c1e7465fcf2/src/chatgpt/config.cr#L90" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d4602f95b796f3ce263f04f121c02ffbd615e421/src/chatgpt/config.cr#L90" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -780,7 +783,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7e23b1e6520e2cf5e69c877404c1e7465fcf2/src/chatgpt/config.cr#L85" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d4602f95b796f3ce263f04f121c02ffbd615e421/src/chatgpt/config.cr#L85" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -796,7 +799,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7e23b1e6520e2cf5e69c877404c1e7465fcf2/src/chatgpt/config.cr#L116" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d4602f95b796f3ce263f04f121c02ffbd615e421/src/chatgpt/config.cr#L116" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -812,7 +815,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7e23b1e6520e2cf5e69c877404c1e7465fcf2/src/chatgpt/config.cr#L111" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d4602f95b796f3ce263f04f121c02ffbd615e421/src/chatgpt/config.cr#L111" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -828,7 +831,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7e23b1e6520e2cf5e69c877404c1e7465fcf2/src/chatgpt/config.cr#L107" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d4602f95b796f3ce263f04f121c02ffbd615e421/src/chatgpt/config.cr#L107" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -844,7 +847,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7e23b1e6520e2cf5e69c877404c1e7465fcf2/src/chatgpt/config.cr#L43" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d4602f95b796f3ce263f04f121c02ffbd615e421/src/chatgpt/config.cr#L43" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -860,7 +863,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7e23b1e6520e2cf5e69c877404c1e7465fcf2/src/chatgpt/config.cr#L99" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d4602f95b796f3ce263f04f121c02ffbd615e421/src/chatgpt/config.cr#L99" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -876,7 +879,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7e23b1e6520e2cf5e69c877404c1e7465fcf2/src/chatgpt/config.cr#L95" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d4602f95b796f3ce263f04f121c02ffbd615e421/src/chatgpt/config.cr#L95" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -892,11 +895,12 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7e23b1e6520e2cf5e69c877404c1e7465fcf2/src/chatgpt/config.cr#L75" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/d4602f95b796f3ce263f04f121c02ffbd615e421/src/chatgpt/config.cr#L75" target="_blank">View source</a>]
         
       </div>
     </div>
   
+
 
 
 </div>
