@@ -29,7 +29,7 @@ jobs:
       - run: bin/chatgpt version
       - name: Rename executable for ${{ matrix.os }}
         run: mv bin/chatgpt bin/chatgpt-${{ matrix.os }}
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: excutable-${{ matrix.os }}
           path: bin/chatgpt-${{ matrix.os }}
@@ -45,7 +45,7 @@ jobs:
         with:
           crystal: latest
       - run: shards build --release --debug --skip-postinstall
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: excutable-windows
           path: bin/chatgpt.exe
