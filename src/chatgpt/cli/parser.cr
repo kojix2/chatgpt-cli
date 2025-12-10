@@ -16,7 +16,7 @@ module ChatGPT
         on "-s STR", "--system STR", "System message" do |v|
           data.messages << {"role" => "system", "content" => v.to_s}
         end
-        on "-M MODEL", "--model MODEL", "Model name [gpt-4o]" do |v|
+        on "-M MODEL", "--model MODEL", "Model name [gpt-5.1]" do |v|
           data.model = v.to_s
         end
         on "-E INT", "Number of edits to generate [1]" do |v|

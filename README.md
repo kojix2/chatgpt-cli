@@ -111,7 +111,7 @@ chatgpt -m "Please summarize this paper." paper.txt
 ```
 
 ```sh
-chatgpt -M gpt-4 -m "Please write a simple commit message" <(git diff --cached)
+chatgpt -M gpt-5.1 -m "Please write a simple commit message" <(git diff --cached)
 ```
 
 #### Mustache template
@@ -123,7 +123,7 @@ Please translate the following text into {{language}}.
 ```
 
 ```sh
-cat document.txt | chatgpt run -M gpt-4 translate.txt -- --language spanish
+cat document.txt | chatgpt run -M gpt-5.1 translate.txt -- --language spanish
 ```
 
 ### Magic Commands

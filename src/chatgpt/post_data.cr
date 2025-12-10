@@ -10,7 +10,7 @@ module ChatGPT
     property n : Int32
 
     def initialize(
-      @model = "gpt-4o",
+      @model = "gpt-5.1",
       @messages = [] of Hash(String, String),
       @n = 1,
       @temperature = 1.0,

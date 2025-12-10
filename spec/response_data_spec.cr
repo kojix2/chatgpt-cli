@@ -5,25 +5,31 @@ module ChatGPT
   sample_response_data =
     <<-JSON
     {
-      "id": "chatcmpl-72etpAlXCj1x8Cf5uvHeYZMjgjGAA",
-      "object": "chat.completion",
-      "created": 1680868229,
-      "model": "gpt-3.5-turbo-0301",
-      "usage": {
-        "prompt_tokens": 33,
-        "completion_tokens": 30,
-        "total_tokens": 63
-      },
-      "choices": [
+      "id": "resp_123",
+      "object": "response",
+      "created_at": 1741290958,
+      "status": "completed",
+      "model": "gpt-5.1",
+      "output": [
         {
-        "message": {
+          "id": "msg_123",
+          "type": "message",
+          "status": "completed",
           "role": "assistant",
-          "content": "The capital of Argentina is Buenos Aires."
-        },
-        "finish_reason": "stop",
-        "index": 0
+          "content": [
+            {
+              "type": "output_text",
+              "text": "The capital of Argentina is Buenos Aires.",
+              "annotations": []
+            }
+          ]
         }
-      ]
+      ],
+      "usage": {
+        "input_tokens": 33,
+        "output_tokens": 30,
+        "total_tokens": 63
+      }
     }
     JSON
 
@@ -31,8 +37,8 @@ module ChatGPT
     response = ResponseData.new(sample_response_data)
 
     it "parses tokens correctly" do
-      expected_tokens = %({\n  "prompt_tokens": 33,\n  "completion_tokens": 30,\n  "total_tokens": 63\n})
-      response.tokens.should eq(expected_tokens)
+      # For Responses API, assert that total_tokens is exposed correctly.
+      response.total_tokens.should eq(63)
     end
 
     it "gets total tokens correctly" do
