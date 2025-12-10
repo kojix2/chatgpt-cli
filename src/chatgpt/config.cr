@@ -37,7 +37,7 @@ module ChatGPT
       @config_data = ConfigData.new
       @config_data_default = ConfigData.from_json(DEFAULT_CONFIG)
       load_config
-      log_deporecation_warnings
+      log_deprecation_warnings
     end
 
     def load_config
@@ -53,10 +53,10 @@ module ChatGPT
 
     private def log_load_error(ex, file)
       STDERR.puts("Error: #{ex}".colorize(:red))
-      STDERR.puts("Failed to load #{file}")
+      STDERR.puts("Failed to load #{file}, fallback to default config")
     end
 
-    private def log_deporecation_warnings
+    private def log_deprecation_warnings
       if @config_data.has_key?("system_messages")
         STDERR.puts(
           "Warning: system_messages in config.json is deprecated. \n" +
@@ -69,7 +69,8 @@ module ChatGPT
       @config_data = ConfigData.from_json(DEFAULT_CONFIG)
       overwrite = File.exists?(CONFIG_FILE)
       File.write(CONFIG_FILE, config_data.to_pretty_json)
-      STDERR.puts("#{overwrite ? "Overwrote" : "Created"} config at #{CONFIG_FILE}"._colorize(:warning))
+      # NOTE: Do not use _colorize here to avoid recursive dependency on Config
+      STDERR.puts("#{overwrite ? "Overwrote" : "Created"} config at #{CONFIG_FILE}")
     end
 
     def terminal_colors
