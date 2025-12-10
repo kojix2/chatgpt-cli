@@ -404,7 +404,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/chatgpt-cli/blob/40a7542f962cf8e1d2f794613b60a9be02ed8884/src/chatgpt/client.cr#L10" target="_blank">
+      <a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/client.cr#L10" target="_blank">
         chatgpt/client.cr
       </a>
     
@@ -430,7 +430,7 @@
       </dt>
       
       <dd class="entry-const-doc">
-        <p>Set the API endpoint URL</p>
+        <p>Set the API endpoint URL (host only; path is given per-request)</p>
       </dd>
       
     
@@ -498,16 +498,16 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#post_request%28request_data%29-instance-method" class="signature"><strong>#post_request</strong>(request_data)</a>
+        <a href="#post_request%28request_data%3APostData%29-instance-method" class="signature"><strong>#post_request</strong>(request_data : PostData)</a>
         
-          <div class="summary"><p>Send a POST request with the provided request data to the ChatGPT API</p></div>
+          <div class="summary"><p>Send a POST request with the provided request data to the Responses API</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#send_chat_request%28request_data%29-instance-method" class="signature"><strong>#send_chat_request</strong>(request_data)</a>
+        <a href="#send_chat_request%28request_data%3APostData%29-instance-method" class="signature"><strong>#send_chat_request</strong>(request_data : PostData)</a>
         
-          <div class="summary"><p>Send a chat request to the ChatGPT API and log the request and response data if in debug mode</p></div>
+          <div class="summary"><p>Send a model request to the OpenAI API (Responses API) and log the request and response data if in debug mode.</p></div>
         
       </li>
     
@@ -571,7 +571,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7542f962cf8e1d2f794613b60a9be02ed8884/src/chatgpt/client.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/client.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -608,7 +608,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7542f962cf8e1d2f794613b60a9be02ed8884/src/chatgpt/client.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/client.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -629,49 +629,50 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7542f962cf8e1d2f794613b60a9be02ed8884/src/chatgpt/client.cr#L34" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/client.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="post_request(request_data)-instance-method">
+    <div class="entry-detail" id="post_request(request_data:PostData)-instance-method">
       <div class="signature">
         
-        def <strong>post_request</strong>(request_data)
+        def <strong>post_request</strong>(request_data : <a href="../ChatGPT/PostData.html">PostData</a>)
 
-        <a class="method-permalink" href="#post_request%28request_data%29-instance-method">#</a>
+        <a class="method-permalink" href="#post_request%28request_data%3APostData%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Send a POST request with the provided request data to the ChatGPT API</p>
+          <p>Send a POST request with the provided request data to the Responses API</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7542f962cf8e1d2f794613b60a9be02ed8884/src/chatgpt/client.cr#L61" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/client.cr#L96" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="send_chat_request(request_data)-instance-method">
+    <div class="entry-detail" id="send_chat_request(request_data:PostData)-instance-method">
       <div class="signature">
         
-        def <strong>send_chat_request</strong>(request_data)
+        def <strong>send_chat_request</strong>(request_data : <a href="../ChatGPT/PostData.html">PostData</a>)
 
-        <a class="method-permalink" href="#send_chat_request%28request_data%29-instance-method">#</a>
+        <a class="method-permalink" href="#send_chat_request%28request_data%3APostData%29-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Send a chat request to the ChatGPT API and log the request and response data if in debug mode</p>
+          <p>Send a model request to the OpenAI API (Responses API)
+and log the request and response data if in debug mode.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/40a7542f962cf8e1d2f794613b60a9be02ed8884/src/chatgpt/client.cr#L45" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/client.cr#L46" target="_blank">View source</a>]
         
       </div>
     </div>
