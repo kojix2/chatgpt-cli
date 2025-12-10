@@ -14,7 +14,7 @@ module ChatGPT
       @messages = [] of Hash(String, String),
       @n = 1,
       @temperature = 1.0,
-      @top_p = 1.0
+      @top_p = 1.0,
     )
     end
 
