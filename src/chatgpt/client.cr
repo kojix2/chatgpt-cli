@@ -63,34 +63,22 @@ module ChatGPT
       {
         # Responses API model id (e.g. "gpt-5.1")
         "model" => data.model,
-        # Flatten chat history into a single text input. This preserves
-        # existing CLI behaviour while using the Responses API.
-        "input" => build_input_from_messages(data.messages),
+        # Use structured input items to preserve conversation history and roles
+        "input" => data.messages.map do |msg|
+          {
+            "type"    => "message",
+            "role"    => msg["role"],
+            "content" => msg["content"],
+          }
+        end,
         # For GPT-5.1, temperature/top_p are supported when reasoning.effort
         # is "none" (the default), so we can safely forward them.
         "temperature" => data.temperature,
         "top_p"       => data.top_p,
+        "max_output_tokens" => data.max_output_tokens,
       }
     end
 
-    # Convert PostData-style messages into a plain text transcript.
-    private def build_input_from_messages(messages)
-      return "" if messages.empty?
-
-      String.build do |s|
-        messages.each do |msg|
-          role = msg["role"]?
-          content = msg["content"]?
-          next unless content
-          prefix = case role
-                   when "system"    then "[system]"
-                   when "assistant" then "[assistant]"
-                   else                  "[user]"
-                   end
-          s << prefix << " " << content << "\n"
-        end
-      end
-    end
 
     # Send a POST request with the provided request data to the Responses API
     def post_request(request_data : PostData)

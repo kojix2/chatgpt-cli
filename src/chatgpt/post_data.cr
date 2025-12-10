@@ -7,14 +7,14 @@ module ChatGPT
     property messages : Array(Hash(String, String))
     property temperature : Float64
     property top_p : Float64
-    property n : Int32
+    property max_output_tokens : Int32?
 
     def initialize(
       @model = "gpt-5.1",
       @messages = [] of Hash(String, String),
-      @n = 1,
       @temperature = 1.0,
       @top_p = 1.0,
+      @max_output_tokens = nil,
     )
     end
 

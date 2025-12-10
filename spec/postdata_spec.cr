@@ -14,9 +14,9 @@ module ChatGPT
       data.messages.should contain({"role" => "user", "content" => "What's the capital of France?"})
     end
 
-    it "generates correct number of edits" do
-      data.n = 2
-      data.n.should eq(2)
+    it "sets max_output_tokens correctly" do
+      data.max_output_tokens = 100
+      data.max_output_tokens.should eq(100)
     end
 
     it "sets temperature correctly" do

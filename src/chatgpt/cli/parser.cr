@@ -19,8 +19,8 @@ module ChatGPT
         on "-M MODEL", "--model MODEL", "Model name [gpt-5.1]" do |v|
           data.model = v.to_s
         end
-        on "-E INT", "Number of edits to generate [1]" do |v|
-          data.n = v.to_i? || (STDERR.puts "Error: Invalid number of edits"; exit 1)
+        on "--max-output-tokens INT", "Maximum number of tokens to generate" do |v|
+          data.max_output_tokens = v.to_i? || (STDERR.puts "Error: Invalid max_output_tokens"; exit 1)
         end
         on "-T Float", "--temperature Float", "Sampling temperature to use [1.0]" do |v|
           data.temperature = v.to_f? || (STDERR.puts "Error: Invalid temperature"; exit 1)
