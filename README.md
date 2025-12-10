@@ -1,11 +1,12 @@
 # ChatGPT CLI
 
 [![build](https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml/badge.svg)](https://github.com/kojix2/chatgpt-cli/actions/workflows/build.yml)
+[![Lines of Code](https://img.shields.io/endpoint?url=https%3A%2F%2Ftokei.kojix2.net%2Fbadge%2Fgithub%2Fkojix2%2Fchatgpt-cli%2Flines)](https://tokei.kojix2.net/github/kojix2/chatgpt-cli)
 
 :eight_spoked_asterisk: Yet another [ChatGPT](https://openai.com/chatgpt) command line tool.
 
 2025-01-24
-- ChatGPT CLI is not currently being actively developed.
+- ChatGPT CLI is currently in maintenance phase.
 - I recommend using [aichat](https://github.com/sigoden/aichat).
 - However, I will continue to accept pull requests and issues.
 
