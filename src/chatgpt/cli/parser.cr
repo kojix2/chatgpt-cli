@@ -79,7 +79,8 @@ module ChatGPT
         @subcommand = ""
         @options = {} of String => String | Bool
         super()
-        config = Config.instance
+        # Initialize Config so that DEFAULT_CONFIG and patterns are ready
+        Config.instance
         self.banner =
           <<-BANNER
 
@@ -107,11 +108,11 @@ module ChatGPT
           unknown_args { }
           # add_unknown_args(1)
         end
-        on("config", "Edit config file") do
+        on("config", "Show config paths / edit config file") do
           @subcommand = "config"
           add_banner
-          on("--reset", "Reset config file") { @options["reset"] = true }
-          on("--edit", "Edit config file") { @options["edit"] = true }
+          on("--reset", "Reset config.json to default") { @options["reset"] = true }
+          on("--edit", "Edit config.json in $EDITOR") { @options["edit"] = true }
           add_help_option
           add_unknown_args(0)
         end
