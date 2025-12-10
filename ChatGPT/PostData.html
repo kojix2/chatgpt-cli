@@ -407,7 +407,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/post_data.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/chatgpt-cli/blob/f02fe6dc314c9d79c74ebeb46f9c3f30185eef44/src/chatgpt/post_data.cr#L4" target="_blank">
         chatgpt/post_data.cr
       </a>
     
@@ -435,7 +435,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#new%28model%3AString%3D%22gpt-5.1%22%2Cmessages%3AArray%28Hash%28String%2CString%29%29%3D%5B%5DofHash%28String%2CString%29%2Cn%3AInt32%3D1%2Ctemperature%3AFloat64%3D1.0%2Ctop_p%3AFloat64%3D1.0%29-class-method" class="signature"><strong>.new</strong>(model : String = <span class="s">&quot;gpt-5.1&quot;</span>, messages : Array(Hash(String, String)) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">String</span>), n : Int32 = <span class="n">1</span>, temperature : Float64 = <span class="n">1.0</span>, top_p : Float64 = <span class="n">1.0</span>)</a>
+        <a href="#new%28model%3AString%3D%22gpt-5.1%22%2Cmessages%3AArray%28Hash%28String%2CString%29%29%3D%5B%5DofHash%28String%2CString%29%2Ctemperature%3AFloat64%3D1.0%2Ctop_p%3AFloat64%3D1.0%2Cmax_output_tokens%3AInt32%7CNil%3Dnil%29-class-method" class="signature"><strong>.new</strong>(model : String = <span class="s">&quot;gpt-5.1&quot;</span>, messages : Array(Hash(String, String)) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">String</span>), temperature : Float64 = <span class="n">1.0</span>, top_p : Float64 = <span class="n">1.0</span>, max_output_tokens : Int32 | Nil = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -473,6 +473,16 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#max_output_tokens%3AInt32%7CNil-instance-method" class="signature"><strong>#max_output_tokens</strong> : Int32 | Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#max_output_tokens%3D%28max_output_tokens%3AInt32%7CNil%29-instance-method" class="signature"><strong>#max_output_tokens=</strong>(max_output_tokens : Int32 | Nil)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#messages%3AArray%28Hash%28String%2CString%29%29-instance-method" class="signature"><strong>#messages</strong> : Array(Hash(String, String))</a>
         
       </li>
@@ -489,16 +499,6 @@
     
       <li class="entry-summary">
         <a href="#model%3D%28model%3AString%29-instance-method" class="signature"><strong>#model=</strong>(model : String)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#n%3AInt32-instance-method" class="signature"><strong>#n</strong> : Int32</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#n%3D%28n%3AInt32%29-instance-method" class="signature"><strong>#n=</strong>(n : Int32)</a>
         
       </li>
     
@@ -608,23 +608,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/post_data.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/f02fe6dc314c9d79c74ebeb46f9c3f30185eef44/src/chatgpt/post_data.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="new(model:String=&quot;gpt-5.1&quot;,messages:Array(Hash(String,String))=[]ofHash(String,String),n:Int32=1,temperature:Float64=1.0,top_p:Float64=1.0)-class-method">
+    <div class="entry-detail" id="new(model:String=&quot;gpt-5.1&quot;,messages:Array(Hash(String,String))=[]ofHash(String,String),temperature:Float64=1.0,top_p:Float64=1.0,max_output_tokens:Int32|Nil=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(model : String = <span class="s">&quot;gpt-5.1&quot;</span>, messages : Array(Hash(String, String)) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">String</span>), n : Int32 = <span class="n">1</span>, temperature : Float64 = <span class="n">1.0</span>, top_p : Float64 = <span class="n">1.0</span>)
+        def self.<strong>new</strong>(model : String = <span class="s">&quot;gpt-5.1&quot;</span>, messages : Array(Hash(String, String)) = <span class="o">[]</span> <span class="k">of</span> <span class="t">Hash</span>(<span class="t">String</span>, <span class="t">String</span>), temperature : Float64 = <span class="n">1.0</span>, top_p : Float64 = <span class="n">1.0</span>, max_output_tokens : Int32 | Nil = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28model%3AString%3D%22gpt-5.1%22%2Cmessages%3AArray%28Hash%28String%2CString%29%29%3D%5B%5DofHash%28String%2CString%29%2Cn%3AInt32%3D1%2Ctemperature%3AFloat64%3D1.0%2Ctop_p%3AFloat64%3D1.0%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28model%3AString%3D%22gpt-5.1%22%2Cmessages%3AArray%28Hash%28String%2CString%29%29%3D%5B%5DofHash%28String%2CString%29%2Ctemperature%3AFloat64%3D1.0%2Ctop_p%3AFloat64%3D1.0%2Cmax_output_tokens%3AInt32%7CNil%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/post_data.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/f02fe6dc314c9d79c74ebeb46f9c3f30185eef44/src/chatgpt/post_data.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -640,7 +640,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/post_data.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/f02fe6dc314c9d79c74ebeb46f9c3f30185eef44/src/chatgpt/post_data.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -672,7 +672,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/post_data.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/f02fe6dc314c9d79c74ebeb46f9c3f30185eef44/src/chatgpt/post_data.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -688,7 +688,39 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/post_data.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/f02fe6dc314c9d79c74ebeb46f9c3f30185eef44/src/chatgpt/post_data.cr#L21" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="max_output_tokens:Int32|Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>max_output_tokens</strong> : Int32 | Nil
+
+        <a class="method-permalink" href="#max_output_tokens%3AInt32%7CNil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/f02fe6dc314c9d79c74ebeb46f9c3f30185eef44/src/chatgpt/post_data.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="max_output_tokens=(max_output_tokens:Int32|Nil)-instance-method">
+      <div class="signature">
+        
+        def <strong>max_output_tokens=</strong>(max_output_tokens : Int32 | Nil)
+
+        <a class="method-permalink" href="#max_output_tokens%3D%28max_output_tokens%3AInt32%7CNil%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/f02fe6dc314c9d79c74ebeb46f9c3f30185eef44/src/chatgpt/post_data.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -704,7 +736,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/post_data.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/f02fe6dc314c9d79c74ebeb46f9c3f30185eef44/src/chatgpt/post_data.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -720,7 +752,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/post_data.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/f02fe6dc314c9d79c74ebeb46f9c3f30185eef44/src/chatgpt/post_data.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -736,7 +768,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/post_data.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/f02fe6dc314c9d79c74ebeb46f9c3f30185eef44/src/chatgpt/post_data.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -752,39 +784,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/post_data.cr#L6" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="n:Int32-instance-method">
-      <div class="signature">
-        
-        def <strong>n</strong> : Int32
-
-        <a class="method-permalink" href="#n%3AInt32-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/post_data.cr#L10" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="n=(n:Int32)-instance-method">
-      <div class="signature">
-        
-        def <strong>n=</strong>(n : Int32)
-
-        <a class="method-permalink" href="#n%3D%28n%3AInt32%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/post_data.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/f02fe6dc314c9d79c74ebeb46f9c3f30185eef44/src/chatgpt/post_data.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -800,7 +800,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/post_data.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/f02fe6dc314c9d79c74ebeb46f9c3f30185eef44/src/chatgpt/post_data.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -816,7 +816,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/post_data.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/f02fe6dc314c9d79c74ebeb46f9c3f30185eef44/src/chatgpt/post_data.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -832,7 +832,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/post_data.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/f02fe6dc314c9d79c74ebeb46f9c3f30185eef44/src/chatgpt/post_data.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -848,7 +848,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/post_data.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/f02fe6dc314c9d79c74ebeb46f9c3f30185eef44/src/chatgpt/post_data.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -864,7 +864,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/chatgpt-cli/blob/be8941b614d015ab356beb95c6deb0870d5f4100/src/chatgpt/post_data.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/chatgpt-cli/blob/f02fe6dc314c9d79c74ebeb46f9c3f30185eef44/src/chatgpt/post_data.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
